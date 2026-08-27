@@ -1,0 +1,2995 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Kit — Motion Specimen Sheet</title>
+
+  <!-- Bootstrap (grid/layout utilities only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <link rel="stylesheet" href="css/bundle.min.css">
+
+
+
+  <style>
+    /* ======================================================================
+   UI KIT — all rules are scoped under .uik-kit so this file can be
+   dropped into any existing site without leaking styles or colliding
+   with host classnames. Nothing here is written as an inline style
+   attribute; every visual rule lives in this stylesheet.
+   ====================================================================== */
+  </style>
+</head>
+
+<body>
+
+  <div class="uik-kit">
+
+    <!-- ================= AWWWARDS FULLSCREEN SITE OPENING INTRO PRELOADER ================= -->
+    <div class="uik-site-intro-overlay" data-uik-intro-overlay>
+      <!-- 5 Vertical Staggered Curtains -->
+      <div class="uik-intro-columns-wrap">
+        <div class="uik-intro-column" data-uik-intro-col></div>
+        <div class="uik-intro-column" data-uik-intro-col></div>
+        <div class="uik-intro-column" data-uik-intro-col></div>
+        <div class="uik-intro-column" data-uik-intro-col></div>
+        <div class="uik-intro-column" data-uik-intro-col></div>
+      </div>
+
+      <!-- Centerpiece Telemetry & Reveal Stage -->
+      <div class="uik-intro-stage" data-uik-intro-stage>
+        <div class="uik-intro-telemetry" data-uik-intro-telemetry>
+          <span>[ AWWWARDS • 2026 ]</span>
+          <span>•</span>
+          <span>[ GSAP 3 SHOCKWAVE ]</span>
+        </div>
+
+        <div class="uik-intro-emblem" data-uik-intro-emblem>
+          <div class="uik-intro-emblem-ring"></div>
+          <div class="uik-intro-emblem-core"></div>
+        </div>
+
+        <h1 class="uik-intro-title" data-uik-intro-title>
+          <span class="uik-intro-char">A</span><span class="uik-intro-char">W</span><span class="uik-intro-char">W</span><span class="uik-intro-char">W</span><span class="uik-intro-char">A</span><span class="uik-intro-char">R</span><span class="uik-intro-char">D</span><span class="uik-intro-char">S</span>
+          <span style="display: inline-block; width: 14px;"></span>
+          <span class="uik-intro-char" style="color: var(--uik-clay);">M</span><span class="uik-intro-char" style="color: var(--uik-clay);">O</span><span class="uik-intro-char" style="color: var(--uik-clay);">T</span><span class="uik-intro-char" style="color: var(--uik-clay);">I</span><span class="uik-intro-char" style="color: var(--uik-clay);">O</span><span class="uik-intro-char" style="color: var(--uik-clay);">N</span>
+        </h1>
+
+        <div class="uik-intro-counter-big" data-uik-intro-counter>00%</div>
+
+        <div class="uik-intro-progress-wrap">
+          <div class="uik-intro-progress-bar" data-uik-intro-bar></div>
+        </div>
+
+        <div class="uik-intro-status" data-uik-intro-status>SYNCHRONIZING ASSETS & TELEMETRY...</div>
+      </div>
+    </div>
+
+    <!-- ================= COMMON GLOBAL MOTION NAVBAR ================= -->
+    <nav class="uik-navbar" data-uik-navbar>
+      <div class="uik-container d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <a href="index.html" class="uik-nav-brand" title="GSAP Motion Suite Home">
+            <span class="uik-nav-dot"></span>
+            <span class="uik-nav-brand-title">GSAP MOTION</span>
+            <span class="uik-nav-badge">SUITE</span>
+          </a>
+
+          <!-- MegaMenu Trigger Button -->
+          <button type="button" class="uik-nav-megabtn" data-uik-megatoggle aria-expanded="false" title="Explore All Motion Modules">
+            <span class="uik-megabtn-icon">❖</span>
+            <span>MegaMenu</span>
+            <svg class="uik-megabtn-arrow" width="12" height="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="uik-nav-scroll-wrap">
+          <ul class="uik-nav-list">
+            <!-- 3 Master Showcase Hub Links -->
+            <li><a href="index.html" class="uik-nav-item is-current-page" title="Main Motion Specimen Sheet"><span class="uik-nav-pill uik-nav-pill--specimen">✦ Main Kit</span></a></li>
+            <li><a href="headings.html" class="uik-nav-item" title="Typography & Headings Animation Kit"><span class="uik-nav-pill uik-nav-pill--headings">🔤 Typography (26)</span></a></li>
+            <li><a href="image-parallax.html" class="uik-nav-item" title="12 Pure Image Parallax Techniques"><span class="uik-nav-pill uik-nav-pill--parallax">🖼️ Image Parallax (12)</span></a></li>
+
+            <!-- Interactive Replay Opening Animation Trigger -->
+            <li><button type="button" class="uik-nav-replay-btn" data-uik-intro-replay title="Replay Awwwards Opening Intro Animation">⚡ Replay Intro</button></li>
+
+            <!-- Universal Theme Toggle -->
+            <li>
+              <button type="button" class="uik-nav-theme-btn" data-uik-theme-toggle title="Toggle Light / Dark Mode">
+                <span class="uik-theme-icon">☀️</span>
+                <span class="uik-theme-label">Light</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mega Menu Full Panel Overlay -->
+    <div class="uik-megamenu-panel" data-uik-megapanel>
+      <div class="uik-container">
+        <div class="uik-megamenu-grid">
+
+          <!-- Column 1: Core Typography & Components -->
+          <div class="uik-megacol">
+            <div class="uik-megacol-title">
+              <span>01 • CORE FOUNDATIONS</span>
+              <span class="uik-nav-badge">60+ FX</span>
+            </div>
+
+            <a href="#kit-headings" class="uik-megalink-card" data-nav-target="#kit-headings" data-megaclose>
+              <div class="uik-megalink-icon">🔤</div>
+              <div class="uik-megalink-content">
+                <h5>Animated Headings <span class="uik-nav-badge">26</span></h5>
+                <p>Split-char, Clip wipe, Line masks, Scramble, Glitch, Typewriter & 3D tilts.</p>
+              </div>
+            </a>
+
+            <a href="#kit-cards" class="uik-megalink-card" data-nav-target="#kit-cards" data-megaclose>
+              <div class="uik-megalink-icon">🃏</div>
+              <div class="uik-megalink-content">
+                <h5>Interactive Cards <span class="uik-nav-badge">20+</span></h5>
+                <p>3D cursor tilt, Spotlight radial glows, Magnetic pulls & Holographic flares.</p>
+              </div>
+            </a>
+
+            <a href="#kit-marquees" class="uik-megalink-card" data-nav-target="#kit-marquees" data-megaclose>
+              <div class="uik-megalink-icon">♾️</div>
+              <div class="uik-megalink-content">
+                <h5>Gapless Marquees <span class="uik-nav-badge">15</span></h5>
+                <p>Seamless infinite tickers, photo streams, vertical scrollers & text strokes.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Column 2: Scroll-Driven Sequences -->
+          <div class="uik-megacol">
+            <div class="uik-megacol-title">
+              <span>02 • SCROLL SEQUENCES</span>
+              <span class="uik-nav-badge">KINETIC</span>
+            </div>
+
+            <a href="#kit-scroll-1" class="uik-megalink-card" data-nav-target="#kit-scroll-1" data-megaclose>
+              <div class="uik-megalink-icon">📜</div>
+              <div class="uik-megalink-content">
+                <h5>Kinetic Scroll I</h5>
+                <p>Pinned card decks, horizontal sliding runways & expanding container wipes.</p>
+              </div>
+            </a>
+
+            <a href="#kit-scroll-2" class="uik-megalink-card" data-nav-target="#kit-scroll-2" data-megaclose>
+              <div class="uik-megalink-icon">⚡</div>
+              <div class="uik-megalink-content">
+                <h5>Kinetic Scroll II</h5>
+                <p>SVG path stroke drawing, rotating compass needles & differential parallax.</p>
+              </div>
+            </a>
+
+            <a href="#kit-scroll-3" class="uik-megalink-card" data-nav-target="#kit-scroll-3" data-megaclose>
+              <div class="uik-megalink-icon">🔢</div>
+              <div class="uik-megalink-content">
+                <h5>Kinetic Scroll III</h5>
+                <p>Numeric odometers, before/after image sliders & curtain reveals.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Column 3: Award Winning & Sliders -->
+          <div class="uik-megacol">
+            <div class="uik-megacol-title">
+              <span>03 • SUITES & SLIDERS</span>
+              <span class="uik-nav-badge">33+ PRO</span>
+            </div>
+
+            <a href="#kit-awwwards" class="uik-megalink-card" data-nav-target="#kit-awwwards" data-megaclose>
+              <div class="uik-megalink-icon">🏆</div>
+              <div class="uik-megalink-content">
+                <h5>Awwwards Suite <span class="uik-nav-pill">11</span></h5>
+                <p>Fluid magnetic cursor, image trails, velocity skews & stencil windows.</p>
+              </div>
+            </a>
+
+            <a href="#kit-hypermotion" class="uik-megalink-card" data-nav-target="#kit-hypermotion" data-megaclose>
+              <div class="uik-megalink-icon">✨</div>
+              <div class="uik-megalink-content">
+                <h5>Hyper-Motion Studio <span class="uik-nav-pill">11</span></h5>
+                <p>3D orbit cylinders, pixel reveal grids, constellation mesh & spotlights.</p>
+              </div>
+            </a>
+
+            <a href="#kit-reactbits" class="uik-megalink-card" data-nav-target="#kit-reactbits" data-megaclose>
+              <div class="uik-megalink-icon">🎠</div>
+              <div class="uik-megalink-content">
+                <h5>ReactBits Carousel Suite <span class="uik-nav-pill uik-nav-pill--gold">11</span></h5>
+                <p>Skewed infinity reels, 3D coverflow, liquid morph, accordion slices.</p>
+              </div>
+            </a>
+
+            <a href="#kit-modern" class="uik-megalink-card" data-nav-target="#kit-modern" data-megaclose>
+              <div class="uik-megalink-icon">🚀</div>
+              <div class="uik-megalink-content">
+                <h5>Modern Hero Sliders <span class="uik-nav-pill uik-nav-pill--cyan">11</span></h5>
+                <p>3D prism cubes, venetian shutters, filmstrip reel & waveform harmonic banners.</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Column 4: Standalone & Tools -->
+          <div class="uik-megacol">
+            <div class="uik-megacol-title">
+              <span>04 • LOADERS & TOOLS</span>
+              <span class="uik-nav-badge" style="color:#C8862B; border-color:rgba(200,134,43,0.4);">KIT—10</span>
+            </div>
+
+            <!-- KIT-10 Loaders Link in MegaMenu -->
+            <a href="#kit-loaders" class="uik-megalink-card" data-nav-target="#kit-loaders" data-megaclose style="border-color: rgba(200, 134, 43, 0.4); background: rgba(200, 134, 43, 0.08);">
+              <div class="uik-megalink-icon" style="background: rgba(200, 134, 43, 0.25);">⏳</div>
+              <div class="uik-megalink-content">
+                <h5>Kinetic Loaders Suite <span class="uik-nav-badge" style="background: #C8862B; color: #0E1015;">24</span></h5>
+                <p>Awwwards preloader animations, counters, gyro rings, fluid blobs & laser scans.</p>
+              </div>
+            </a>
+
+            <!-- Dedicated Standalone Suites -->
+            <div class="uik-megacard-featured" style="border-color: rgba(200, 134, 43, 0.4); background: linear-gradient(135deg, rgba(200, 134, 43, 0.12) 0%, rgba(14, 16, 21, 0.6) 100%);">
+              <h4>Image Parallax Suite <span class="uik-nav-badge" style="background: #C8862B; color: #0A0B0E;">12 FX</span></h4>
+              <p>Pure image parallax animations without text animation: 3D diorama, Ken Burns, diagonal curtains, opposing dual-columns, 3D tilt, and more.</p>
+              <a href="image-parallax.html" class="uik-megabtn-cta" target="_blank" rel="noopener noreferrer" style="background: #C8862B; color: #0A0B0E; font-weight: 700;">Open Parallax Suite ↗</a>
+            </div>
+
+            <div class="uik-megacard-featured">
+              <h4>.main-heading System</h4>
+              <p>Independent typography kit with zero UI-Kit dependency. Works on any external website with H1–H6 responsive font scales.</p>
+              <a href="headings.html" class="uik-megabtn-cta" target="_blank" rel="noopener noreferrer">Open Standalone Tab ↗</a>
+            </div>
+
+            <a href="#" class="uik-megalink-card" data-nav-target="top" data-megaclose>
+              <div class="uik-megalink-icon">🔝</div>
+              <div class="uik-megalink-content">
+                <h5>Scroll to Top</h5>
+                <p>Back to the hero section.</p>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="uik-hero">
+      <div class="uik-container">
+        <div class="uik-hero__eyebrow">Motion Specimen Sheet — GSAP × Bootstrap</div>
+        <h1 class="uik-hero__title">Components that move <em>like they mean it.</em></h1>
+        <p class="uik-hero__sub">Four animated headings, four card treatments, three gapless marquees and three
+          scroll-driven sections — every rule scoped under <code>.uik-kit</code> so you can lift it into any site
+          without a style collision.</p>
+        <h3>The CDN For Those Animation</h3>
+        <code>
+        &lt;link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css" &gt; <br>
+        &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/souvikbhun/animatedgsap@css/bundle.min.css" &gt; <br>
+        <br>
+        &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"&gt;&lt;/script&gt; <br>
+        &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"&gt;&lt;/script&gt; <br>
+        &lt;script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"&gt;&lt;/script&gt; <br>
+        &lt;script src="https://cdn.jsdelivr.net/gh/souvikbhun/animatedgsap@js/bundle.min.js"&gt;&lt;/script&gt; <br>
+        </code>
+
+
+      </div>
+    </header>
+
+    <!-- TICKER INDEX (signature element) -->
+    <div class="uik-marquee uik-marquee--logos" aria-hidden="true">
+      <div class="uik-marquee__track" data-marquee data-speed="38" data-dir="1">
+        <div class="uik-marquee__item">KIT—01 Headings</div>
+        <div class="uik-marquee__item">KIT—02 Cards</div>
+        <div class="uik-marquee__item">KIT—03 Marquees</div>
+        <div class="uik-marquee__item">KIT—04 Scroll Sections</div>
+        <div class="uik-marquee__item">Bootstrap Grid</div>
+        <div class="uik-marquee__item">GSAP + ScrollTrigger</div>
+      </div>
+    </div>
+
+    <!-- ================= HEADINGS ================= -->
+    <section class="uik-section" id="kit-headings">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—01 / Animated Headings</div>
+
+        <h2 class="uik-heading uik-heading--split" data-anim="split">Design in motion</h2>
+        <h2 class="uik-heading uik-heading--clip" data-anim="clip">Every pixel intentional</h2>
+        <h2 class="uik-heading uik-heading--underline" data-anim="underline">Built to be borrowed<span
+            class="uik-underline-rule"></span></h2>
+        <h2 class="uik-heading uik-heading--shine" data-anim="shine">Shine on scroll into view</h2>
+        <h2 class="uik-heading uik-heading--words" data-anim="words">Words arrive one at a time</h2>
+        <h2 class="uik-heading uik-heading--linemask" data-anim="linemask"><span class="uik-linemask-inner">Lines slide
+            out of hiding</span></h2>
+        <h2 class="uik-heading uik-heading--blur" data-anim="blur">Focus pulls it into view</h2>
+        <h2 class="uik-heading uik-heading--rotate3d" data-anim="rotate3d">Tips up from the floor</h2>
+        <h2 class="uik-heading uik-heading--pop" data-anim="pop">Pops in with a bounce</h2>
+        <h2 class="uik-heading" data-anim="typewriter" data-text="Types itself out on scroll"><span
+            class="uik-heading--typewriter">Types itself out on scroll</span></h2>
+        <h2 class="uik-heading uik-heading--highlight" data-anim="highlight"><span
+            class="uik-highlight-bg"></span>Marked as it enters</h2>
+        <h2 class="uik-heading uik-heading--scramble" data-anim="scramble" data-final-text="DECODED ON SCROLL">
+          XJ4K—SCRMBL_TXT</h2>
+        <h2 class="uik-heading uik-heading--wave" data-anim="wave">Ripples like water</h2>
+        <h2 class="uik-heading uik-heading--duo">
+          <span class="uik-duo-line"><span>Two lines,</span></span>
+          <span class="uik-duo-line"><span>opposite directions</span></span>
+        </h2>
+        <h2 class="uik-heading uik-heading--glitch" data-anim="glitch" data-text="Signal breaks up">Signal breaks
+          up<span class="uik-glitch-copy uik-glitch-copy--r">Signal breaks up</span><span
+            class="uik-glitch-copy uik-glitch-copy--b">Signal breaks up</span></h2>
+
+        <h2 class="uik-heading uik-heading--withphoto" data-anim="withphoto">
+          <img src="https://picsum.photos/seed/uikheadingphoto/160/160" alt="">
+          <span>Paired with a photo chip</span>
+        </h2>
+
+        <h2 class="uik-heading uik-heading--marker" data-anim="marker">Underlined like a highlighter<span
+            class="uik-marker-rule"></span></h2>
+
+        <h2 class="uik-heading uik-heading--skew" data-anim="skew">Skews in from the side</h2>
+
+        <h2 class="uik-heading uik-heading--staircase" data-anim="staircase">Each word steps down in turn</h2>
+
+        <h2 class="uik-heading uik-heading--outlinetext" data-anim="outlinetext">
+          Outline fills solid
+          <span class="uik-outline-fill">Outline fills solid</span>
+        </h2>
+
+        <h2 class="uik-heading uik-heading--morph" data-anim="morph">Breathes while you look at it</h2>
+
+        <h2 class="uik-heading uik-heading--stamp" data-anim="stamp">Stamped into place</h2>
+
+        <h2 class="uik-heading uik-heading--cascade" data-anim="cascade">Falls with a bounce</h2>
+
+        <h2 class="uik-heading uik-heading--neon" data-anim="neon">Glows while in frame</h2>
+
+        <h2 class="uik-heading uik-heading--slice" data-anim="slice">
+          <span class="uik-slice-row"><span>Opens like blinds</span></span>
+        </h2>
+
+        <h2 class="uik-heading uik-heading--word-rotate" data-anim="word-rotate">
+          <span class="uik-rotate-prefix">Design in</span>
+          <span class="uik-rotate-words-wrap">
+            <span class="uik-rotate-word is-active">Motion</span>
+            <span class="uik-rotate-word">Perspective</span>
+            <span class="uik-rotate-word">Dimensions</span>
+            <span class="uik-rotate-word">Creativity</span>
+            <span class="uik-rotate-word">Perfection</span>
+          </span>
+          <span class="uik-rotate-suffix">every frame</span>
+        </h2>
+      </div>
+    </section>
+
+    <div class="uik-marquee uik-marquee--text" aria-hidden="true">
+      <div class="uik-marquee__track" data-marquee data-speed="45" data-dir="-1">
+        <div class="uik-marquee__item">Reusable</div>
+        <div class="uik-marquee__item">Framework agnostic</div>
+        <div class="uik-marquee__item">No inline styles</div>
+        <div class="uik-marquee__item">Parent-scoped CSS</div>
+      </div>
+    </div>
+
+    <!-- ================= CARDS ================= -->
+    <section class="uik-section" id="kit-cards">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—02 / Card Components</div>
+
+        <div class="row g-4">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--tilt uik-card--photo" data-tilt>
+              <img class="uik-card__photo" src="https://picsum.photos/seed/uiktilt/600/500" alt="">
+              <div class="uik-card__scrim"></div>
+              <div class="uik-card__glow"></div>
+              <div class="uik-card__tag">Tilt + Glow</div>
+              <div class="uik-card__title">Depth on hover</div>
+              <div class="uik-card__text">Cursor position drives a live 3D rotation and a soft radial glow.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--flip">
+              <div class="uik-flip-inner">
+                <div class="uik-flip-face uik-flip-face--front">
+                  <div class="uik-card__tag">Flip</div>
+                  <div class="uik-card__title">Two-sided card</div>
+                  <div class="uik-card__text">Hover to rotate 180° and reveal supporting detail.</div>
+                </div>
+                <div class="uik-flip-face uik-flip-face--back">
+                  <div class="uik-card__tag">Back face</div>
+                  <div class="uik-card__title">Detail panel</div>
+                  <div class="uik-card__text">Pure CSS 3D transform, no JS required for the flip itself.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--spotlight" data-spotlight>
+              <div class="uik-card__tag">Spotlight</div>
+              <div class="uik-card__title">Cursor-tracking light</div>
+              <div class="uik-card__text">A radial mint spotlight follows the pointer across the card surface.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--reveal">
+              <img class="uik-reveal-media" src="https://picsum.photos/seed/uikreveal/600/500" alt="">
+              <div class="uik-reveal-overlay">
+                <div class="uik-card__tag">Reveal</div>
+                <div class="uik-card__title">Slide-up detail</div>
+                <div class="uik-card__text">Background zooms while a detail panel slides up from below.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--gradientborder">
+              <div class="uik-card__tag">Gradient Border</div>
+              <div class="uik-card__title">Animated outline</div>
+              <div class="uik-card__text">A gold-to-mint border sweeps around the edge on hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--lift">
+              <div class="uik-card__tag">Lift</div>
+              <div class="uik-card__title">Rises to meet you</div>
+              <div class="uik-card__text">Lifts, gains shadow, and its border lights up on hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--imgparallax">
+              <img class="uik-imgparallax-media" src="https://picsum.photos/seed/uikparallax/600/700" alt="">
+              <div class="uik-card__inner">
+                <div class="uik-card__tag">Image Parallax</div>
+                <div class="uik-card__title">Media drift</div>
+                <div class="uik-card__text">The media layer drifts upward independently of the card frame.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--fold">
+              <div class="uik-card__tag">Corner Fold</div>
+              <div class="uik-card__title">Peels at the edge</div>
+              <div class="uik-card__text">A gold triangle unfolds from the top-right corner on hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--stat">
+              <div class="uik-stat-number">128%</div>
+              <div class="uik-card__tag">Stat</div>
+              <div class="uik-card__text">A large figure-led card for metrics and results.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--magnetic" data-magnetic>
+              <div class="uik-magnetic-badge" data-magnetic-badge>◆</div>
+              <div class="uik-card__title">Magnetic badge</div>
+              <div class="uik-card__text">The badge nudges gently toward the cursor as it passes near.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--outlinefill">
+              <div class="uik-card__tag">Outline Fill</div>
+              <div class="uik-card__title">Fills from below</div>
+              <div class="uik-card__text">A solid panel rises to fill the outlined card on hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--ribbon">
+              <div class="uik-ribbon">New</div>
+              <div class="uik-card__tag">Ribbon</div>
+              <div class="uik-card__title">Corner badge</div>
+              <div class="uik-card__text">A ribbon slides fully into place on hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--stack">
+              <div class="uik-stack-behind"></div>
+              <div class="uik-stack-behind"></div>
+              <div class="uik-card__tag">Stack</div>
+              <div class="uik-card__title">Fans out on hover</div>
+              <div class="uik-card__text">Two shadow cards behind it separate slightly, like a deck.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--pulse">
+              <div class="uik-card__tag">Pulse</div>
+              <div class="uik-card__title">Breathing border</div>
+              <div class="uik-card__text">A continuous glow pulse, independent of hover or scroll.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--checklist" data-checklist>
+              <div class="uik-card__tag">Checklist</div>
+              <div class="uik-card__title">Checks off on scroll</div>
+              <div class="uik-check-row"><span class="uik-check-dot"></span> Planned</div>
+              <div class="uik-check-row"><span class="uik-check-dot"></span> Built</div>
+              <div class="uik-check-row"><span class="uik-check-dot"></span> Shipped</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--profile">
+              <img class="uik-profile-photo" src="https://picsum.photos/seed/uikprofile1/200/200" alt="">
+              <div class="uik-card__title">Priya Nair</div>
+              <div class="uik-card__text">Product Designer</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--badge uik-card--photo">
+              <img class="uik-card__photo" src="https://picsum.photos/seed/uikbadge1/600/500" alt="">
+              <div class="uik-card__scrim"></div>
+              <span class="uik-badge-pill">Featured</span>
+              <div class="uik-card__tag">Badge Overlay</div>
+              <div class="uik-card__title">Floating pill label</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--duotone uik-card--photo">
+              <img class="uik-card__photo" src="https://picsum.photos/seed/uikduotone1/600/500" alt="">
+              <div class="uik-card__scrim"></div>
+              <div class="uik-card__tag">Duotone</div>
+              <div class="uik-card__title">Color on hover</div>
+              <div class="uik-card__text">Grayscale photo returns to full color when you hover.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--caption uik-card--photo">
+              <img class="uik-card__photo" src="https://picsum.photos/seed/uikcaption1/600/500" alt="">
+              <div class="uik-card__scrim"></div>
+              <div class="uik-caption-bar">
+                <div class="uik-card__tag">Caption Slide</div>
+                <div class="uik-card__title">Bar slides in</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--zoomframe">
+              <div class="uik-zoomframe-inner">
+                <img src="https://picsum.photos/seed/uikzoomframe1/600/500" alt="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--testimonial">
+              <div class="uik-testimonial-quote">"Dropping this kit in took an afternoon, not a sprint."</div>
+              <div class="uik-testimonial-person">
+                <img class="uik-testimonial-photo" src="https://picsum.photos/seed/uiktestimonial1/100/100" alt="">
+                <span class="uik-testimonial-name">Dev Lead, Fintech Startup</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--video uik-card--photo">
+              <img class="uik-card__photo" src="https://picsum.photos/seed/uikvideo1/600/500" alt="">
+              <div class="uik-card__scrim"></div>
+              <div class="uik-video-play"></div>
+              <div class="uik-card__tag">Video</div>
+              <div class="uik-card__title">Pulsing play button</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--pricing">
+              <div class="uik-card__tag">Pricing</div>
+              <div class="uik-pricing-amount">$29</div>
+              <div class="uik-pricing-period">per month</div>
+              <div class="uik-card__text">Unlimited projects, priority support, and every component in this kit.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--iconflip">
+              <div class="uik-iconflip-badge">◆</div>
+              <div class="uik-card__title">Flips on hover</div>
+              <div class="uik-card__text">A simple 3D flip on the icon badge, nothing else moves.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--bordertrace">
+              <div class="uik-card__tag">Border Trace</div>
+              <div class="uik-card__title">Light travels the edge</div>
+              <div class="uik-card__text">A continuous conic-gradient trace loops around the border.</div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--skeleton">
+              <div class="uik-card__tag">Skeleton</div>
+              <div class="uik-skel-line"></div>
+              <div class="uik-skel-line"></div>
+              <div class="uik-skel-line uik-skel-line--short"></div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="uik-card uik-card--expand">
+              <div class="uik-card__tag">Expand</div>
+              <div class="uik-card__title">Grows on hover</div>
+              <div class="uik-card__text">Hover to reveal an extra line of detail as the card expands.</div>
+              <div class="uik-expand-extra uik-card__text">Extra detail appears here, fading and expanding in together.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="uik-marquee uik-marquee--stroke" aria-hidden="true">
+      <div class="uik-marquee__track" data-marquee data-speed="55" data-dir="1">
+        <div class="uik-marquee__item">GAPLESS</div>
+        <div class="uik-marquee__item">MARQUEE</div>
+        <div class="uik-marquee__item">GAPLESS</div>
+        <div class="uik-marquee__item">MARQUEE</div>
+      </div>
+    </div>
+
+    <!-- ================= MORE MARQUEES ================= -->
+    <section class="uik-section" id="kit-marquees">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—03 / More Marquees</div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--fill" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="32" data-dir="1">
+          <div class="uik-marquee__item">Solid Fill Strip</div>
+          <div class="uik-marquee__item">High Contrast</div>
+          <div class="uik-marquee__item">Announcement Bar</div>
+        </div>
+      </div>
+
+      <div class="uik-container uik-mt">
+        <div class="uik-marquee uik-marquee--tiles" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="42" data-dir="-1">
+            <div class="uik-marquee__item"><img class="uik-tile-photo" src="https://picsum.photos/seed/uiktile1/300/200"
+                alt=""><span class="uik-tile-label">Preview 01</span></div>
+            <div class="uik-marquee__item"><img class="uik-tile-photo" src="https://picsum.photos/seed/uiktile2/300/200"
+                alt=""><span class="uik-tile-label">Preview 02</span></div>
+            <div class="uik-marquee__item"><img class="uik-tile-photo" src="https://picsum.photos/seed/uiktile3/300/200"
+                alt=""><span class="uik-tile-label">Preview 03</span></div>
+            <div class="uik-marquee__item"><img class="uik-tile-photo" src="https://picsum.photos/seed/uiktile4/300/200"
+                alt=""><span class="uik-tile-label">Preview 04</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--quotes uik-mt" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="50" data-dir="1">
+          <div class="uik-marquee__item">A kit you can actually reuse across projects.</div>
+          <div class="uik-marquee__item">Every animation feels intentional, not decorative.</div>
+          <div class="uik-marquee__item">Scoped CSS meant it dropped in without conflicts.</div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--mono uik-mt" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="38" data-dir="-1">
+          <div class="uik-marquee__item">Scoped</div>
+          <div class="uik-marquee__item">Reusable</div>
+          <div class="uik-marquee__item">Accessible</div>
+          <div class="uik-marquee__item">Performant</div>
+        </div>
+      </div>
+
+      <div class="uik-container uik-mt">
+        <div class="uik-marquee uik-marquee--fade" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="34" data-dir="1">
+            <div class="uik-marquee__item">Fades at the edges</div>
+            <div class="uik-marquee__item">Soft container mask</div>
+            <div class="uik-marquee__item">No harsh cutoff</div>
+          </div>
+        </div>
+
+        <div class="row g-4 uik-mt-sm">
+          <div class="col-12 col-md-6">
+            <div class="uik-marquee uik-marquee--vertical" aria-hidden="true">
+              <div class="uik-marquee__track" data-marquee data-speed="20" data-dir="1">
+                <div class="uik-marquee__item">→ Vertical scroll 01</div>
+                <div class="uik-marquee__item">→ Vertical scroll 02</div>
+                <div class="uik-marquee__item">→ Vertical scroll 03</div>
+                <div class="uik-marquee__item">→ Vertical scroll 04</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="uik-marquee uik-marquee--vertical" aria-hidden="true">
+              <div class="uik-marquee__track" data-marquee data-speed="26" data-dir="-1">
+                <div class="uik-marquee__item">← Reverse column A</div>
+                <div class="uik-marquee__item">← Reverse column B</div>
+                <div class="uik-marquee__item">← Reverse column C</div>
+                <div class="uik-marquee__item">← Reverse column D</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-marquee uik-marquee--bullet uik-mt" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="30" data-dir="1">
+            <div class="uik-marquee__item">Consistent</div>
+            <div class="uik-marquee__item">Composable</div>
+            <div class="uik-marquee__item">Documented</div>
+            <div class="uik-marquee__item">Themeable</div>
+          </div>
+        </div>
+
+        <div class="uik-marquee uik-marquee--avatars uik-mt" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="36" data-dir="-1">
+            <div class="uik-marquee__item"><span class="uik-avatar-chip"><img
+                  src="https://picsum.photos/seed/uikavatar1/80/80" alt=""></span> Aria R. joined</div>
+            <div class="uik-marquee__item"><span class="uik-avatar-chip"><img
+                  src="https://picsum.photos/seed/uikavatar2/80/80" alt=""></span> Malik K. shipped a feature</div>
+            <div class="uik-marquee__item"><span class="uik-avatar-chip"><img
+                  src="https://picsum.photos/seed/uikavatar3/80/80" alt=""></span> Sena O. left a review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--stars" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="40" data-dir="1">
+          <div class="uik-marquee__item"><span class="uik-stars">★★★★★</span> "Feels premium out of the box"</div>
+          <div class="uik-marquee__item"><span class="uik-stars">★★★★★</span> "Dropped in without a fight"</div>
+          <div class="uik-marquee__item"><span class="uik-stars">★★★★★</span> "Exactly the polish we needed"</div>
+        </div>
+      </div>
+
+      <div class="uik-container">
+        <div class="uik-marquee uik-marquee--gradient uik-mt" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="45" data-dir="-1">
+            <div class="uik-marquee__item">Motion-first</div>
+            <div class="uik-marquee__item">Scoped by design</div>
+            <div class="uik-marquee__item">Ready to ship</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--circles uik-mt" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="34" data-dir="1">
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcircle1/160/160" alt=""></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcircle2/160/160" alt=""></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcircle3/160/160" alt=""></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcircle4/160/160" alt=""></div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--polaroid" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="30" data-dir="-1">
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikpolaroid1/300/220" alt=""><span
+              class="uik-polaroid-caption">Field trip</span></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikpolaroid2/300/220" alt=""><span
+              class="uik-polaroid-caption">Studio day</span></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikpolaroid3/300/220" alt=""><span
+              class="uik-polaroid-caption">Launch night</span></div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--photoband" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="50" data-dir="1">
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikband1/400/240" alt=""><span
+              class="uik-photoband-label">Chapter 01</span></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikband2/400/240" alt=""><span
+              class="uik-photoband-label">Chapter 02</span></div>
+          <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikband3/400/240" alt=""><span
+              class="uik-photoband-label">Chapter 03</span></div>
+        </div>
+      </div>
+
+      <div class="uik-container">
+        <div class="uik-marquee uik-marquee--captionphoto uik-mt" aria-hidden="true">
+          <div class="uik-marquee__track" data-marquee data-speed="36" data-dir="-1">
+            <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcap1/140/140" alt=""><span
+                class="uik-captionphoto-text">New template added</span></div>
+            <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcap2/140/140" alt=""><span
+                class="uik-captionphoto-text">Dark mode shipped</span></div>
+            <div class="uik-marquee__item"><img src="https://picsum.photos/seed/uikcap3/140/140" alt=""><span
+                class="uik-captionphoto-text">Faster load times</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--emoji" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="30" data-dir="1">
+          <div class="uik-marquee__item">✦</div>
+          <div class="uik-marquee__item">◆</div>
+          <div class="uik-marquee__item">✺</div>
+          <div class="uik-marquee__item">●</div>
+          <div class="uik-marquee__item">▲</div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--brands" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="40" data-dir="-1">
+          <div class="uik-marquee__item">Nordly</div>
+          <div class="uik-marquee__item">Fieldstone</div>
+          <div class="uik-marquee__item">Verdant</div>
+          <div class="uik-marquee__item">Kestrel Co.</div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--ticker" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="28" data-dir="1">
+          <div class="uik-marquee__item"><span class="uik-ticker-up">▲</span> ORB 128.40</div>
+          <div class="uik-marquee__item"><span class="uik-ticker-down">▼</span> FNL 84.12</div>
+          <div class="uik-marquee__item"><span class="uik-ticker-up">▲</span> MNT 301.77</div>
+          <div class="uik-marquee__item"><span class="uik-ticker-down">▼</span> SLT 19.03</div>
+        </div>
+      </div>
+
+      <div class="uik-marquee uik-marquee--diagonal uik-mt" aria-hidden="true">
+        <div class="uik-marquee__track" data-marquee data-speed="46" data-dir="-1">
+          <div class="uik-marquee__item">SCROLL</div>
+          <div class="uik-marquee__item">DOWN</div>
+          <div class="uik-marquee__item">SCROLL</div>
+          <div class="uik-marquee__item">DOWN</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCROLL SECTIONS ================= -->
+    <section class="uik-section" id="kit-scroll-1">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—03 / Scroll-Driven Sections</div>
+
+        <div class="uik-scrollsec uik-scrollsec--stagger">
+          <div class="row g-4">
+            <div class="col-6 col-md-3 uik-stagger-item-wrap">
+              <div class="uik-stagger-item">
+                <div class="uik-stagger-item__num">01</div>
+                <div class="uik-card__title">Enter</div>
+                <div class="uik-card__text">Fades and rises into place as it crosses the viewport.</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 uik-stagger-item-wrap">
+              <div class="uik-stagger-item">
+                <div class="uik-stagger-item__num">02</div>
+                <div class="uik-card__title">Stagger</div>
+                <div class="uik-card__text">Each item is delayed slightly after the one before it.</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 uik-stagger-item-wrap">
+              <div class="uik-stagger-item">
+                <div class="uik-stagger-item__num">03</div>
+                <div class="uik-card__title">Settle</div>
+                <div class="uik-card__text">Motion eases out instead of stopping abruptly.</div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3 uik-stagger-item-wrap">
+              <div class="uik-stagger-item">
+                <div class="uik-stagger-item__num">04</div>
+                <div class="uik-card__title">Repeat</div>
+                <div class="uik-card__text">Re-triggers cleanly on scroll back up.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-parallax" data-parallax>
+          <div class="uik-parallax__layer uik-parallax__layer--back" data-depth="0.2">
+            <img class="uik-parallax__photo" src="https://picsum.photos/seed/uikparallaxbg/900/600" alt="">
+          </div>
+          <div class="uik-parallax__layer uik-parallax__layer--mid" data-depth="0.5">
+            <div class="uik-parallax__word">DEPTH</div>
+          </div>
+          <div class="uik-parallax__layer uik-parallax__layer--front" data-depth="0.9">
+            <div class="uik-parallax__front-title">Layers move at different speeds</div>
+            <div class="uik-parallax__front-sub">Scroll to see the parallax</div>
+          </div>
+        </div>
+
+        <div class="uik-pin">
+          <div class="uik-container uik-pin__inner">
+            <div>
+              <div class="uik-pin__sticky">Pinned — scroll to light each line</div>
+              <div class="uik-pin__lines">
+                <p class="uik-pin__line" data-pin-line>The section stays put</p>
+                <p class="uik-pin__line" data-pin-line>while the scrollbar keeps moving,</p>
+                <p class="uik-pin__line" data-pin-line>lighting each line in turn</p>
+                <p class="uik-pin__line" data-pin-line>until the panel releases.</p>
+              </div>
+            </div>
+            <div class="uik-pin__visual">
+              <div class="uik-pin__ring" data-pin-ring></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-hscroll" data-hscroll>
+          <div class="uik-hscroll__track" data-hscroll-track>
+            <div class="uik-hscroll__panel">
+              <div class="uik-card__tag">Panel 01</div>
+              <div class="uik-card__title">Scrolls sideways</div>
+              <div class="uik-card__text">Vertical scroll input is translated into horizontal motion.</div>
+            </div>
+            <div class="uik-hscroll__panel">
+              <div class="uik-card__tag">Panel 02</div>
+              <div class="uik-card__title">Gallery feel</div>
+              <div class="uik-card__text">Good for showcases, portfolios, or step sequences.</div>
+            </div>
+            <div class="uik-hscroll__panel">
+              <div class="uik-card__tag">Panel 03</div>
+              <div class="uik-card__title">Pinned track</div>
+              <div class="uik-card__text">The section pins while the track scrubs across.</div>
+            </div>
+            <div class="uik-hscroll__panel">
+              <div class="uik-card__tag">Panel 04</div>
+              <div class="uik-card__title">Releases cleanly</div>
+              <div class="uik-card__text">Unpins once the last panel clears the frame.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-counters row g-4 text-center" data-counters>
+          <div class="col-6 col-md-3">
+            <div class="uik-counter__num" data-count-to="240">0</div>
+            <div class="uik-counter__label">Components</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="uik-counter__num" data-count-to="12">0</div>
+            <div class="uik-counter__label">Marquee types</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="uik-counter__num" data-count-to="99">0</div>
+            <div class="uik-counter__label">Percent scoped</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="uik-counter__num" data-count-to="0">0</div>
+            <div class="uik-counter__label">Inline styles</div>
+          </div>
+        </div>
+
+        <div class="uik-progressbar" data-progressbar>
+          <div class="uik-progressbar__fill" data-progressbar-fill></div>
+        </div>
+
+        <div class="uik-revealmask" data-revealmask>
+          <div class="uik-revealmask__label">Circle grows as you scroll</div>
+        </div>
+
+        <div class="uik-stickyswap" data-stickyswap>
+          <div class="uik-stickyswap__list">
+            <div class="uik-stickyswap__row" data-swap-row>
+              <div class="uik-stickyswap__row-title">Step one</div>
+              <div class="uik-stickyswap__row-text">The sticky panel on the right stays fixed while this list scrolls
+                past it.</div>
+            </div>
+            <div class="uik-stickyswap__row" data-swap-row>
+              <div class="uik-stickyswap__row-title">Step two</div>
+              <div class="uik-stickyswap__row-text">Each row lights up as it crosses the middle of the viewport.</div>
+            </div>
+            <div class="uik-stickyswap__row" data-swap-row>
+              <div class="uik-stickyswap__row-title">Step three</div>
+              <div class="uik-stickyswap__row-text">Useful for feature walkthroughs and product tours.</div>
+            </div>
+          </div>
+          <div class="uik-stickyswap__visual" data-swap-visual>Sticky Visual</div>
+        </div>
+
+        <p class="uik-scrub-para" data-scrub-para>Each word in this paragraph lights up in sequence as the page scrolls
+          past it, turning ordinary reading into a scroll-timed reveal.</p>
+
+        <div class="uik-zoomsec" data-zoomsec>
+          <div class="uik-zoomsec__inner">Zooms into focus</div>
+        </div>
+
+        <div class="uik-timeline" data-timeline>
+          <div class="uik-timeline__row" data-timeline-row>
+            <div class="uik-timeline__dot"></div>
+            <div class="uik-timeline__title">Discover</div>
+            <div class="uik-timeline__text">The row lights up the moment it crosses the middle of the screen.</div>
+          </div>
+          <div class="uik-timeline__row" data-timeline-row>
+            <div class="uik-timeline__dot"></div>
+            <div class="uik-timeline__title">Design</div>
+            <div class="uik-timeline__text">Works forward and backward — scroll up and the dots go dark again in order.
+            </div>
+          </div>
+          <div class="uik-timeline__row" data-timeline-row>
+            <div class="uik-timeline__dot"></div>
+            <div class="uik-timeline__title">Ship</div>
+            <div class="uik-timeline__text">A simple pattern for changelogs, roadmaps, or process pages.</div>
+          </div>
+        </div>
+
+        <div class="uik-splitreveal" data-splitreveal>
+          <div class="uik-splitreveal__half uik-splitreveal__half--l" data-split-left>
+            <img class="uik-splitreveal__photo" src="https://picsum.photos/seed/uiksplitbefore/700/500" alt="">
+            <span class="uik-splitreveal__half-label">Before</span>
+          </div>
+          <div class="uik-splitreveal__half uik-splitreveal__half--r" data-split-right>
+            <img class="uik-splitreveal__photo" src="https://picsum.photos/seed/uiksplitafter/700/500" alt="">
+            <span class="uik-splitreveal__half-label">After</span>
+          </div>
+          <div class="uik-splitreveal__center">Pulls apart on scroll</div>
+        </div>
+
+        <div class="uik-rotatebadge" data-rotatebadge>
+          <div class="uik-rotatebadge__ring" data-rotatebadge-ring>
+            <div class="uik-rotatebadge__core">SCROLL</div>
+          </div>
+          <div class="uik-rotatebadge__label">The ring's rotation is tied directly to scroll progress through this
+            section, not to time.</div>
+        </div>
+
+        <div class="uik-pinscale" data-pinscale>
+          <div class="uik-pinscale__word" data-pinscale-word>Grows as you scroll</div>
+        </div>
+
+        <p class="uik-wordreveal" data-wordreveal>Words fade and lift into place one after another the moment this
+          paragraph enters the viewport, then reset quietly if you scroll back past it.</p>
+
+        <div class="uik-flipshowcase" data-flipshowcase>
+          <div class="uik-flipshowcase__card" data-flipshowcase-card>
+            <div class="uik-flipshowcase__face uik-flipshowcase__face--front">Front Face</div>
+            <div class="uik-flipshowcase__face uik-flipshowcase__face--back">Back Face</div>
+          </div>
+        </div>
+
+        <div class="uik-bignumber" data-bignumber>
+          <div class="uik-bignumber__value" data-bignumber-value data-count-to="42">0</div>
+          <div class="uik-bignumber__label">Components in this kit</div>
+        </div>
+
+        <div class="uik-stickygallery" data-stickygallery>
+          <div class="uik-stickygallery__list">
+            <div class="uik-stickygallery__row" data-gallery-row="0">
+              <div class="uik-stickygallery__row-title">Discover</div>
+              <div class="uik-stickygallery__row-text">The photo on the right swaps as each row scrolls to the middle of
+                the screen.</div>
+            </div>
+            <div class="uik-stickygallery__row" data-gallery-row="1">
+              <div class="uik-stickygallery__row-title">Compose</div>
+              <div class="uik-stickygallery__row-text">Good for product tours, feature walkthroughs, or portfolio case
+                studies.</div>
+            </div>
+            <div class="uik-stickygallery__row" data-gallery-row="2">
+              <div class="uik-stickygallery__row-title">Ship</div>
+              <div class="uik-stickygallery__row-text">Only one image is visible at a time — they cross-fade, not stack.
+              </div>
+            </div>
+          </div>
+          <div class="uik-stickygallery__visual">
+            <img src="https://picsum.photos/seed/uikgallery1/700/600" alt="" class="uik-is-shown" data-gallery-img="0">
+            <img src="https://picsum.photos/seed/uikgallery2/700/600" alt="" data-gallery-img="1">
+            <img src="https://picsum.photos/seed/uikgallery3/700/600" alt="" data-gallery-img="2">
+          </div>
+        </div>
+
+        <div class="uik-hprogress" data-hprogress>
+          <div class="uik-hprogress__track">
+            <div class="uik-hprogress__fill" data-hprogress-fill></div>
+          </div>
+          <div class="uik-hprogress__markers">
+            <span class="uik-hprogress__marker" data-hprogress-marker>Plan</span>
+            <span class="uik-hprogress__marker" data-hprogress-marker>Design</span>
+            <span class="uik-hprogress__marker" data-hprogress-marker>Build</span>
+            <span class="uik-hprogress__marker" data-hprogress-marker>Launch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MORE SCROLL SECTIONS ================= -->
+    <section class="uik-section" id="kit-scroll-2">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—04 / More Scroll Sections</div>
+
+        <div class="uik-columnreveal row g-4" data-columnreveal>
+          <div class="col-12 col-md-4">
+            <div class="uik-columnreveal__col" data-col-reveal="left">
+              <div class="uik-columnreveal__col-title">Slides from left</div>
+              <div class="uik-card__text">First column enters from the left as it reaches the middle of the screen.
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-columnreveal__col" data-col-reveal="up">
+              <div class="uik-columnreveal__col-title">Rises from below</div>
+              <div class="uik-card__text">Middle column simply lifts into place, no horizontal motion.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-columnreveal__col" data-col-reveal="right">
+              <div class="uik-columnreveal__col-title">Slides from right</div>
+              <div class="uik-card__text">Third column mirrors the first, entering from the opposite side.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-scalegrid row g-3 uik-mt" data-scalegrid>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">01</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">02</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">03</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">04</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">05</div>
+          </div>
+          <div class="col-4 col-md-2">
+            <div class="uik-scalegrid__item">06</div>
+          </div>
+        </div>
+
+        <div class="uik-colorwash" data-colorwash>
+          <div class="uik-colorwash__title">This panel's background eases through a different tone as it scrolls through
+            view.</div>
+        </div>
+
+        <div class="uik-curtain" data-curtain>
+          <div class="uik-curtain__reveal">What was behind the curtain</div>
+          <div class="uik-curtain__panel" data-curtain-panel>Scroll to draw back</div>
+        </div>
+
+        <div class="uik-floatcards row g-4" data-floatcards>
+          <div class="col-12 col-md-4">
+            <div class="uik-floatcards__card" data-float-card>
+              <div class="uik-floatcards__card-title">Rises in</div>
+              <div class="uik-card__text">Enters with a slight rotation, then idles with a gentle float.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-floatcards__card" data-float-card>
+              <div class="uik-floatcards__card-title">Settles</div>
+              <div class="uik-card__text">Each card's idle float runs on its own offset timing.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-floatcards__card" data-float-card>
+              <div class="uik-floatcards__card-title">Drifts</div>
+              <div class="uik-card__text">Subtle enough to feel alive without being distracting.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-drawline" data-drawline>
+          <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+            <path data-drawline-path d="M10,90 C80,10 120,110 200,60 C280,10 320,110 390,40"></path>
+          </svg>
+        </div>
+
+        <div class="uik-stepnumbers" data-stepnumbers>
+          <div class="uik-stepnumbers__sticky">
+            <span data-stepnum="1" class="uik-is-active">01</span>
+          </div>
+          <div class="uik-stepnumbers__list">
+            <div class="uik-stepnumbers__row" data-step-row="1">
+              <div class="uik-stepnumbers__row-title">Kickoff</div>
+              <div class="uik-stepnumbers__row-text">The big number on the left updates to match whichever row is
+                centered.</div>
+            </div>
+            <div class="uik-stepnumbers__row" data-step-row="2">
+              <div class="uik-stepnumbers__row-title">Build</div>
+              <div class="uik-stepnumbers__row-text">Works both directions — scroll up and the number counts back down.
+              </div>
+            </div>
+            <div class="uik-stepnumbers__row" data-step-row="3">
+              <div class="uik-stepnumbers__row-title">Launch</div>
+              <div class="uik-stepnumbers__row-text">A common pattern for onboarding flows and process explainers.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-tiltgallery" data-tiltgallery>
+          <div class="uik-tiltgallery__frame" data-tilt-frame="1"><img
+              src="https://picsum.photos/seed/uiktiltgal1/400/500" alt=""></div>
+          <div class="uik-tiltgallery__frame" data-tilt-frame="2"><img
+              src="https://picsum.photos/seed/uiktiltgal2/400/500" alt=""></div>
+          <div class="uik-tiltgallery__frame" data-tilt-frame="3"><img
+              src="https://picsum.photos/seed/uiktiltgal3/400/500" alt=""></div>
+        </div>
+
+        <div class="uik-textmask" data-textmask>
+          <div class="uik-textmask__word" data-textmask-word>REVEAL</div>
+        </div>
+
+        <div class="uik-particles" data-particles>
+          <div class="uik-particles__label">Ambient drift, loosely tied to scroll</div>
+          <span class="uik-particle" data-particle></span>
+          <span class="uik-particle" data-particle></span>
+          <span class="uik-particle" data-particle></span>
+          <span class="uik-particle" data-particle></span>
+          <span class="uik-particle" data-particle></span>
+          <span class="uik-particle" data-particle></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EVEN MORE SCROLL SECTIONS ================= -->
+    <section class="uik-section" id="kit-scroll-3">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—05 / Even More Scroll Sections</div>
+
+        <div class="uik-accordionreveal" data-accordionreveal>
+          <div class="uik-accordionreveal__row" data-accordion-row>
+            <div class="uik-accordionreveal__row-title">Opens on entry</div>
+            <div class="uik-accordionreveal__row-body" data-accordion-body>Each row's body expands its height and fades
+              in once it reaches the middle of the viewport.</div>
+          </div>
+          <div class="uik-accordionreveal__row" data-accordion-row>
+            <div class="uik-accordionreveal__row-title">Closes on exit</div>
+            <div class="uik-accordionreveal__row-body" data-accordion-body>Scroll back up and each row collapses
+              smoothly in the same order it opened.</div>
+          </div>
+          <div class="uik-accordionreveal__row" data-accordion-row>
+            <div class="uik-accordionreveal__row-title">No snapping</div>
+            <div class="uik-accordionreveal__row-body" data-accordion-body>The height and opacity are both tweened, so
+              nothing pops in or out abruptly.</div>
+          </div>
+        </div>
+
+        <div class="uik-magneticgrid" data-magneticgrid>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+          <div class="uik-magneticgrid__dot" data-magnetic-dot></div>
+        </div>
+
+        <div class="uik-orbit" data-orbit>
+          <div class="uik-orbit__ring uik-orbit__ring--1"></div>
+          <div class="uik-orbit__ring uik-orbit__ring--2"></div>
+          <div class="uik-orbit__core">CORE</div>
+          <div class="uik-orbit__node" data-orbit-node="0"></div>
+          <div class="uik-orbit__node" data-orbit-node="1"></div>
+          <div class="uik-orbit__node" data-orbit-node="2"></div>
+        </div>
+
+        <h2 class="uik-arctext" data-arctext>Letters climb into an arc</h2>
+
+        <div class="uik-comparegallery" data-comparegallery>
+          <img class="uik-comparegallery__after" src="https://picsum.photos/seed/uikcompareafter/800/500" alt="">
+          <img class="uik-comparegallery__before" src="https://picsum.photos/seed/uikcomparebefore/800/500" alt=""
+            data-compare-before>
+          <div class="uik-comparegallery__handle" data-compare-handle></div>
+        </div>
+
+        <div class="uik-wavedivider" data-wavedivider>
+          <svg viewBox="0 0 400 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path data-wave-path d="M0,30 C100,60 300,0 400,30 L400,60 L0,60 Z"></path>
+          </svg>
+        </div>
+
+        <div class="uik-radialburst" data-radialburst>
+          <div class="uik-radialburst__center">RESULTS</div>
+          <div class="uik-radialburst__item" data-burst-item>+42%</div>
+          <div class="uik-radialburst__item" data-burst-item>12k</div>
+          <div class="uik-radialburst__item" data-burst-item>4.9★</div>
+          <div class="uik-radialburst__item" data-burst-item>98%</div>
+        </div>
+
+        <div class="uik-foldpanels row g-4" data-foldpanels>
+          <div class="col-12 col-md-4">
+            <div class="uik-foldpanels__panel" data-fold-panel>
+              <div class="uik-card__tag">Fold 01</div>
+              <div class="uik-card__title">Hinges open</div>
+              <div class="uik-card__text">Rotates down from a top hinge as it enters view.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-foldpanels__panel" data-fold-panel>
+              <div class="uik-card__tag">Fold 02</div>
+              <div class="uik-card__title">Settles flat</div>
+              <div class="uik-card__text">Eases to rest at full rotation with a soft overshoot.</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="uik-foldpanels__panel" data-fold-panel>
+              <div class="uik-card__tag">Fold 03</div>
+              <div class="uik-card__title">Folds back</div>
+              <div class="uik-card__text">Reverses cleanly if you scroll back past the section.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uik-spotlightgallery" data-spotlightgallery>
+          <img src="https://picsum.photos/seed/uikspotlight1/800/500" alt="">
+          <div class="uik-spotlightgallery__mask" data-spotlight-mask></div>
+        </div>
+
+        <div class="uik-depthstack" data-depthstack>
+          <div class="uik-depthstack__layer" data-depth-layer="0">Layer 01</div>
+          <div class="uik-depthstack__layer" data-depth-layer="1">Layer 02</div>
+          <div class="uik-depthstack__layer" data-depth-layer="2">Layer 03</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AWWWARDS SHOWCASE ================= -->
+    <section class="uik-section uik-awwwards" id="kit-awwwards">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—06 / Awwwards Showcase (11 Award-Winning Patterns)</div>
+
+        <!-- 1. Interactive Custom Cursor Playground -->
+        <div class="uik-aww-cursor-area" data-aww-cursor-area>
+          <div class="uik-aww-cursor-content">
+            <span class="uik-card__tag">Awwwards 01</span>
+            <h3 class="uik-card__title">Magnetic Fluid Cursor</h3>
+            <p class="uik-card__text">Move your mouse here. Notice how the cursor expands, displays contextual labels,
+              and magnetically pulls toward buttons.</p>
+            <div class="d-flex gap-3 mt-4">
+              <button type="button" class="uik-aww-btn" data-cursor-text="EXPLORE">Magnetic Button</button>
+              <button type="button" class="uik-aww-btn uik-aww-btn--gold" data-cursor-text="DISCOVER">Gold
+                Action</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Pinned Overlapping Card Stack -->
+        <div class="uik-aww-stacksec" data-aww-stack>
+          <div class="uik-aww-stacksec__header">
+            <span class="uik-card__tag">Awwwards 02</span>
+            <h3 class="uik-heading">Stacked Deck Progression</h3>
+          </div>
+          <div class="uik-aww-stack-cards">
+            <div class="uik-aww-stack-card" data-aww-stack-card>
+              <div class="uik-aww-stack-card__inner">
+                <span class="uik-card__tag">01 / CONCEPT</span>
+                <h4>Creative Direction & Strategy</h4>
+                <p>Architecting award-level brand experiences with precision choreography and typographic rhythm.</p>
+              </div>
+            </div>
+            <div class="uik-aww-stack-card" data-aww-stack-card>
+              <div class="uik-aww-stack-card__inner">
+                <span class="uik-card__tag">02 / CRAFT</span>
+                <h4>WebGL & Kinetic GSAP Motion</h4>
+                <p>Physics-grounded micro-interactions, smooth bezier curves, and 120fps hardware acceleration.</p>
+              </div>
+            </div>
+            <div class="uik-aww-stack-card" data-aww-stack-card>
+              <div class="uik-aww-stack-card__inner">
+                <span class="uik-card__tag">03 / DELIVERY</span>
+                <h4>Immersive Digital Ecosystems</h4>
+                <p>Seamlessly responsive layouts that captivate audiences across every modern device and screen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Cursor-Driven Image Trail -->
+        <div class="uik-aww-trail" data-aww-trail>
+          <div class="uik-aww-trail__bg">
+            <span class="uik-card__tag">Awwwards 03</span>
+            <h3 class="uik-aww-trail__title">Move cursor across this canvas</h3>
+            <p class="uik-card__text">Generates fluid, rotating photo chips that track the cursor path with momentum.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. Velocity Skew Scroll -->
+        <div class="uik-aww-skewsec" data-aww-skew>
+          <span class="uik-card__tag">Awwwards 04</span>
+          <div class="uik-aww-skew-text" data-aww-skew-target>
+            <span>KINETIC</span>
+            <span class="uik-aww-outline">VELOCITY</span>
+            <span>EXPERIENCE</span>
+          </div>
+        </div>
+
+        <!-- 5. Curved Portal Expansion -->
+        <div class="uik-aww-portal" data-aww-portal>
+          <div class="uik-aww-portal__media" data-aww-portal-media>
+            <img src="https://picsum.photos/seed/uikawwportal/1200/800" alt="">
+            <div class="uik-aww-portal__caption">
+              <span class="uik-card__tag">Awwwards 05</span>
+              <h3>Curved Portal Transition</h3>
+              <p>Expands from a soft pill into a cinematic full-width viewport on scroll.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. 3D Perspective Glass Card with Iridescent Specular Highlight -->
+        <div class="uik-aww-glassrow row g-4 mt-5">
+          <div class="col-12 col-md-6">
+            <div class="uik-aww-glass3d" data-aww-glass3d>
+              <div class="uik-aww-glass3d__inner">
+                <div class="uik-aww-glass3d__glare"></div>
+                <span class="uik-card__tag">Awwwards 06</span>
+                <div class="uik-aww-glass3d__badge">PRO SPEC</div>
+                <h3 class="uik-card__title">Gyroscopic Glass Layer</h3>
+                <p class="uik-card__text">Multi-plane 3D rotation with iridescent chromatic glare dynamically calculated
+                  from mouse angles.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Liquid Organic Blob Morph -->
+          <div class="col-12 col-md-6">
+            <div class="uik-aww-blobsec" data-aww-blob>
+              <span class="uik-card__tag">Awwwards 07</span>
+              <div class="uik-aww-blob-canvas">
+                <svg viewBox="0 0 400 400" class="uik-aww-blob-svg">
+                  <path data-aww-blob-path
+                    d="M200,60 C290,60 340,110 340,200 C340,290 290,340 200,340 C110,340 60,290 60,200 C60,110 110,60 200,60 Z">
+                  </path>
+                </svg>
+                <div class="uik-aww-blob-core">ORGANIC MORPH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Dual-Direction Parallax Columns -->
+        <div class="uik-aww-duallist" data-aww-duallist>
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-md-4">
+              <span class="uik-card__tag">Awwwards 08</span>
+              <h3 class="uik-heading">Dual Opposing Parallax</h3>
+              <p class="uik-card__text">Left and right streams slide in counter directions locked to Lenis scroll
+                progress.</p>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="uik-aww-stream uik-aww-stream--up" data-aww-stream-up>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream1/400/300"
+                    alt=""><span>Alpha Experience</span></div>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream2/400/300"
+                    alt=""><span>Beta Interaction</span></div>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream3/400/300"
+                    alt=""><span>Gamma Creative</span></div>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="uik-aww-stream uik-aww-stream--down" data-aww-stream-down>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream4/400/300"
+                    alt=""><span>Delta Direction</span></div>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream5/400/300"
+                    alt=""><span>Epsilon Motion</span></div>
+                <div class="uik-aww-stream-card"><img src="https://picsum.photos/seed/uikstream6/400/300"
+                    alt=""><span>Zeta Interface</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Interactive Magnetic Letter Repel -->
+        <div class="uik-aww-repelsec" data-aww-repel>
+          <span class="uik-card__tag">Awwwards 09</span>
+          <h2 class="uik-aww-repel-text" data-aww-repel-text>INTERACTION DESIGN</h2>
+          <p class="uik-card__text">Hover your cursor across the letters above to scatter them with elastic physics.</p>
+        </div>
+
+        <!-- 10. Hover Floating List Preview -->
+        <div class="uik-aww-listpreview" data-aww-listpreview>
+          <span class="uik-card__tag">Awwwards 10</span>
+          <div class="uik-aww-list-items">
+            <div class="uik-aww-list-item" data-preview-img="https://picsum.photos/seed/uikawwprev1/500/400">
+              <span class="uik-aww-list-item__num">01</span>
+              <span class="uik-aww-list-item__title">Monochrome Brutalism</span>
+              <span class="uik-aww-list-item__tag">Architecture</span>
+            </div>
+            <div class="uik-aww-list-item" data-preview-img="https://picsum.photos/seed/uikawwprev2/500/400">
+              <span class="uik-aww-list-item__num">02</span>
+              <span class="uik-aww-list-item__title">Aerodynamic Typography</span>
+              <span class="uik-aww-list-item__tag">Brand Identity</span>
+            </div>
+            <div class="uik-aww-list-item" data-preview-img="https://picsum.photos/seed/uikawwprev3/500/400">
+              <span class="uik-aww-list-item__num">03</span>
+              <span class="uik-aww-list-item__title">Generative Fluid Systems</span>
+              <span class="uik-aww-list-item__tag">Creative Code</span>
+            </div>
+          </div>
+          <div class="uik-aww-floatpreview" data-aww-floatpreview>
+            <img src="" alt="" data-aww-floatimg>
+          </div>
+        </div>
+
+        <!-- 11. Typography Stencil Window with Inner Parallax -->
+        <div class="uik-aww-stencilsec" data-aww-textstencil>
+          <span class="uik-card__tag">Awwwards 11</span>
+          <div class="uik-aww-stencil-box">
+            <div class="uik-aww-stencil-bg" data-aww-stencil-bg></div>
+            <h2 class="uik-aww-stencil-text">AWWWARDS</h2>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= HYPER-MOTION STUDIO ================= -->
+    <section class="uik-section uik-hypermotion" id="kit-hypermotion">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—07 / Hyper-Motion Studio (11 Studio Animations)</div>
+
+        <!-- 1. 3D Circular Carousel Cylinder -->
+        <div class="uik-hyp-cylindersec" data-hyp-cylinder>
+          <span class="uik-card__tag">Hyper-Motion 01</span>
+          <h3 class="uik-card__title text-center mb-4">3D Orbiting Cylinder Carousel</h3>
+          <div class="uik-hyp-cylinder-wrap">
+            <div class="uik-hyp-cylinder-track" data-hyp-cylinder-track>
+              <div class="uik-hyp-cylinder-card" style="--i:0"><img src="https://picsum.photos/seed/uikcyl1/300/380"
+                  alt=""><span>Node 01</span></div>
+              <div class="uik-hyp-cylinder-card" style="--i:1"><img src="https://picsum.photos/seed/uikcyl2/300/380"
+                  alt=""><span>Node 02</span></div>
+              <div class="uik-hyp-cylinder-card" style="--i:2"><img src="https://picsum.photos/seed/uikcyl3/300/380"
+                  alt=""><span>Node 03</span></div>
+              <div class="uik-hyp-cylinder-card" style="--i:3"><img src="https://picsum.photos/seed/uikcyl4/300/380"
+                  alt=""><span>Node 04</span></div>
+              <div class="uik-hyp-cylinder-card" style="--i:4"><img src="https://picsum.photos/seed/uikcyl5/300/380"
+                  alt=""><span>Node 05</span></div>
+              <div class="uik-hyp-cylinder-card" style="--i:5"><img src="https://picsum.photos/seed/uikcyl6/300/380"
+                  alt=""><span>Node 06</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Interactive Reactive Pixel Grid -->
+        <div class="uik-hyp-pixelgridsec" data-hyp-pixelgrid>
+          <div class="uik-hyp-pixelgrid-head">
+            <span class="uik-card__tag">Hyper-Motion 02</span>
+            <h3 class="uik-card__title">Interactive Kinetic Pixel Matrix</h3>
+            <p class="uik-card__text">Wave your cursor across the matrix to emit dynamic energy ripples.</p>
+          </div>
+          <div class="uik-hyp-pixel-matrix" data-hyp-matrix></div>
+        </div>
+
+        <!-- 3. 3D Isometric Depth Marquee -->
+        <div class="uik-hyp-isosec" data-hyp-3dmarquee>
+          <span class="uik-card__tag">Hyper-Motion 03</span>
+          <div class="uik-hyp-iso-lanes">
+            <div class="uik-hyp-iso-lane uik-hyp-iso-lane--1" data-hyp-iso-lane data-dir="1">
+              <span>CYBERNETIC MOTION • GENERATIVE GEOMETRY • AERO DYNAMICS • HIGH VELOCITY •</span>
+            </div>
+            <div class="uik-hyp-iso-lane uik-hyp-iso-lane--2" data-hyp-iso-lane data-dir="-1">
+              <span>INTERACTIVE WEBGL • IMMERSIVE SOUNDSCAPE • SPATIAL CHOREOGRAPHY •</span>
+            </div>
+            <div class="uik-hyp-iso-lane uik-hyp-iso-lane--3" data-hyp-iso-lane data-dir="1">
+              <span>FUTURE CRAFT • COMPUTATIONAL AESTHETICS • SYSTEM ARCHITECTURE •</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Multi-Slat Curtain Shutter Reveal -->
+        <div class="uik-hyp-slatsec" data-hyp-curtainslats>
+          <span class="uik-card__tag">Hyper-Motion 04</span>
+          <div class="uik-hyp-slat-box">
+            <img class="uik-hyp-slat-media" src="https://picsum.photos/seed/uikslatmedia/1000/600" alt="">
+            <div class="uik-hyp-slat-overlay">
+              <h3>Geometric Shutter Reveal</h3>
+              <p>Staggered vertical shutter blades pull open with elastic rebound on scroll.</p>
+            </div>
+            <div class="uik-hyp-slats-wrapper">
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+              <div class="uik-hyp-slat" data-hyp-slat></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-5">
+          <!-- 5. Magnetic Concentric Shockwave Button -->
+          <div class="col-12 col-md-6">
+            <div class="uik-hyp-liquidsec" data-hyp-liquidbtn>
+              <span class="uik-card__tag">Hyper-Motion 05</span>
+              <h3 class="uik-card__title">Concentric Shockwave Trigger</h3>
+              <p class="uik-card__text">Click the pulsing orb to fire multi-frequency kinetic shockwaves.</p>
+              <div class="uik-hyp-orb-container">
+                <button type="button" class="uik-hyp-shock-orb" data-hyp-orb>
+                  <span class="uik-hyp-orb-text">ACTIVATE</span>
+                  <div class="uik-hyp-wave-ring"></div>
+                  <div class="uik-hyp-wave-ring"></div>
+                  <div class="uik-hyp-wave-ring"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Harmonic Equalizer Audio Visualizer -->
+          <div class="col-12 col-md-6">
+            <div class="uik-hyp-eqsec" data-hyp-equalizer>
+              <span class="uik-card__tag">Hyper-Motion 06</span>
+              <h3 class="uik-card__title">Harmonic Frequency Equalizer</h3>
+              <p class="uik-card__text">Real-time dynamic sine-wave visualizer linked to scroll velocity.</p>
+              <div class="uik-hyp-eq-bars" data-hyp-eq-bars></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Interactive 2.5D Constellation Particle Plexus -->
+        <div class="uik-hyp-plexussec" data-hyp-constellation>
+          <span class="uik-card__tag">Hyper-Motion 07</span>
+          <div class="uik-hyp-plexus-box">
+            <canvas class="uik-hyp-plexus-canvas" data-hyp-canvas></canvas>
+            <div class="uik-hyp-plexus-content">
+              <h3>Interactive Particle Plexus</h3>
+              <p>Dynamic 2.5D nodes with proximity vector binding and cursor gravitational field.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Interactive 3D Multi-Layer Card Peel -->
+        <div class="row g-4 mt-5">
+          <div class="col-12 col-md-6">
+            <div class="uik-hyp-peelsec" data-hyp-cardpeel>
+              <span class="uik-card__tag">Hyper-Motion 08</span>
+              <h3 class="uik-card__title">3D Multilayer Card Peel</h3>
+              <p class="uik-card__text">Hover to peel back outer surfaces and reveal interior core architecture.</p>
+              <div class="uik-hyp-peel-card">
+                <div class="uik-hyp-peel-layer uik-hyp-peel-layer--back">Core Architecture</div>
+                <div class="uik-hyp-peel-layer uik-hyp-peel-layer--mid">Interface Layer</div>
+                <div class="uik-hyp-peel-layer uik-hyp-peel-layer--front">Hover To Peel</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. Cylindrical Odometer Rolling Numbers -->
+          <div class="col-12 col-md-6">
+            <div class="uik-hyp-odosec" data-hyp-odometer>
+              <span class="uik-card__tag">Hyper-Motion 09</span>
+              <h3 class="uik-card__title">Mechanical Rolling Odometer</h3>
+              <p class="uik-card__text">3D tumbling rolling drums spinning into precision target numbers on scroll.</p>
+              <div class="uik-hyp-odometer-wrap" data-target-num="94820">
+                <div class="uik-hyp-odo-drum" data-drum>
+                  <div class="uik-hyp-odo-ribbon">
+                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                  </div>
+                </div>
+                <div class="uik-hyp-odo-drum" data-drum>
+                  <div class="uik-hyp-odo-ribbon">
+                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                  </div>
+                </div>
+                <div class="uik-hyp-odo-drum" data-drum>
+                  <div class="uik-hyp-odo-ribbon">
+                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                  </div>
+                </div>
+                <div class="uik-hyp-odo-drum" data-drum>
+                  <div class="uik-hyp-odo-ribbon">
+                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                  </div>
+                </div>
+                <div class="uik-hyp-odo-drum" data-drum>
+                  <div class="uik-hyp-odo-ribbon">
+                    <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Floating Anti-Gravity Magnetic Pill Cluster -->
+        <div class="uik-hyp-clustersec" data-hyp-pillcluster>
+          <span class="uik-card__tag">Hyper-Motion 10</span>
+          <h3 class="uik-card__title text-center mb-4">Floating Magnetic Pill Cluster</h3>
+          <div class="uik-hyp-cluster-field" data-hyp-cluster-field>
+            <div class="uik-hyp-pill" data-hyp-pill>Motion Systems</div>
+            <div class="uik-hyp-pill uik-hyp-pill--gold" data-hyp-pill>WebGL Shaders</div>
+            <div class="uik-hyp-pill" data-hyp-pill>ScrollTrigger</div>
+            <div class="uik-hyp-pill uik-hyp-pill--mint" data-hyp-pill>Lenis Physics</div>
+            <div class="uik-hyp-pill" data-hyp-pill>Creative Direction</div>
+            <div class="uik-hyp-pill uik-hyp-pill--gold" data-hyp-pill>Awwwards SOTD</div>
+            <div class="uik-hyp-pill" data-hyp-pill>Kinetic Typography</div>
+            <div class="uik-hyp-pill uik-hyp-pill--mint" data-hyp-pill>Micro-Interactions</div>
+          </div>
+        </div>
+
+        <!-- 11. Sinusoidal Typography Wave Warp -->
+        <div class="uik-hyp-wavefontsec" data-hyp-wavefont>
+          <span class="uik-card__tag">Hyper-Motion 11</span>
+          <div class="uik-hyp-wave-container">
+            <h2 class="uik-hyp-wave-heading" data-hyp-wave-text>HYPER MOTION MATRIX</h2>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= REACTBITS SLIDER & CAROUSEL SUITE ================= -->
+    <section class="uik-section uik-reactbits" id="kit-reactbits">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—08 / ReactBits Slider & Carousel Suite (11 Advanced Slider Components)</div>
+
+        <!-- 1. Skewed Velocity Carousel -->
+        <div class="uik-rb-skewedsec" data-rb-skewed-carousel>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">ReactBits 01</span>
+              <h3 class="uik-card__title mb-0">Skewed Velocity Carousel</h3>
+            </div>
+            <div class="uik-rb-controls">
+              <button type="button" class="uik-rb-btn" data-rb-prev="skewed">←</button>
+              <button type="button" class="uik-rb-btn" data-rb-next="skewed">→</button>
+            </div>
+          </div>
+          <div class="uik-rb-skewed-viewport">
+            <div class="uik-rb-skewed-track" data-rb-skewed-track>
+              <div class="uik-rb-skewed-card">
+                <img src="https://picsum.photos/seed/uikskw1/600/400" alt="">
+                <div class="uik-rb-card-meta">
+                  <h4>Aero Dynamic</h4><span>Perspective Shift</span>
+                </div>
+              </div>
+              <div class="uik-rb-skewed-card">
+                <img src="https://picsum.photos/seed/uikskw2/600/400" alt="">
+                <div class="uik-rb-card-meta">
+                  <h4>Spatial Warp</h4><span>Inertia Drag</span>
+                </div>
+              </div>
+              <div class="uik-rb-skewed-card">
+                <img src="https://picsum.photos/seed/uikskw3/600/400" alt="">
+                <div class="uik-rb-card-meta">
+                  <h4>Liquid Glass</h4><span>Velocity Skew</span>
+                </div>
+              </div>
+              <div class="uik-rb-skewed-card">
+                <img src="https://picsum.photos/seed/uikskw4/600/400" alt="">
+                <div class="uik-rb-card-meta">
+                  <h4>Cyber Lattice</h4><span>Dynamic Tilt</span>
+                </div>
+              </div>
+              <div class="uik-rb-skewed-card">
+                <img src="https://picsum.photos/seed/uikskw5/600/400" alt="">
+                <div class="uik-rb-card-meta">
+                  <h4>Prism Flux</h4><span>Adaptive Momentum</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Circular 3D Gallery Carousel -->
+        <div class="uik-rb-circlegallerysec" data-rb-circle-gallery>
+          <span class="uik-card__tag">ReactBits 02</span>
+          <h3 class="uik-card__title text-center mb-4">Circular 3D Gallery Carousel</h3>
+          <div class="uik-rb-circle-stage">
+            <div class="uik-rb-circle-ring" data-rb-circle-ring>
+              <div class="uik-rb-circle-card" style="--ci:0"><img src="https://picsum.photos/seed/uikcirc1/400/500"
+                  alt=""><span>Echo 01</span></div>
+              <div class="uik-rb-circle-card" style="--ci:1"><img src="https://picsum.photos/seed/uikcirc2/400/500"
+                  alt=""><span>Echo 02</span></div>
+              <div class="uik-rb-circle-card" style="--ci:2"><img src="https://picsum.photos/seed/uikcirc3/400/500"
+                  alt=""><span>Echo 03</span></div>
+              <div class="uik-rb-circle-card" style="--ci:3"><img src="https://picsum.photos/seed/uikcirc4/400/500"
+                  alt=""><span>Echo 04</span></div>
+              <div class="uik-rb-circle-card" style="--ci:4"><img src="https://picsum.photos/seed/uikcirc5/400/500"
+                  alt=""><span>Echo 05</span></div>
+              <div class="uik-rb-circle-card" style="--ci:5"><img src="https://picsum.photos/seed/uikcirc6/400/500"
+                  alt=""><span>Echo 06</span></div>
+              <div class="uik-rb-circle-card" style="--ci:6"><img src="https://picsum.photos/seed/uikcirc7/400/500"
+                  alt=""><span>Echo 07</span></div>
+              <div class="uik-rb-circle-card" style="--ci:7"><img src="https://picsum.photos/seed/uikcirc8/400/500"
+                  alt=""><span>Echo 08</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Gradient Depth 3D Carousel -->
+        <div class="uik-rb-depthsec" data-rb-gradient-depth>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">ReactBits 03</span>
+              <h3 class="uik-card__title mb-0">Gradient Depth 3D Carousel</h3>
+            </div>
+            <div class="uik-rb-controls">
+              <button type="button" class="uik-rb-btn" data-rb-prev="depth">←</button>
+              <button type="button" class="uik-rb-btn" data-rb-next="depth">→</button>
+            </div>
+          </div>
+          <div class="uik-rb-depth-stage">
+            <div class="uik-rb-depth-glow" data-rb-depth-glow></div>
+            <div class="uik-rb-depth-track" data-rb-depth-track>
+              <div class="uik-rb-depth-card" data-glow="#C8862B"><img src="https://picsum.photos/seed/uikdp1/500/350"
+                  alt="">
+                <h4>Amber Spectrum</h4>
+              </div>
+              <div class="uik-rb-depth-card" data-glow="#2F8F72"><img src="https://picsum.photos/seed/uikdp2/500/350"
+                  alt="">
+                <h4>Emerald Nexus</h4>
+              </div>
+              <div class="uik-rb-depth-card" data-glow="#D95C38"><img src="https://picsum.photos/seed/uikdp3/500/350"
+                  alt="">
+                <h4>Solar Flare</h4>
+              </div>
+              <div class="uik-rb-depth-card" data-glow="#4F6D7A"><img src="https://picsum.photos/seed/uikdp4/500/350"
+                  alt="">
+                <h4>Oceanic Void</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Asynchronous Drift Wall Slider -->
+        <div class="uik-rb-driftsec" data-rb-drift-wall>
+          <span class="uik-card__tag">ReactBits 04</span>
+          <h3 class="uik-card__title text-center mb-4">Asynchronous Drift Wall</h3>
+          <div class="uik-rb-drift-wall">
+            <div class="uik-rb-drift-row uik-rb-drift-row--1" data-rb-drift-row data-speed="25">
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr1/300/180" alt=""><span>Minimal
+                  01</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr2/300/180" alt=""><span>Studio
+                  02</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr3/300/180" alt=""><span>Kinetic
+                  03</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr4/300/180" alt=""><span>Fluid
+                  04</span></div>
+            </div>
+            <div class="uik-rb-drift-row uik-rb-drift-row--2" data-rb-drift-row data-speed="18" data-dir="-1">
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr5/300/180" alt=""><span>Vector
+                  05</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr6/300/180" alt=""><span>Shader
+                  06</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr7/300/180" alt=""><span>Optics
+                  07</span></div>
+              <div class="uik-rb-drift-item"><img src="https://picsum.photos/seed/uikdr8/300/180" alt=""><span>Prism
+                  08</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Liquid Morph Banner Slider -->
+        <div class="uik-rb-morphsec" data-rb-morph-slider>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <span class="uik-card__tag">ReactBits 05</span>
+              <h3 class="uik-card__title mb-0">Liquid Morph Banner Slider</h3>
+            </div>
+            <div class="uik-rb-controls">
+              <button type="button" class="uik-rb-btn" data-rb-prev="morph">←</button>
+              <button type="button" class="uik-rb-btn" data-rb-next="morph">→</button>
+            </div>
+          </div>
+          <div class="uik-rb-morph-banner">
+            <div class="uik-rb-morph-slides" data-rb-morph-slides>
+              <div class="uik-rb-morph-slide uik-is-active" data-slide-index="0">
+                <img src="https://picsum.photos/seed/uikmorph1/1200/500" alt="">
+                <div class="uik-rb-morph-caption">
+                  <h2>AESTHETIC INTELLIGENCE</h2>
+                  <p>Next-generation digital experiences crafted with precision GSAP motion.</p>
+                </div>
+              </div>
+              <div class="uik-rb-morph-slide" data-slide-index="1">
+                <img src="https://picsum.photos/seed/uikmorph2/1200/500" alt="">
+                <div class="uik-rb-morph-caption">
+                  <h2>PARAMETRIC DYNAMICS</h2>
+                  <p>Harmonizing fluid physics with architectural spatial choreography.</p>
+                </div>
+              </div>
+              <div class="uik-rb-morph-slide" data-slide-index="2">
+                <img src="https://picsum.photos/seed/uikmorph3/1200/500" alt="">
+                <div class="uik-rb-morph-caption">
+                  <h2>SYNTHETIC REFLECTION</h2>
+                  <p>Modern WebGL shader abstractions driven by responsive interactions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="uik-rb-morph-progress">
+              <div class="uik-rb-morph-bar" data-rb-morph-bar></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Elastic Draggable Ribbon Slider -->
+        <div class="uik-rb-elasticsec" data-rb-elastic-slider>
+          <span class="uik-card__tag">ReactBits 06</span>
+          <h3 class="uik-card__title mb-3">Elastic Ribbon Slider</h3>
+          <p class="uik-card__text mb-4">Drag horizontally with mouse or touch to feel responsive rubber-band edge
+            physics.</p>
+          <div class="uik-rb-elastic-viewport">
+            <div class="uik-rb-elastic-track" data-rb-elastic-track>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel1/350/450" alt=""><span>Design
+                  Systems</span></div>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel2/350/450" alt=""><span>Motion
+                  Choreography</span></div>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel3/350/450" alt=""><span>Spatial
+                  Web</span></div>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel4/350/450" alt=""><span>Fluid
+                  Inertia</span></div>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel5/350/450"
+                  alt=""><span>Awwwards SOTD</span></div>
+              <div class="uik-rb-elastic-card"><img src="https://picsum.photos/seed/uikel6/350/450"
+                  alt=""><span>Generative Canvas</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Lenticular 3D Coverflow Slider -->
+        <div class="uik-rb-lenticularsec" data-rb-lenticular-carousel>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">ReactBits 07</span>
+              <h3 class="uik-card__title mb-0">Lenticular 3D Coverflow</h3>
+            </div>
+            <div class="uik-rb-controls">
+              <button type="button" class="uik-rb-btn" data-rb-prev="lenticular">←</button>
+              <button type="button" class="uik-rb-btn" data-rb-next="lenticular">→</button>
+            </div>
+          </div>
+          <div class="uik-rb-coverflow-stage">
+            <div class="uik-rb-coverflow-track" data-rb-coverflow-track>
+              <div class="uik-rb-coverflow-item" data-index="0"><img src="https://picsum.photos/seed/uikcov1/400/300"
+                  alt="">
+                <h4>Chroma 01</h4>
+              </div>
+              <div class="uik-rb-coverflow-item" data-index="1"><img src="https://picsum.photos/seed/uikcov2/400/300"
+                  alt="">
+                <h4>Chroma 02</h4>
+              </div>
+              <div class="uik-rb-coverflow-item" data-index="2"><img src="https://picsum.photos/seed/uikcov3/400/300"
+                  alt="">
+                <h4>Chroma 03</h4>
+              </div>
+              <div class="uik-rb-coverflow-item" data-index="3"><img src="https://picsum.photos/seed/uikcov4/400/300"
+                  alt="">
+                <h4>Chroma 04</h4>
+              </div>
+              <div class="uik-rb-coverflow-item" data-index="4"><img src="https://picsum.photos/seed/uikcov5/400/300"
+                  alt="">
+                <h4>Chroma 05</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Expanding Accordion Gallery Banner -->
+        <div class="uik-rb-accordionsec" data-rb-accordion-gallery>
+          <span class="uik-card__tag">ReactBits 08</span>
+          <h3 class="uik-card__title mb-4">Expanding Accordion Gallery</h3>
+          <div class="uik-rb-accordion-banner">
+            <div class="uik-rb-accordion-col uik-is-expanded" data-rb-col>
+              <img src="https://picsum.photos/seed/uikacc1/800/600" alt="">
+              <div class="uik-rb-accordion-info">
+                <span class="uik-rb-acc-num">01</span>
+                <h4>Editorial Aesthetics</h4>
+                <p>Curated typography and balanced negative space for modern luxury brands.</p>
+              </div>
+            </div>
+            <div class="uik-rb-accordion-col" data-rb-col>
+              <img src="https://picsum.photos/seed/uikacc2/800/600" alt="">
+              <div class="uik-rb-accordion-info">
+                <span class="uik-rb-acc-num">02</span>
+                <h4>Kinetic Choreography</h4>
+                <p>Precision timelines and synchronized interactive scroll triggers.</p>
+              </div>
+            </div>
+            <div class="uik-rb-accordion-col" data-rb-col>
+              <img src="https://picsum.photos/seed/uikacc3/800/600" alt="">
+              <div class="uik-rb-accordion-info">
+                <span class="uik-rb-acc-num">03</span>
+                <h4>Algorithmic Shaders</h4>
+                <p>Custom WebGL fragment shaders bringing reactive lighting to life.</p>
+              </div>
+            </div>
+            <div class="uik-rb-accordion-col" data-rb-col>
+              <img src="https://picsum.photos/seed/uikacc4/800/600" alt="">
+              <div class="uik-rb-accordion-info">
+                <span class="uik-rb-acc-num">04</span>
+                <h4>Spatial Interactions</h4>
+                <p>3D gyroscope motion responsive to cursor and touch coordinates.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-5">
+          <!-- 9. Interactive Split Comparison Slider -->
+          <div class="col-12 col-md-6">
+            <div class="uik-rb-compsec" data-rb-comparison-slider>
+              <span class="uik-card__tag">ReactBits 09</span>
+              <h3 class="uik-card__title">Split Comparison Slider</h3>
+              <p class="uik-card__text">Drag the vertical bar to compare before/after rendering layers.</p>
+              <div class="uik-rb-comp-box" data-rb-comp-box>
+                <img class="uik-rb-comp-after" src="https://picsum.photos/seed/uikcomp1/600/400" alt="After">
+                <div class="uik-rb-comp-before-wrap" data-rb-comp-before>
+                  <img src="https://picsum.photos/seed/uikcomp2/600/400" alt="Before">
+                </div>
+                <div class="uik-rb-comp-handle" data-rb-comp-handle>
+                  <div class="uik-rb-comp-line"></div>
+                  <div class="uik-rb-comp-knob">↔</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10. 3D Tumble Card Carousel -->
+          <div class="col-12 col-md-6">
+            <div class="uik-rb-tumblesec" data-rb-tumble-carousel>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span class="uik-card__tag">ReactBits 10</span>
+                  <h3 class="uik-card__title mb-0">3D Tumble Carousel</h3>
+                </div>
+                <div class="uik-rb-controls">
+                  <button type="button" class="uik-rb-btn" data-rb-prev="tumble">←</button>
+                  <button type="button" class="uik-rb-btn" data-rb-next="tumble">→</button>
+                </div>
+              </div>
+              <p class="uik-card__text">Cards flip and tumble in 3D perspective space on slide switch.</p>
+              <div class="uik-rb-tumble-stage">
+                <div class="uik-rb-tumble-card uik-is-active" data-tumble-index="0"><img
+                    src="https://picsum.photos/seed/uiktum1/500/350" alt="">
+                  <h4>Prism Spectrum</h4>
+                </div>
+                <div class="uik-rb-tumble-card" data-tumble-index="1"><img
+                    src="https://picsum.photos/seed/uiktum2/500/350" alt="">
+                  <h4>Geometric Fusion</h4>
+                </div>
+                <div class="uik-rb-tumble-card" data-tumble-index="2"><img
+                    src="https://picsum.photos/seed/uiktum3/500/350" alt="">
+                  <h4>Cyber Monolith</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Bounce Card Deck Slider -->
+        <div class="uik-rb-bouncesec" data-rb-bounce-deck>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">ReactBits 11</span>
+              <h3 class="uik-card__title mb-0">Bounce Card Deck Slider</h3>
+            </div>
+            <button type="button" class="uik-rb-btn uik-rb-btn--gold" data-rb-bounce-next>FLING NEXT CARD →</button>
+          </div>
+          <div class="uik-rb-deck-stage" data-rb-deck-stage>
+            <div class="uik-rb-deck-card" data-deck-i="0"><img src="https://picsum.photos/seed/uikbdeck1/400/500"
+                alt="">
+              <h4>01 • Creative Pulse</h4>
+            </div>
+            <div class="uik-rb-deck-card" data-deck-i="1"><img src="https://picsum.photos/seed/uikbdeck2/400/500"
+                alt="">
+              <h4>02 • Quantum State</h4>
+            </div>
+            <div class="uik-rb-deck-card" data-deck-i="2"><img src="https://picsum.photos/seed/uikbdeck3/400/500"
+                alt="">
+              <h4>03 • Stellar Drift</h4>
+            </div>
+            <div class="uik-rb-deck-card" data-deck-i="3"><img src="https://picsum.photos/seed/uikbdeck4/400/500"
+                alt="">
+              <h4>04 • Harmonic Wave</h4>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= MODERN HERO & BANNER SLIDER SUITE ================= -->
+    <section class="uik-section uik-modernsliders" id="kit-modern">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—09 / Modern Hero & Banner Slider Suite (11 Trending Sliders)</div>
+
+        <!-- 1. 3D Prism Cube Roll Slider -->
+        <div class="uik-mod-cubesec" data-mod-cube-slider>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">Modern 01</span>
+              <h3 class="uik-card__title mb-0">3D Prism Cube Roll Slider</h3>
+            </div>
+            <div class="uik-mod-controls">
+              <button type="button" class="uik-mod-btn" data-mod-prev="cube">←</button>
+              <button type="button" class="uik-mod-btn" data-mod-next="cube">→</button>
+            </div>
+          </div>
+          <div class="uik-mod-cube-viewport">
+            <div class="uik-mod-cube-box" data-mod-cube-box>
+              <div class="uik-mod-cube-face uik-mod-cube-face--front">
+                <img src="https://picsum.photos/seed/uikcube1/1000/500" alt="">
+                <div class="uik-mod-cube-content">
+                  <h2>NEURAL AESTHETICS</h2>
+                  <p>Next-gen design systems powered by spatial web choreography.</p>
+                </div>
+              </div>
+              <div class="uik-mod-cube-face uik-mod-cube-face--bottom">
+                <img src="https://picsum.photos/seed/uikcube2/1000/500" alt="">
+                <div class="uik-mod-cube-content">
+                  <h2>KINETIC MATRIX</h2>
+                  <p>Harmonizing computational physics with ultra-smooth 120fps motion.</p>
+                </div>
+              </div>
+              <div class="uik-mod-cube-face uik-mod-cube-face--back">
+                <img src="https://picsum.photos/seed/uikcube3/1000/500" alt="">
+                <div class="uik-mod-cube-content">
+                  <h2>SPATIAL DEPTH</h2>
+                  <p>3D multi-planar perspective structures engineered for digital brands.</p>
+                </div>
+              </div>
+              <div class="uik-mod-cube-face uik-mod-cube-face--top">
+                <img src="https://picsum.photos/seed/uikcube4/1000/500" alt="">
+                <div class="uik-mod-cube-content">
+                  <h2>PARAMETRIC DYNAMICS</h2>
+                  <p>Adaptive fluid interactions driven by responsive pointer physics.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Infinite Dual-Lane Angled Marquee Stream -->
+        <div class="uik-mod-marqstreamsec" data-mod-marquee-stream>
+          <span class="uik-card__tag">Modern 02</span>
+          <h3 class="uik-card__title text-center mb-4">Infinite Angled Card Stream</h3>
+          <div class="uik-mod-stream-wrapper">
+            <div class="uik-mod-stream-lane uik-mod-stream-lane--1" data-mod-stream-lane data-dir="1">
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr1/360/240" alt=""><span>Nexus
+                  01</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr2/360/240" alt=""><span>Vector
+                  02</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr3/360/240" alt=""><span>Flux
+                  03</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr4/360/240" alt=""><span>Prism
+                  04</span></div>
+            </div>
+            <div class="uik-mod-stream-lane uik-mod-stream-lane--2" data-mod-stream-lane data-dir="-1">
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr5/360/240" alt=""><span>Vortex
+                  05</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr6/360/240" alt=""><span>Chroma
+                  06</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr7/360/240"
+                  alt=""><span>Quantum 07</span></div>
+              <div class="uik-mod-stream-card"><img src="https://picsum.photos/seed/uikstr8/360/240" alt=""><span>Aero
+                  08</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Cinematic Filmstrip Reel Slider -->
+        <div class="uik-mod-filmsec" data-mod-filmstrip>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <span class="uik-card__tag">Modern 03</span>
+              <h3 class="uik-card__title mb-0">Cinematic Filmstrip Reel</h3>
+            </div>
+            <div class="uik-mod-controls">
+              <button type="button" class="uik-mod-btn" data-mod-prev="film">←</button>
+              <button type="button" class="uik-mod-btn" data-mod-next="film">→</button>
+            </div>
+          </div>
+          <div class="uik-mod-film-viewport">
+            <div class="uik-mod-film-track" data-mod-film-track>
+              <div class="uik-mod-film-frame" data-film-i="0"><img src="https://picsum.photos/seed/uikflm1/500/320"
+                  alt="">
+                <div class="uik-mod-film-title">FRAME 01 • GENESIS</div>
+              </div>
+              <div class="uik-mod-film-frame uik-is-focused" data-film-i="1"><img
+                  src="https://picsum.photos/seed/uikflm2/500/320" alt="">
+                <div class="uik-mod-film-title">FRAME 02 • ASCENT</div>
+              </div>
+              <div class="uik-mod-film-frame" data-film-i="2"><img src="https://picsum.photos/seed/uikflm3/500/320"
+                  alt="">
+                <div class="uik-mod-film-title">FRAME 03 • ZENITH</div>
+              </div>
+              <div class="uik-mod-film-frame" data-film-i="3"><img src="https://picsum.photos/seed/uikflm4/500/320"
+                  alt="">
+                <div class="uik-mod-film-title">FRAME 04 • HORIZON</div>
+              </div>
+              <div class="uik-mod-film-frame" data-film-i="4"><img src="https://picsum.photos/seed/uikflm5/500/320"
+                  alt="">
+                <div class="uik-mod-film-title">FRAME 05 • ECLIPSE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Interactive Multi-Layer Parallax Hero Banner -->
+        <div class="uik-mod-parallaxsec" data-mod-parallax-hero>
+          <span class="uik-card__tag">Modern 04</span>
+          <div class="uik-mod-hero-box" data-mod-hero-box>
+            <div class="uik-mod-hero-bg" data-depth="0.1"><img src="https://picsum.photos/seed/uikherobg/1200/600"
+                alt=""></div>
+            <div class="uik-mod-hero-title" data-depth="0.35">
+              <h1>HYPER MOTION</h1>
+              <p>PRECISION SPATIAL CHOREOGRAPHY</p>
+            </div>
+            <div class="uik-mod-hero-badge uik-mod-hero-badge--1" data-depth="0.6">
+              <span>✦ SOTD 2026</span>
+            </div>
+            <div class="uik-mod-hero-badge uik-mod-hero-badge--2" data-depth="0.8">
+              <span>⚡ 120FPS GPU</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Venetian Blind Shutter Transition Slider -->
+        <div class="uik-mod-venetiansec" data-mod-venetian-slider>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <span class="uik-card__tag">Modern 05</span>
+              <h3 class="uik-card__title mb-0">Venetian Blind Shutter Slider</h3>
+            </div>
+            <div class="uik-mod-controls">
+              <button type="button" class="uik-mod-btn" data-mod-prev="venetian">←</button>
+              <button type="button" class="uik-mod-btn" data-mod-next="venetian">→</button>
+            </div>
+          </div>
+          <div class="uik-mod-venetian-stage" data-mod-venetian-stage>
+            <div class="uik-mod-venetian-slats-wrap" data-mod-vslats></div>
+            <div class="uik-mod-venetian-caption">
+              <h3 data-mod-vtitle>SYNTHETIC HORIZONS</h3>
+              <p data-mod-vdesc>Multi-blade 3D motoric shutter transitions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Curved Ribbon Arch Carousel -->
+        <div class="uik-mod-curvedsec" data-mod-curved-ribbon>
+          <span class="uik-card__tag">Modern 06</span>
+          <h3 class="uik-card__title text-center mb-4">Curved Ribbon Arch Carousel</h3>
+          <div class="uik-mod-curved-stage">
+            <div class="uik-mod-curved-track" data-mod-curved-track>
+              <div class="uik-mod-curved-card"><img src="https://picsum.photos/seed/uikcrv1/350/450" alt="">
+                <h4>Aura 01</h4>
+              </div>
+              <div class="uik-mod-curved-card"><img src="https://picsum.photos/seed/uikcrv2/350/450" alt="">
+                <h4>Aura 02</h4>
+              </div>
+              <div class="uik-mod-curved-card"><img src="https://picsum.photos/seed/uikcrv3/350/450" alt="">
+                <h4>Aura 03</h4>
+              </div>
+              <div class="uik-mod-curved-card"><img src="https://picsum.photos/seed/uikcrv4/350/450" alt="">
+                <h4>Aura 04</h4>
+              </div>
+              <div class="uik-mod-curved-card"><img src="https://picsum.photos/seed/uikcrv5/350/450" alt="">
+                <h4>Aura 05</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mt-5">
+          <!-- 7. Gesture-Driven Card Swiper Deck -->
+          <div class="col-12 col-md-6">
+            <div class="uik-mod-swipersec" data-mod-card-swiper>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <span class="uik-card__tag">Modern 07</span>
+                  <h3 class="uik-card__title mb-0">Card Swiper Deck</h3>
+                </div>
+                <div class="uik-mod-swipe-btns">
+                  <button type="button" class="uik-mod-swipe-btn uik-mod-swipe-btn--no" data-swipe="left">✕</button>
+                  <button type="button" class="uik-mod-swipe-btn uik-mod-swipe-btn--yes" data-swipe="right">♥</button>
+                </div>
+              </div>
+              <p class="uik-card__text">Drag cards left/right or click buttons to trigger directional toss.</p>
+              <div class="uik-mod-swiper-stage" data-mod-swiper-stage>
+                <div class="uik-mod-swiper-card" data-swi="0"><img src="https://picsum.photos/seed/uikswp1/400/500"
+                    alt="">
+                  <h4>Spatial Interface</h4>
+                </div>
+                <div class="uik-mod-swiper-card" data-swi="1"><img src="https://picsum.photos/seed/uikswp2/400/500"
+                    alt="">
+                  <h4>Fluid Geometry</h4>
+                </div>
+                <div class="uik-mod-swiper-card" data-swi="2"><img src="https://picsum.photos/seed/uikswp3/400/500"
+                    alt="">
+                  <h4>Neural Matrix</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. Rotary Mechanical Dial Navigator Slider -->
+          <div class="col-12 col-md-6">
+            <div class="uik-mod-dialsec" data-mod-dial-slider>
+              <span class="uik-card__tag">Modern 08</span>
+              <h3 class="uik-card__title mb-2">Rotary Dial Navigator</h3>
+              <p class="uik-card__text mb-3">Rotate or click the circular mechanical dial to switch featured nodes.</p>
+              <div class="uik-mod-dial-container">
+                <div class="uik-mod-dial-wheel" data-mod-dial-wheel>
+                  <button type="button" class="uik-mod-dial-node uik-is-active" data-dial-idx="0">01</button>
+                  <button type="button" class="uik-mod-dial-node" data-dial-idx="1">02</button>
+                  <button type="button" class="uik-mod-dial-node" data-dial-idx="2">03</button>
+                  <button type="button" class="uik-mod-dial-node" data-dial-idx="3">04</button>
+                  <div class="uik-mod-dial-needle"></div>
+                </div>
+                <div class="uik-mod-dial-card" data-mod-dial-card>
+                  <img src="https://picsum.photos/seed/uikdial1/400/280" alt="" data-mod-dial-img>
+                  <h4 data-mod-dial-title>Quantum Core Architecture</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Display Typography Mask Slide Showcase -->
+        <div class="uik-mod-textbackdropsec" data-mod-text-backdrop>
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <span class="uik-card__tag">Modern 09</span>
+              <h3 class="uik-card__title mb-0">Knockout Typography Mask Slider</h3>
+            </div>
+            <div class="uik-mod-controls">
+              <button type="button" class="uik-mod-btn" data-mod-prev="textmask">←</button>
+              <button type="button" class="uik-mod-btn" data-mod-next="textmask">→</button>
+            </div>
+          </div>
+          <div class="uik-mod-textmask-box">
+            <div class="uik-mod-textmask-bg" data-mod-textmask-bg></div>
+            <h2 class="uik-mod-textmask-display" data-mod-textmask-word>CREATIVE</h2>
+            <div class="uik-mod-textmask-meta">
+              <span data-mod-textmask-num>01 / 04</span>
+              <p data-mod-textmask-sub>Ultra-bold display knockout mask revealing dynamic animated textures.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Layered Iridescent Glass Carousel -->
+        <div class="uik-mod-glasssec" data-mod-glass-carousel>
+          <span class="uik-card__tag">Modern 10</span>
+          <h3 class="uik-card__title text-center mb-4">Layered Iridescent Glass Carousel</h3>
+          <div class="uik-mod-glass-viewport">
+            <div class="uik-mod-glass-track" data-mod-glass-track>
+              <div class="uik-mod-glass-card">
+                <div class="uik-mod-glass-glare"></div>
+                <span class="uik-mod-glass-tag">PRISM</span>
+                <h4>Specular Refraction</h4>
+                <p>Multi-layer optical dispersion with realtime dynamic lighting.</p>
+              </div>
+              <div class="uik-mod-glass-card">
+                <div class="uik-mod-glass-glare"></div>
+                <span class="uik-mod-glass-tag">CHROMA</span>
+                <h4>Chromatic Abberation</h4>
+                <p>Spectral color fringing calibrated for high-density displays.</p>
+              </div>
+              <div class="uik-mod-glass-card">
+                <div class="uik-mod-glass-glare"></div>
+                <span class="uik-mod-glass-tag">FROST</span>
+                <h4>Backdrop Diffusion</h4>
+                <p>Hardware-accelerated sub-pixel surface blur filtering.</p>
+              </div>
+              <div class="uik-mod-glass-card">
+                <div class="uik-mod-glass-glare"></div>
+                <span class="uik-mod-glass-tag">LUMEN</span>
+                <h4>Luminescent Shaders</h4>
+                <p>Subtle ambient glow fields responding to cursor vector force.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Waveform Harmonic Banner Slider -->
+        <div class="uik-mod-waveslidersec" data-mod-wave-slider>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+              <span class="uik-card__tag">Modern 11</span>
+              <h3 class="uik-card__title mb-0">Harmonic Waveform Banner</h3>
+            </div>
+            <div class="uik-mod-controls">
+              <button type="button" class="uik-mod-btn" data-mod-prev="wave">←</button>
+              <button type="button" class="uik-mod-btn" data-mod-next="wave">→</button>
+            </div>
+          </div>
+          <div class="uik-mod-waveslider-box">
+            <img class="uik-mod-waveslider-img" data-mod-wave-img src="https://picsum.photos/seed/uikwvsl1/1100/480"
+              alt="">
+            <div class="uik-mod-wave-canvas-wrap">
+              <canvas class="uik-mod-wave-canvas" data-mod-wave-canvas></canvas>
+            </div>
+            <div class="uik-mod-waveslider-caption">
+              <h2 data-mod-wave-title>SONIC RESONANCE</h2>
+              <p data-mod-wave-desc>Audio spectrum sine-wave generative visualizer synchronized to slide momentum.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= KIT—10 / AWWWARDS KINETIC PRELOADERS & LOADERS SUITE ================= -->
+    <section class="uik-section" id="kit-loaders">
+      <div class="uik-container">
+        <div class="uik-specimen-label">KIT—10 / Awwwards Kinetic Preloaders & Loaders Suite (24 Loaders)</div>
+
+        <div class="uik-loaders-grid">
+
+          <!-- 01. Counter Ticker & Shutter Split -->
+          <div class="uik-loader-card" data-ldr-card="counter-split">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">01 • Counter Shutter Split</h4>
+              <span class="uik-loader-badge">PRELOADER</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="counter-split">
+              <div class="uik-ldr-shutter-wrap" data-ldr-shutter-wrap>
+                <div class="uik-ldr-shutter-half uik-ldr-shutter-half--top" data-ldr-shutter-top></div>
+                <div class="uik-ldr-counter-num" data-ldr-counter-num>00%</div>
+                <div class="uik-ldr-shutter-half uik-ldr-shutter-half--bottom" data-ldr-shutter-bottom></div>
+              </div>
+              <div class="uik-ldr-revealed-content">
+                <h4>STUDIO NEXUS</h4>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin: 0;">Experience Initiated</p>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">0% → 100% Split Curtain</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="counter-split">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 02. Morphing Geometric SVG Monogram -->
+          <div class="uik-loader-card" data-ldr-card="svg-morph">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">02 • Morphing SVG Monogram</h4>
+              <span class="uik-loader-badge">VECTOR</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="svg-morph">
+              <div class="uik-ldr-svg-wrap">
+                <svg class="uik-ldr-svg-shape" viewBox="0 0 100 100">
+                  <polygon class="uik-ldr-morph-path" data-ldr-morph-poly points="50,15 85,50 50,85 15,50" />
+                </svg>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Harmonic Polygon Morph</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="svg-morph">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 03. Cinematic Film Grain Curtain Unveil -->
+          <div class="uik-loader-card" data-ldr-card="curtain-unveil">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">03 • Film Grain Curtain</h4>
+              <span class="uik-loader-badge">CINEMATIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="curtain-unveil">
+              <div class="uik-ldr-curtain-container" data-ldr-curtain-box>
+                <div class="uik-ldr-curtain-slat"></div>
+                <div class="uik-ldr-curtain-slat"></div>
+                <div class="uik-ldr-curtain-slat"></div>
+                <div class="uik-ldr-curtain-slat"></div>
+                <div class="uik-ldr-curtain-slat"></div>
+                <div class="uik-ldr-curtain-slat"></div>
+              </div>
+              <div class="uik-ldr-curtain-bg">
+                <h4>GENESIS • 2026</h4>
+                <p style="font-size: 11px; color: var(--uik-clay); font-family: var(--uik-font-mono); margin-top: 4px;">AWWWARDS SOTD</p>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Vertical Slat Collapse</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="curtain-unveil">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 04. Kinetic Multilingual Typography Drum -->
+          <div class="uik-loader-card" data-ldr-card="type-cascade">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">04 • Multilingual Drum</h4>
+              <span class="uik-loader-badge">TYPO REEL</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="type-cascade">
+              <div class="uik-ldr-word-drum">
+                <div class="uik-ldr-word-reel" data-ldr-word-reel>
+                  <div class="uik-ldr-word-item">HELLO</div>
+                  <div class="uik-ldr-word-item">BONJOUR</div>
+                  <div class="uik-ldr-word-item">KONNICHIWA</div>
+                  <div class="uik-ldr-word-item">CIAO</div>
+                  <div class="uik-ldr-word-item">HOLA</div>
+                  <div class="uik-ldr-word-item">STUDIO VORTEX</div>
+                </div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Rapid Spinning Word Drum</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="type-cascade">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 05. Liquid Fluid Metaball Droplet Fusion -->
+          <div class="uik-loader-card" data-ldr-card="fluid-blob">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">05 • Fluid Metaball Fusion</h4>
+              <span class="uik-loader-badge">LIQUID</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="fluid-blob">
+              <div class="uik-ldr-blob-stage" data-ldr-blob-stage>
+                <div class="uik-ldr-blob-dot uik-ldr-blob-dot--1" data-ldr-dot="1"></div>
+                <div class="uik-ldr-blob-dot uik-ldr-blob-dot--2" data-ldr-dot="2"></div>
+                <div class="uik-ldr-blob-dot uik-ldr-blob-dot--3" data-ldr-dot="3"></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">SVG Gooey Filter Fusion</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="fluid-blob">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 06. 3D Orbital Gyroscope Rings -->
+          <div class="uik-loader-card" data-ldr-card="gyroscope">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">06 • 3D Orbital Gyroscope</h4>
+              <span class="uik-loader-badge">3D SPACE</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="gyroscope">
+              <div class="uik-ldr-gyro-box" data-ldr-gyro-box>
+                <div class="uik-ldr-gyro-ring uik-ldr-gyro-ring--1" data-ldr-gyro-r1></div>
+                <div class="uik-ldr-gyro-ring uik-ldr-gyro-ring--2" data-ldr-gyro-r2></div>
+                <div class="uik-ldr-gyro-ring uik-ldr-gyro-ring--3" data-ldr-gyro-r3></div>
+                <div class="uik-ldr-gyro-core"></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Multi-Axis Gimbal Rotation</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="gyroscope">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 07. Sci-Fi Laser Grid Scanner -->
+          <div class="uik-loader-card" data-ldr-card="laser-scan">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">07 • Laser Grid Scanner</h4>
+              <span class="uik-loader-badge">TELEMETRY</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="laser-scan">
+              <div class="uik-ldr-laser-box">
+                <div class="uik-ldr-grid-lines"></div>
+                <div class="uik-ldr-laser-bar" data-ldr-laser-bar></div>
+                <div class="uik-ldr-laser-hud">
+                  <span style="font-size: 10px; letter-spacing: 0.14em;">SYSTEM CALIBRATION</span>
+                  <span style="font-size: 20px; font-weight: 700;" data-ldr-laser-pct>00%</span>
+                  <span style="font-size: 9px; color: rgba(255,255,255,0.4);">QUANTUM BUFFER SYNC</span>
+                </div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Cyan Laser Grid Blade</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="laser-scan">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 08. Knockout Stencil Zoom Punch -->
+          <div class="uik-loader-card" data-ldr-card="stencil-window">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">08 • Stencil Zoom Punch</h4>
+              <span class="uik-loader-badge">AWWWARDS</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="stencil-window">
+              <div class="uik-ldr-stencil-wrap">
+                <img class="uik-ldr-stencil-bg" src="https://picsum.photos/seed/uikstnldr/500/320" alt="">
+                <div class="uik-ldr-stencil-mask" data-ldr-stencil-mask>
+                  <div class="uik-ldr-stencil-text" data-ldr-stencil-text>2026</div>
+                </div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">40x Scale Camera Punch-Through</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="stencil-window">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 09. Precision Circular Dash Wheel -->
+          <div class="uik-loader-card" data-ldr-card="circular-dash">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">09 • Precision Dash Wheel</h4>
+              <span class="uik-loader-badge">CIRCULAR</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="circular-dash">
+              <div class="uik-ldr-wheel-wrap">
+                <svg class="uik-ldr-wheel-svg" viewBox="0 0 120 120">
+                  <circle class="uik-ldr-wheel-circle" cx="60" cy="60" r="50" />
+                  <circle class="uik-ldr-wheel-progress" data-ldr-wheel-bar cx="60" cy="60" r="50" />
+                </svg>
+                <div class="uik-ldr-wheel-readout" data-ldr-wheel-readout>0%</div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Elastic Snap-Back Ticks</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="circular-dash">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 10. Quantum Particle Constellation Weaver -->
+          <div class="uik-loader-card" data-ldr-card="quantum-weaver">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">10 • Constellation Weaver</h4>
+              <span class="uik-loader-badge">CANVAS FX</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="quantum-weaver">
+              <canvas class="uik-ldr-canvas-weaver" data-ldr-canvas-weaver></canvas>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Nodal Polygon Weaving</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="quantum-weaver">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 11. Venetian Horizontal Shutter -->
+          <div class="uik-loader-card" data-ldr-card="venetian-shutter">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">11 • Venetian Blind Blaster</h4>
+              <span class="uik-loader-badge">SHUTTERS</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="venetian-shutter">
+              <div class="uik-ldr-venetian-box" data-ldr-venetian-box>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+                <div class="uik-ldr-venetian-slat"></div>
+              </div>
+              <div class="text-center" style="z-index: 1;">
+                <h4 style="font-family: var(--uik-font-display); font-size: 20px; color: #FFFFFF; margin: 0;">REVEAL COMPLETE</h4>
+                <p style="font-size: 11px; color: rgba(255,255,255,0.5); font-family: var(--uik-font-mono); margin-top: 4px;">VELOCITY SHUTTER BLUR</p>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Staggered Slat Dissolve</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="venetian-shutter">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 12. Golden Horizon Specular Eclipse -->
+          <div class="uik-loader-card" data-ldr-card="specular-eclipse">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">12 • Golden Specular Eclipse</h4>
+              <span class="uik-loader-badge">ASTRONOMICAL</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="specular-eclipse">
+              <div class="uik-ldr-eclipse-box">
+                <div class="uik-ldr-eclipse-corona"></div>
+                <div class="uik-ldr-eclipse-disk" data-ldr-eclipse-disk></div>
+                <div class="uik-ldr-eclipse-title" data-ldr-eclipse-title>ECLIPSE</div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Corona Ray Light Bloom</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="specular-eclipse">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 13. 3D Holographic Prismatic Cube -->
+          <div class="uik-loader-card" data-ldr-card="holo-cube">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">13 • 3D Holographic Cube</h4>
+              <span class="uik-loader-badge">ISOMETRIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="holo-cube">
+              <div class="uik-ldr-cube-stage">
+                <div class="uik-ldr-cube-box" data-ldr-cube-box>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--front"></div>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--back"></div>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--right"></div>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--left"></div>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--top"></div>
+                  <div class="uik-ldr-cube-face uik-ldr-cube-face--bottom"></div>
+                </div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Tumble & Unfold Orbit</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="holo-cube">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 14. Liquid Wave Fluid Level Tank -->
+          <div class="uik-loader-card" data-ldr-card="wave-tank">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">14 • Fluid Level Tank</h4>
+              <span class="uik-loader-badge">HYDRAULIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="wave-tank">
+              <div class="uik-ldr-tank-wrap">
+                <div class="uik-ldr-tank-wave-layer" data-ldr-tank-layer>
+                  <canvas class="uik-ldr-tank-wave-canvas" data-ldr-tank-canvas></canvas>
+                </div>
+                <div class="uik-ldr-tank-pct" data-ldr-tank-pct>0%</div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">0% → 100% Water Fill</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="wave-tank">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 15. Neon Radar Target Sonar Sweep -->
+          <div class="uik-loader-card" data-ldr-card="sonar-sweep">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">15 • Neon Sonar Sweep</h4>
+              <span class="uik-loader-badge">RADAR</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="sonar-sweep">
+              <div class="uik-ldr-radar-box">
+                <div class="uik-ldr-radar-ring uik-ldr-radar-ring--1"></div>
+                <div class="uik-ldr-radar-ring uik-ldr-radar-ring--2"></div>
+                <div class="uik-ldr-radar-sweep" data-ldr-radar-sweep></div>
+                <div class="uik-ldr-radar-blip" data-ldr-radar-blip></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">360° Target Lock Conic</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="sonar-sweep">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 16. Chromatic Split Text Glitch -->
+          <div class="uik-loader-card" data-ldr-card="chroma-glitch">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">16 • Chromatic Split Glitch</h4>
+              <span class="uik-loader-badge">CYBER</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="chroma-glitch">
+              <div class="uik-ldr-glitch-stage">
+                <div class="uik-ldr-glitch-text" data-ldr-glitch-text>NEXUS//01</div>
+                <div class="uik-ldr-glitch-sub" data-ldr-glitch-sub>DECODING STREAM</div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">RGB Split Distortion Flash</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="chroma-glitch">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 17. DNA Double Helix Rotor -->
+          <div class="uik-loader-card" data-ldr-card="dna-helix">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">17 • DNA Double Helix</h4>
+              <span class="uik-loader-badge">MOLECULAR</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="dna-helix">
+              <div class="uik-ldr-dna-stage" data-ldr-dna-stage>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+                <div class="uik-ldr-dna-rung"><div class="uik-ldr-dna-dot"></div><div class="uik-ldr-dna-bar"></div><div class="uik-ldr-dna-dot uik-ldr-dna-dot--bot"></div></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">3D Strand Sinusoidal Phase</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="dna-helix">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 18. Matrix Binary Rain -->
+          <div class="uik-loader-card" data-ldr-card="binary-rain">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">18 • Matrix Binary Stream</h4>
+              <span class="uik-loader-badge">MATRIX</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="binary-rain">
+              <canvas class="uik-ldr-matrix-canvas" data-ldr-matrix-canvas></canvas>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Cascade Cyber Code Glyph</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="binary-rain">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 19. Pixelated Mosaic Grid -->
+          <div class="uik-loader-card" data-ldr-card="pixel-mosaic">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">19 • Pixel Mosaic Grid</h4>
+              <span class="uik-loader-badge">VOXEL</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="pixel-mosaic">
+              <div class="uik-ldr-mosaic-grid" data-ldr-mosaic-grid>
+                <!-- 36 tiles generated/animated via JS -->
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Staggered 3D Tile Flip</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="pixel-mosaic">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 20. Sonic Audio Spectrum Equalizer -->
+          <div class="uik-loader-card" data-ldr-card="audio-eq">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">20 • Audio Spectrum EQ</h4>
+              <span class="uik-loader-badge">ACOUSTIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="audio-eq">
+              <div class="uik-ldr-eq-stage" data-ldr-eq-stage>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+                <div class="uik-ldr-eq-bar"></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Harmonic Frequency Jump</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="audio-eq">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 21. Infinity Mobius Ribbon Trail -->
+          <div class="uik-loader-card" data-ldr-card="mobius-ribbon">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">21 • Infinity Mobius Ribbon</h4>
+              <span class="uik-loader-badge">TOPOLOGY</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="mobius-ribbon">
+              <div class="uik-ldr-mobius-wrap">
+                <svg class="uik-ldr-mobius-svg" viewBox="0 0 140 80">
+                  <path class="uik-ldr-mobius-path" d="M35,40 C10,15 10,65 35,40 C60,15 80,65 105,40 C130,15 130,65 105,40 C80,15 60,65 35,40 Z" />
+                  <path class="uik-ldr-mobius-active" data-ldr-mobius-active d="M35,40 C10,15 10,65 35,40 C60,15 80,65 105,40 C130,15 130,65 105,40 C80,15 60,65 35,40 Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Figure-8 Parametric Orbit</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="mobius-ribbon">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 22. Iris Shutter Camera Aperture -->
+          <div class="uik-loader-card" data-ldr-card="iris-aperture">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">22 • Iris Shutter Aperture</h4>
+              <span class="uik-loader-badge">OPTICAL</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="iris-aperture">
+              <div class="uik-ldr-aperture-wrap" data-ldr-aperture-wrap>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(0deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(45deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(90deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(135deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(180deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(225deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(270deg) translate(25px, 0);"></div>
+                <div class="uik-ldr-aperture-blade" style="transform: rotate(315deg) translate(25px, 0);"></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">8-Blade Shutter Contraction</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="iris-aperture">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 23. Warp Speed Hyperdrive Starfield -->
+          <div class="uik-loader-card" data-ldr-card="warp-hyperdrive">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">23 • Warp Speed Hyperdrive</h4>
+              <span class="uik-loader-badge">COSMIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="warp-hyperdrive">
+              <canvas class="uik-ldr-warp-canvas" data-ldr-warp-canvas></canvas>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Lightspeed Radial Streaks</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="warp-hyperdrive">↺ Replay</button>
+            </div>
+          </div>
+
+          <!-- 24. Sacred Geometry Flower of Life -->
+          <div class="uik-loader-card" data-ldr-card="sacred-geometry">
+            <div class="uik-loader-header">
+              <h4 class="uik-loader-title">24 • Sacred Geometry Bloom</h4>
+              <span class="uik-loader-badge">HARMONIC</span>
+            </div>
+            <div class="uik-loader-viewport" data-ldr-viewport="sacred-geometry">
+              <div class="uik-ldr-sacred-stage" data-ldr-sacred-stage>
+                <div class="uik-ldr-sacred-ring" style="width: 40px; height: 40px;"></div>
+                <div class="uik-ldr-sacred-ring" style="width: 70px; height: 70px;"></div>
+                <div class="uik-ldr-sacred-ring" style="width: 100px; height: 100px;"></div>
+              </div>
+            </div>
+            <div class="uik-loader-footer">
+              <span class="uik-loader-meta">Golden Ratio Circle Bloom</span>
+              <button type="button" class="uik-loader-btn" data-ldr-replay="sacred-geometry">↺ Replay</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Hidden SVG Filters for Gooey Fluid Blob Loader -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+      <defs>
+        <filter id="uik-gooey-filter">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="gooey" />
+          <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Custom Cursor -->
+    <div class="uik-custom-cursor" data-aww-cursor>
+      <span class="uik-cursor-label" data-cursor-label></span>
+    </div>
+
+    <!-- ================= STANDALONE CODE PREVIEW & COPY MODAL ================= -->
+    <div class="uik-code-modal" id="uikCodeModal" aria-hidden="true" role="dialog">
+      <div class="uik-code-modal-backdrop" data-code-close></div>
+      <div class="uik-code-modal-dialog">
+        <div class="uik-code-modal-header">
+          <div class="uik-code-modal-title-box">
+            <span class="uik-code-modal-badge" id="uikCodeBadge">STANDALONE COMPONENT SPEC</span>
+            <h3 class="uik-code-modal-title" id="uikCodeTitle">Component Animation</h3>
+          </div>
+          <div class="uik-code-modal-actions">
+            <button type="button" class="uik-code-copy-btn" id="uikCodeCopyBtn">
+              <span class="uik-copy-icon">📋</span>
+              <span class="uik-copy-text">Copy Code</span>
+            </button>
+            <button type="button" class="uik-code-modal-close" data-code-close aria-label="Close modal">✕</button>
+          </div>
+        </div>
+        <div class="uik-code-tabs">
+          <button type="button" class="uik-code-tab is-active" data-tab="full">🚀 Standalone HTML Page</button>
+          <button type="button" class="uik-code-tab" data-tab="html">📄 HTML Markup</button>
+          <button type="button" class="uik-code-tab" data-tab="css">🎨 Scoped CSS</button>
+          <button type="button" class="uik-code-tab" data-tab="js">⚡ GSAP Script</button>
+        </div>
+        <div class="uik-code-body">
+          <pre class="uik-code-pre"><code id="uikCodeContent" class="uik-code-block"></code></pre>
+        </div>
+        <div class="uik-code-modal-footer">
+          <span class="uik-code-hint">💡 Zero framework dependencies. Copy and paste into any website with GSAP.</span>
+          <button type="button" class="uik-code-trigger-btn" data-code-close>Close Window</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="uik-footer">
+      <div class="uik-container">
+        uik-kit.html — drop the <code>&lt;div class="uik-kit"&gt;</code> wrapper, its stylesheet and script into any
+        page. Every selector is scoped to <code>.uik-kit</code>, so it won't collide with existing site styles.
+      </div>
+    </footer>
+
+  </div>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/bundle.min.js"></script>
+
+</body>
+
+</html>
