@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP Pure Image Parallax Suite — 12 Advanced Visual Techniques</title>
+  <meta name="description" content="A masterclass showcase of 12 distinct pure image parallax animation techniques built with GSAP 3 and ScrollTrigger. Zero text animations, 100% focused on image physics and spatial depth.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Bootstrap (grid/layout utilities only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Lenis Smooth Scroll CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+  <!-- Master Unified Animation CSS Bundle -->
+  <link rel="stylesheet" href="css/bundle.min.css">
+</head>
+
+<body>
+
+  <!-- ================= COMMON GLOBAL MOTION NAVBAR ================= -->
+  <nav class="uik-navbar" data-uik-navbar>
+    <div class="uik-container d-flex align-items-center justify-content-between" style="max-width: 1340px; margin: 0 auto; width: 100%; padding: 0 24px;">
+      <div class="d-inline-flex align-items-center gap-3">
+        <a href="index.html" class="uik-nav-brand" title="GSAP Motion Suite Home">
+          <span class="uik-nav-dot"></span>
+          <span class="uik-nav-brand-title">GSAP MOTION</span>
+          <span class="uik-nav-badge">SUITE</span>
+        </a>
+
+        <!-- MegaMenu Trigger Button -->
+        <button type="button" class="uik-nav-megabtn" data-uik-megatoggle aria-expanded="false" title="Explore All Motion Modules">
+          <span class="uik-megabtn-icon">❖</span>
+          <span>MegaMenu</span>
+          <svg class="uik-megabtn-arrow" width="12" height="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <div class="uik-nav-scroll-wrap">
+        <ul class="uik-nav-list">
+          <!-- 3 Master Showcase Hub Links -->
+          <li><a href="index.html" class="uik-nav-item" title="Main Motion Specimen Sheet"><span class="uik-nav-pill uik-nav-pill--specimen">✦ Main Kit</span></a></li>
+          <li><a href="headings.html" class="uik-nav-item" title="Typography & Headings Animation Kit"><span class="uik-nav-pill uik-nav-pill--headings">🔤 Typography (26)</span></a></li>
+          <li><a href="image-parallax.html" class="uik-nav-item is-current-page" title="12 Pure Image Parallax Techniques"><span class="uik-nav-pill uik-nav-pill--parallax">🖼️ Image Parallax (12)</span></a></li>
+
+          <!-- Scrub Multipliers -->
+          <li><button type="button" class="ip-btn" data-ip-scrub="0.5" title="Tight scrub">0.5x</button></li>
+          <li><button type="button" class="ip-btn ip-btn--active" data-ip-scrub="1.0" title="Default scrub">1.0x</button></li>
+          <li><button type="button" class="ip-btn" data-ip-scrub="2.0" title="Heavy cinematic scrub">2.0x</button></li>
+          <li><button type="button" class="ip-btn" data-ip-markers-toggle title="Toggle ScrollTrigger markers">Markers</button></li>
+
+          <!-- Jump Menu Dropdown -->
+          <li class="ip-dropdown">
+            <button type="button" class="ip-btn ip-btn--accent" data-ip-dropdown-toggle>
+              <span>Specimens (12)</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </button>
+            <div class="ip-dropdown-menu">
+              <a href="#specimen-01" class="ip-dropdown-item"><span class="ip-dropdown-num">01.</span> Editorial Window Parallax</a>
+              <a href="#specimen-02" class="ip-dropdown-item"><span class="ip-dropdown-num">02.</span> Multi-Layer 3D Spatial Diorama</a>
+              <a href="#specimen-03" class="ip-dropdown-item"><span class="ip-dropdown-num">03.</span> Ken Burns Zoom & Focal Shift</a>
+              <a href="#specimen-04" class="ip-dropdown-item"><span class="ip-dropdown-num">04.</span> Diagonal Curtain Mask Reveal</a>
+              <a href="#specimen-05" class="ip-dropdown-item"><span class="ip-dropdown-num">05.</span> Opposing Dual-Column Stream</a>
+              <a href="#specimen-06" class="ip-dropdown-item"><span class="ip-dropdown-num">06.</span> 3D Gyroscope Mouse Depth</a>
+              <a href="#specimen-07" class="ip-dropdown-item"><span class="ip-dropdown-num">07.</span> Horizontal Velocity Skew</a>
+              <a href="#specimen-08" class="ip-dropdown-item"><span class="ip-dropdown-num">08.</span> Circular Iris & Lens Zoom</a>
+              <a href="#specimen-09" class="ip-dropdown-item"><span class="ip-dropdown-num">09.</span> Broken Slice Strip Alignment</a>
+              <a href="#specimen-10" class="ip-dropdown-item"><span class="ip-dropdown-num">10.</span> Stacked 3D Peeling Cards</a>
+              <a href="#specimen-11" class="ip-dropdown-item"><span class="ip-dropdown-num">11.</span> Elastic Magnetic Proximity</a>
+              <a href="#specimen-12" class="ip-dropdown-item"><span class="ip-dropdown-num">12.</span> Blended Silhouette Contrast</a>
+            </div>
+          </li>
+
+          <!-- Universal Theme Toggle -->
+          <li>
+            <button type="button" class="uik-nav-theme-btn" data-uik-theme-toggle title="Toggle Light / Dark Mode">
+              <span class="uik-theme-icon">☀️</span>
+              <span class="uik-theme-label">Light</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mega Menu Full Panel Overlay -->
+  <div class="uik-megamenu-panel" data-uik-megapanel>
+    <div class="uik-container" style="max-width: 1340px; margin: 0 auto; width: 100%; padding: 0 24px;">
+      <div class="uik-megamenu-grid">
+
+        <!-- Column 1: Core Typography & Components -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>01 • CORE FOUNDATIONS</span>
+            <span class="uik-nav-badge">60+ FX</span>
+          </div>
+
+          <a href="headings.html" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🔤</div>
+            <div class="uik-megalink-content">
+              <h5>Typography & Headings <span class="uik-nav-badge">26 Types</span></h5>
+              <p>Character split, word rotation 3D cylinder, clip wipes, scramble & matrix decoders.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-cards" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🃏</div>
+            <div class="uik-megalink-content">
+              <h5>Interactive Cards <span class="uik-nav-badge">20+</span></h5>
+              <p>3D cursor tilt, spotlight radial glows, magnetic pulls & holographic flares.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-marquees" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">♾️</div>
+            <div class="uik-megalink-content">
+              <h5>Gapless Marquees <span class="uik-nav-badge">15</span></h5>
+              <p>Seamless infinite tickers, photo streams, vertical scrollers & text strokes.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 2: Pure Parallax & Spatial Optics -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>02 • PURE IMAGE PARALLAX</span>
+            <span class="uik-nav-badge" style="background: rgba(200, 134, 43, 0.25); color: #C8862B;">12 ALGORITHMS</span>
+          </div>
+
+          <a href="image-parallax.html" class="uik-megalink-card" data-megaclose style="border-color: rgba(200, 134, 43, 0.35); background: rgba(200, 134, 43, 0.06);">
+            <div class="uik-megalink-icon">🖼️</div>
+            <div class="uik-megalink-content">
+              <h5 style="color: #F59E0B;">Image Parallax Suite <span class="uik-nav-badge">12 Types</span></h5>
+              <p>Spatial dioramas, Ken Burns, diagonal reveals, 3D gyroscope tilt, iris zoom & stacked card peel.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-scroll-1" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">📜</div>
+            <div class="uik-megalink-content">
+              <h5>Scroll Sections I <span class="uik-nav-badge">Pinned</span></h5>
+              <p>Sticky reveals, scale-down zooms, side-by-side sticky scroll & text masks.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-scroll-2" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🔭</div>
+            <div class="uik-megalink-content">
+              <h5>Scroll Sections II <span class="uik-nav-badge">Scrub</span></h5>
+              <p>Horizontal pinned timelines, layered cards & differential parallax.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 3: Award-Winning Awwwards Showcase -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>03 • AWWWARDS SHOWCASE</span>
+            <span class="uik-nav-badge">11 PATTERNS</span>
+          </div>
+
+          <a href="index.html#kit-awwwards" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🏆</div>
+            <div class="uik-megalink-content">
+              <h5>Awwwards Motion <span class="uik-nav-badge">11</span></h5>
+              <p>Stacked 3D deck, horizontal gallery, dual parallax & circular scrub.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-hypermotion" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">⚡</div>
+            <div class="uik-megalink-content">
+              <h5>Hyper-Motion Studio <span class="uik-nav-badge">11</span></h5>
+              <p>Interactive cursor trails, holographic physics & matrix text waves.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-loaders" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">⏳</div>
+            <div class="uik-megalink-content">
+              <h5>Kinetic Loaders <span class="uik-nav-badge">24</span></h5>
+              <p>Award-winning site intro loaders, counter splits & radial pulses.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 4: Sliders & Quick Hub Jump -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>04 • SLIDERS & CAROUSELS</span>
+            <span class="uik-nav-badge">22 SLIDERS</span>
+          </div>
+
+          <a href="index.html#kit-reactbits" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">✨</div>
+            <div class="uik-megalink-content">
+              <h5>ReactBits Carousel Suite <span class="uik-nav-badge">11</span></h5>
+              <p>3D cylindrical rotary, infinite coverflow, elastic peek & card stacks.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-modern" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🚀</div>
+            <div class="uik-megalink-content">
+              <h5>Modern Hero Sliders <span class="uik-nav-badge">11</span></h5>
+              <p>Fullscreen kinetic sliders, split screens, pagination dots & thumbnail previews.</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       HERO HEADER
+       ====================================================================== -->
+  <section class="ip-hero">
+    <div class="ip-hero-pill">Pure Visual Optics • 12 Animation Algorithms</div>
+    <h1 class="ip-hero-title">Image Parallax <em>Architecture</em></h1>
+    <p class="ip-hero-desc">
+      A focused collection of 12 distinct, high-performance image parallax animations built strictly with GSAP 3 and ScrollTrigger. No animated typography distractions — pure image physics, spatial layering, mask clipping, and 3D optical depth.
+    </p>
+
+    <div class="ip-stats-grid">
+      <div class="ip-stat-card">
+        <div class="ip-stat-val">12</div>
+        <div class="ip-stat-lbl">PARALLAX TECHNIQUES</div>
+      </div>
+      <div class="ip-stat-card">
+        <div class="ip-stat-val">60 FPS</div>
+        <div class="ip-stat-lbl">HARDWARE ACCELERATED</div>
+      </div>
+      <div class="ip-stat-card">
+        <div class="ip-stat-val">0%</div>
+        <div class="ip-stat-lbl">TEXT ANIMATION DISTRACTION</div>
+      </div>
+      <div class="ip-stat-card">
+        <div class="ip-stat-val">Lenis</div>
+        <div class="ip-stat-lbl">SMOOTH SCROLL SYNC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 01: CLASSIC EDITORIAL WINDOW PARALLAX
+       ====================================================================== -->
+  <section id="specimen-01" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 01 • Viewport Masked Drift</span>
+          <h2 class="ip-specimen-title">Classic Editorial Window Parallax</h2>
+          <p class="ip-specimen-sub">
+            The image translates vertically inside a fixed-height clipping frame via normalized <code>yPercent</code> scrub. As you scroll past, the image moves at a dampened differential velocity to create a cinematic window look.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-01">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-window-frame" style="margin-bottom: 24px;">
+        <img class="ip-window-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt="Majestic alpine valley landscape with glowing lake">
+      </div>
+
+      <div class="ip-window-grid">
+        <div class="ip-window-card">
+          <img class="ip-window-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80" alt="Misty pine forest landscape at sunrise">
+        </div>
+        <div class="ip-window-card">
+          <img class="ip-window-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" alt="Sunlight streaming through redwood forest canopy">
+        </div>
+        <div class="ip-window-card">
+          <img class="ip-window-img" src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80" alt="Sunlight rays breaking through autumn tree leaves">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 02: MULTI-LAYER 3D SPATIAL DEPTH PARALLAX
+       ====================================================================== -->
+  <section id="specimen-02" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 02 • Multi-Plane Diorama</span>
+          <h2 class="ip-specimen-title">Multi-Layer 3D Spatial Depth Parallax</h2>
+          <p class="ip-specimen-sub">
+            Four distinct depth planes (Sky <code>0.15x</code>, Mountain Horizon <code>0.45x</code>, Floating Subject <code>0.85x</code>, and Ambient Foreground Lighting <code>1.35x</code>) move at contrasting scroll velocities with drifting particle fields.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-02">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-depth-stage">
+        <div class="ip-depth-layer ip-depth-layer--sky"></div>
+        <div class="ip-depth-layer ip-depth-layer--mountains"></div>
+        <div class="ip-depth-layer ip-depth-layer--subject">
+          <img class="ip-depth-subject-img" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80" alt="Ethereal floating celestial crystal polygon">
+        </div>
+        <div class="ip-depth-layer ip-depth-layer--foreground"></div>
+
+        <div class="ip-depth-floating-elements">
+          <div class="ip-floating-particle" style="width: 24px; height: 24px; top: 25%; left: 18%;"></div>
+          <div class="ip-floating-particle" style="width: 16px; height: 16px; top: 60%; left: 78%;"></div>
+          <div class="ip-floating-particle" style="width: 32px; height: 32px; top: 40%; left: 85%;"></div>
+          <div class="ip-floating-particle" style="width: 14px; height: 14px; top: 70%; left: 22%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 03: KEN BURNS ZOOM & FOCAL SHIFT PARALLAX
+       ====================================================================== -->
+  <section id="specimen-03" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 03 • Scale & Panning Dynamics</span>
+          <h2 class="ip-specimen-title">Ken Burns Zoom & Focal Shift Parallax</h2>
+          <p class="ip-specimen-sub">
+            Combines continuous camera scale compression (<code>scale: 1.35 → 1.0</code>) with diagonal focal point translation during scroll scrub, mimicking professional cinematic documentary zoom pans.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-03">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-kenburns-wrapper">
+        <div class="ip-kenburns-frame">
+          <img class="ip-kenburns-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" alt="Tropical turquoise ocean shoreline with palm tree reflections">
+        </div>
+        <div class="ip-kenburns-frame">
+          <img class="ip-kenburns-img ip-kenburns-img--alt" src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1200&q=80" alt="Golden sunlight rolling over green hillside meadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 04: DIAGONAL CURTAIN & MASK REVEAL PARALLAX
+       ====================================================================== -->
+  <section id="specimen-04" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 04 • Polygon Clip-Path Geometry</span>
+          <h2 class="ip-specimen-title">Diagonal Curtain & Mask Reveal Parallax</h2>
+          <p class="ip-specimen-sub">
+            The outer container expands via dynamic <code>clip-path: polygon(...)</code> angular cuts while the inner image drives in the inverse coordinate direction with scale deceleration.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-04">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-curtain-container">
+        <div class="ip-curtain-box">
+          <div class="ip-curtain-mask ip-curtain-mask--diagonal">
+            <img class="ip-curtain-img" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" alt="Solitary mountain peak touching dramatic clouds">
+          </div>
+        </div>
+        <div class="ip-curtain-box">
+          <div class="ip-curtain-mask">
+            <img class="ip-curtain-img" src="https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=1400&q=80" alt="Dense green mist forest canopy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 05: OPPOSING DUAL-COLUMN ASYMMETRIC STREAM
+       ====================================================================== -->
+  <section id="specimen-05" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 05 • Counter-Directional Flow</span>
+          <h2 class="ip-specimen-title">Opposing Dual-Column Asymmetric Stream</h2>
+          <p class="ip-specimen-sub">
+            Side-by-side photographic columns scroll in reverse directions: Column A glides upward while Column B descends downward, creating a synchronized optical conveyor effect without jumpiness.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-05">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-dualcol-wrap">
+        <!-- Left Track (Ascending) -->
+        <div class="ip-dualcol-track ip-dualcol-track--left">
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" alt="Glacial mountain lake under dramatic sky">
+          </div>
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1000&q=80" alt="Sunlight bursting through forest foliage">
+          </div>
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=80" alt="Sunrise fog in green evergreen valley">
+          </div>
+        </div>
+
+        <!-- Right Track (Descending) -->
+        <div class="ip-dualcol-track ip-dualcol-track--right">
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=80" alt="Ancient redwood grove illuminated by sunlight beams">
+          </div>
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1000&q=80" alt="Panoramic pastoral sunset over open meadow">
+          </div>
+          <div class="ip-dualcol-card">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=80" alt="Lone hiker overlooking majestic cloud inversion valley">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 06: 3D INTERACTIVE GYROSCOPE / MOUSE DEPTH PARALLAX
+       ====================================================================== -->
+  <section id="specimen-06" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 06 • 3D Cursor Tracking & Glare</span>
+          <h2 class="ip-specimen-title">3D Interactive Gyroscope / Mouse Depth Parallax</h2>
+          <p class="ip-specimen-sub">
+            Hover over the cards below. Smooth GSAP <code>quickTo()</code> transforms tilt the card in 3D perspective space (<code>rotateX/Y</code>) while the background image layer and floating graphics translate with realistic optical parallax and dynamic specular glare.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-06">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-tilt-stage">
+        <!-- Card 1 -->
+        <div class="ip-tilt-card">
+          <img class="ip-tilt-layer-bg" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" alt="Atmospheric obsidian quartz crystal landscape">
+          <div class="ip-tilt-layer-floating">
+            <img class="ip-tilt-floating-graphic" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80" alt="Floating golden abstract geometric prism">
+          </div>
+          <div class="ip-tilt-glare"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="ip-tilt-card">
+          <img class="ip-tilt-layer-bg" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="Starry night sky over sharp mountain peak">
+          <div class="ip-tilt-layer-floating">
+            <img class="ip-tilt-floating-graphic" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Floating iridescent liquid glass sphere">
+          </div>
+          <div class="ip-tilt-glare"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="ip-tilt-card">
+          <img class="ip-tilt-layer-bg" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="Moody alpine peaks under glowing aurora">
+          <div class="ip-tilt-layer-floating">
+            <img class="ip-tilt-floating-graphic" src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80" alt="Floating crystalline 3D geometric polyhedral">
+          </div>
+          <div class="ip-tilt-glare"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 07: PINNED HORIZONTAL VELOCITY SKEW PARALLAX
+       ====================================================================== -->
+  <section id="specimen-07" class="ip-specimen-section ip-horiz-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 07 • Pinned Track & Kinetic Skew</span>
+          <h2 class="ip-specimen-title">Pinned Horizontal Velocity Skew Parallax</h2>
+          <p class="ip-specimen-sub">
+            The viewport pins while wide photographic cards glide horizontally across the screen. Inner images move at counter-velocities, and rapid scrolling induces dynamic kinetic skewing based on real-time ScrollTrigger velocity.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-07">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-horiz-pin-wrap">
+        <div class="ip-horiz-card">
+          <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="Alps reflection in still lake">
+        </div>
+        <div class="ip-horiz-card">
+          <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80" alt="Sunburst through forest canopy">
+        </div>
+        <div class="ip-horiz-card">
+          <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80" alt="Misty mountain sunrise">
+        </div>
+        <div class="ip-horiz-card">
+          <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" alt="Forest path in redwood state park">
+        </div>
+        <div class="ip-horiz-card">
+          <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1200&q=80" alt="Rolling hills golden hour meadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 08: CIRCULAR IRIS & GEOMETRIC LENS PARALLAX
+       ====================================================================== -->
+  <section id="specimen-08" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 08 • Focal Iris Magnification</span>
+          <h2 class="ip-specimen-title">Circular Iris & Geometric Lens Parallax</h2>
+          <p class="ip-specimen-sub">
+            A high-contrast circular lens floats across an oversized muted architectural backdrop. As you scroll, the lens scales up, shifts coordinates with GPU acceleration, and exposes saturated focal details.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-08">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-iris-stage">
+        <img class="ip-iris-bg-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1800&q=80" alt="Monochrome architecture facade backdrop">
+        <div class="ip-iris-lens">
+          <img class="ip-iris-lens-img" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1800&q=80" alt="Magnified saturated architectural detail inside lens">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 09: BROKEN VERTICAL SLICE ALIGNMENT PARALLAX
+       ====================================================================== -->
+  <section id="specimen-09" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 09 • Fragment Assembly & Tear</span>
+          <h2 class="ip-specimen-title">Broken Vertical Slice Alignment Parallax</h2>
+          <p class="ip-specimen-sub">
+            A single high-resolution image is divided into 5 vertical columns. The slices enter the viewport at heavily staggered, alternating vertical offsets, lock seamlessly into a unified master image at screen center, and disperse apart upon scrolling past.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-09">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-slice-container">
+        <div class="ip-slice-column">
+          <img class="ip-slice-inner" src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80" alt="Vibrant neon cosmic landscape slice 1">
+        </div>
+        <div class="ip-slice-column">
+          <img class="ip-slice-inner" src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80" alt="Vibrant neon cosmic landscape slice 2">
+        </div>
+        <div class="ip-slice-column">
+          <img class="ip-slice-inner" src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80" alt="Vibrant neon cosmic landscape slice 3">
+        </div>
+        <div class="ip-slice-column">
+          <img class="ip-slice-inner" src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80" alt="Vibrant neon cosmic landscape slice 4">
+        </div>
+        <div class="ip-slice-column">
+          <img class="ip-slice-inner" src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?auto=format&fit=crop&w=1600&q=80" alt="Vibrant neon cosmic landscape slice 5">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 10: STACKED 3D DEPTH PEELING CARDS PARALLAX
+       ====================================================================== -->
+  <section id="specimen-10" class="ip-specimen-section ip-stack-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 10 • Spatial Deck Peeling</span>
+          <h2 class="ip-specimen-title">Stacked 3D Depth Peeling Cards Parallax</h2>
+          <p class="ip-specimen-sub">
+            The viewport pins while cards in a 3D perspective stack peel away into the negative z-space with realistic rotation (<code>rotateX: 18deg</code>) and opacity dissipation, revealing underlying visual layers.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-10">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-stack-pin-area">
+        <div class="ip-stack-cards-wrap">
+          <!-- Top Card -->
+          <div class="ip-stack-card" style="z-index: 3;">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80" alt="Card 1 Mountain Reflection">
+          </div>
+          <!-- Middle Card -->
+          <div class="ip-stack-card" style="z-index: 2;">
+            <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1400&q=80" alt="Card 2 Forest Sunburst">
+          </div>
+          <!-- Bottom Card -->
+          <div class="ip-stack-card" style="z-index: 1;">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80" alt="Card 3 Tropical Ocean Horizon">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 11: ELASTIC MAGNETIC PROXIMITY PARALLAX
+       ====================================================================== -->
+  <section id="specimen-11" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 11 • Elastic Cursor Gravitation</span>
+          <h2 class="ip-specimen-title">Elastic Magnetic Proximity Parallax</h2>
+          <p class="ip-specimen-sub">
+            Move your cursor across each photo tile. The card body is pulled gravitationally towards the pointer with spring dampening while the internal image moves in reverse offset to create a tactile 3D lens refraction effect.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-11">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-magnetic-grid">
+        <div class="ip-magnetic-item">
+          <div class="ip-magnetic-img-wrap">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Tranquil mountain lake with wooden rowboat">
+          </div>
+          <div class="ip-magnetic-sheen"></div>
+        </div>
+        <div class="ip-magnetic-item">
+          <div class="ip-magnetic-img-wrap">
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80" alt="Cottage beside reflection lake at dusk">
+          </div>
+          <div class="ip-magnetic-sheen"></div>
+        </div>
+        <div class="ip-magnetic-item">
+          <div class="ip-magnetic-img-wrap">
+            <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=800&q=80" alt="Wildflower meadow in mountain valley">
+          </div>
+          <div class="ip-magnetic-sheen"></div>
+        </div>
+        <div class="ip-magnetic-item">
+          <div class="ip-magnetic-img-wrap">
+            <img src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=800&q=80" alt="Sunset over sea rocks with glowing tide">
+          </div>
+          <div class="ip-magnetic-sheen"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       SPECIMEN 12: DUAL-LAYER BLENDED SILHOUETTE PARALLAX
+       ====================================================================== -->
+  <section id="specimen-12" class="ip-specimen-section">
+    <div class="ip-container">
+      <div class="ip-specimen-header">
+        <div class="ip-specimen-meta">
+          <span class="ip-specimen-badge">Type 12 • Double Exposure Screen Blend</span>
+          <h2 class="ip-specimen-title">Dual-Layer Blended Silhouette Parallax</h2>
+          <p class="ip-specimen-sub">
+            A double-exposure visual composite where a foreground geometric silhouette is composited using CSS <code>mix-blend-mode: screen</code> over a moving high-contrast seascape texture, scrolling with opposite vertical momentum.
+          </p>
+        </div>
+        <div class="ip-specimen-actions">
+          <button type="button" class="ip-btn" data-ip-code-modal="specimen-12">View Code ⚙️</button>
+        </div>
+      </div>
+
+      <div class="ip-blend-stage">
+        <div class="ip-blend-bg"></div>
+        <div class="ip-blend-silhouette">
+          <img class="ip-blend-silhouette-img" src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80" alt="Double exposure silhouette blend layer">
+        </div>
+        <div class="ip-blend-overlay-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       UNIVERSAL CODE INSPECTION MODAL DIALOG
+       ====================================================================== -->
+  <div id="ipCodeModal" class="ip-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="ip-modal-backdrop" data-ip-modal-close></div>
+    <div class="ip-modal-dialog">
+      <div class="ip-modal-header">
+        <div class="ip-modal-title-wrap">
+          <span class="ip-modal-badge" id="ipModalBadge">GSAP 3 SCROLLTRIGGER CODE</span>
+          <h3 class="ip-modal-title" id="ipModalTitle">Specimen Code</h3>
+        </div>
+        <div class="ip-modal-header-actions">
+          <div class="ip-modal-tabs">
+            <button type="button" class="ip-modal-tab is-active" data-ip-tab="js">JS (GSAP)</button>
+            <button type="button" class="ip-modal-tab" data-ip-tab="html">HTML</button>
+            <button type="button" class="ip-modal-tab" data-ip-tab="css">CSS</button>
+            <button type="button" class="ip-modal-tab" data-ip-tab="all">All</button>
+          </div>
+          <button type="button" class="ip-modal-close-btn" data-ip-modal-close title="Close modal (Esc)">✕</button>
+        </div>
+      </div>
+      <div class="ip-modal-body">
+        <pre class="ip-modal-pre"><code id="ipModalCode">// Loading code snippet...</code></pre>
+      </div>
+      <div class="ip-modal-footer">
+        <button type="button" class="ip-btn ip-btn--active" id="ipModalCopyBtn">Copy Code</button>
+        <button type="button" class="ip-btn" data-ip-modal-close>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       FOOTER
+       ====================================================================== -->
+  <footer class="ip-footer">
+    <div class="ip-container">
+      <div class="ip-footer-brand">GSAP Image Parallax Suite</div>
+      <p class="ip-footer-text">
+        12 standalone pure image parallax algorithms built with GSAP 3, ScrollTrigger & Lenis. Fully responsive, accessible with <code>prefers-reduced-motion</code>, and ready for production web applications.
+      </p>
+      <div class="ip-footer-links">
+        <a href="index.html" class="ip-btn">Main Motion Specimen Sheet ↗</a>
+        <a href="headings.html" class="ip-btn">Typography & Headings Kit ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="ip-back-top" data-ip-back-top title="Back to Top" aria-label="Back to Top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ======================================================================
+       SCRIPTS: GSAP 3 + ScrollTrigger + Lenis + Master Animation Bundle
+       ====================================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="js/bundle.min.js"></script>
+
+</body>
+
+</html>

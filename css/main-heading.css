@@ -1,0 +1,563 @@
+/* ==========================================================================
+   MAIN-HEADING STANDALONE TYPOGRAPHY & ANIMATION STYLESHEET
+   Independent, portable, zero-dependency on .uik-kit class.
+   Drop into any website and use: <div class="main-heading"><h1>...</h1></div>
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --mh-font-display: 'Fraunces', Georgia, serif;
+    --mh-font-sans: 'Outfit', 'Inter', -apple-system, sans-serif;
+    --mh-font-mono: 'JetBrains Mono', monospace;
+    --mh-ink: #111318;
+    --mh-ink-light: #F4F0E8;
+    --mh-muted: #6B7280;
+    --mh-gold: #C8862B;
+    --mh-mint: #2F8F72;
+    --mh-cyan: #38BDF8;
+    --mh-border: rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   .main-heading PARENT WRAPPER & HEADING TAG SIZES (H1 - H6)
+   ========================================================================== */
+.main-heading {
+    position: relative;
+    margin-bottom: 2.2rem;
+    font-family: var(--mh-font-display);
+    color: var(--mh-ink);
+    line-height: 1.15;
+    max-width: 100%;
+}
+
+/* H1: Display / Hero Title Scale (Biggest) */
+.main-heading h1,
+.main-heading.is-h1,
+h1.main-heading {
+    font-size: clamp(38px, 6vw, 76px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+    color: inherit;
+}
+
+/* H2: Primary Section Title Scale */
+.main-heading h2,
+.main-heading.is-h2,
+h2.main-heading {
+    font-size: clamp(30px, 4.5vw, 54px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.018em;
+    margin: 0 0 14px;
+    color: inherit;
+}
+
+/* H3: Feature / Subsection Title Scale */
+.main-heading h3,
+.main-heading.is-h3,
+h3.main-heading {
+    font-size: clamp(24px, 3.4vw, 40px);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.012em;
+    margin: 0 0 12px;
+    color: inherit;
+}
+
+/* H4: Card / Component Title Scale */
+.main-heading h4,
+.main-heading.is-h4,
+h4.main-heading {
+    font-size: clamp(20px, 2.6vw, 30px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    margin: 0 0 10px;
+    color: inherit;
+}
+
+/* H5: Small Label / Widget Title Scale */
+.main-heading h5,
+.main-heading.is-h5,
+h5.main-heading {
+    font-size: clamp(17px, 2vw, 24px);
+    font-weight: 500;
+    line-height: 1.32;
+    margin: 0 0 8px;
+    color: inherit;
+}
+
+/* H6: Micro Eyebrow / Category Title Scale */
+.main-heading h6,
+.main-heading.is-h6,
+h6.main-heading {
+    font-size: clamp(13.5px, 1.6vw, 17px);
+    font-weight: 600;
+    line-height: 1.38;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mh-muted);
+    margin: 0 0 8px;
+}
+
+/* Optional Subtitle / Eyebrow inside .main-heading */
+.main-heading .mh-eyebrow {
+    font-family: var(--mh-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mh-gold);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.main-heading .mh-sub {
+    font-family: var(--mh-font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--mh-muted);
+    margin-top: 10px;
+    max-width: 650px;
+}
+
+/* ==========================================================================
+   ANIMATION VARIANTS (Applied to .main-heading or any child tag)
+   ========================================================================== */
+
+/* 1. Split-Char Rise */
+.main-heading .mh-char,
+.main-heading--split .mh-char,
+.uik-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* 2. Clip Wipe */
+.main-heading--clip,
+.main-heading [data-anim="clip"] {
+    clip-path: inset(0 100% 0 0);
+}
+
+/* 3. Underline Draw */
+.main-heading--underline,
+.main-heading [data-anim="underline"] {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+.main-heading .mh-underline-rule,
+.main-heading--underline .mh-underline-rule,
+.main-heading .uik-underline-rule {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, #C8862B, #2F8F72);
+    transform: scaleX(0);
+    transform-origin: left center;
+    border-radius: 4px;
+}
+
+/* 4. Animated Shine */
+.main-heading--shine,
+.main-heading [data-anim="shine"] {
+    background: linear-gradient(100deg, currentColor 0%, currentColor 40%, #C8862B 50%, currentColor 60%, currentColor 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-position: 100% 0;
+}
+
+.main-heading--shine.mh-is-active,
+.main-heading [data-anim="shine"].uik-is-active,
+.main-heading--shine.uik-is-active {
+    animation: mhShineSweep 1.8s ease-in-out forwards;
+}
+
+@keyframes mhShineSweep {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* 5. Word-by-Word Rise */
+.main-heading .mh-word,
+.main-heading .uik-word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* 6. Line Mask Reveal */
+.main-heading--linemask,
+.main-heading [data-anim="linemask"] {
+    overflow: hidden;
+}
+
+.main-heading .mh-linemask-inner,
+.main-heading .uik-linemask-inner {
+    display: block;
+    transform: translateY(115%);
+    will-change: transform;
+}
+
+/* 7. Blur Focus */
+.main-heading--blur,
+.main-heading [data-anim="blur"] {
+    filter: blur(14px);
+    opacity: 0;
+}
+
+/* 8. 3D Rotate */
+.main-heading--rotate3d,
+.main-heading [data-anim="rotate3d"] {
+    transform-origin: 50% 100%;
+    transform: perspective(600px) rotateX(70deg);
+    opacity: 0;
+}
+
+/* 9. Elastic Pop */
+.main-heading--pop,
+.main-heading [data-anim="pop"] {
+    transform: scale(0.4);
+    opacity: 0;
+}
+
+/* 10. Typewriter */
+.main-heading--typewriter,
+.main-heading [data-anim="typewriter"] {
+    display: inline-block;
+    border-right: 2px solid #C8862B;
+    padding-right: 4px;
+    animation: mhCaretBlink 0.7s infinite;
+}
+
+@keyframes mhCaretBlink {
+    0%, 100% { border-color: #C8862B; }
+    50% { border-color: transparent; }
+}
+
+/* 11. Highlight Background Sweep */
+.main-heading--highlight,
+.main-heading [data-anim="highlight"] {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.main-heading .mh-highlight-bg,
+.main-heading .uik-highlight-bg {
+    position: absolute;
+    inset: -2px -8px;
+    background: #E8D8BF;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left center;
+    border-radius: 4px;
+}
+
+/* 12. Scramble / Decode Text */
+.main-heading--scramble,
+.main-heading [data-anim="scramble"] {
+    font-family: var(--mh-font-mono);
+    letter-spacing: 0.05em;
+}
+
+/* 13. Wave Bounce */
+.main-heading--wave .mh-char,
+.main-heading [data-anim="wave"] .mh-char,
+.main-heading [data-anim="wave"] .uik-char {
+    display: inline-block;
+    will-change: transform;
+}
+
+/* 14. Duo Opposing Lines */
+.main-heading .mh-duo-line,
+.main-heading .uik-duo-line {
+    display: block;
+    overflow: hidden;
+}
+
+.main-heading .mh-duo-line span,
+.main-heading .uik-duo-line span {
+    display: block;
+    will-change: transform;
+}
+
+/* 15. Glitch Flicker */
+.main-heading--glitch,
+.main-heading [data-anim="glitch"] {
+    position: relative;
+    display: inline-block;
+}
+
+.main-heading .mh-glitch-copy,
+.main-heading .uik-glitch-copy {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.main-heading .mh-glitch-copy--r,
+.main-heading .uik-glitch-copy--r {
+    color: #E25555;
+    clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%);
+}
+
+.main-heading .mh-glitch-copy--b,
+.main-heading .uik-glitch-copy--b {
+    color: #38BDF8;
+    clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%);
+}
+
+/* 16. Heading with Photo Chip */
+.main-heading--withphoto,
+.main-heading [data-anim="withphoto"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.main-heading--withphoto img,
+.main-heading [data-anim="withphoto"] img {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* 17. Marker Underline */
+.main-heading--marker,
+.main-heading [data-anim="marker"] {
+    position: relative;
+    display: inline-block;
+}
+
+.main-heading .mh-marker-rule,
+.main-heading .uik-marker-rule {
+    position: absolute;
+    left: -4px;
+    bottom: 2px;
+    height: 38%;
+    width: calc(100% + 8px);
+    background: rgba(200, 134, 43, 0.28);
+    transform: scaleX(0);
+    transform-origin: left center;
+    z-index: -1;
+    border-radius: 3px;
+}
+
+/* 18. Skew In */
+.main-heading--skew,
+.main-heading [data-anim="skew"] {
+    will-change: transform, opacity;
+}
+
+/* 19. Staircase Word Stagger */
+.main-heading .mh-stair-word,
+.main-heading .uik-stair-word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* 20. Outline to Fill */
+.main-heading--outlinetext,
+.main-heading [data-anim="outlinetext"] {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 1.5px currentColor;
+}
+
+.main-heading .mh-outline-fill,
+.main-heading .uik-outline-fill {
+    position: absolute;
+    inset: 0;
+    color: #C8862B;
+    -webkit-text-stroke: 0px transparent;
+    clip-path: inset(0 100% 0 0);
+}
+
+/* 21. Morph / Breath */
+.main-heading--morph,
+.main-heading [data-anim="morph"] {
+    display: inline-block;
+    transform-origin: left center;
+}
+
+/* 22. Stamp Drop */
+.main-heading--stamp,
+.main-heading [data-anim="stamp"] {
+    display: inline-block;
+    transform-origin: center center;
+}
+
+/* 23. Cascade Bounce */
+.main-heading--cascade .mh-char,
+.main-heading [data-anim="cascade"] .uik-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* 24. Neon Glow */
+.main-heading--neon,
+.main-heading [data-anim="neon"] {
+    opacity: 0.4;
+    transition: text-shadow 0.4s ease, opacity 0.4s ease;
+}
+
+/* 25. Slice Open */
+.main-heading .mh-slice-row,
+.main-heading .uik-slice-row {
+    display: block;
+    overflow: hidden;
+}
+
+.main-heading .mh-slice-row span,
+.main-heading .uik-slice-row span {
+    display: block;
+    will-change: transform;
+}
+
+/* ==========================================================================
+   LIGHT THEME MODIFIER (.main-heading--light / .is-light / data-theme="light")
+   ========================================================================== */
+.main-heading--light,
+.main-heading.is-light,
+.is-light .main-heading,
+[data-theme="light"] .main-heading {
+    color: #1A1715;
+}
+
+.main-heading--light h1,
+.main-heading--light h2,
+.main-heading--light h3,
+.main-heading--light h4,
+.main-heading--light h5,
+.main-heading--light h6,
+.is-light .main-heading h1,
+.is-light .main-heading h2,
+.is-light .main-heading h3,
+.is-light .main-heading h4,
+.is-light .main-heading h5,
+.is-light .main-heading h6,
+[data-theme="light"] .main-heading h1,
+[data-theme="light"] .main-heading h2,
+[data-theme="light"] .main-heading h3,
+[data-theme="light"] .main-heading h4,
+[data-theme="light"] .main-heading h5,
+[data-theme="light"] .main-heading h6 {
+    color: #1A1715;
+}
+
+.main-heading--light .mh-eyebrow,
+.is-light .main-heading .mh-eyebrow,
+[data-theme="light"] .main-heading .mh-eyebrow {
+    color: #A36417;
+}
+
+.main-heading--light .mh-sub,
+.is-light .main-heading .mh-sub,
+[data-theme="light"] .main-heading .mh-sub {
+    color: #61564C;
+}
+
+.main-heading--light .mh-highlight-bg,
+.is-light .main-heading .mh-highlight-bg,
+[data-theme="light"] .main-heading .mh-highlight-bg {
+    background: rgba(200, 134, 43, 0.22);
+}
+
+.main-heading--light .mh-marker-rule,
+.is-light .main-heading .mh-marker-rule,
+[data-theme="light"] .main-heading .mh-marker-rule {
+    background: rgba(200, 134, 43, 0.32);
+}
+
+.main-heading--light .mh-outline-fill,
+.is-light .main-heading .mh-outline-fill,
+[data-theme="light"] .main-heading .mh-outline-fill {
+    color: #B8731E;
+}
+
+.main-heading--light.main-heading--outlinetext,
+.is-light .main-heading--outlinetext,
+[data-theme="light"] .main-heading--outlinetext {
+    -webkit-text-stroke: 1.5px #1A1715;
+}
+
+.main-heading--light .main-heading--neon,
+.is-light .main-heading--neon,
+[data-theme="light"] .main-heading--neon {
+    color: #1A1715;
+}
+
+/* 26. text split with word rotation — standalone */
+.main-heading--word-rotate {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.28em;
+    perspective: 1000px;
+    vertical-align: middle;
+}
+
+.main-heading--word-rotate .mh-char {
+    display: inline-block;
+    will-change: transform, opacity;
+    transform-origin: 50% 100% -20px;
+}
+
+.main-heading--word-rotate .mh-rotate-words-wrap,
+.main-heading--word-rotate .uik-rotate-words-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25em;
+    min-width: 4.8em;
+    padding: 0.1em 0.38em;
+    border-radius: 12px;
+    background: rgba(200, 134, 43, 0.12);
+    border: 1px solid rgba(200, 134, 43, 0.35);
+    box-shadow: 0 4px 20px -5px rgba(200, 134, 43, 0.3), inset 0 0 12px rgba(200, 134, 43, 0.1);
+    perspective: 800px;
+    transform-style: preserve-3d;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.main-heading--word-rotate .mh-rotate-word,
+.main-heading--word-rotate .uik-rotate-word {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #C8862B;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    transform: rotateX(-90deg) translateY(100%);
+    transform-origin: center center -30px;
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+}
+
+.main-heading--word-rotate .mh-rotate-word.is-active,
+.main-heading--word-rotate .uik-rotate-word.is-active {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0%);
+}

@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Heading Typography & Animation System (No UIKIT)</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Bootstrap (grid/layout utilities only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Lenis Smooth Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+  <!-- Master Unified Animation & Typography CSS Bundle -->
+  <link rel="stylesheet" href="css/bundle.min.css">
+
+  <style>
+    /* Standalone Page Styling (Clean, Neutral, High-End Canvas) */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0c0d12;
+      color: #f4f0e8;
+      font-family: 'Outfit', 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    ::selection {
+      background: #C8862B;
+      color: #0c0d12;
+    }
+
+    /* ======================================================================
+       LIGHT THEME PAGE STYLES (Activated by body.is-light)
+       ====================================================================== */
+    body.is-light {
+      background-color: #FAF7F2;
+      color: #1A1715;
+    }
+
+    body.is-light ::selection {
+      background: #C8862B;
+      color: #FAF7F2;
+    }
+
+    body.is-light .mh-topbar {
+      background: rgba(250, 247, 242, 0.9);
+      border-bottom: 1px solid rgba(26, 23, 21, 0.08);
+    }
+
+    body.is-light .mh-brand {
+      color: #1A1715;
+    }
+
+    body.is-light .mh-theme-btn {
+      background: #FFFFFF;
+      border-color: rgba(36, 28, 21, 0.15);
+      color: #1A1715;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    body.is-light .mh-theme-btn:hover {
+      background: rgba(200, 134, 43, 0.15);
+      border-color: #C8862B;
+      color: #A36417;
+    }
+
+    body.is-light .mh-tabs {
+      background: rgba(26, 23, 21, 0.04);
+      border-color: rgba(26, 23, 21, 0.08);
+    }
+
+    body.is-light .mh-tab-link {
+      color: rgba(26, 23, 21, 0.7);
+    }
+
+    body.is-light .mh-tab-link:hover {
+      color: #1A1715;
+      background: rgba(26, 23, 21, 0.06);
+    }
+
+    body.is-light .mh-hero-title {
+      color: #1A1715;
+    }
+
+    body.is-light .mh-hero-sub {
+      color: #61564C;
+    }
+
+    body.is-light .mh-code-card {
+      background: #F2ECE0;
+      border: 1px solid rgba(36, 28, 21, 0.12);
+      color: #241C15;
+    }
+
+    body.is-light .mh-demo-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(36, 28, 21, 0.08);
+      box-shadow: 0 8px 24px rgba(36, 28, 21, 0.04);
+    }
+
+    body.is-light .mh-demo-card:hover {
+      border-color: #C8862B;
+      box-shadow: 0 12px 32px rgba(200, 134, 43, 0.1);
+    }
+
+    body.is-light .mh-demo-meta {
+      border-bottom: 1px solid rgba(36, 28, 21, 0.06);
+    }
+
+    body.is-light .mh-size-label {
+      color: #8C7E72;
+    }
+
+    body.is-light .mh-section {
+      border-bottom: 1px solid rgba(36, 28, 21, 0.08);
+    }
+
+    body.is-light .main-heading {
+      color: #1A1715;
+    }
+
+    /* Page Container */
+    .mh-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 100px 24px 100px;
+    }
+
+    .mh-hero-box {
+      text-align: center;
+      padding: 60px 0 80px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 60px;
+    }
+
+    .mh-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(200, 134, 43, 0.15);
+      color: #C8862B;
+      border: 1px solid rgba(200, 134, 43, 0.35);
+      margin-bottom: 20px;
+    }
+
+    .mh-hero-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .mh-hero-sub {
+      font-size: 18px;
+      color: rgba(244, 240, 232, 0.65);
+      max-width: 680px;
+      margin: 0 auto 30px;
+    }
+
+    /* Code Card & Documentation */
+    .mh-code-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 40px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      color: #38BDF8;
+      overflow-x: auto;
+    }
+
+    /* Section Styles */
+    .mh-section {
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mh-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .mh-section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #2F8F72;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .mh-card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .mh-demo-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.3s ease;
+    }
+
+    .mh-demo-card:hover {
+      border-color: rgba(200, 134, 43, 0.4);
+    }
+
+    .mh-demo-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mh-tag-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #C8862B;
+    }
+
+    .mh-size-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(244, 240, 232, 0.4);
+    }
+
+    /* Invert color for dark background */
+    .main-heading {
+      color: #f4f0e8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= COMMON GLOBAL MOTION NAVBAR ================= -->
+  <nav class="uik-navbar" data-uik-navbar>
+    <div class="uik-container d-flex align-items-center justify-content-between" style="max-width: 1340px; margin: 0 auto; width: 100%; padding: 0 24px;">
+      <div class="d-flex align-items-center gap-3">
+        <a href="index.html" class="uik-nav-brand" title="GSAP Motion Suite Home">
+          <span class="uik-nav-dot"></span>
+          <span class="uik-nav-brand-title">GSAP MOTION</span>
+          <span class="uik-nav-badge">SUITE</span>
+        </a>
+
+        <!-- MegaMenu Trigger Button -->
+        <button type="button" class="uik-nav-megabtn" data-uik-megatoggle aria-expanded="false" title="Explore All Motion Modules">
+          <span class="uik-megabtn-icon">❖</span>
+          <span>MegaMenu</span>
+          <svg class="uik-megabtn-arrow" width="12" height="12" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <div class="uik-nav-scroll-wrap">
+        <ul class="uik-nav-list">
+          <!-- 3 Master Showcase Hub Links -->
+          <li><a href="index.html" class="uik-nav-item" title="Main Motion Specimen Sheet"><span class="uik-nav-pill uik-nav-pill--specimen">✦ Main Kit</span></a></li>
+          <li><a href="headings.html" class="uik-nav-item is-current-page" title="Typography & Headings Animation Kit"><span class="uik-nav-pill uik-nav-pill--headings">🔤 Typography (26)</span></a></li>
+          <li><a href="image-parallax.html" class="uik-nav-item" title="12 Pure Image Parallax Techniques"><span class="uik-nav-pill uik-nav-pill--parallax">🖼️ Image Parallax (12)</span></a></li>
+
+          <!-- Universal Theme Toggle -->
+          <li>
+            <button type="button" class="uik-nav-theme-btn" data-uik-theme-toggle title="Toggle Light / Dark Mode">
+              <span class="uik-theme-icon">☀️</span>
+              <span class="uik-theme-label">Light</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mega Menu Full Panel Overlay -->
+  <div class="uik-megamenu-panel" data-uik-megapanel>
+    <div class="uik-container" style="max-width: 1340px; margin: 0 auto; width: 100%; padding: 0 24px;">
+      <div class="uik-megamenu-grid">
+
+        <!-- Column 1: Core Typography & Components -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>01 • CORE FOUNDATIONS</span>
+            <span class="uik-nav-badge">60+ FX</span>
+          </div>
+
+          <a href="headings.html" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🔤</div>
+            <div class="uik-megalink-content">
+              <h5>Typography & Headings <span class="uik-nav-badge">26 Types</span></h5>
+              <p>Character split, word rotation 3D cylinder, clip wipes, scramble & matrix decoders.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-cards" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🃏</div>
+            <div class="uik-megalink-content">
+              <h5>Interactive Cards <span class="uik-nav-badge">20+</span></h5>
+              <p>3D cursor tilt, spotlight radial glows, magnetic pulls & holographic flares.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-marquees" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">♾️</div>
+            <div class="uik-megalink-content">
+              <h5>Gapless Marquees <span class="uik-nav-badge">15</span></h5>
+              <p>Seamless infinite tickers, photo streams, vertical scrollers & text strokes.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 2: Pure Parallax & Spatial Optics -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>02 • PURE IMAGE PARALLAX</span>
+            <span class="uik-nav-badge" style="background: rgba(200, 134, 43, 0.25); color: #C8862B;">12 ALGORITHMS</span>
+          </div>
+
+          <a href="image-parallax.html" class="uik-megalink-card" data-megaclose style="border-color: rgba(200, 134, 43, 0.35); background: rgba(200, 134, 43, 0.06);">
+            <div class="uik-megalink-icon">🖼️</div>
+            <div class="uik-megalink-content">
+              <h5 style="color: #F59E0B;">Image Parallax Suite <span class="uik-nav-badge">12 Types</span></h5>
+              <p>Spatial dioramas, Ken Burns, diagonal reveals, 3D gyroscope tilt, iris zoom & stacked card peel.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-scroll-1" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">📜</div>
+            <div class="uik-megalink-content">
+              <h5>Scroll Sections I <span class="uik-nav-badge">Pinned</span></h5>
+              <p>Sticky reveals, scale-down zooms, side-by-side sticky scroll & text masks.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-scroll-2" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🔭</div>
+            <div class="uik-megalink-content">
+              <h5>Scroll Sections II <span class="uik-nav-badge">Scrub</span></h5>
+              <p>Horizontal pinned timelines, layered cards & differential parallax.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 3: Award-Winning Awwwards Showcase -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>03 • AWWWARDS SHOWCASE</span>
+            <span class="uik-nav-badge">11 PATTERNS</span>
+          </div>
+
+          <a href="index.html#kit-awwwards" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🏆</div>
+            <div class="uik-megalink-content">
+              <h5>Awwwards Motion <span class="uik-nav-badge">11</span></h5>
+              <p>Stacked 3D deck, horizontal gallery, dual parallax & circular scrub.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-hypermotion" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">⚡</div>
+            <div class="uik-megalink-content">
+              <h5>Hyper-Motion Studio <span class="uik-nav-badge">11</span></h5>
+              <p>Interactive cursor trails, holographic physics & matrix text waves.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-loaders" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">⏳</div>
+            <div class="uik-megalink-content">
+              <h5>Kinetic Loaders <span class="uik-nav-badge">24</span></h5>
+              <p>Award-winning site intro loaders, counter splits & radial pulses.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Column 4: Sliders & Quick Hub Jump -->
+        <div class="uik-megacol">
+          <div class="uik-megacol-title">
+            <span>04 • SLIDERS & CAROUSELS</span>
+            <span class="uik-nav-badge">22 SLIDERS</span>
+          </div>
+
+          <a href="index.html#kit-reactbits" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">✨</div>
+            <div class="uik-megalink-content">
+              <h5>ReactBits Carousel Suite <span class="uik-nav-badge">11</span></h5>
+              <p>3D cylindrical rotary, infinite coverflow, elastic peek & card stacks.</p>
+            </div>
+          </a>
+
+          <a href="index.html#kit-modern" class="uik-megalink-card" data-megaclose>
+            <div class="uik-megalink-icon">🚀</div>
+            <div class="uik-megalink-content">
+              <h5>Modern Hero Sliders <span class="uik-nav-badge">11</span></h5>
+              <p>Fullscreen kinetic sliders, split screens, pagination dots & thumbnail previews.</p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <main class="mh-container">
+
+    <!-- Hero Introduction -->
+    <div class="mh-hero-box">
+      <span class="mh-badge">Zero UIKIT Dependency • Universal Parent Class</span>
+      <h1 class="mh-hero-title">.main-heading Typography Kit</h1>
+      <p class="mh-hero-sub">
+        Every heading element is encapsulated inside <code>.main-heading</code> with carefully proportioned responsive font sizes for child tags (<code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code>, <code>h6</code>).
+      </p>
+
+      <div class="mh-code-card">
+        &lt;!-- Universal Usage on Any Website --&gt;<br>
+        &lt;div class="main-heading"&gt;<br>
+        &nbsp;&nbsp;&lt;h1 class="main-heading--split"&gt;Your Title Here&lt;/h1&gt;<br>
+        &lt;/div&gt;
+      </div>
+    </div>
+
+    <!-- ================= 1. H1 DISPLAY LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 01 • DISPLAY SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h1&gt; (clamp 38px — 76px)</h2>
+        </div>
+        <span class="mh-size-label">Hero & Banner Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 1. H1 Split -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h1&gt; • .main-heading--split</span>
+            <span class="mh-size-label">Font Size: clamp(38px, 6vw, 76px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Split-Char Rise</span>
+            <h1 class="main-heading--split" data-anim="split">Design In Motion</h1>
+            <p class="mh-sub">Each character splits and glides into position on scroll with smooth physics.</p>
+          </div>
+        </div>
+
+        <!-- 2. H1 Clip Wipe -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h1&gt; • .main-heading--clip</span>
+            <span class="mh-size-label">Font Size: clamp(38px, 6vw, 76px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Clip Path Mask</span>
+            <h1 class="main-heading--clip" data-anim="clip">Every Pixel Intentional</h1>
+            <p class="mh-sub">Geometric horizontal wipe reveal via animated clip-path inset.</p>
+          </div>
+        </div>
+
+        <!-- 3. H1 Underline -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h1&gt; • .main-heading--underline</span>
+            <span class="mh-size-label">Font Size: clamp(38px, 6vw, 76px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Kinetic Underline</span>
+            <h1 class="main-heading--underline" data-anim="underline">Built To Be Borrowed<span class="mh-underline-rule"></span></h1>
+            <p class="mh-sub">Dynamic gradient underline scaleX expansion synchronized with viewport entry.</p>
+          </div>
+        </div>
+
+        <!-- 4. H1 Shine -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h1&gt; • .main-heading--shine</span>
+            <span class="mh-size-label">Font Size: clamp(38px, 6vw, 76px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Specular Highlight</span>
+            <h1 class="main-heading--shine" data-anim="shine">Luminous Metallic Reflection</h1>
+            <p class="mh-sub">Smooth iridescent light reflection across typographic glyphs.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 2. H2 SECTION LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 02 • PRIMARY SECTION SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h2&gt; (clamp 30px — 54px)</h2>
+        </div>
+        <span class="mh-size-label">Major Section Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 5. H2 Words -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h2&gt; • .main-heading--words</span>
+            <span class="mh-size-label">Font Size: clamp(30px, 4.5vw, 54px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Word Stagger</span>
+            <h2 class="main-heading--words" data-anim="words">Words Arrive One At A Time</h2>
+            <p class="mh-sub">Staggered upward emergence on each word token.</p>
+          </div>
+        </div>
+
+        <!-- 6. H2 Line Mask -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h2&gt; • .main-heading--linemask</span>
+            <span class="mh-size-label">Font Size: clamp(30px, 4.5vw, 54px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Mask Window</span>
+            <h2 class="main-heading--linemask" data-anim="linemask"><span class="mh-linemask-inner">Lines Slide Out Of Hiding</span></h2>
+            <p class="mh-sub">Concealed beneath an overflow mask and revealed smoothly.</p>
+          </div>
+        </div>
+
+        <!-- 7. H2 Blur -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h2&gt; • .main-heading--blur</span>
+            <span class="mh-size-label">Font Size: clamp(30px, 4.5vw, 54px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Focus Pull</span>
+            <h2 class="main-heading--blur" data-anim="blur">Optical Focus Pulls Into View</h2>
+            <p class="mh-sub">Transitions from heavy gaussian blur to crisp high-contrast focus.</p>
+          </div>
+        </div>
+
+        <!-- 8. H2 Rotate3D -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h2&gt; • .main-heading--rotate3d</span>
+            <span class="mh-size-label">Font Size: clamp(30px, 4.5vw, 54px)</span>
+          </div>
+          <div class="main-heading">
+            <span class="mh-eyebrow">Perspective Tilt</span>
+            <h2 class="main-heading--rotate3d" data-anim="rotate3d">Tips Upward From The Floor</h2>
+            <p class="mh-sub">Rotates along 3D X-axis with perspective projection.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 3. H3 SUBSECTION LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 03 • SUBSECTION & FEATURE SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h3&gt; (clamp 24px — 40px)</h2>
+        </div>
+        <span class="mh-size-label">Feature & Block Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 9. H3 Pop -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h3&gt; • .main-heading--pop</span>
+            <span class="mh-size-label">Font Size: clamp(24px, 3.4vw, 40px)</span>
+          </div>
+          <div class="main-heading">
+            <h3 class="main-heading--pop" data-anim="pop">Pops In With Elastic Bounce</h3>
+          </div>
+        </div>
+
+        <!-- 10. H3 Typewriter -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h3&gt; • .main-heading--typewriter</span>
+            <span class="mh-size-label">Font Size: clamp(24px, 3.4vw, 40px)</span>
+          </div>
+          <div class="main-heading">
+            <h3 class="main-heading--typewriter" data-anim="typewriter" data-text="Types itself character by character">Types itself character by character</h3>
+          </div>
+        </div>
+
+        <!-- 11. H3 Highlight -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h3&gt; • .main-heading--highlight</span>
+            <span class="mh-size-label">Font Size: clamp(24px, 3.4vw, 40px)</span>
+          </div>
+          <div class="main-heading">
+            <h3 class="main-heading--highlight" data-anim="highlight"><span class="mh-highlight-bg"></span>Marked With Background Sweep</h3>
+          </div>
+        </div>
+
+        <!-- 12. H3 Scramble -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h3&gt; • .main-heading--scramble</span>
+            <span class="mh-size-label">Font Size: clamp(24px, 3.4vw, 40px)</span>
+          </div>
+          <div class="main-heading">
+            <h3 class="main-heading--scramble" data-anim="scramble" data-final-text="CRYPTOGRAPHIC DECODED MATRIX">82FX—DECODE_SYS</h3>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 4. H4 CARD & COMPONENT LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 04 • CARD & COMPONENT SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h4&gt; (clamp 20px — 30px)</h2>
+        </div>
+        <span class="mh-size-label">Component Title Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 13. H4 Wave -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h4&gt; • .main-heading--wave</span>
+            <span class="mh-size-label">Font Size: clamp(20px, 2.6vw, 30px)</span>
+          </div>
+          <div class="main-heading">
+            <h4 class="main-heading--wave" data-anim="wave">Harmonic Sine Wave Ripple</h4>
+          </div>
+        </div>
+
+        <!-- 14. H4 Duo -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h4&gt; • .main-heading--duo</span>
+            <span class="mh-size-label">Font Size: clamp(20px, 2.6vw, 30px)</span>
+          </div>
+          <div class="main-heading">
+            <h4 class="main-heading--duo">
+              <span class="mh-duo-line"><span>First line from left,</span></span>
+              <span class="mh-duo-line"><span>second from right</span></span>
+            </h4>
+          </div>
+        </div>
+
+        <!-- 15. H4 Glitch -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h4&gt; • .main-heading--glitch</span>
+            <span class="mh-size-label">Font Size: clamp(20px, 2.6vw, 30px)</span>
+          </div>
+          <div class="main-heading">
+            <h4 class="main-heading--glitch" data-anim="glitch" data-text="Cybernetic RGB Chromatic Aberration">Cybernetic RGB Chromatic Aberration<span class="mh-glitch-copy mh-glitch-copy--r">Cybernetic RGB Chromatic Aberration</span><span class="mh-glitch-copy mh-glitch-copy--b">Cybernetic RGB Chromatic Aberration</span></h4>
+          </div>
+        </div>
+
+        <!-- 16. H4 With Photo -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h4&gt; • .main-heading--withphoto</span>
+            <span class="mh-size-label">Font Size: clamp(20px, 2.6vw, 30px)</span>
+          </div>
+          <div class="main-heading">
+            <h4 class="main-heading--withphoto" data-anim="withphoto">
+              <img src="https://picsum.photos/seed/mhphotochip/120/120" alt="">
+              <span>Embedded Thumbnail Badge</span>
+            </h4>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 5. H5 SMALL WIDGET LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 05 • SMALL WIDGET & LABEL SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h5&gt; (clamp 17px — 24px)</h2>
+        </div>
+        <span class="mh-size-label">Widget Title Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 17. H5 Marker -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h5&gt; • .main-heading--marker</span>
+            <span class="mh-size-label">Font Size: clamp(17px, 2vw, 24px)</span>
+          </div>
+          <div class="main-heading">
+            <h5 class="main-heading--marker" data-anim="marker">Highlighter Marker Underline<span class="mh-marker-rule"></span></h5>
+          </div>
+        </div>
+
+        <!-- 18. H5 Skew -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h5&gt; • .main-heading--skew</span>
+            <span class="mh-size-label">Font Size: clamp(17px, 2vw, 24px)</span>
+          </div>
+          <div class="main-heading">
+            <h5 class="main-heading--skew" data-anim="skew">Kinetic Skew Glide Reveal</h5>
+          </div>
+        </div>
+
+        <!-- 19. H5 Staircase -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h5&gt; • .main-heading--staircase</span>
+            <span class="mh-size-label">Font Size: clamp(17px, 2vw, 24px)</span>
+          </div>
+          <div class="main-heading">
+            <h5 class="main-heading--staircase" data-anim="staircase">Staircase Cascading Word Fall</h5>
+          </div>
+        </div>
+
+        <!-- 20. H5 Outline -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h5&gt; • .main-heading--outlinetext</span>
+            <span class="mh-size-label">Font Size: clamp(17px, 2vw, 24px)</span>
+          </div>
+          <div class="main-heading">
+            <h5 class="main-heading--outlinetext" data-anim="outlinetext">
+              Stroke Outline Fills Solid
+              <span class="mh-outline-fill">Stroke Outline Fills Solid</span>
+            </h5>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 6. H6 MICRO EYEBROW LEVEL ================= -->
+    <section class="mh-section">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag">LEVEL 06 • MICRO EYEBROW SCALE</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Child Tag: &lt;h6&gt; (clamp 13.5px — 17px)</h2>
+        </div>
+        <span class="mh-size-label">Eyebrow & Sub-Label Scale</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- 21. H6 Morph -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h6&gt; • .main-heading--morph</span>
+            <span class="mh-size-label">Font Size: clamp(13.5px, 1.6vw, 17px)</span>
+          </div>
+          <div class="main-heading">
+            <h6 class="main-heading--morph" data-anim="morph">Continuous Organic Breathing Pulse</h6>
+          </div>
+        </div>
+
+        <!-- 22. H6 Stamp -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h6&gt; • .main-heading--stamp</span>
+            <span class="mh-size-label">Font Size: clamp(13.5px, 1.6vw, 17px)</span>
+          </div>
+          <div class="main-heading">
+            <h6 class="main-heading--stamp" data-anim="stamp">Industrial Rubber Stamp Impact</h6>
+          </div>
+        </div>
+
+        <!-- 23. H6 Cascade -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h6&gt; • .main-heading--cascade</span>
+            <span class="mh-size-label">Font Size: clamp(13.5px, 1.6vw, 17px)</span>
+          </div>
+          <div class="main-heading">
+            <h6 class="main-heading--cascade" data-anim="cascade">Gravity Letterdrop Bounce</h6>
+          </div>
+        </div>
+
+        <!-- 24. H6 Neon -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h6&gt; • .main-heading--neon</span>
+            <span class="mh-size-label">Font Size: clamp(13.5px, 1.6vw, 17px)</span>
+          </div>
+          <div class="main-heading">
+            <h6 class="main-heading--neon" data-anim="neon">Bioluminescent Neon Emission</h6>
+          </div>
+        </div>
+
+        <!-- 25. H6 Slice -->
+        <div class="mh-demo-card">
+          <div class="mh-demo-meta">
+            <span class="mh-tag-badge">&lt;h6&gt; • .main-heading--slice</span>
+            <span class="mh-size-label">Font Size: clamp(13.5px, 1.6vw, 17px)</span>
+          </div>
+          <div class="main-heading">
+            <h6 class="main-heading--slice" data-anim="slice">
+              <span class="mh-slice-row"><span>Horizontal Shutter Blinds Reveal</span></span>
+            </h6>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= 7. DEDICATED LIGHT THEME SPECIMEN CANVAS ================= -->
+    <section class="mh-section" style="background: #FAF7F2; color: #1A1715; border-radius: 24px; padding: 48px 36px; margin-top: 40px; border: 1px solid rgba(36,28,21,0.12); box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+      <div class="mh-section-header" style="border-bottom: 1px solid rgba(36, 28, 21, 0.1); padding-bottom: 20px; margin-bottom: 40px;">
+        <div>
+          <span class="mh-section-tag" style="color: #A36417;">STANDALONE LIGHT CANVAS</span>
+          <h2 style="font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: #1A1715; margin-top: 6px;">Editorial Light Version (.main-heading--light)</h2>
+          <p style="font-size: 15px; color: #61564C; margin-top: 6px;">Use <code>.main-heading--light</code> or <code>.is-light</code> on bright cream, white, or paper backgrounds.</p>
+        </div>
+        <span class="mh-badge" style="background: rgba(163, 100, 23, 0.12); border-color: rgba(163, 100, 23, 0.3); color: #A36417;">LIGHT THEME</span>
+      </div>
+
+      <div class="mh-card-grid">
+
+        <!-- Light H1 Split -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h1&gt; • .main-heading--light.main-heading--split</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Display Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <span class="mh-eyebrow">Creative Editorial</span>
+            <h1 class="main-heading--split" data-anim="split">Light in motion</h1>
+            <p class="mh-sub">Crisp, high-contrast dark ink typography with fluid letter dynamics.</p>
+          </div>
+        </div>
+
+        <!-- Light H2 Line Mask -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h2&gt; • .main-heading--light.main-heading--linemask</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Section Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <span class="mh-eyebrow">Masked Reveal</span>
+            <h2 class="main-heading--linemask" data-anim="linemask"><span class="mh-linemask-inner">Clean, Minimalist Aesthetics</span></h2>
+            <p class="mh-sub">Perfect for blogs, luxury eCommerce, magazines, and modern portfolios.</p>
+          </div>
+        </div>
+
+        <!-- Light H3 Underline & Highlight -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h3&gt; • .main-heading--light.main-heading--underline</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Feature Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <h3 class="main-heading--underline" data-anim="underline">Built for Everyday Websites<span class="mh-underline-rule"></span></h3>
+          </div>
+        </div>
+
+        <!-- Light H4 Highlight Sweep -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h4&gt; • .main-heading--light.main-heading--highlight</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Component Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <h4 class="main-heading--highlight" data-anim="highlight"><span class="mh-highlight-bg"></span>Highlighter Sweep On Entry</h4>
+          </div>
+        </div>
+
+        <!-- Light H5 Marker Drag -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h5&gt; • .main-heading--light.main-heading--marker</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Widget Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <h5 class="main-heading--marker" data-anim="marker">Subtle Highlighter Marker Strike<span class="mh-marker-rule"></span></h5>
+          </div>
+        </div>
+
+        <!-- Light H6 Micro Category -->
+        <div class="mh-demo-card" style="background: #FFFFFF; border: 1px solid rgba(36, 28, 21, 0.1); box-shadow: 0 10px 30px rgba(36, 28, 21, 0.04);">
+          <div class="mh-demo-meta" style="border-bottom: 1px solid rgba(36, 28, 21, 0.08);">
+            <span class="mh-tag-badge" style="color: #A36417;">&lt;h6&gt; • .main-heading--light.main-heading--staircase</span>
+            <span class="mh-size-label" style="color: #8C7E72;">Light Eyebrow Scale</span>
+          </div>
+          <div class="main-heading main-heading--light">
+            <h6 class="main-heading--staircase" data-anim="staircase">Category tag cascade fall</h6>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GSAP 3 & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Master Unified Animation Controller Bundle -->
+  <script src="js/bundle.min.js"></script>
+
+  <script>
+    // Smooth Scroll initialization for headings.html
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // Live Light / Dark Theme Switcher
+    const themeBtn = document.getElementById('mhThemeToggle');
+    if (themeBtn) {
+      const themeIcon = themeBtn.querySelector('.mh-theme-icon');
+      const themeText = themeBtn.querySelector('.mh-theme-text');
+
+      themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('is-light');
+        const isLight = document.body.classList.contains('is-light');
+        if (isLight) {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = 'Dark Version';
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = 'Light Version';
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        if (typeof ScrollTrigger !== 'undefined') {
+          ScrollTrigger.refresh();
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

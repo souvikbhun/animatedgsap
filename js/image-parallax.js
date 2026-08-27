@@ -1,0 +1,1762 @@
+/**
+ * ============================================================================
+ * GSAP IMAGE PARALLAX SUITE (12 Pure Image Parallax Animations)
+ * Zero Text Animations • 100% Focused on Image Physics, Optics & Spatial Depth
+ * Full Multi-Tab Code Inspector: JS (GSAP), HTML & CSS
+ * ============================================================================
+ */
+
+(function () {
+  'use strict';
+
+  // Global State
+  let lenisInstance = null;
+  let currentScrubSpeed = 1.0;
+  let debugMarkersEnabled = false;
+  let currentSpecimenKey = 'specimen-01';
+  let currentActiveTab = 'js';
+  const activeTriggers = [];
+
+  // Comprehensive Code Snippets Dictionary (HTML, CSS & JS for all 12 Specimens)
+  const CODE_SNIPPETS = {
+    'specimen-01': {
+      title: '01. Classic Editorial Window Parallax',
+      badge: 'Viewport Mask Translation',
+      html: `<!-- 01. HTML: Classic Editorial Window Frame -->
+<div class="ip-window-frame">
+  <img class="ip-window-img" 
+       src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" 
+       alt="Majestic alpine valley landscape">
+</div>
+
+<div class="ip-window-grid">
+  <div class="ip-window-card">
+    <img class="ip-window-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80" alt="Misty forest">
+  </div>
+  <div class="ip-window-card">
+    <img class="ip-window-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" alt="Redwood canopy">
+  </div>
+</div>`,
+      css: `/* 01. CSS: Editorial Window Clipping Mask & Sizing */
+.ip-window-frame {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+}
+
+.ip-window-img {
+  position: absolute;
+  top: -25%;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.ip-window-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.ip-window-card {
+  position: relative;
+  height: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+}`,
+      js: `// 01. JS: GSAP 3 ScrollTrigger Mask Translation
+gsap.utils.toArray('.ip-window-frame, .ip-window-card').forEach((frame) => {
+  const img = frame.querySelector('.ip-window-img');
+  if (!img) return;
+
+  gsap.fromTo(img, 
+    { yPercent: -18 },
+    {
+      yPercent: 18,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: frame,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.2
+      }
+    }
+  );
+});`
+    },
+
+    'specimen-02': {
+      title: '02. Multi-Layer 3D Spatial Depth Parallax',
+      badge: 'Multi-Plane Spatial Diorama',
+      html: `<!-- 02. HTML: Multi-Layer Diorama Stage -->
+<div class="ip-depth-stage">
+  <div class="ip-depth-layer ip-depth-layer--sky"></div>
+  <div class="ip-depth-layer ip-depth-layer--mountains"></div>
+  <div class="ip-depth-layer ip-depth-layer--subject">
+    <img class="ip-depth-subject-img" 
+         src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80" 
+         alt="Floating Subject">
+  </div>
+  <div class="ip-depth-layer ip-depth-layer--foreground"></div>
+  <div class="ip-depth-floating-elements">
+    <div class="ip-floating-particle" style="top: 25%; left: 18%;"></div>
+    <div class="ip-floating-particle" style="top: 60%; left: 78%;"></div>
+  </div>
+</div>`,
+      css: `/* 02. CSS: Spatial Diorama Planes & Lighting */
+.ip-depth-stage {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #090d16 0%, #151d2e 100%);
+  perspective: 1200px;
+}
+
+.ip-depth-layer {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.ip-depth-layer--sky {
+  background-image: radial-gradient(circle at 50% 30%, rgba(200, 134, 43, 0.25) 0%, transparent 65%),
+                    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80');
+  z-index: 1;
+}
+
+.ip-depth-layer--mountains {
+  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.ip-depth-layer--subject {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.ip-depth-subject-img {
+  max-height: 75%;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 35px rgba(0,0,0,0.7));
+}
+
+.ip-depth-layer--foreground {
+  z-index: 4;
+  background: radial-gradient(circle at 50% 120%, rgba(200, 134, 43, 0.2) 0%, transparent 60%);
+}`,
+      js: `// 02. JS: Differential Depth Velocity scrub
+const depthStage = document.querySelector('.ip-depth-stage');
+const sky = depthStage.querySelector('.ip-depth-layer--sky');
+const mountains = depthStage.querySelector('.ip-depth-layer--mountains');
+const subject = depthStage.querySelector('.ip-depth-layer--subject');
+const foreground = depthStage.querySelector('.ip-depth-layer--foreground');
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: depthStage,
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1.0
+  }
+});
+
+tl.fromTo(sky, { yPercent: -8 }, { yPercent: 8, ease: 'none' }, 0);
+tl.fromTo(mountains, { yPercent: -15, scale: 1.08 }, { yPercent: 15, scale: 1.0, ease: 'none' }, 0);
+tl.fromTo(subject, { yPercent: -25, scale: 1.05 }, { yPercent: 25, scale: 0.98, ease: 'none' }, 0);
+tl.fromTo(foreground, { yPercent: -35 }, { yPercent: 35, ease: 'none' }, 0);`
+    },
+
+    'specimen-03': {
+      title: '03. Ken Burns Zoom & Focal Shift Parallax',
+      badge: 'Scale Compression & Panning',
+      html: `<!-- 03. HTML: Ken Burns Diagonal Framing -->
+<div class="ip-kenburns-grid">
+  <div class="ip-kenburns-frame">
+    <img class="ip-kenburns-img" 
+         src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" 
+         alt="Ocean Coastline">
+  </div>
+  <div class="ip-kenburns-frame">
+    <img class="ip-kenburns-img ip-kenburns-img--alt" 
+         src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80" 
+         alt="Starlit Mountain Peaks">
+  </div>
+</div>`,
+      css: `/* 03. CSS: Ken Burns Overflow Container */
+.ip-kenburns-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 28px;
+}
+
+.ip-kenburns-frame {
+  position: relative;
+  height: 480px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+}
+
+.ip-kenburns-img {
+  position: absolute;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  will-change: transform;
+  transform-origin: 30% 70%;
+}
+
+.ip-kenburns-img--alt {
+  transform-origin: 70% 30%;
+}`,
+      js: `// 03. JS: Diagonal Translation + Zoom Scrub
+gsap.utils.toArray('.ip-kenburns-frame').forEach((frame) => {
+  const img = frame.querySelector('.ip-kenburns-img');
+  if (!img) return;
+  const isAlt = img.classList.contains('ip-kenburns-img--alt');
+
+  gsap.fromTo(img, 
+    { scale: 1.35, xPercent: isAlt ? 6 : -6, yPercent: isAlt ? -6 : 6 },
+    {
+      scale: 1.0,
+      xPercent: isAlt ? -5 : 5,
+      yPercent: isAlt ? 5 : -5,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: frame,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.5
+      }
+    }
+  );
+});`
+    },
+
+    'specimen-04': {
+      title: '04. Diagonal Curtain & Mask Reveal Parallax',
+      badge: 'Polygon Clip-Path Geometry',
+      html: `<!-- 04. HTML: Polygon Mask Container -->
+<div class="ip-curtain-grid">
+  <div class="ip-curtain-box">
+    <div class="ip-curtain-mask ip-curtain-mask--diagonal">
+      <img class="ip-curtain-img" 
+           src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" 
+           alt="Mountain wilderness">
+    </div>
+  </div>
+</div>`,
+      css: `/* 04. CSS: Diagonal Clip-Path Container */
+.ip-curtain-box {
+  position: relative;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+}
+
+.ip-curtain-mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.ip-curtain-img {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  object-fit: cover;
+  will-change: transform;
+}`,
+      js: `// 04. JS: Polygon Clip-Path Morph + Inverted Translation
+gsap.utils.toArray('.ip-curtain-box').forEach((box) => {
+  const mask = box.querySelector('.ip-curtain-mask');
+  const img = box.querySelector('.ip-curtain-img');
+  if (!mask || !img) return;
+
+  const isDiag = mask.classList.contains('ip-curtain-mask--diagonal');
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: box,
+      start: 'top 85%',
+      end: 'bottom 25%',
+      scrub: 1.2
+    }
+  });
+
+  tl.fromTo(mask, 
+    { clipPath: isDiag ? 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' : 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
+    { clipPath: isDiag ? 'polygon(0% 0%, 100% 12%, 100% 100%, 0% 88%)' : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', ease: 'none' },
+    0
+  );
+
+  tl.fromTo(img, 
+    { yPercent: 20, scale: 1.2 },
+    { yPercent: -12, scale: 1.0, ease: 'none' },
+    0
+  );
+});`
+    },
+
+    'specimen-05': {
+      title: '05. Opposing Dual-Column Asymmetric Stream',
+      badge: 'Counter-Directional Column Velocities',
+      html: `<!-- 05. HTML: Dual Stream Columns -->
+<div class="ip-dualcol-wrap">
+  <div class="ip-dualcol-track ip-dualcol-track--left">
+    <div class="ip-dualcol-card"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt=""></div>
+    <div class="ip-dualcol-card"><img src="https://images.unsplash.com/photo-1511497584788-87676104235f?auto=format&fit=crop&w=800&q=80" alt=""></div>
+  </div>
+  <div class="ip-dualcol-track ip-dualcol-track--right">
+    <div class="ip-dualcol-card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt=""></div>
+    <div class="ip-dualcol-card"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt=""></div>
+  </div>
+</div>`,
+      css: `/* 05. CSS: Two Column Overflow Stream */
+.ip-dualcol-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  height: 820px;
+  overflow: hidden;
+  border-radius: 32px;
+  padding: 40px 32px;
+  background: #0d0f14;
+  position: relative;
+}
+
+.ip-dualcol-track {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  will-change: transform;
+}
+
+.ip-dualcol-card {
+  position: relative;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ip-dualcol-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}`,
+      js: `// 05. JS: Counter-Directional Column Scrub
+const dualWrap = document.querySelector('.ip-dualcol-wrap');
+const colLeft = dualWrap.querySelector('.ip-dualcol-track--left');
+const colRight = dualWrap.querySelector('.ip-dualcol-track--right');
+
+gsap.fromTo(colLeft,
+  { y: 60 },
+  {
+    y: -160,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: dualWrap,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.2
+    }
+  }
+);
+
+gsap.fromTo(colRight,
+  { y: -160 },
+  {
+    y: 60,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: dualWrap,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.2
+    }
+  }
+);`
+    },
+
+    'specimen-06': {
+      title: '06. 3D Interactive Gyroscope / Mouse Depth Parallax',
+      badge: 'Pointer Physics & Specular Glare',
+      html: `<!-- 06. HTML: 3D Holographic Card Stage -->
+<div class="ip-tilt-card">
+  <img class="ip-tilt-layer-bg" 
+       src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" 
+       alt="Background">
+  <div class="ip-tilt-layer-floating">
+    <div class="ip-tilt-floating-badge">3D GYRO DEPTH</div>
+  </div>
+  <div class="ip-tilt-glare"></div>
+</div>`,
+      css: `/* 06. CSS: 3D Card Perspective & Specular Sheen */
+.ip-tilt-card {
+  position: relative;
+  height: 480px;
+  border-radius: 24px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  overflow: hidden;
+  background: #000;
+}
+
+.ip-tilt-layer-bg {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.ip-tilt-layer-floating {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(60px);
+  pointer-events: none;
+}
+
+.ip-tilt-glare {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateZ(80px);
+  transition: opacity 0.3s ease;
+}
+
+.ip-tilt-card:hover .ip-tilt-glare {
+  opacity: 0.8;
+}`,
+      js: `// 06. JS: Pointer Tracking + quickTo Interpolation
+gsap.utils.toArray('.ip-tilt-card').forEach((card) => {
+  const bg = card.querySelector('.ip-tilt-layer-bg');
+  const floatObj = card.querySelector('.ip-tilt-layer-floating');
+  const glare = card.querySelector('.ip-tilt-glare');
+
+  const setRotX = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
+  const setRotY = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
+  const setBgX = bg ? gsap.quickTo(bg, 'xPercent', { duration: 0.6, ease: 'power2.out' }) : null;
+  const setBgY = bg ? gsap.quickTo(bg, 'yPercent', { duration: 0.6, ease: 'power2.out' }) : null;
+  const setFloatX = floatObj ? gsap.quickTo(floatObj, 'x', { duration: 0.5, ease: 'power2.out' }) : null;
+  const setFloatY = floatObj ? gsap.quickTo(floatObj, 'y', { duration: 0.5, ease: 'power2.out' }) : null;
+
+  card.addEventListener('pointermove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+
+    setRotX(-ny * 14);
+    setRotY(nx * 14);
+    if (setBgX && setBgY) { setBgX(-nx * 5); setBgY(-ny * 5); }
+    if (setFloatX && setFloatY) { setFloatX(nx * 20); setFloatY(ny * 20); }
+    if (glare) {
+      glare.style.background = \`radial-gradient(circle at \${e.clientX - rect.left}px \${e.clientY - rect.top}px, rgba(255,255,255,0.45) 0%, transparent 60%)\`;
+    }
+  });
+
+  card.addEventListener('pointerleave', () => {
+    setRotX(0); setRotY(0);
+    if (setBgX && setBgY) { setBgX(0); setBgY(0); }
+    if (setFloatX && setFloatY) { setFloatX(0); setFloatY(0); }
+  });
+});`
+    },
+
+    'specimen-07': {
+      title: '07. Pinned Horizontal Velocity Skew Parallax',
+      badge: 'Track Pinning & Dynamic Kinetic Skew',
+      html: `<!-- 07. HTML: Pinned Horizontal Panoramic Track -->
+<section class="ip-horiz-section">
+  <div class="ip-horiz-pin-wrap">
+    <div class="ip-horiz-card">
+      <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" alt="">
+    </div>
+    <div class="ip-horiz-card">
+      <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80" alt="">
+    </div>
+    <div class="ip-horiz-card">
+      <img class="ip-horiz-inner-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80" alt="">
+    </div>
+  </div>
+</section>`,
+      css: `/* 07. CSS: Horizontal Track & Overflow Styles */
+.ip-horiz-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.ip-horiz-pin-wrap {
+  display: flex;
+  gap: 36px;
+  padding: 40px 0;
+  width: max-content;
+  will-change: transform;
+}
+
+.ip-horiz-card {
+  position: relative;
+  width: 480px;
+  height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ip-horiz-inner-img {
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 140%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}`,
+      js: `// 07. JS: Horizontal Pinning + Velocity Skew Tracking
+const section = document.querySelector('.ip-horiz-section');
+const pinWrap = document.querySelector('.ip-horiz-pin-wrap');
+const scrollLength = pinWrap.scrollWidth - window.innerWidth + 80;
+
+const setSkew = gsap.quickTo(pinWrap, 'skewX', { duration: 0.4, ease: 'power2.out' });
+
+gsap.to(pinWrap, {
+  x: -scrollLength,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: section,
+    pin: true,
+    scrub: 1.0,
+    end: () => '+=' + scrollLength,
+    onUpdate: (self) => {
+      const v = self.getVelocity();
+      setSkew(gsap.utils.clamp(-6, 6, v / 500));
+    },
+    onScrubComplete: () => {
+      setSkew(0);
+    }
+  }
+});
+
+gsap.utils.toArray('.ip-horiz-inner-img').forEach((img) => {
+  gsap.fromTo(img, 
+    { xPercent: 16 },
+    {
+      xPercent: -16,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => '+=' + scrollLength,
+        scrub: 1.0
+      }
+    }
+  );
+});`
+    },
+
+    'specimen-08': {
+      title: '08. Circular Iris & Geometric Lens Parallax',
+      badge: 'Zero-Reflow Scale & Coordinate Tracking',
+      html: `<!-- 08. HTML: Concentric Lens Stage -->
+<div class="ip-iris-stage">
+  <img class="ip-iris-bg-img" 
+       src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80" 
+       alt="Backdrop">
+  <div class="ip-iris-lens">
+    <img class="ip-iris-lens-img" 
+         src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=80" 
+         alt="Magnified Center">
+  </div>
+</div>`,
+      css: `/* 08. CSS: Concentric Circle Optical Frame */
+.ip-iris-stage {
+  position: relative;
+  height: 540px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #050608;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ip-iris-bg-img {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  filter: grayscale(80%) brightness(0.4);
+}
+
+.ip-iris-lens {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #c8862b;
+  box-shadow: 0 0 60px rgba(200, 134, 43, 0.4);
+  transform-origin: center center;
+  z-index: 2;
+  will-change: transform;
+}
+
+.ip-iris-lens-img {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  object-fit: cover;
+  filter: saturate(1.4) contrast(1.1);
+  will-change: transform;
+}`,
+      js: `// 08. JS: GPU Hardware-Accelerated Lens Tracking
+const stage = document.querySelector('.ip-iris-stage');
+const lens = stage.querySelector('.ip-iris-lens');
+const lensImg = stage.querySelector('.ip-iris-lens-img');
+const bgImg = stage.querySelector('.ip-iris-bg-img');
+
+gsap.fromTo(bgImg, 
+  { yPercent: -10 },
+  {
+    yPercent: 10,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: stage,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.0
+    }
+  }
+);
+
+const irisTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: stage,
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1.2
+  }
+});
+
+// Hardware-accelerated transforms: zero layout reflow
+irisTl.fromTo(lens,
+  { scale: 0.85, xPercent: -20, yPercent: 15 },
+  { scale: 1.45, xPercent: 20, yPercent: -15, ease: 'none' },
+  0
+);
+
+irisTl.fromTo(lensImg,
+  { xPercent: 15, yPercent: -10, scale: 1.15 },
+  { xPercent: -15, yPercent: 10, scale: 1.0, ease: 'none' },
+  0
+);`
+    },
+
+    'specimen-09': {
+      title: '09. Broken Vertical Slice Alignment Parallax',
+      badge: '5-Slice Strip Lock & Dispersal',
+      html: `<!-- 09. HTML: 5-Column Segmented Frame -->
+<div class="ip-slice-container">
+  <div class="ip-slice-column"><img class="ip-slice-inner" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt=""></div>
+  <div class="ip-slice-column"><img class="ip-slice-inner" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt=""></div>
+  <div class="ip-slice-column"><img class="ip-slice-inner" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt=""></div>
+  <div class="ip-slice-column"><img class="ip-slice-inner" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt=""></div>
+  <div class="ip-slice-column"><img class="ip-slice-inner" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1800&q=80" alt=""></div>
+</div>`,
+      css: `/* 09. CSS: 5 Staggered Slice Offsets */
+.ip-slice-container {
+  position: relative;
+  height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+}
+
+.ip-slice-column {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ip-slice-column:last-child {
+  border-right: none;
+}
+
+.ip-slice-inner {
+  position: absolute;
+  top: -30%;
+  height: 160%;
+  width: 500%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.ip-slice-column:nth-child(1) .ip-slice-inner { left: 0%; }
+.ip-slice-column:nth-child(2) .ip-slice-inner { left: -100%; }
+.ip-slice-column:nth-child(3) .ip-slice-inner { left: -200%; }
+.ip-slice-column:nth-child(4) .ip-slice-inner { left: -300%; }
+.ip-slice-column:nth-child(5) .ip-slice-inner { left: -400%; }`,
+      js: `// 09. JS: Master Timeline Synchronizing All Slices
+const sliceContainer = document.querySelector('.ip-slice-container');
+const slices = gsap.utils.toArray('.ip-slice-inner');
+const startOffsets = [-100, 80, -70, 90, -80];
+const endOffsets = [80, -70, 60, -80, 70];
+
+const masterSliceTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: sliceContainer,
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1.1
+  }
+});
+
+slices.forEach((inner, i) => {
+  const startY = startOffsets[i % startOffsets.length];
+  const endY = endOffsets[i % endOffsets.length];
+
+  masterSliceTl.fromTo(inner, { y: startY }, { y: 0, ease: 'none' }, 0);
+  masterSliceTl.to(inner, { y: endY, ease: 'none' }, 0.5);
+});`
+    },
+
+    'specimen-10': {
+      title: '10. Stacked 3D Depth Peeling Cards Parallax',
+      badge: 'Spatial Deck Stacking & Rotation',
+      html: `<!-- 10. HTML: 3D Stacked Card Deck -->
+<section class="ip-stack-section">
+  <div class="ip-stack-pin-area">
+    <div class="ip-stack-cards-wrap">
+      <div class="ip-stack-card" style="z-index: 3;">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80" alt="">
+      </div>
+      <div class="ip-stack-card" style="z-index: 2;">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80" alt="">
+      </div>
+      <div class="ip-stack-card" style="z-index: 1;">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80" alt="">
+      </div>
+    </div>
+  </div>
+</section>`,
+      css: `/* 10. CSS: 3D Card Stack Layering */
+.ip-stack-section {
+  position: relative;
+  height: 300vh;
+}
+
+.ip-stack-pin-area {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.ip-stack-cards-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  height: 480px;
+}
+
+.ip-stack-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+  transform-origin: center bottom;
+  will-change: transform, opacity;
+}
+
+.ip-stack-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}`,
+      js: `// 10. JS: Pinned Card Peeling Timeline
+const stackSec = document.querySelector('.ip-stack-section');
+const pinArea = document.querySelector('.ip-stack-pin-area');
+const cards = gsap.utils.toArray('.ip-stack-card');
+
+const stackTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: stackSec,
+    start: 'top top',
+    end: '+=200%',
+    scrub: 1.0,
+    pin: pinArea,
+    pinSpacing: true
+  }
+});
+
+cards.forEach((card, i) => {
+  if (i < cards.length - 1) {
+    stackTl.to(card, {
+      yPercent: -105,
+      rotateX: 18,
+      scale: 0.9,
+      opacity: 0,
+      ease: 'power1.in'
+    }, i * 0.9);
+  }
+});`
+    },
+
+    'specimen-11': {
+      title: '11. Elastic Magnetic Proximity Parallax',
+      badge: 'Cursor Gravitation & Refraction Sheen',
+      html: `<!-- 11. HTML: Magnetic Proximity Tiles -->
+<div class="ip-magnetic-grid">
+  <div class="ip-magnetic-item">
+    <div class="ip-magnetic-img-wrap">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="">
+    </div>
+    <div class="ip-magnetic-sheen"></div>
+  </div>
+</div>`,
+      css: `/* 11. CSS: Gravitational Tile Sizing */
+.ip-magnetic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.ip-magnetic-item {
+  position: relative;
+  height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: grab;
+  will-change: transform;
+}
+
+.ip-magnetic-img-wrap {
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ip-magnetic-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ip-magnetic-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.ip-magnetic-item:hover .ip-magnetic-sheen {
+  opacity: 1;
+}`,
+      js: `// 11. JS: Magnetic Elastic Spring Physics
+gsap.utils.toArray('.ip-magnetic-item').forEach((item) => {
+  const wrap = item.querySelector('.ip-magnetic-img-wrap');
+  const setX = gsap.quickTo(item, 'x', { duration: 0.5, ease: 'power2.out' });
+  const setY = gsap.quickTo(item, 'y', { duration: 0.5, ease: 'power2.out' });
+  const setImgX = wrap ? gsap.quickTo(wrap, 'x', { duration: 0.7, ease: 'power2.out' }) : null;
+  const setImgY = wrap ? gsap.quickTo(wrap, 'y', { duration: 0.7, ease: 'power2.out' }) : null;
+
+  item.addEventListener('mousemove', (e) => {
+    const rect = item.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+
+    setX(dx * 0.28);
+    setY(dy * 0.28);
+    if (setImgX && setImgY) {
+      setImgX(-dx * 0.14);
+      setImgY(-dy * 0.14);
+    }
+  });
+
+  item.addEventListener('mouseleave', () => {
+    setX(0); setY(0);
+    if (setImgX && setImgY) { setImgX(0); setImgY(0); }
+  });
+});`
+    },
+
+    'specimen-12': {
+      title: '12. Dual-Layer Blended Silhouette Parallax',
+      badge: 'Screen Composite & Counter Dynamics',
+      html: `<!-- 12. HTML: Screen Composite Silhouette Stage -->
+<div class="ip-blend-stage">
+  <div class="ip-blend-bg"></div>
+  <div class="ip-blend-silhouette">
+    <img class="ip-blend-silhouette-img" 
+         src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1000&q=80" 
+         alt="Silhouette">
+  </div>
+  <div class="ip-blend-overlay-grid"></div>
+</div>`,
+      css: `/* 12. CSS: Double Exposure Screen Blending */
+.ip-blend-stage {
+  position: relative;
+  height: 520px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #0a0c10;
+}
+
+.ip-blend-bg {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: contrast(1.2) brightness(0.85);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ip-blend-silhouette {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: screen;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ip-blend-silhouette-img {
+  max-height: 80%;
+  object-fit: contain;
+  filter: contrast(1.4) drop-shadow(0 0 20px rgba(200, 134, 43, 0.4));
+}`,
+      js: `// 12. JS: Dual-Exposure Differential Scrub
+const stage = document.querySelector('.ip-blend-stage');
+const bg = stage.querySelector('.ip-blend-bg');
+const sil = stage.querySelector('.ip-blend-silhouette');
+
+gsap.fromTo(bg,
+  { yPercent: -15, scale: 1.15 },
+  {
+    yPercent: 15,
+    scale: 1.0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: stage,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.2
+    }
+  }
+);
+
+gsap.fromTo(sil,
+  { yPercent: 20, scale: 0.95 },
+  {
+    yPercent: -20,
+    scale: 1.05,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: stage,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1.0
+    }
+  }
+);`
+    }
+  };
+
+  /**
+   * Produce Complete Standalone Code Bundle (HTML + CSS + JS)
+   */
+  function getFullBundle(data) {
+    return `<!-- ============================================================== -->
+<!-- 1. HTML STRUCTURE                                              -->
+<!-- ============================================================== -->
+${data.html}
+
+<!-- ============================================================== -->
+<!-- 2. CSS STYLES                                                  -->
+<!-- ============================================================== -->
+<style>
+${data.css}
+</style>
+
+<!-- ============================================================== -->
+<!-- 3. GSAP 3 SCROLLTRIGGER SCRIPT                                 -->
+<!-- ============================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+${data.js}
+</script>`;
+  }
+
+  /**
+   * Initialize Lenis Smooth Scrolling
+   */
+  function initLenis() {
+    if (typeof Lenis === 'undefined') return;
+
+    lenisInstance = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.2,
+      infinite: false
+    });
+
+    lenisInstance.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenisInstance.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /**
+   * Setup Image Parallax Animations
+   */
+  function initParallaxSpecimens() {
+    // Kill existing triggers before re-registering
+    activeTriggers.forEach((st) => st.kill());
+    activeTriggers.length = 0;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      console.log('[Parallax] Reduced motion active; skipping GSAP scroll triggers.');
+      return;
+    }
+
+    const scrub = currentScrubSpeed;
+    const markers = debugMarkersEnabled;
+
+    // ------------------------------------------------------------------------
+    // 01. Classic Editorial Window Parallax
+    // ------------------------------------------------------------------------
+    gsap.utils.toArray('.ip-window-frame, .ip-window-card').forEach((frame) => {
+      const img = frame.querySelector('.ip-window-img');
+      if (!img) return;
+      const st = ScrollTrigger.create({
+        trigger: frame,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: scrub * 1.2,
+        markers: markers,
+        animation: gsap.fromTo(img, { yPercent: -18 }, { yPercent: 18, ease: 'none' })
+      });
+      activeTriggers.push(st);
+    });
+
+    // ------------------------------------------------------------------------
+    // 02. Multi-Layer 3D Spatial Depth Parallax (Diorama)
+    // ------------------------------------------------------------------------
+    const depthStage = document.querySelector('.ip-depth-stage');
+    if (depthStage) {
+      const sky = depthStage.querySelector('.ip-depth-layer--sky');
+      const mountains = depthStage.querySelector('.ip-depth-layer--mountains');
+      const subject = depthStage.querySelector('.ip-depth-layer--subject');
+      const foreground = depthStage.querySelector('.ip-depth-layer--foreground');
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: depthStage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub,
+          markers: markers
+        }
+      });
+
+      if (sky) tl.fromTo(sky, { yPercent: -8 }, { yPercent: 8, ease: 'none' }, 0);
+      if (mountains) tl.fromTo(mountains, { yPercent: -15, scale: 1.08 }, { yPercent: 15, scale: 1.0, ease: 'none' }, 0);
+      if (subject) tl.fromTo(subject, { yPercent: -25, scale: 1.05 }, { yPercent: 25, scale: 0.98, ease: 'none' }, 0);
+      if (foreground) tl.fromTo(foreground, { yPercent: -35 }, { yPercent: 35, ease: 'none' }, 0);
+
+      // Ambient particle drift
+      const particles = depthStage.querySelectorAll('.ip-floating-particle');
+      particles.forEach((p, i) => {
+        gsap.to(p, {
+          y: `-=${30 + i * 15}`,
+          x: `+=${(i % 2 === 0 ? 1 : -1) * 15}`,
+          duration: 3 + i,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut'
+        });
+      });
+
+      if (tl.scrollTrigger) activeTriggers.push(tl.scrollTrigger);
+    }
+
+    // ------------------------------------------------------------------------
+    // 03. Ken Burns Zoom & Focal Shift Parallax
+    // ------------------------------------------------------------------------
+    gsap.utils.toArray('.ip-kenburns-frame').forEach((frame) => {
+      const img = frame.querySelector('.ip-kenburns-img');
+      if (!img) return;
+      const isAlt = img.classList.contains('ip-kenburns-img--alt');
+      const st = ScrollTrigger.create({
+        trigger: frame,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: scrub * 1.5,
+        markers: markers,
+        animation: gsap.fromTo(img,
+          { scale: 1.35, xPercent: isAlt ? 6 : -6, yPercent: isAlt ? -6 : 6 },
+          { scale: 1.0, xPercent: isAlt ? -5 : 5, yPercent: isAlt ? 5 : -5, ease: 'none' }
+        )
+      });
+      activeTriggers.push(st);
+    });
+
+    // ------------------------------------------------------------------------
+    // 04. Diagonal Curtain & Mask Reveal Parallax
+    // ------------------------------------------------------------------------
+    gsap.utils.toArray('.ip-curtain-box').forEach((box) => {
+      const mask = box.querySelector('.ip-curtain-mask');
+      const img = box.querySelector('.ip-curtain-img');
+      if (!mask || !img) return;
+
+      const isDiag = mask.classList.contains('ip-curtain-mask--diagonal');
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: box,
+          start: 'top 85%',
+          end: 'bottom 25%',
+          scrub: scrub * 1.2,
+          markers: markers
+        }
+      });
+
+      tl.fromTo(mask,
+        { clipPath: isDiag ? 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' : 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' },
+        { clipPath: isDiag ? 'polygon(0% 0%, 100% 12%, 100% 100%, 0% 88%)' : 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)', ease: 'none' },
+        0
+      );
+
+      tl.fromTo(img,
+        { yPercent: 20, scale: 1.2 },
+        { yPercent: -12, scale: 1.0, ease: 'none' },
+        0
+      );
+
+      if (tl.scrollTrigger) activeTriggers.push(tl.scrollTrigger);
+    });
+
+    // ------------------------------------------------------------------------
+    // 05. Opposing Dual-Column Asymmetric Stream
+    // ------------------------------------------------------------------------
+    const dualWrap = document.querySelector('.ip-dualcol-wrap');
+    if (dualWrap) {
+      const leftTrack = dualWrap.querySelector('.ip-dualcol-track--left');
+      const rightTrack = dualWrap.querySelector('.ip-dualcol-track--right');
+
+      if (leftTrack) {
+        const st1 = ScrollTrigger.create({
+          trigger: dualWrap,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub * 1.2,
+          markers: markers,
+          animation: gsap.fromTo(leftTrack, { y: 60 }, { y: -160, ease: 'none' })
+        });
+        activeTriggers.push(st1);
+      }
+
+      if (rightTrack) {
+        const st2 = ScrollTrigger.create({
+          trigger: dualWrap,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub * 1.2,
+          markers: markers,
+          animation: gsap.fromTo(rightTrack, { y: -160 }, { y: 60, ease: 'none' })
+        });
+        activeTriggers.push(st2);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 06. 3D Interactive Gyroscope / Mouse Depth Parallax
+    // ------------------------------------------------------------------------
+    gsap.utils.toArray('.ip-tilt-card').forEach((card) => {
+      const bg = card.querySelector('.ip-tilt-layer-bg');
+      const floatObj = card.querySelector('.ip-tilt-layer-floating');
+      const glare = card.querySelector('.ip-tilt-glare');
+
+      const setRotX = gsap.quickTo(card, 'rotateX', { duration: 0.4, ease: 'power2.out' });
+      const setRotY = gsap.quickTo(card, 'rotateY', { duration: 0.4, ease: 'power2.out' });
+      const setBgX = bg ? gsap.quickTo(bg, 'xPercent', { duration: 0.6, ease: 'power2.out' }) : null;
+      const setBgY = bg ? gsap.quickTo(bg, 'yPercent', { duration: 0.6, ease: 'power2.out' }) : null;
+      const setFloatX = floatObj ? gsap.quickTo(floatObj, 'x', { duration: 0.5, ease: 'power2.out' }) : null;
+      const setFloatY = floatObj ? gsap.quickTo(floatObj, 'y', { duration: 0.5, ease: 'power2.out' }) : null;
+
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+
+        setRotX(-ny * 14);
+        setRotY(nx * 14);
+        if (setBgX && setBgY) { setBgX(-nx * 5); setBgY(-ny * 5); }
+        if (setFloatX && setFloatY) { setFloatX(nx * 20); setFloatY(ny * 20); }
+        if (glare) {
+          glare.style.background = `radial-gradient(circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(255,255,255,0.45) 0%, transparent 60%)`;
+        }
+      });
+
+      card.addEventListener('pointerleave', () => {
+        setRotX(0);
+        setRotY(0);
+        if (setBgX && setBgY) { setBgX(0); setBgY(0); }
+        if (setFloatX && setFloatY) { setFloatX(0); setFloatY(0); }
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // 07. Pinned Horizontal Velocity Skew Parallax
+    // ------------------------------------------------------------------------
+    const horizSec = document.querySelector('.ip-horiz-section');
+    const pinWrap = document.querySelector('.ip-horiz-pin-wrap');
+    if (horizSec && pinWrap) {
+      const getScrollLength = () => pinWrap.scrollWidth - window.innerWidth + 80;
+      const setSkew = gsap.quickTo(pinWrap, 'skewX', { duration: 0.4, ease: 'power2.out' });
+
+      const horizTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: horizSec,
+          pin: true,
+          scrub: scrub,
+          start: 'top top',
+          end: () => '+=' + getScrollLength(),
+          invalidateOnRefresh: true,
+          markers: markers,
+          onUpdate: (self) => {
+            const v = self.getVelocity();
+            setSkew(gsap.utils.clamp(-6, 6, v / 500));
+          },
+          onScrubComplete: () => {
+            setSkew(0);
+          }
+        }
+      });
+
+      horizTl.to(pinWrap, {
+        x: () => -getScrollLength(),
+        ease: 'none'
+      });
+
+      const horizImgs = gsap.utils.toArray('.ip-horiz-inner-img');
+      horizImgs.forEach((img) => {
+        gsap.fromTo(img,
+          { xPercent: 16 },
+          {
+            xPercent: -16,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: horizSec,
+              start: 'top top',
+              end: () => '+=' + getScrollLength(),
+              scrub: scrub
+            }
+          }
+        );
+      });
+
+      if (horizTl.scrollTrigger) activeTriggers.push(horizTl.scrollTrigger);
+    }
+
+    // ------------------------------------------------------------------------
+    // 08. Circular Iris & Geometric Lens Parallax
+    // ------------------------------------------------------------------------
+    const irisStage = document.querySelector('.ip-iris-stage');
+    if (irisStage) {
+      const lens = irisStage.querySelector('.ip-iris-lens');
+      const lensImg = irisStage.querySelector('.ip-iris-lens-img');
+      const bgImg = irisStage.querySelector('.ip-iris-bg-img');
+
+      if (bgImg) {
+        const st1 = ScrollTrigger.create({
+          trigger: irisStage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub,
+          markers: markers,
+          animation: gsap.fromTo(bgImg, { yPercent: -10 }, { yPercent: 10, ease: 'none' })
+        });
+        activeTriggers.push(st1);
+      }
+
+      if (lens && lensImg) {
+        const irisTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: irisStage,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: scrub * 1.2,
+            markers: markers
+          }
+        });
+
+        // Use scale & translation for smooth 60fps GPU acceleration
+        irisTl.fromTo(lens,
+          { scale: 0.85, xPercent: -20, yPercent: 15 },
+          { scale: 1.45, xPercent: 20, yPercent: -15, ease: 'none' },
+          0
+        );
+
+        irisTl.fromTo(lensImg,
+          { xPercent: 15, yPercent: -10, scale: 1.15 },
+          { xPercent: -15, yPercent: 10, scale: 1.0, ease: 'none' },
+          0
+        );
+
+        if (irisTl.scrollTrigger) activeTriggers.push(irisTl.scrollTrigger);
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // 09. Broken Vertical Slice Alignment Parallax
+    // ------------------------------------------------------------------------
+    const sliceContainer = document.querySelector('.ip-slice-container');
+    if (sliceContainer) {
+      const slices = gsap.utils.toArray('.ip-slice-inner');
+      const startOffsets = [-100, 80, -70, 90, -80];
+      const endOffsets = [80, -70, 60, -80, 70];
+
+      const masterSliceTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sliceContainer,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub * 1.1,
+          markers: markers
+        }
+      });
+
+      slices.forEach((inner, i) => {
+        const startY = startOffsets[i % startOffsets.length];
+        const endY = endOffsets[i % endOffsets.length];
+
+        masterSliceTl.fromTo(inner, { y: startY }, { y: 0, ease: 'none' }, 0);
+        masterSliceTl.to(inner, { y: endY, ease: 'none' }, 0.5);
+      });
+
+      if (masterSliceTl.scrollTrigger) activeTriggers.push(masterSliceTl.scrollTrigger);
+    }
+
+    // ------------------------------------------------------------------------
+    // 10. Stacked 3D Depth Peeling Cards Parallax
+    // ------------------------------------------------------------------------
+    const stackSec = document.querySelector('.ip-stack-section');
+    const pinArea = document.querySelector('.ip-stack-pin-area');
+    if (stackSec && pinArea) {
+      const cards = gsap.utils.toArray('.ip-stack-card');
+
+      const stackTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: stackSec,
+          start: 'top top',
+          end: '+=200%',
+          scrub: scrub,
+          pin: pinArea,
+          pinSpacing: true,
+          markers: markers
+        }
+      });
+
+      cards.forEach((card, i) => {
+        if (i < cards.length - 1) {
+          stackTl.to(card, {
+            yPercent: -105,
+            rotateX: 18,
+            scale: 0.9,
+            opacity: 0,
+            ease: 'power1.in'
+          }, i * 0.9);
+        }
+      });
+
+      if (stackTl.scrollTrigger) activeTriggers.push(stackTl.scrollTrigger);
+    }
+
+    // ------------------------------------------------------------------------
+    // 11. Elastic Magnetic Proximity Parallax
+    // ------------------------------------------------------------------------
+    gsap.utils.toArray('.ip-magnetic-item').forEach((item) => {
+      const wrap = item.querySelector('.ip-magnetic-img-wrap');
+      const setX = gsap.quickTo(item, 'x', { duration: 0.5, ease: 'power2.out' });
+      const setY = gsap.quickTo(item, 'y', { duration: 0.5, ease: 'power2.out' });
+      const setImgX = wrap ? gsap.quickTo(wrap, 'x', { duration: 0.7, ease: 'power2.out' }) : null;
+      const setImgY = wrap ? gsap.quickTo(wrap, 'y', { duration: 0.7, ease: 'power2.out' }) : null;
+
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+
+        setX(dx * 0.28);
+        setY(dy * 0.28);
+        if (setImgX && setImgY) {
+          setImgX(-dx * 0.14);
+          setImgY(-dy * 0.14);
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        setX(0);
+        setY(0);
+        if (setImgX && setImgY) {
+          setImgX(0);
+          setImgY(0);
+        }
+      });
+    });
+
+    // ------------------------------------------------------------------------
+    // 12. Dual-Layer Blended Silhouette Parallax
+    // ------------------------------------------------------------------------
+    const blendStage = document.querySelector('.ip-blend-stage');
+    if (blendStage) {
+      const bg = blendStage.querySelector('.ip-blend-bg');
+      const sil = blendStage.querySelector('.ip-blend-silhouette');
+
+      if (bg) {
+        const st1 = ScrollTrigger.create({
+          trigger: blendStage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub * 1.2,
+          markers: markers,
+          animation: gsap.fromTo(bg, { yPercent: -15, scale: 1.15 }, { yPercent: 15, scale: 1.0, ease: 'none' })
+        });
+        activeTriggers.push(st1);
+      }
+
+      if (sil) {
+        const st2 = ScrollTrigger.create({
+          trigger: blendStage,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: scrub * 1.0,
+          markers: markers,
+          animation: gsap.fromTo(sil, { yPercent: 20, scale: 0.95 }, { yPercent: -20, scale: 1.05, ease: 'none' })
+        });
+        activeTriggers.push(st2);
+      }
+    }
+  }
+
+  /**
+   * UI Controls & Universal Modal Dialog
+   */
+  function initControls() {
+    // 1. Theme Toggle
+    const themeBtn = document.querySelector('[data-ip-theme-toggle]');
+    if (themeBtn) {
+      const savedTheme = localStorage.getItem('ip_theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.body.classList.add('is-light');
+        themeBtn.innerHTML = '🌙 <span>Dark</span>';
+      } else {
+        document.body.classList.remove('is-light');
+        themeBtn.innerHTML = '☀️ <span>Light</span>';
+      }
+
+      themeBtn.addEventListener('click', () => {
+        const isLight = document.body.classList.toggle('is-light');
+        localStorage.setItem('ip_theme', isLight ? 'light' : 'dark');
+        themeBtn.innerHTML = isLight ? '🌙 <span>Dark</span>' : '☀️ <span>Light</span>';
+        showToast(isLight ? 'Switched to Light Theme' : 'Switched to Dark Obsidian');
+      });
+    }
+
+    // 2. Scrub Speed Selector
+    document.querySelectorAll('[data-ip-scrub]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-ip-scrub]').forEach((b) => b.classList.remove('ip-btn--active'));
+        btn.classList.add('ip-btn--active');
+        currentScrubSpeed = parseFloat(btn.dataset.ipScrub) || 1.0;
+        initParallaxSpecimens();
+        ScrollTrigger.refresh();
+        showToast(`Scrub Multiplier: ${currentScrubSpeed}x`);
+      });
+    });
+
+    // 3. Debug Markers Toggle
+    const markersBtn = document.querySelector('[data-ip-markers-toggle]');
+    if (markersBtn) {
+      markersBtn.addEventListener('click', () => {
+        debugMarkersEnabled = !debugMarkersEnabled;
+        markersBtn.classList.toggle('ip-btn--active', debugMarkersEnabled);
+        initParallaxSpecimens();
+        ScrollTrigger.refresh();
+        showToast(`Debug Markers: ${debugMarkersEnabled ? 'ON' : 'OFF'}`);
+      });
+    }
+
+    // 4. Quick Jump Dropdown Menu
+    const dropdownToggle = document.querySelector('[data-ip-dropdown-toggle]');
+    const dropdownWrap = document.querySelector('.ip-dropdown');
+    if (dropdownToggle && dropdownWrap) {
+      dropdownToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownWrap.classList.toggle('is-open');
+      });
+
+      document.addEventListener('click', () => {
+        dropdownWrap.classList.remove('is-open');
+      });
+    }
+
+    // Smooth Anchor Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        if (targetId === '#' || !targetId) return;
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          if (dropdownWrap) dropdownWrap.classList.remove('is-open');
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetEl, { offset: -80, duration: 1.2 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // 5. Universal Code Inspection Modal Dialog with JS, HTML, CSS & All Tabs
+    const codeModal = document.getElementById('ipCodeModal');
+    const modalTitle = document.getElementById('ipModalTitle');
+    const modalBadge = document.getElementById('ipModalBadge');
+    const modalCode = document.getElementById('ipModalCode');
+    const modalCopyBtn = document.getElementById('ipModalCopyBtn');
+    let currentModalSnippetText = '';
+
+    function renderModalContent() {
+      const data = CODE_SNIPPETS[currentSpecimenKey] || {
+        title: 'Specimen Code',
+        badge: 'GSAP 3 CODE',
+        js: '// JavaScript not found',
+        html: '<!-- HTML not found -->',
+        css: '/* CSS not found */'
+      };
+
+      if (modalTitle) modalTitle.textContent = data.title;
+
+      let codeText = '';
+      let badgeText = data.badge;
+
+      if (currentActiveTab === 'js') {
+        codeText = data.js;
+        badgeText = `JS (GSAP 3) • ${data.badge}`;
+      } else if (currentActiveTab === 'html') {
+        codeText = data.html;
+        badgeText = `HTML STRUCTURE • ${data.badge}`;
+      } else if (currentActiveTab === 'css') {
+        codeText = data.css;
+        badgeText = `CSS STYLES • ${data.badge}`;
+      } else if (currentActiveTab === 'all') {
+        codeText = getFullBundle(data);
+        badgeText = `FULL BUNDLE (HTML + CSS + JS)`;
+      }
+
+      currentModalSnippetText = codeText;
+      if (modalBadge) modalBadge.textContent = badgeText;
+      if (modalCode) modalCode.textContent = codeText;
+      if (modalCopyBtn) modalCopyBtn.textContent = 'Copy Code';
+
+      // Update active state on tab buttons
+      document.querySelectorAll('.ip-modal-tab').forEach((tab) => {
+        tab.classList.toggle('is-active', tab.dataset.ipTab === currentActiveTab);
+      });
+    }
+
+    function openModal(key) {
+      currentSpecimenKey = key || 'specimen-01';
+      renderModalContent();
+
+      if (codeModal) {
+        codeModal.classList.add('is-active');
+        codeModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('ip-modal-open');
+        if (lenisInstance) lenisInstance.stop();
+      }
+    }
+
+    function closeModal() {
+      if (codeModal) {
+        codeModal.classList.remove('is-active');
+        codeModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('ip-modal-open');
+        if (lenisInstance) lenisInstance.start();
+      }
+    }
+
+    // Modal Tab Buttons Click
+    document.querySelectorAll('[data-ip-tab]').forEach((tabBtn) => {
+      tabBtn.addEventListener('click', () => {
+        currentActiveTab = tabBtn.dataset.ipTab || 'js';
+        renderModalContent();
+      });
+    });
+
+    // Trigger Code Modal on all View Code buttons
+    document.querySelectorAll('[data-ip-code-modal]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.ipCodeModal;
+        openModal(key);
+      });
+    });
+
+    // Close Modal triggers
+    document.querySelectorAll('[data-ip-modal-close]').forEach((el) => {
+      el.addEventListener('click', closeModal);
+    });
+
+    // Keyboard Escape to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && codeModal && codeModal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+
+    // Copy Code Button
+    if (modalCopyBtn) {
+      modalCopyBtn.addEventListener('click', () => {
+        if (!currentModalSnippetText) return;
+        navigator.clipboard.writeText(currentModalSnippetText).then(() => {
+          modalCopyBtn.textContent = 'Copied! ✓';
+          setTimeout(() => { modalCopyBtn.textContent = 'Copy Code'; }, 2200);
+          showToast(`Copied ${currentActiveTab.toUpperCase()} snippet to clipboard!`);
+        }).catch(() => {
+          showToast('Unable to copy to clipboard.');
+        });
+      });
+    }
+
+    // 6. Back to Top Button
+    const backTopBtn = document.querySelector('[data-ip-back-top]');
+    if (backTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backTopBtn.classList.add('is-visible');
+        } else {
+          backTopBtn.classList.remove('is-visible');
+        }
+      }, { passive: true });
+
+      backTopBtn.addEventListener('click', () => {
+        if (lenisInstance) {
+          lenisInstance.scrollTo(0, { duration: 1.2 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+  }
+
+  /**
+   * Helper: Toast notification popup
+   */
+  function showToast(msg) {
+    let toast = document.querySelector('.ip-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'ip-toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('is-visible');
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      toast.classList.remove('is-visible');
+    }, 2400);
+  }
+
+  /**
+   * Initialize Everything on DOM Load
+   */
+  function init() {
+    gsap.registerPlugin(ScrollTrigger);
+    initLenis();
+    initControls();
+    initParallaxSpecimens();
+
+    // Recompute on window resize
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
+    }, { passive: true });
+
+    // Refresh ScrollTrigger after all remote images finish loading
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
