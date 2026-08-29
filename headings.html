@@ -918,6 +918,122 @@
       </div>
     </section>
 
+    <!-- ================= 6. GRID & COLUMN LAYOUT TEST LAB ================= -->
+    <section class="mh-section" id="grid-lab">
+      <div class="mh-section-header">
+        <div>
+          <span class="mh-section-tag" style="color: #38BDF8;">LAYOUT TEST • BOOTSTRAP GRID (.ROW &gt; .COL-6)</span>
+          <h2 style="font-size: 24px; font-weight: 600; margin-top: 4px;">Column Compatibility Lab</h2>
+        </div>
+        <span class="mh-size-label">100% Contained in .col-6 / .col-md-4</span>
+      </div>
+
+      <p style="color: rgba(244, 240, 232, 0.65); margin-bottom: 24px; font-size: 15px;">
+        Headings are 100% column-safe. When placed inside a <code>.col-6</code>, <code>.col-md-4</code>, or custom CSS Grid container, words wrap naturally with zero overflow.
+      </p>
+
+      <!-- 2-Column Grid Demo (.col-md-6) -->
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-md-6">
+          <div class="mh-demo-card h-100">
+            <div class="mh-demo-meta">
+              <span class="mh-tag-badge">&lt;div class="col-md-6"&gt; &gt; &lt;h2&gt; Split</span>
+              <span class="mh-size-label">50% Width Column</span>
+            </div>
+            <div class="main-heading">
+              <span class="mh-eyebrow">COLUMN 1 OF 2</span>
+              <h2 class="main-heading--split" data-anim="split">Split Heading inside Col-6</h2>
+              <p class="mh-sub">Natural character &amp; word split that stays strictly inside the half-width column without bursting.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="mh-demo-card h-100">
+            <div class="mh-demo-meta">
+              <span class="mh-tag-badge">&lt;div class="col-md-6"&gt; &gt; &lt;h2&gt; Word Rotate</span>
+              <span class="mh-size-label">50% Width Column</span>
+            </div>
+            <div class="main-heading">
+              <span class="mh-eyebrow">COLUMN 2 OF 2</span>
+              <h2 class="main-heading--word-rotate" data-anim="word-rotate">
+                <span class="mh-rotate-prefix">Design in</span>
+                <span class="mh-rotate-words-wrap">
+                  <span class="mh-rotate-word is-active">Col-6</span>
+                  <span class="mh-rotate-word">Grids</span>
+                  <span class="mh-rotate-word">Layouts</span>
+                </span>
+                <span class="mh-rotate-suffix">every time</span>
+              </h2>
+              <p class="mh-sub">3D cylinder word rotation responsive and contained inside any Bootstrap column.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Column Grid Demo (.col-md-4) -->
+      <div class="row g-4 mb-4">
+        <div class="col-12 col-md-4">
+          <div class="mh-demo-card h-100">
+            <div class="mh-demo-meta">
+              <span class="mh-tag-badge">&lt;h3&gt; • Underline</span>
+              <span class="mh-size-label">Col-4 (33% Width)</span>
+            </div>
+            <div class="main-heading">
+              <h3 class="main-heading--underline" data-anim="underline">Col-4 Underline<span class="mh-underline-rule"></span></h3>
+              <p class="mh-sub">Underline draws exactly to the text width inside 1/3 grid.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="mh-demo-card h-100">
+            <div class="mh-demo-meta">
+              <span class="mh-tag-badge">&lt;h3&gt; • Typewriter</span>
+              <span class="mh-size-label">Col-4 (33% Width)</span>
+            </div>
+            <div class="main-heading">
+              <h3 class="main-heading--typewriter" data-anim="typewriter" data-text="Types inside Col-4 cleanly">Types inside Col-4 cleanly</h3>
+              <p class="mh-sub">Wraps text gracefully without infinite single-line horizontal stretching.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="mh-demo-card h-100">
+            <div class="mh-demo-meta">
+              <span class="mh-tag-badge">&lt;h3&gt; • Scramble</span>
+              <span class="mh-size-label">Col-4 (33% Width)</span>
+            </div>
+            <div class="main-heading">
+              <h3 class="main-heading--scramble" data-anim="scramble" data-final-text="DECODED IN 33% GRID">XJ4K—SCRMBL</h3>
+              <p class="mh-sub">Monospace decoder font sizing fits within narrow column containers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy-Paste Usage Code Snippet for Grid Columns -->
+      <div class="mh-code-card">
+        &lt;!-- Universal Bootstrap Row &amp; Col-6 Usage Pattern --&gt;<br>
+        &lt;div class="row"&gt;<br>
+        &nbsp;&nbsp;&lt;div class="col-12 col-md-6"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="main-heading"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 class="main-heading--split" data-anim="split"&gt;Left Column Heading&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="mh-sub"&gt;Supporting paragraph here.&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&lt;div class="col-12 col-md-6"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="main-heading"&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 class="main-heading--clip" data-anim="clip"&gt;Right Column Heading&lt;/h2&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="mh-sub"&gt;Supporting paragraph here.&lt;/p&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+        &nbsp;&nbsp;&lt;/div&gt;<br>
+        &lt;/div&gt;
+      </div>
+
+    </section>
+
   </main>
 
   <!-- GSAP 3 & ScrollTrigger -->

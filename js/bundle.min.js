@@ -1,3 +1,4 @@
+// Smooth Scroll (Lenis + GSAP Integration)
 if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
 const lenis = new Lenis({
 duration: 1.2,
@@ -47,6 +48,7 @@ if (heroSection) {
 gsap.set(heroSection, { scale: 1.06, filter: 'blur(8px)' });
 }
 var openTl = gsap.timeline();
+// Step 1: Characters reveal with back ease
 openTl.to(introChars, {
 y: 0,
 opacity: 1,
@@ -54,6 +56,7 @@ duration: 0.8,
 stagger: 0.04,
 ease: 'back.out(2)'
 }, 0.2);
+// Step 2: Digital counter & progress line
 var cObj = { val: 0 };
 openTl.to(cObj, {
 val: 100,
@@ -71,12 +74,14 @@ else introStatus.textContent = 'SYSTEM ONLINE • EXPERIENCE UNLOCKED';
 }
 }
 }, 0.3);
+// Step 3: Fade stage
 openTl.to(introStage, {
 opacity: 0,
 scale: 1.12,
 duration: 0.5,
 ease: 'power3.in'
 }, '+=0.2');
+// Step 4: Vertical Curtain Columns Stagger Exit
 openTl.to(introCols, {
 scaleY: 0,
 duration: 1.1,
@@ -90,6 +95,7 @@ introOverlay.classList.add('uik-is-hidden');
 gsap.set(introOverlay, { pointerEvents: 'none', autoAlpha: 0 });
 }
 }, '-=0.2');
+// Step 5: Page Content Zoom & Navbar Drop
 if (heroSection) {
 openTl.to(heroSection, {
 scale: 1.0,
@@ -106,7 +112,9 @@ ease: 'power3.out'
 }, '-=0.8');
 }
 }
+// Auto-run on page load
 playSiteOpeningIntro();
+// Replay button listener
 introReplayBtns.forEach(function (btn) {
 btn.addEventListener('click', function () {
 if (window._uikLenis) {
@@ -162,6 +170,7 @@ repeat: -1
 );
 });
 if (typeof ScrollTrigger === 'undefined') return;
+// Helper: Split element text into words and individual characters with natural word wrapping
 function splitTextIntoWordsAndChars(el, charClass, wordClass) {
 charClass = charClass || 'uik-char';
 wordClass = wordClass || 'uik-word-wrap';
@@ -188,6 +197,7 @@ el.appendChild(document.createTextNode(' '));
 }
 });
 }
+// Helper: Split element text into separate words with natural spaces
 function splitTextIntoWords(el, wordClass) {
 wordClass = wordClass || 'uik-word';
 var rawText = el.textContent.trim();
@@ -204,6 +214,7 @@ el.appendChild(document.createTextNode(' '));
 }
 });
 }
+// 1. split-char rise
 root.querySelectorAll('.uik-heading--split, .main-heading--split, [data-anim="split"]').forEach(function (h) {
 if (h._uikSplitInit) return;
 h._uikSplitInit = true;
@@ -225,6 +236,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 2. clip-path wipe
 root.querySelectorAll('.uik-heading--clip').forEach(function (h) {
 gsap.fromTo(h,
 { clipPath: 'inset(0 100% 0 0)' },
@@ -240,6 +252,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 3. underline draw
 root.querySelectorAll('.uik-heading--underline').forEach(function (h) {
 var rule = h.querySelector('.uik-underline-rule');
 if (rule) {
@@ -258,6 +271,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 4. shine
 root.querySelectorAll('.uik-heading--shine').forEach(function (h) {
 ScrollTrigger.create({
 trigger: h, start: 'top 92%', end: 'bottom 8%',
@@ -267,6 +281,7 @@ onEnterBack: function () { h.classList.add('uik-is-active'); },
 onLeaveBack: function () { h.classList.remove('uik-is-active'); }
 });
 });
+// 5. word-by-word rise
 root.querySelectorAll('.uik-heading--words, .main-heading--words, [data-anim="words"]').forEach(function (h) {
 if (h._uikWordsInit) return;
 h._uikWordsInit = true;
@@ -288,6 +303,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 6. line mask reveal
 root.querySelectorAll('.uik-heading--linemask').forEach(function (h) {
 var inner = h.querySelector('.uik-linemask-inner') || h;
 gsap.fromTo(inner,
@@ -304,6 +320,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 7. blur-in focus reveal
 root.querySelectorAll('.uik-heading--blur').forEach(function (h) {
 gsap.fromTo(h,
 { filter: 'blur(14px)', opacity: 0 },
@@ -320,6 +337,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 8. 3D rotate-in
 root.querySelectorAll('.uik-heading--rotate3d').forEach(function (h) {
 gsap.fromTo(h,
 { rotateX: 70, opacity: 0 },
@@ -336,6 +354,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 9. elastic pop-in
 root.querySelectorAll('.uik-heading--pop').forEach(function (h) {
 gsap.fromTo(h,
 { scale: 0.4, opacity: 0 },
@@ -352,6 +371,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 10. typewriter caret
 root.querySelectorAll('[data-anim="typewriter"]').forEach(function (h) {
 var span = h.querySelector('.uik-heading--typewriter') || h;
 var full = h.dataset.text || span.dataset.text || span.textContent.trim() || 'Types itself out on scroll';
@@ -385,6 +405,7 @@ onLeave: reset,
 onLeaveBack: reset
 });
 });
+// 11. highlight sweep
 root.querySelectorAll('.uik-heading--highlight').forEach(function (h) {
 var bg = h.querySelector('.uik-highlight-bg');
 if (bg) {
@@ -403,6 +424,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 12. letter scramble / decode
 root.querySelectorAll('.uik-heading--scramble').forEach(function (h) {
 var finalText = h.dataset.finalText || h.textContent.trim();
 h.dataset.finalText = finalText;
@@ -424,6 +446,7 @@ if (frame > totalFrames) { h.textContent = finalText; clearInterval(iv); iv = nu
 }
 ScrollTrigger.create({ trigger: h, start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play });
 });
+// 13. wave bounce
 root.querySelectorAll('.uik-heading--wave, .main-heading--wave, [data-anim="wave"]').forEach(function (h) {
 if (h._uikWaveInit) return;
 h._uikWaveInit = true;
@@ -439,6 +462,7 @@ onLeave: function () { tl.pause(); gsap.to(chars, { y: 0, duration: 0.3 }); },
 onLeaveBack: function () { tl.pause(); gsap.to(chars, { y: 0, duration: 0.3 }); }
 });
 });
+// 14. duo lines
 root.querySelectorAll('.uik-heading--duo').forEach(function (h) {
 h.querySelectorAll('.uik-duo-line span').forEach(function (span, i) {
 var fromX = i % 2 === 0 ? -110 : 110;
@@ -457,6 +481,7 @@ toggleActions: 'play reverse play reverse'
 );
 });
 });
+// 15. glitch flicker
 root.querySelectorAll('.uik-heading--glitch').forEach(function (h) {
 var copies = h.querySelectorAll('.uik-glitch-copy');
 if (!copies.length) return;
@@ -473,6 +498,7 @@ onLeave: function () { tl.pause(0); },
 onLeaveBack: function () { tl.pause(0); }
 });
 });
+// 16. heading with photo chip
 root.querySelectorAll('.uik-heading--withphoto').forEach(function (h) {
 var img = h.querySelector('img');
 if (img) {
@@ -493,6 +519,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 17. marker underline drag
 root.querySelectorAll('.uik-heading--marker').forEach(function (h) {
 var rule = h.querySelector('.uik-marker-rule');
 if (rule) {
@@ -511,6 +538,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 18. skew-in from the side
 root.querySelectorAll('.uik-heading--skew').forEach(function (h) {
 gsap.fromTo(h,
 { skewX: -12, x: -40, opacity: 0 },
@@ -528,6 +556,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 19. staircase word stagger
 root.querySelectorAll('.uik-heading--staircase, .main-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
 if (h._uikStairInit) return;
 h._uikStairInit = true;
@@ -549,6 +578,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 20. outline-to-fill text
 root.querySelectorAll('.uik-heading--outlinetext').forEach(function (h) {
 var fill = h.querySelector('.uik-outline-fill');
 if (fill) {
@@ -567,6 +597,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 21. morph
 root.querySelectorAll('.uik-heading--morph').forEach(function (h) {
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
 tl.to(h, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
@@ -578,6 +609,7 @@ onLeave: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#241C15', dura
 onLeaveBack: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#241C15', duration: 0.3 }); }
 });
 });
+// 22. stamp
 root.querySelectorAll('.uik-heading--stamp').forEach(function (h) {
 gsap.fromTo(h,
 { scale: 2.2, rotate: -6, opacity: 0 },
@@ -595,6 +627,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 23. cascade
 root.querySelectorAll('.uik-heading--cascade, .main-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
 if (h._uikCascadeInit) return;
 h._uikCascadeInit = true;
@@ -616,6 +649,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 24. neon
 root.querySelectorAll('.uik-heading--neon').forEach(function (h) {
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
 tl.to(h, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
@@ -627,6 +661,7 @@ onLeave: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none'
 onLeaveBack: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
 });
 });
+// 25. slice reveal
 root.querySelectorAll('.uik-heading--slice').forEach(function (h) {
 var slices = h.querySelectorAll('.uik-slice-row span');
 gsap.fromTo(slices,
@@ -644,9 +679,11 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 26. text split with word rotation
 root.querySelectorAll('.uik-heading--word-rotate, .main-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
 if (h._uikRotateInit) return;
 h._uikRotateInit = true;
+// Split prefix and suffix into 3D rotating chars
 var prefix = h.querySelector('.uik-rotate-prefix, .mh-rotate-prefix');
 var suffix = h.querySelector('.uik-rotate-suffix, .mh-rotate-suffix');
 [prefix, suffix].forEach(function (part) {
@@ -670,6 +707,7 @@ toggleActions: 'play reverse play reverse'
 }
 }
 );
+// 3D Rotating Words Cylinder
 var wordsWrap = h.querySelector('.uik-rotate-words-wrap');
 if (!wordsWrap) return;
 var words = wordsWrap.querySelectorAll('.uik-rotate-word');
@@ -726,6 +764,7 @@ wordsWrap.addEventListener('mouseenter', function () {
 rotateToNext();
 });
 });
+// 1. tilt
 root.querySelectorAll('[data-tilt]').forEach(function (card) {
 card.addEventListener('mousemove', function (e) {
 var r = card.getBoundingClientRect();
@@ -741,6 +780,7 @@ card.style.setProperty('--rx', '0deg');
 card.style.setProperty('--ry', '0deg');
 });
 });
+// 2. spotlight
 root.querySelectorAll('[data-spotlight]').forEach(function (card) {
 card.addEventListener('mousemove', function (e) {
 var r = card.getBoundingClientRect();
@@ -748,6 +788,7 @@ card.style.setProperty('--x', (e.clientX - r.left) + 'px');
 card.style.setProperty('--y', (e.clientY - r.top) + 'px');
 }, { passive: true });
 });
+// 3. magnetic badge
 root.querySelectorAll('[data-magnetic]').forEach(function (card) {
 var badge = card.querySelector('[data-magnetic-badge]');
 if (!badge) return;
@@ -759,6 +800,7 @@ badge.style.transform = 'translate(' + (px * 22) + 'px,' + (py * 22) + 'px)';
 }, { passive: true });
 card.addEventListener('mouseleave', function () { badge.style.transform = 'translate(0,0)'; });
 });
+// 4. checklist card
 root.querySelectorAll('[data-checklist]').forEach(function (card) {
 var dots = card.querySelectorAll('.uik-check-dot');
 function play() {
@@ -772,6 +814,7 @@ dots.forEach(function (dot) { dot.classList.remove('uik-is-checked'); });
 }
 ScrollTrigger.create({ trigger: card, start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play, onLeave: reset, onLeaveBack: reset });
 });
+// 1. staggered grid reveal
 var staggerSec = root.querySelector('.uik-scrollsec--stagger');
 if (staggerSec) {
 var staggerItems = staggerSec.querySelectorAll('.uik-stagger-item');
@@ -793,6 +836,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 }
+// 2. parallax layers
 root.querySelectorAll('[data-parallax]').forEach(function (pSec) {
 pSec.querySelectorAll('[data-depth]').forEach(function (layer) {
 var depth = parseFloat(layer.dataset.depth) || 0.3;
@@ -808,6 +852,7 @@ scrub: true
 });
 });
 });
+// 3. pinned line-by-line reveal
 var pinSec = root.querySelector('.uik-pin');
 if (pinSec) {
 var pinLines = pinSec.querySelectorAll('[data-pin-line]');
@@ -830,6 +875,7 @@ gsap.set(pinRing, { rotate: self.progress * 360 });
 }
 });
 }
+// 4. horizontal scroll gallery
 root.querySelectorAll('[data-hscroll]').forEach(function (hscroll) {
 var track = hscroll.querySelector('[data-hscroll-track]');
 if (!track) return;
@@ -846,6 +892,7 @@ invalidateOnRefresh: true
 }
 });
 });
+// 5. count-up stats
 root.querySelectorAll('[data-count-to]').forEach(function (el) {
 var target = parseFloat(el.dataset.countTo);
 if (isNaN(target)) target = 0;
@@ -864,6 +911,7 @@ onUpdate: function () { el.textContent = Math.round(obj.val); }
 }
 ScrollTrigger.create({ trigger: el, start: 'top 88%', end: 'bottom top', onEnter: play, onEnterBack: play, onLeave: reset, onLeaveBack: reset });
 });
+// 6. scroll progress rule
 var progressFill = root.querySelector('[data-progressbar-fill]');
 var progressBar = root.querySelector('[data-progressbar]');
 if (progressFill && progressBar) {
@@ -878,6 +926,7 @@ scrub: 0.3
 }
 });
 }
+// 7. circle reveal mask
 var revealMask = root.querySelector('[data-revealmask]');
 if (revealMask) {
 gsap.fromTo(revealMask,
@@ -889,6 +938,7 @@ scrollTrigger: { trigger: revealMask, start: 'top 85%', end: 'top 20%', scrub: 0
 }
 );
 }
+// 8. sticky swap panels
 var stickySwapSec = root.querySelector('[data-stickyswap]');
 if (stickySwapSec) {
 var swapRows = stickySwapSec.querySelectorAll('[data-swap-row]');
@@ -912,6 +962,7 @@ onEnter: activate, onEnterBack: activate, onLeave: deactivate, onLeaveBack: deac
 });
 });
 }
+// 9. word-by-word scrub paragraph
 var scrubPara = root.querySelector('[data-scrub-para]');
 if (scrubPara) {
 var words = scrubPara.textContent.trim().split(/\s+/);
@@ -925,6 +976,7 @@ scrubWords.forEach(function (w, i) { w.classList.toggle('uik-is-lit', i <= lit);
 }
 });
 }
+// 10. zoom-in on scroll
 var zoomSec = root.querySelector('[data-zoomsec]');
 if (zoomSec) {
 var zoomInner = zoomSec.querySelector('.uik-zoomsec__inner') || zoomSec;
@@ -933,6 +985,7 @@ gsap.fromTo(zoomInner,
 { scale: 1.15, opacity: 1, ease: 'none', scrollTrigger: { trigger: zoomSec, start: 'top 85%', end: 'bottom 25%', scrub: 0.5 } }
 );
 }
+// 11. vertical timeline
 root.querySelectorAll('[data-timeline-row]').forEach(function (row) {
 ScrollTrigger.create({
 trigger: row, start: 'top 60%', end: 'bottom 40%',
@@ -942,6 +995,7 @@ onLeave: function () { row.classList.remove('uik-is-lit'); },
 onLeaveBack: function () { row.classList.remove('uik-is-lit'); }
 });
 });
+// 12. split-reveal panels
 var splitreveal = root.querySelector('[data-splitreveal]');
 if (splitreveal) {
 var splitLeft = splitreveal.querySelector('[data-split-left]');
@@ -959,6 +1013,7 @@ scrollTrigger: { trigger: splitreveal, start: 'top 75%', end: 'top 15%', scrub: 
 });
 }
 }
+// 13. rotating badge
 var rotateBadge = root.querySelector('[data-rotatebadge]');
 if (rotateBadge) {
 var rotateRing = rotateBadge.querySelector('[data-rotatebadge-ring]');
@@ -969,6 +1024,7 @@ scrollTrigger: { trigger: rotateBadge, start: 'top 85%', end: 'bottom 15%', scru
 });
 }
 }
+// 14. pinned scale-up text
 var pinScale = root.querySelector('[data-pinscale]');
 if (pinScale) {
 var pinscaleWord = pinScale.querySelector('[data-pinscale-word]') || pinScale;
@@ -982,6 +1038,7 @@ scrub: true
 }
 });
 }
+// 15. discrete word-by-word reveal
 var wordReveal = root.querySelector('[data-wordreveal]');
 if (wordReveal) {
 var wrWords = wordReveal.textContent.trim().split(/\s+/);
@@ -1003,6 +1060,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 }
+// 16. 3D flip showcase card
 var flipShowcase = root.querySelector('[data-flipshowcase]');
 if (flipShowcase) {
 var flipCard = flipShowcase.querySelector('[data-flipshowcase-card]');
@@ -1014,6 +1072,7 @@ scrollTrigger: { trigger: flipShowcase, start: 'top 80%', end: 'bottom 20%', scr
 });
 }
 }
+// 17. Big Number counter + pop
 var bigNumSec = root.querySelector('[data-bignumber]');
 if (bigNumSec) {
 var bigNumVal = bigNumSec.querySelector('[data-bignumber-value]');
@@ -1037,6 +1096,7 @@ onEnter: playNum, onEnterBack: playNum, onLeave: resetNum, onLeaveBack: resetNum
 });
 }
 }
+// 18. sticky gallery
 var stickyGallery = root.querySelector('[data-stickygallery]');
 if (stickyGallery) {
 var galleryRows = stickyGallery.querySelectorAll('[data-gallery-row]');
@@ -1052,6 +1112,7 @@ function hide() { row.classList.remove('uik-is-lit'); }
 ScrollTrigger.create({ trigger: row, start: 'top 60%', end: 'bottom 40%', onEnter: show, onEnterBack: show, onLeave: hide, onLeaveBack: hide });
 });
 }
+// 19. horizontal progress line
 var hprogress = root.querySelector('[data-hprogress]');
 if (hprogress) {
 var hpFill = hprogress.querySelector('[data-hprogress-fill]');
@@ -1065,6 +1126,7 @@ hpMarkers.forEach(function (m, i) { m.classList.toggle('uik-is-lit', i <= lit); 
 }
 });
 }
+// 20. multi-column reveal
 root.querySelectorAll('[data-col-reveal]').forEach(function (col) {
 var dir = col.dataset.colReveal;
 var fromVars = dir === 'left' ? { x: -60, opacity: 0 } : dir === 'right' ? { x: 60, opacity: 0 } : { y: 40, opacity: 0 };
@@ -1081,6 +1143,7 @@ toggleActions: 'play reverse play reverse'
 }
 });
 });
+// 21. scale grid
 var scaleGrid = root.querySelector('[data-scalegrid]');
 if (scaleGrid) {
 var scaleItems = scaleGrid.querySelectorAll('.uik-scalegrid__item');
@@ -1102,6 +1165,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 }
+// 22. color wash
 var colorwash = root.querySelector('[data-colorwash]');
 if (colorwash) {
 gsap.fromTo(colorwash,
@@ -1113,6 +1177,7 @@ scrollTrigger: { trigger: colorwash, start: 'top 80%', end: 'bottom 30%', scrub:
 }
 );
 }
+// 23. curtain
 var curtainSec = root.querySelector('[data-curtain]');
 if (curtainSec) {
 var curtainPanel = curtainSec.querySelector('[data-curtain-panel]');
@@ -1127,6 +1192,7 @@ scrollTrigger: { trigger: curtainSec, start: 'top 75%', end: 'bottom 35%', scrub
 );
 }
 }
+// 24. float cards
 root.querySelectorAll('[data-float-card]').forEach(function (card, i) {
 var idleTl = gsap.timeline({ repeat: -1, yoyo: true, paused: true, delay: i * 0.3 });
 idleTl.to(card, { y: '-=8', duration: 1.6 + i * 0.2, ease: 'sine.inOut' });
@@ -1150,6 +1216,7 @@ onLeaveBack: () => { idleTl.pause(0); }
 }
 );
 });
+// 25. SVG line draw
 var drawLineSec = root.querySelector('[data-drawline]');
 if (drawLineSec) {
 var drawPath = drawLineSec.querySelector('[data-drawline-path]');
@@ -1163,6 +1230,7 @@ scrollTrigger: { trigger: drawLineSec, start: 'top 80%', end: 'bottom 30%', scru
 });
 }
 }
+// 26. sticky step numbers
 var stepSec = root.querySelector('[data-stepnumbers]');
 if (stepSec) {
 var stepRows = stepSec.querySelectorAll('[data-step-row]');
@@ -1177,6 +1245,7 @@ function deactivate() { row.classList.remove('uik-is-lit'); }
 ScrollTrigger.create({ trigger: row, start: 'top 60%', end: 'bottom 40%', onEnter: activate, onEnterBack: activate, onLeave: deactivate, onLeaveBack: deactivate });
 });
 }
+// 27. tilt gallery
 var tiltGallery = root.querySelector('[data-tiltgallery]');
 if (tiltGallery) {
 tiltGallery.querySelectorAll('[data-tilt-frame]').forEach(function (frame, i) {
@@ -1190,6 +1259,7 @@ scrollTrigger: { trigger: tiltGallery, start: 'top 90%', end: 'top 30%', scrub: 
 );
 });
 }
+// 28. text mask reveal
 var textMaskSec = root.querySelector('[data-textmask]');
 if (textMaskSec) {
 var textmaskWord = textMaskSec.querySelector('[data-textmask-word]') || textMaskSec;
@@ -1208,6 +1278,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 }
+// 29. ambient particles
 var particlesSection = root.querySelector('[data-particles]');
 if (particlesSection) {
 var particles = particlesSection.querySelectorAll('[data-particle]');
@@ -1229,6 +1300,7 @@ scrollTrigger: { trigger: particlesSection, start: 'top bottom', end: 'bottom to
 });
 }
 }
+// 30. accordion reveal
 root.querySelectorAll('[data-accordion-row]').forEach(function (row) {
 var body = row.querySelector('[data-accordion-body]');
 if (body) {
@@ -1248,6 +1320,7 @@ toggleActions: 'play reverse play reverse'
 );
 }
 });
+// 31. magnetic grid
 var magneticGrid = root.querySelector('[data-magneticgrid]');
 if (magneticGrid) {
 var dots = magneticGrid.querySelectorAll('[data-magnetic-dot]');
@@ -1268,6 +1341,7 @@ gsap.to(dot, { x: 0, y: 0, duration: 0.5, ease: 'power2.out' });
 });
 });
 }
+// 32. orbit
 var orbitSec = root.querySelector('[data-orbit]');
 if (orbitSec) {
 var orbitNodes = orbitSec.querySelectorAll('[data-orbit-node]');
@@ -1292,6 +1366,7 @@ y: radius * Math.sin(proxy.angle * Math.PI / 180)
 });
 });
 }
+// 33. arc text
 root.querySelectorAll('[data-arctext]').forEach(function (h) {
 var text = h.textContent.trim();
 h.textContent = '';
@@ -1324,6 +1399,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
+// 34. compare gallery
 var compareSec = root.querySelector('[data-comparegallery]');
 if (compareSec) {
 var compareBefore = compareSec.querySelector('[data-compare-before]');
@@ -1347,6 +1423,7 @@ scrollTrigger: { trigger: compareSec, start: 'top 85%', end: 'bottom 35%', scrub
 );
 }
 }
+// 35. wave divider
 var waveSec = root.querySelector('[data-wavedivider]');
 if (waveSec) {
 var wavePath = waveSec.querySelector('[data-wave-path]');
@@ -1358,6 +1435,7 @@ scrollTrigger: { trigger: waveSec, start: 'top bottom', end: 'bottom top', scrub
 });
 }
 }
+// 36. radial burst
 var radialBurstSec = root.querySelector('[data-radialburst]');
 if (radialBurstSec) {
 var burstItems = radialBurstSec.querySelectorAll('[data-burst-item]');
@@ -1382,6 +1460,7 @@ i * 0.08
 });
 }
 }
+// 37. fold panels
 var foldSec = root.querySelector('[data-foldpanels]');
 if (foldSec) {
 var foldPanels = foldSec.querySelectorAll('[data-fold-panel]');
@@ -1401,6 +1480,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 }
+// 38. spotlight gallery
 var spotSec = root.querySelector('[data-spotlightgallery]');
 if (spotSec) {
 var spotlightMask = spotSec.querySelector('[data-spotlight-mask]');
@@ -1425,6 +1505,7 @@ spotlightMask.style.setProperty('--uik-sy', proxySpot.y + '%');
 );
 }
 }
+// 39. depth stack
 var depthSec = root.querySelector('[data-depthstack]');
 if (depthSec) {
 var depthLayers = depthSec.querySelectorAll('[data-depth-layer]');
@@ -1454,6 +1535,7 @@ scrub: 0.5
 );
 });
 }
+// 1. Custom Magnetic Fluid Cursor
 var cursor = document.querySelector('[data-aww-cursor]');
 var cursorLabel = cursor ? cursor.querySelector('[data-cursor-label]') : null;
 if (cursor) {
@@ -1473,6 +1555,7 @@ pos.x += (mouse.x - pos.x) * 0.2;
 pos.y += (mouse.y - pos.y) * 0.2;
 gsap.set(cursor, { x: pos.x, y: pos.y });
 });
+// Magnetic hover on buttons
 root.querySelectorAll('.uik-aww-btn, [data-cursor-text]').forEach(function (btn) {
 btn.addEventListener('mouseenter', function () {
 cursor.classList.add('uik-cursor--expand');
@@ -1492,6 +1575,7 @@ gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
 });
 });
 }
+// 2. Pinned Overlapping Stacked Cards
 var stackSec = root.querySelector('[data-aww-stack]');
 if (stackSec) {
 var stackCards = stackSec.querySelectorAll('[data-aww-stack-card]');
@@ -1513,6 +1597,7 @@ filter: 'brightness(' + brightness + ')'
 });
 });
 }
+// 3. Cursor-Driven Image Trail
 var trailSec = root.querySelector('[data-aww-trail]');
 if (trailSec) {
 var trailImgs = [
@@ -1561,6 +1646,7 @@ onComplete: function () { chip.remove(); }
 }
 }, { passive: true });
 }
+// 4. Velocity Skew Scroll
 var skewTarget = root.querySelector('[data-aww-skew-target]');
 if (skewTarget) {
 var clampSkew = gsap.utils.clamp(-16, 16);
@@ -1583,6 +1669,7 @@ gsap.set(skewTarget, { skewY: proxySkew.skew });
 }
 });
 }
+// 5. Curved Portal Expansion
 var portalSec = root.querySelector('[data-aww-portal]');
 if (portalSec) {
 var portalMedia = portalSec.querySelector('[data-aww-portal-media]');
@@ -1604,6 +1691,7 @@ scrub: 0.5
 );
 }
 }
+// 6. 3D Perspective Glass Card
 var glass3d = root.querySelector('[data-aww-glass3d]');
 if (glass3d) {
 var glassInner = glass3d.querySelector('.uik-aww-glass3d__inner');
@@ -1626,6 +1714,7 @@ glass3d.addEventListener('mouseleave', function () {
 gsap.to(glassInner, { rotateX: 0, rotateY: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
 });
 }
+// 7. Organic Blob Morph
 var blobSec = root.querySelector('[data-aww-blob]');
 if (blobSec) {
 var blobPath = blobSec.querySelector('[data-aww-blob-path]');
@@ -1641,6 +1730,7 @@ bTl.to(blobPath, { attr: { d: d }, duration: 2.5, ease: 'sine.inOut' });
 });
 }
 }
+// 8. Dual-Direction Parallax Streams
 var dualSec = root.querySelector('[data-aww-duallist]');
 if (dualSec) {
 var streamUp = dualSec.querySelector('[data-aww-stream-up]');
@@ -1664,6 +1754,7 @@ scrollTrigger: { trigger: dualSec, start: 'top bottom', end: 'bottom top', scrub
 );
 }
 }
+// 9. Interactive Magnetic Letter Repel
 var repelSec = root.querySelector('[data-aww-repel]');
 if (repelSec) {
 var repelText = repelSec.querySelector('[data-aww-repel-text]');
@@ -1703,6 +1794,7 @@ gsap.to(spans, { x: 0, y: 0, rotate: 0, duration: 0.8, ease: 'elastic.out(1, 0.4
 });
 }
 }
+// 10. Hover Floating List Preview
 var listPrevSec = root.querySelector('[data-aww-listpreview]');
 if (listPrevSec) {
 var floatPrev = listPrevSec.querySelector('[data-aww-floatpreview]');
@@ -1730,6 +1822,7 @@ gsap.to(floatPrev, { scale: 0, opacity: 0, duration: 0.25, ease: 'power2.in' });
 });
 });
 }
+// 11. Typography Stencil Window
 var stencilSec = root.querySelector('[data-aww-textstencil]');
 if (stencilSec) {
 var stencilBg = stencilSec.querySelector('[data-aww-stencil-bg]');
@@ -1750,6 +1843,7 @@ scrub: true
 );
 }
 }
+// 1. 3D Circular Orbiting Cylinder Carousel
 var cylSec = root.querySelector('[data-hyp-cylinder]');
 if (cylSec) {
 var cylTrack = cylSec.querySelector('[data-hyp-cylinder-track]');
@@ -1774,6 +1868,7 @@ cylRot.ry += self.getVelocity() * 0.02;
 });
 }
 }
+// 2. Interactive Reactive Pixel Grid
 var pixSec = root.querySelector('[data-hyp-pixelgrid]');
 if (pixSec) {
 var matrix = pixSec.querySelector('[data-hyp-matrix]');
@@ -1816,6 +1911,7 @@ gsap.to(pixels, { scale: 1, backgroundColor: 'rgba(255, 255, 255, 0.05)', durati
 });
 }
 }
+// 3. 3D Isometric Depth Marquee
 var isoSec = root.querySelector('[data-hyp-3dmarquee]');
 if (isoSec) {
 isoSec.querySelectorAll('[data-hyp-iso-lane]').forEach(function (lane) {
@@ -1833,6 +1929,7 @@ repeat: -1
 );
 });
 }
+// 4. Multi-Slat Curtain Shutter Reveal
 var slatSec = root.querySelector('[data-hyp-curtainslats]');
 if (slatSec) {
 var slats = slatSec.querySelectorAll('[data-hyp-slat]');
@@ -1851,6 +1948,7 @@ toggleActions: 'play reverse play reverse'
 }
 );
 }
+// 5. Magnetic Concentric Shockwave Button
 var shockSec = root.querySelector('[data-hyp-liquidbtn]');
 if (shockSec) {
 var shockOrb = shockSec.querySelector('[data-hyp-orb]');
@@ -1873,6 +1971,7 @@ ease: 'power2.out'
 });
 }
 }
+// 6. Harmonic Equalizer Audio Visualizer
 var eqSec = root.querySelector('[data-hyp-equalizer]');
 if (eqSec) {
 var eqBarsContainer = eqSec.querySelector('[data-hyp-eq-bars]');
@@ -1895,6 +1994,7 @@ delay: i * 0.05
 });
 }
 }
+// 7. Interactive 2.5D Constellation Particle Plexus
 var plexusSec = root.querySelector('[data-hyp-constellation]');
 if (plexusSec) {
 var canvas = plexusSec.querySelector('[data-hyp-canvas]');
@@ -1947,6 +2047,7 @@ ctx.fill();
 });
 }
 }
+// 8. Interactive 3D Multi-Layer Card Peel
 var peelSec = root.querySelector('[data-hyp-cardpeel]');
 if (peelSec) {
 var peelCard = peelSec.querySelector('.uik-hyp-peel-card');
@@ -1965,6 +2066,7 @@ gsap.to([peelFront, peelMid], { rotateY: 0, rotateX: 0, duration: 0.6, ease: 'po
 });
 }
 }
+// 9. Cylindrical Odometer Rolling Numbers
 var odoSec = root.querySelector('[data-hyp-odometer]');
 if (odoSec) {
 var odoWrap = odoSec.querySelector('.uik-hyp-odometer-wrap');
@@ -2002,6 +2104,7 @@ onLeave: resetOdometer,
 onLeaveBack: resetOdometer
 });
 }
+// 10. Floating Anti-Gravity Magnetic Pill Cluster
 var clusterSec = root.querySelector('[data-hyp-pillcluster]');
 if (clusterSec) {
 var pills = clusterSec.querySelectorAll('[data-hyp-pill]');
@@ -2025,6 +2128,7 @@ gsap.to(pill, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
 });
 });
 }
+// 11. Sinusoidal Typography Wave Warp
 var waveFontSec = root.querySelector('[data-hyp-wavefont]');
 if (waveFontSec) {
 var waveHeading = waveFontSec.querySelector('[data-hyp-wave-text]');
@@ -2053,6 +2157,7 @@ gsap.set(span, { y: y, rotate: rot });
 });
 }
 }
+// 1. Skewed Velocity Carousel
 var skwSec = root.querySelector('[data-rb-skewed-carousel]');
 if (skwSec) {
 var skwTrack = skwSec.querySelector('[data-rb-skewed-track]');
@@ -2104,6 +2209,7 @@ gsap.set(skwTrack, { x: skwPos, skewX: -skew });
 });
 }
 }
+// 2. Circular 3D Gallery Carousel
 var circSec = root.querySelector('[data-rb-circle-gallery]');
 if (circSec) {
 var circRing = circSec.querySelector('[data-rb-circle-ring]');
@@ -2135,6 +2241,7 @@ gsap.set(circRing, { rotateY: cRot });
 });
 }
 }
+// 3. Gradient Depth 3D Carousel
 var depthCarouselSec = root.querySelector('[data-rb-gradient-depth]');
 if (depthCarouselSec) {
 var dCards = depthCarouselSec.querySelectorAll('.uik-rb-depth-card');
@@ -2180,6 +2287,7 @@ renderDepthCards();
 });
 }
 }
+// 4. Asynchronous Drift Wall Slider
 var driftSec = root.querySelector('[data-rb-drift-wall]');
 if (driftSec) {
 driftSec.querySelectorAll('[data-rb-drift-row]').forEach(function (row) {
@@ -2200,6 +2308,7 @@ row.addEventListener('mouseenter', function () { driftTween.timeScale(0.3); });
 row.addEventListener('mouseleave', function () { driftTween.timeScale(1); });
 });
 }
+// 5. Liquid Morph Banner Slider
 var morphSec = root.querySelector('[data-rb-morph-slider]');
 if (morphSec) {
 var morphSlides = morphSec.querySelectorAll('.uik-rb-morph-slide');
@@ -2253,6 +2362,7 @@ showMorphSlide((mIndex - 1 + morphSlides.length) % morphSlides.length);
 });
 }
 }
+// 6. Elastic Draggable Ribbon Slider
 var elSec = root.querySelector('[data-rb-elastic-slider]');
 if (elSec) {
 var elViewport = elSec.querySelector('.uik-rb-elastic-viewport');
@@ -2292,6 +2402,7 @@ gsap.set(elTrack, { x: elPos });
 });
 }
 }
+// 7. Lenticular 3D Coverflow Slider
 var covSec = root.querySelector('[data-rb-lenticular-carousel]');
 if (covSec) {
 var covItems = covSec.querySelectorAll('.uik-rb-coverflow-item');
@@ -2344,6 +2455,7 @@ renderCoverflow();
 });
 }
 }
+// 8. Expanding Accordion Gallery Banner
 var accSec = root.querySelector('[data-rb-accordion-gallery]');
 if (accSec) {
 var accCols = accSec.querySelectorAll('[data-rb-col]');
@@ -2358,6 +2470,7 @@ col.classList.add('uik-is-expanded');
 });
 });
 }
+// 9. Interactive Split Comparison Slider
 var compSec = root.querySelector('[data-rb-comparison-slider]');
 if (compSec) {
 var compBox = compSec.querySelector('[data-rb-comp-box]');
@@ -2384,6 +2497,7 @@ compDragging = false;
 });
 }
 }
+// 10. 3D Tumble Card Carousel
 var tumSec = root.querySelector('[data-rb-tumble-carousel]');
 if (tumSec) {
 var tumCards = tumSec.querySelectorAll('.uik-rb-tumble-card');
@@ -2422,6 +2536,7 @@ showTumbleSlide((tumActive - 1 + tumCards.length) % tumCards.length);
 });
 }
 }
+// 11. Bounce Card Deck Slider
 var bounceSec = root.querySelector('[data-rb-bounce-deck]');
 if (bounceSec) {
 var deckBtn = bounceSec.querySelector('[data-rb-bounce-next]');
@@ -2469,6 +2584,7 @@ gsap.fromTo(topCard,
 });
 }
 }
+// 1. 3D Prism Cube Roll Slider
 var cubeSec = root.querySelector('[data-mod-cube-slider]');
 if (cubeSec) {
 var cubeBox = cubeSec.querySelector('[data-mod-cube-box]');
@@ -2490,6 +2606,7 @@ if (cubePrev) {
 cubePrev.addEventListener('click', function () { rotateCube(-1); });
 }
 }
+// 2. Infinite Dual-Lane Angled Marquee Stream
 var streamSec = root.querySelector('[data-mod-marquee-stream]');
 if (streamSec) {
 streamSec.querySelectorAll('[data-mod-stream-lane]').forEach(function (lane) {
@@ -2509,6 +2626,7 @@ lane.addEventListener('mouseenter', function () { streamTween.timeScale(0.2); })
 lane.addEventListener('mouseleave', function () { streamTween.timeScale(1); });
 });
 }
+// 3. Cinematic Filmstrip Reel Slider
 var filmSec = root.querySelector('[data-mod-filmstrip]');
 if (filmSec) {
 var filmTrack = filmSec.querySelector('[data-mod-film-track]');
@@ -2539,6 +2657,7 @@ updateFilmstrip();
 });
 }
 }
+// 4. Interactive Multi-Layer Parallax Hero Banner
 var p規HeroSec = root.querySelector('[data-mod-parallax-hero]');
 if (p規HeroSec) {
 var heroBox = p規HeroSec.querySelector('[data-mod-hero-box]');
@@ -2565,6 +2684,7 @@ gsap.to(layer, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
 });
 }
 }
+// 5. Venetian Blind Shutter Transition Slider
 var venSec = root.querySelector('[data-mod-venetian-slider]');
 if (venSec) {
 var slatsWrap = venSec.querySelector('[data-mod-vslats]');
@@ -2625,6 +2745,7 @@ transitionVenetian((vActive - 1 + vImages.length) % vImages.length);
 }
 }
 }
+// 6. Curved Ribbon Arch Carousel
 var crvSec = root.querySelector('[data-mod-curved-ribbon]');
 if (crvSec) {
 var crvTrack = crvSec.querySelector('[data-mod-curved-track]');
@@ -2659,6 +2780,7 @@ gsap.set(card, { z: z, rotateY: ry });
 });
 }
 }
+// 7. Gesture-Driven Card Swiper Deck
 var swipSec = root.querySelector('[data-mod-card-swiper]');
 if (swipSec) {
 var swiCards = Array.from(swipSec.querySelectorAll('.uik-mod-swiper-card'));
@@ -2702,6 +2824,7 @@ gsap.fromTo(top,
 if (swiYes) swiYes.addEventListener('click', function () { tossCard(1); });
 if (swiNo) swiNo.addEventListener('click', function () { tossCard(-1); });
 }
+// 8. Rotary Mechanical Dial Navigator Slider
 var dialSec = root.querySelector('[data-mod-dial-slider]');
 if (dialSec) {
 var dialWheel = dialSec.querySelector('[data-mod-dial-wheel]');
@@ -2731,6 +2854,7 @@ if (dialTitle) dialTitle.textContent = dialData[i].title;
 });
 });
 }
+// 9. Display Typography Mask Slide Showcase
 var textMaskSecMod = root.querySelector('[data-mod-text-backdrop]');
 if (textMaskSecMod) {
 var tmBg = textMaskSecMod.querySelector('[data-mod-textmask-bg]');
@@ -2770,6 +2894,7 @@ renderTextMaskSlide((tmIndex - 1 + tmSlides.length) % tmSlides.length);
 });
 }
 }
+// 10. Layered Iridescent Glass Carousel
 var gSec = root.querySelector('[data-mod-glass-carousel]');
 if (gSec) {
 var gTrack = gSec.querySelector('[data-mod-glass-track]');
@@ -2796,6 +2921,7 @@ gsap.set(gTrack, { x: gPos });
 });
 }
 }
+// 11. Waveform Harmonic Banner Slider
 var waveSecMod = root.querySelector('[data-mod-wave-slider]');
 if (waveSecMod) {
 var waveCanvas = waveSecMod.querySelector('[data-mod-wave-canvas]');
@@ -2865,6 +2991,7 @@ wctx.stroke();
 }
 var loadersSection = root.querySelector('#kit-loaders');
 if (loadersSection) {
+// 1. Counter Ticker & Shutter Split
 var ldr1Card = loadersSection.querySelector('[data-ldr-card="counter-split"]');
 if (ldr1Card) {
 var numEl = ldr1Card.querySelector('[data-ldr-counter-num]');
@@ -2893,6 +3020,7 @@ gsap.to(botS, { yPercent: 100, duration: 0.7, ease: 'power4.inOut' });
 if (btn1) btn1.addEventListener('click', playLdr1);
 ScrollTrigger.create({ trigger: ldr1Card, start: 'top 80%', onEnter: playLdr1 });
 }
+// 2. Morphing Geometric SVG Monogram
 var ldr2Card = loadersSection.querySelector('[data-ldr-card="svg-morph"]');
 if (ldr2Card) {
 var poly = ldr2Card.querySelector('[data-ldr-morph-poly]');
@@ -2924,6 +3052,7 @@ morphTl.restart();
 });
 }
 }
+// 3. Cinematic Film Grain Curtain Unveil
 var ldr3Card = loadersSection.querySelector('[data-ldr-card="curtain-unveil"]');
 if (ldr3Card) {
 var slats = ldr3Card.querySelectorAll('.uik-ldr-curtain-slat');
@@ -2940,6 +3069,7 @@ stagger: { each: 0.07, from: 'start' }
 if (btn3) btn3.addEventListener('click', playLdr3);
 ScrollTrigger.create({ trigger: ldr3Card, start: 'top 80%', onEnter: playLdr3 });
 }
+// 4. Multilingual Typography Cascade Drum
 var ldr4Card = loadersSection.querySelector('[data-ldr-card="type-cascade"]');
 if (ldr4Card) {
 var reel = ldr4Card.querySelector('[data-ldr-word-reel]');
@@ -2956,6 +3086,7 @@ ease: 'power3.inOut'
 if (btn4) btn4.addEventListener('click', playLdr4);
 ScrollTrigger.create({ trigger: ldr4Card, start: 'top 80%', onEnter: playLdr4 });
 }
+// 5. Liquid Fluid Metaball Droplet Fusion
 var ldr5Card = loadersSection.querySelector('[data-ldr-card="fluid-blob"]');
 if (ldr5Card) {
 var d1 = ldr5Card.querySelector('[data-ldr-dot="1"]');
@@ -2973,6 +3104,7 @@ blobTl.restart();
 });
 }
 }
+// 6. 3D Orbital Gyroscope Rings
 var ldr6Card = loadersSection.querySelector('[data-ldr-card="gyroscope"]');
 if (ldr6Card) {
 var r1 = ldr6Card.querySelector('[data-ldr-gyro-r1]');
@@ -2988,6 +3120,7 @@ gsap.fromTo([r1, r2, r3], { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, du
 });
 }
 }
+// 7. Sci-Fi Laser Grid Scanner
 var ldr7Card = loadersSection.querySelector('[data-ldr-card="laser-scan"]');
 if (ldr7Card) {
 var laserBar = ldr7Card.querySelector('[data-ldr-laser-bar]');
@@ -3012,6 +3145,7 @@ if (laserPct) laserPct.textContent = Math.floor(lObj.val).toString().padStart(2,
 if (btn7) btn7.addEventListener('click', playLdr7);
 ScrollTrigger.create({ trigger: ldr7Card, start: 'top 80%', onEnter: playLdr7 });
 }
+// 8. Knockout Stencil Zoom Punch
 var ldr8Card = loadersSection.querySelector('[data-ldr-card="stencil-window"]');
 if (ldr8Card) {
 var mask = ldr8Card.querySelector('[data-ldr-stencil-mask]');
@@ -3032,6 +3166,7 @@ gsap.to(mask, { opacity: 0, duration: 0.3 });
 if (btn8) btn8.addEventListener('click', playLdr8);
 ScrollTrigger.create({ trigger: ldr8Card, start: 'top 80%', onEnter: playLdr8 });
 }
+// 9. Precision Circular Dash Wheel
 var ldr9Card = loadersSection.querySelector('[data-ldr-card="circular-dash"]');
 if (ldr9Card) {
 var wheelBar = ldr9Card.querySelector('[data-ldr-wheel-bar]');
@@ -3055,6 +3190,7 @@ if (wheelReadout) wheelReadout.textContent = Math.floor(wObj.val) + '%';
 if (btn9) btn9.addEventListener('click', playLdr9);
 ScrollTrigger.create({ trigger: ldr9Card, start: 'top 80%', onEnter: playLdr9 });
 }
+// 10. Quantum Constellation Particle Weaver
 var ldr10Card = loadersSection.querySelector('[data-ldr-card="quantum-weaver"]');
 if (ldr10Card) {
 var cWeaver = ldr10Card.querySelector('[data-ldr-canvas-weaver]');
@@ -3083,6 +3219,7 @@ var px = cx + Math.cos(n.angle) * n.radius;
 var py = cy + Math.sin(n.angle) * (n.radius * 0.4) + n.yOffset;
 return { x: px, y: py };
 });
+// Draw connecting lattice lines
 ctxW.strokeStyle = 'rgba(200, 134, 43, 0.25)';
 ctxW.lineWidth = 1;
 for (var a = 0; a < points.length; a++) {
@@ -3096,6 +3233,7 @@ ctxW.stroke();
 }
 }
 }
+// Draw glowing vertex nodes
 points.forEach(function (pt, idx) {
 ctxW.fillStyle = idx % 2 === 0 ? '#C8862B' : '#2F8F72';
 ctxW.beginPath();
@@ -3120,6 +3258,7 @@ ease: 'power3.out'
 }
 }
 }
+// 11. Venetian Horizontal Shutter
 var ldr11Card = loadersSection.querySelector('[data-ldr-card="venetian-shutter"]');
 if (ldr11Card) {
 var vSlats = ldr11Card.querySelectorAll('.uik-ldr-venetian-slat');
@@ -3136,6 +3275,7 @@ stagger: { each: 0.05, from: 'random' }
 if (btn11) btn11.addEventListener('click', playLdr11);
 ScrollTrigger.create({ trigger: ldr11Card, start: 'top 80%', onEnter: playLdr11 });
 }
+// 12. Golden Horizon Specular Eclipse
 var ldr12Card = loadersSection.querySelector('[data-ldr-card="specular-eclipse"]');
 if (ldr12Card) {
 var disk = ldr12Card.querySelector('[data-ldr-eclipse-disk]');
@@ -3152,6 +3292,7 @@ eTl
 if (btn12) btn12.addEventListener('click', playLdr12);
 ScrollTrigger.create({ trigger: ldr12Card, start: 'top 80%', onEnter: playLdr12 });
 }
+// 13. 3D Holographic Prismatic Cube
 var ldr13Card = loadersSection.querySelector('[data-ldr-card="holo-cube"]');
 if (ldr13Card) {
 var cubeBox = ldr13Card.querySelector('[data-ldr-cube-box]');
@@ -3173,6 +3314,7 @@ gsap.fromTo(cubeBox,
 });
 }
 }
+// 14. Liquid Wave Fluid Level Tank
 var ldr14Card = loadersSection.querySelector('[data-ldr-card="wave-tank"]');
 if (ldr14Card) {
 var tankLayer = ldr14Card.querySelector('[data-ldr-tank-layer]');
@@ -3220,6 +3362,7 @@ if (tankPct) tankPct.textContent = Math.floor(wObj.val) + '%';
 if (btn14) btn14.addEventListener('click', playLdr14);
 ScrollTrigger.create({ trigger: ldr14Card, start: 'top 80%', onEnter: playLdr14 });
 }
+// 15. Neon Radar Target Sonar Sweep
 var ldr15Card = loadersSection.querySelector('[data-ldr-card="sonar-sweep"]');
 if (ldr15Card) {
 var rSweep = ldr15Card.querySelector('[data-ldr-radar-sweep]');
@@ -3233,6 +3376,7 @@ gsap.fromTo(rBlip, { scale: 3, opacity: 1 }, { scale: 1, opacity: 0.2, duration:
 });
 }
 }
+// 16. Chromatic Split Text Glitch
 var ldr16Card = loadersSection.querySelector('[data-ldr-card="chroma-glitch"]');
 if (ldr16Card) {
 var gText = ldr16Card.querySelector('[data-ldr-glitch-text]');
@@ -3258,6 +3402,7 @@ gsap.fromTo(gText, { filter: 'drop-shadow(0 0 12px #2F8F72)' }, { filter: 'none'
 if (btn16) btn16.addEventListener('click', playLdr16);
 ScrollTrigger.create({ trigger: ldr16Card, start: 'top 80%', onEnter: playLdr16 });
 }
+// 17. DNA Double Helix Rotor
 var ldr17Card = loadersSection.querySelector('[data-ldr-card="dna-helix"]');
 if (ldr17Card) {
 var rungs = ldr17Card.querySelectorAll('.uik-ldr-dna-rung');
@@ -3279,6 +3424,7 @@ gsap.from(rungs, { scale: 0, duration: 0.8, stagger: 0.05, ease: 'back.out(2)' }
 });
 }
 }
+// 18. Matrix Binary Rain
 var ldr18Card = loadersSection.querySelector('[data-ldr-card="binary-rain"]');
 if (ldr18Card) {
 var mCanvas = ldr18Card.querySelector('[data-ldr-matrix-canvas]');
@@ -3309,6 +3455,7 @@ requestAnimationFrame(renderMatrix);
 renderMatrix();
 }
 }
+// 19. Pixelated Mosaic Grid
 var ldr19Card = loadersSection.querySelector('[data-ldr-card="pixel-mosaic"]');
 if (ldr19Card) {
 var mGrid = ldr19Card.querySelector('[data-ldr-mosaic-grid]');
@@ -3339,6 +3486,7 @@ amount: 0.9
 if (btn19) btn19.addEventListener('click', playLdr19);
 ScrollTrigger.create({ trigger: ldr19Card, start: 'top 80%', onEnter: playLdr19 });
 }
+// 20. Sonic Audio Spectrum Equalizer
 var ldr20Card = loadersSection.querySelector('[data-ldr-card="audio-eq"]');
 if (ldr20Card) {
 var eqBars = ldr20Card.querySelectorAll('.uik-ldr-eq-bar');
@@ -3358,6 +3506,7 @@ gsap.from(eqBars, { height: 5, duration: 0.6, stagger: 0.04, ease: 'elastic.out(
 });
 }
 }
+// 21. Infinity Mobius Ribbon Trail
 var ldr21Card = loadersSection.querySelector('[data-ldr-card="mobius-ribbon"]');
 if (ldr21Card) {
 var mobiusActive = ldr21Card.querySelector('[data-ldr-mobius-active]');
@@ -3374,6 +3523,7 @@ mobiusTween.restart();
 });
 }
 }
+// 22. Iris Shutter Camera Aperture
 var ldr22Card = loadersSection.querySelector('[data-ldr-card="iris-aperture"]');
 if (ldr22Card) {
 var blades = ldr22Card.querySelectorAll('.uik-ldr-aperture-blade');
@@ -3387,6 +3537,7 @@ apTl
 if (btn22) btn22.addEventListener('click', playLdr22);
 ScrollTrigger.create({ trigger: ldr22Card, start: 'top 80%', onEnter: playLdr22 });
 }
+// 23. Warp Speed Hyperdrive Starfield
 var ldr23Card = loadersSection.querySelector('[data-ldr-card="warp-hyperdrive"]');
 if (ldr23Card) {
 var wCanvas = ldr23Card.querySelector('[data-ldr-warp-canvas]');
@@ -3426,6 +3577,7 @@ requestAnimationFrame(renderWarp);
 renderWarp();
 }
 }
+// 24. Sacred Geometry Flower of Life
 var ldr24Card = loadersSection.querySelector('[data-ldr-card="sacred-geometry"]');
 if (ldr24Card) {
 var sRings = ldr24Card.querySelectorAll('.uik-ldr-sacred-ring');
@@ -3448,6 +3600,7 @@ gsap.from(sRings, { scale: 0, duration: 1.2, stagger: 0.15, ease: 'back.out(2)' 
 }
 var navbar = root.querySelector('[data-uik-navbar]');
 var navLinks = root.querySelectorAll('.uik-nav-item[data-nav-target], [data-nav-target="top"]');
+// Smooth Scroll on Nav Item Click
 navLinks.forEach(function (link) {
 link.addEventListener('click', function (e) {
 e.preventDefault();
@@ -3471,6 +3624,7 @@ window.scrollTo({ top: topPos, behavior: 'smooth' });
 }
 });
 });
+// ScrollSpy: highlight active navbar link based on scroll position
 var itemLinks = root.querySelectorAll('.uik-nav-item[data-nav-target]');
 itemLinks.forEach(function (link) {
 var targetSelector = link.getAttribute('data-nav-target');
@@ -3493,6 +3647,7 @@ link.classList.add('uik-is-active');
 }
 }
 });
+// Navbar Scrolled Shadow State
 if (navbar) {
 ScrollTrigger.create({
 start: 'top -40',
@@ -3529,16 +3684,19 @@ closeMegaMenu();
 openMegaMenu();
 }
 });
+// Close on outside click
 document.addEventListener('click', function (e) {
 if (!megaPanel.contains(e.target) && !megaToggle.contains(e.target)) {
 closeMegaMenu();
 }
 });
+// Close on Escape key
 document.addEventListener('keydown', function (e) {
 if (e.key === 'Escape') {
 closeMegaMenu();
 }
 });
+// Clicking any navigation link inside megamenu smooth scrolls & closes panel
 megaPanel.querySelectorAll('[data-nav-target]').forEach(function (link) {
 link.addEventListener('click', function (e) {
 var targetSelector = link.getAttribute('data-nav-target');
@@ -3626,6 +3784,7 @@ modalContent.textContent = currentCodeData[activeTab] || currentCodeData.full ||
 }
 function openModalWithData(data) {
 currentCodeData = data;
+// Build Full HTML if not provided
 if (!currentCodeData.full) {
 currentCodeData.full = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>' + (data.title || 'Component Demo') + '</title>\n  <style>\n' + (data.css || '    \n') + '\n  </style>\n</head>\n<body>\n\n  ' + (data.html || '  <!-- Component HTML -->\n') + '\n\n  <!-- GSAP Core & Plugins -->\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"><\/script>\n  <script>\n' + (data.js || '    // GSAP Animation\n') + '\n  <\/script>\n</body>\n</html>';
 }
@@ -3639,14 +3798,17 @@ codeModal.classList.remove('is-open');
 codeModal.setAttribute('aria-hidden', 'true');
 document.body.style.overflow = '';
 }
+// Close button handlers
 closeBtns.forEach(function (btn) {
 btn.addEventListener('click', closeModal);
 });
+// Escape key handler
 document.addEventListener('keydown', function (e) {
 if (e.key === 'Escape' && codeModal.classList.contains('is-open')) {
 closeModal();
 }
 });
+// Tab switching
 tabs.forEach(function (tab) {
 tab.addEventListener('click', function () {
 tabs.forEach(function (t) { t.classList.remove('is-active'); });
@@ -3655,6 +3817,7 @@ activeTab = tab.getAttribute('data-tab') || 'full';
 updateModalDisplay();
 });
 });
+// Copy code handler
 if (copyBtn) {
 copyBtn.addEventListener('click', function () {
 var textToCopy = currentCodeData[activeTab] || currentCodeData.full || '';
@@ -3680,49 +3843,52 @@ copyBtn.classList.remove('is-copied');
 if (copyText) copyText.textContent = 'Copy Code';
 }, 2000);
 }
+// COMPREHENSIVE STANDALONE ANIMATION CODE REGISTRY
 var CODE_REGISTRY = {
+// --- 1. HEADINGS ---
 'split': {
 title: 'Split-Character Stagger Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading uik-heading--split" data-anim="split">Design in motion</h2>',
-css: '.uik-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(32px, 5vw, 64px);\n  font-weight: 600;\n  color: #241C15;\n  line-height: 1.15;\n  width: 100%;\n  overflow-wrap: break-word;\n}\n.uik-word-wrap {\n  display: inline-block;\n  white-space: nowrap;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
-js: '// Split into words & chars with natural wrapping\nconst heading = document.querySelector(".uik-heading--split");\nconst words = heading.textContent.trim().split(/\\s+/);\nheading.innerHTML = words.map(w => `<span class="uik-word-wrap">${w.split("").map(c => `<span class="uik-char">${c}</span>`).join("")}</span>`).join(" ");\n\ngsap.from(heading.querySelectorAll(".uik-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 80%"\n  },\n  y: 80,\n  opacity: 0,\n  duration: 0.85,\n  stagger: 0.02,\n  ease: "back.out(1.7)"\n});'
+html: '<h2 class="main-heading--split" data-anim="split">Design in motion</h2>',
+css: '.main-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  font-weight: 600;\n  color: #111318;\n  line-height: 1.18;\n  width: 100%;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n}\n.mh-word-wrap {\n  display: inline-block;\n  white-space: nowrap;\n  max-width: 100%;\n  vertical-align: baseline;\n}\n.mh-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
+js: '// Word & Char Splitting with Natural Column Wrapping\nconst heading = document.querySelector(".main-heading--split");\nconst words = heading.textContent.trim().split(/\\s+/);\nheading.innerHTML = words.map(w => `<span class="mh-word-wrap">${w.split("").map(c => `<span class="mh-char">${c}</span>`).join("")}</span>`).join(" ");\n\ngsap.from(heading.querySelectorAll(".mh-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 85%"\n  },\n  y: "110%",\n  opacity: 0,\n  duration: 0.7,\n  stagger: 0.02,\n  ease: "back.out(1.7)"\n});'
 },
 'clip': {
 title: 'Clip-Path Wipe Reveal Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading uik-heading--clip" data-anim="clip">Every pixel intentional</h2>',
-css: '.uik-heading--clip {\n  font-family: "Fraunces", serif;\n  font-size: clamp(36px, 6vw, 72px);\n  color: #241C15;\n  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);\n}',
-js: 'gsap.to(".uik-heading--clip", {\n  scrollTrigger: {\n    trigger: ".uik-heading--clip",\n    start: "top 80%"\n  },\n  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",\n  duration: 1.2,\n  ease: "power3.inOut"\n});'
+html: '<h2 class="main-heading--clip" data-anim="clip">Every pixel intentional</h2>',
+css: '.main-heading--clip {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  font-weight: 600;\n  color: #111318;\n  line-height: 1.18;\n  width: 100%;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  clip-path: inset(0 100% 0 0);\n}',
+js: 'gsap.to(".main-heading--clip", {\n  scrollTrigger: {\n    trigger: ".main-heading--clip",\n    start: "top 85%"\n  },\n  clipPath: "inset(0 0% 0 0)",\n  duration: 0.9,\n  ease: "power4.out"\n});'
 },
 'typewriter': {
 title: 'Mechanical Typewriter Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading" data-anim="typewriter" data-text="Types itself out on scroll"><span class="uik-heading--typewriter">Types itself out on scroll</span></h2>',
-css: '.uik-heading--typewriter {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(28px, 4vw, 54px);\n  border-right: 3px solid #C8862B;\n  white-space: nowrap;\n  overflow: hidden;\n}',
-js: 'const tw = document.querySelector("[data-anim=\'typewriter\']");\nconst finalStr = tw.getAttribute("data-text") || "Types itself out on scroll";\nconst span = tw.querySelector("span");\nspan.textContent = "";\n\nScrollTrigger.create({\n  trigger: tw,\n  start: "top 80%",\n  onEnter: () => {\n    let i = 0;\n    const interval = setInterval(() => {\n      span.textContent = finalStr.slice(0, i);\n      i++;\n      if (i > finalStr.length) clearInterval(interval);\n    }, 45);\n  }\n});'
+html: '<h2 class="main-heading--typewriter" data-anim="typewriter" data-text="Types itself out on scroll">Types itself out on scroll</h2>',
+css: '.main-heading--typewriter {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(18px, 2.4vw, 28px);\n  border-right: 2.5px solid #C8862B;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  word-wrap: break-word;\n  white-space: normal;\n  animation: caretBlink 0.7s infinite;\n}\n@keyframes caretBlink { 50% { border-color: transparent; } }',
+js: 'const tw = document.querySelector("[data-anim=\'typewriter\']");\nconst finalStr = tw.getAttribute("data-text") || tw.textContent.trim();\ntw.textContent = "";\n\nScrollTrigger.create({\n  trigger: tw,\n  start: "top 85%",\n  onEnter: () => {\n    let i = 0;\n    const interval = setInterval(() => {\n      tw.textContent = finalStr.slice(0, i);\n      i++;\n      if (i > finalStr.length) clearInterval(interval);\n    }, 40);\n  }\n});'
 },
 'glitch': {
 title: 'Cyberpunk RGB Glitch Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading uik-heading--glitch" data-anim="glitch" data-text="Signal breaks up">\n  Signal breaks up\n  <span class="uik-glitch-copy uik-glitch-copy--r">Signal breaks up</span>\n  <span class="uik-glitch-copy uik-glitch-copy--b">Signal breaks up</span>\n</h2>',
-css: '.uik-heading--glitch {\n  font-family: "Fraunces", serif;\n  font-size: clamp(36px, 6vw, 72px);\n  position: relative;\n  color: #241C15;\n}\n.uik-glitch-copy {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n}\n.uik-glitch-copy--r { color: #FF0055; transform: translate(-3px, 2px); }\n.uik-glitch-copy--b { color: #00E5FF; transform: translate(3px, -2px); }',
-js: 'const el = document.querySelector(".uik-heading--glitch");\nconst r = el.querySelector(".uik-glitch-copy--r");\nconst b = el.querySelector(".uik-glitch-copy--b");\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 80%",\n  onEnter: () => {\n    const tl = gsap.timeline();\n    tl.to([r, b], { opacity: 0.8, duration: 0.08, repeat: 5, yoyo: true })\n      .to([r, b], { opacity: 0, duration: 0.1 });\n  }\n});'
+html: '<h2 class="main-heading--glitch" data-anim="glitch" data-text="Signal breaks up">\n  Signal breaks up\n  <span class="mh-glitch-copy mh-glitch-copy--r">Signal breaks up</span>\n  <span class="mh-glitch-copy mh-glitch-copy--b">Signal breaks up</span>\n</h2>',
+css: '.main-heading--glitch {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  position: relative;\n  display: inline-block;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  color: #111318;\n}\n.mh-glitch-copy {\n  position: absolute;\n  inset: 0;\n  opacity: 0;\n  pointer-events: none;\n  overflow: hidden;\n}\n.mh-glitch-copy--r { color: #E25555; clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%); }\n.mh-glitch-copy--b { color: #38BDF8; clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%); }',
+js: 'const el = document.querySelector(".main-heading--glitch");\nconst copies = el.querySelectorAll(".mh-glitch-copy");\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 85%",\n  onEnter: () => {\n    const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2 });\n    tl.set(copies, { opacity: 0, x: 0 })\n      .to(copies[0], { x: -4, opacity: 0.7, duration: 0.05 })\n      .to(copies[1] || copies[0], { x: 4, opacity: 0.7, duration: 0.05 }, "<")\n      .to(copies, { x: 0, opacity: 0, duration: 0.12 });\n  }\n});'
 },
 'scramble': {
 title: 'Matrix Character Decoder Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading uik-heading--scramble" data-anim="scramble" data-final-text="DECODED ON SCROLL">XJ4K—SCRMBL_TXT</h2>',
-css: '.uik-heading--scramble {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(28px, 4vw, 56px);\n  color: #2F8F72;\n}',
-js: 'const el = document.querySelector(".uik-heading--scramble");\nconst target = el.getAttribute("data-final-text") || "DECODED ON SCROLL";\nconst chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 80%",\n  onEnter: () => {\n    let count = 0;\n    const timer = setInterval(() => {\n      el.textContent = target.split("").map((c, i) => {\n        if (count > i * 2) return c;\n        return chars[Math.floor(Math.random() * chars.length)];\n      }).join("");\n      count++;\n      if (count > target.length * 2 + 5) {\n        clearInterval(timer);\n        el.textContent = target;\n      }\n    }, 40);\n  }\n});'
+html: '<h2 class="main-heading--scramble" data-anim="scramble" data-final-text="DECODED ON SCROLL">XJ4K—SCRMBL_TXT</h2>',
+css: '.main-heading--scramble {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(18px, 2.4vw, 28px);\n  color: #2F8F72;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n}',
+js: 'const el = document.querySelector(".main-heading--scramble");\nconst target = el.getAttribute("data-final-text") || "DECODED ON SCROLL";\nconst chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 85%",\n  onEnter: () => {\n    let frame = 0;\n    const totalFrames = 20;\n    const timer = setInterval(() => {\n      el.textContent = target.split("").map((c, i) => {\n        if (c === " ") return " ";\n        if (i < (frame / totalFrames) * target.length) return c;\n        return chars[Math.floor(Math.random() * chars.length)];\n      }).join("");\n      frame++;\n      if (frame > totalFrames) {\n        clearInterval(timer);\n        el.textContent = target;\n      }\n    }, 35);\n  }\n});'
 },
 'word-rotate': {
 title: 'Text Split with 3D Word Rotation',
 badge: 'KIT—01 / TYPOGRAPHY',
-html: '<h2 class="uik-heading uik-heading--word-rotate" data-anim="word-rotate">\n  <span class="uik-rotate-prefix">Design in</span>\n  <span class="uik-rotate-words-wrap">\n    <span class="uik-rotate-word is-active">Motion</span>\n    <span class="uik-rotate-word">Perspective</span>\n    <span class="uik-rotate-word">Dimensions</span>\n    <span class="uik-rotate-word">Creativity</span>\n  </span>\n  <span class="uik-rotate-suffix">every frame</span>\n</h2>',
-css: '.uik-heading--word-rotate {\n  display: inline-flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 0.28em;\n  perspective: 1000px;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}\n.uik-rotate-words-wrap {\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 1.25em;\n  min-width: 4.8em;\n  padding: 0.1em 0.38em;\n  border-radius: 12px;\n  background: rgba(200, 134, 43, 0.12);\n  border: 1px solid rgba(200, 134, 43, 0.35);\n  perspective: 800px;\n  transform-style: preserve-3d;\n  overflow: hidden;\n}\n.uik-rotate-word {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  display: flex; align-items: center; justify-content: center;\n  color: #C8862B; font-weight: 700;\n  opacity: 0;\n  transform: rotateX(-90deg) translateY(100%);\n  transform-origin: center center -30px;\n}\n.uik-rotate-word.is-active {\n  opacity: 1;\n  transform: rotateX(0deg) translateY(0%);\n}',
-js: '// Character Split + 3D Cylinder Rotation\nconst heading = document.querySelector(".uik-heading--word-rotate");\nconst chars = heading.querySelectorAll(".uik-char");\ngsap.from(chars, {\n  scrollTrigger: { trigger: heading, start: "top 85%" },\n  y: 35, rotateX: -80, opacity: 0, duration: 0.75, stagger: 0.025, ease: "back.out(1.8)"\n});\n\nconst words = heading.querySelectorAll(".uik-rotate-word");\nlet cur = 0;\nsetInterval(() => {\n  const prev = cur;\n  cur = (cur + 1) % words.length;\n  gsap.to(words[prev], { rotateX: 90, yPercent: -100, opacity: 0, filter: "blur(3px)", duration: 0.6, ease: "power3.inOut" });\n  gsap.fromTo(words[cur], { rotateX: -90, yPercent: 100, opacity: 0, filter: "blur(3px)" }, { rotateX: 0, yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.inOut" });\n}, 2200);'
+html: '<h2 class="main-heading--word-rotate" data-anim="word-rotate">\n  <span class="mh-rotate-prefix">Design in</span>\n  <span class="mh-rotate-words-wrap">\n    <span class="mh-rotate-word is-active">Motion</span>\n    <span class="mh-rotate-word">Perspective</span>\n    <span class="mh-rotate-word">Dimensions</span>\n    <span class="mh-rotate-word">Creativity</span>\n  </span>\n  <span class="mh-rotate-suffix">every frame</span>\n</h2>',
+css: '.main-heading--word-rotate {\n  display: inline-flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 0.28em;\n  perspective: 1000px;\n  max-width: 100%;\n  min-width: 0;\n}\n.mh-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}\n.mh-rotate-words-wrap {\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 1.25em;\n  min-width: 4.2em;\n  max-width: 100%;\n  padding: 0.1em 0.38em;\n  border-radius: 12px;\n  background: rgba(200, 134, 43, 0.12);\n  border: 1px solid rgba(200, 134, 43, 0.35);\n  perspective: 800px;\n  transform-style: preserve-3d;\n  overflow: hidden;\n}\n.mh-rotate-word {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  display: flex; align-items: center; justify-content: center;\n  color: #C8862B; font-weight: 700;\n  white-space: nowrap;\n  opacity: 0;\n  transform: rotateX(-90deg) translateY(100%);\n  transform-origin: center center -30px;\n}\n.mh-rotate-word.is-active {\n  opacity: 1;\n  transform: rotateX(0deg) translateY(0%);\n}',
+js: '// Split characters and rotate 3D words\nconst heading = document.querySelector(".main-heading--word-rotate");\nconst words = heading.querySelectorAll(".mh-rotate-word");\nlet cur = 0;\nsetInterval(() => {\n  const prev = cur;\n  cur = (cur + 1) % words.length;\n  gsap.to(words[prev], { rotateX: 90, yPercent: -100, opacity: 0, filter: "blur(3px)", duration: 0.6, ease: "power3.inOut" });\n  gsap.fromTo(words[cur], { rotateX: -90, yPercent: 100, opacity: 0, filter: "blur(3px)" }, { rotateX: 0, yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.inOut" });\n}, 2200);'
 },
+// --- 2. CARDS ---
 'tilt': {
 title: '3D Cursor Tilt & Specular Radial Glow',
 badge: 'KIT—02 / CARDS',
@@ -3737,6 +3903,7 @@ html: '<div class="uik-card uik-card--flip">\n  <div class="uik-flip-inner">\n  
 css: '.uik-card--flip { width: 320px; height: 220px; perspective: 1000px; }\n.uik-flip-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }\n.uik-card--flip:hover .uik-flip-inner { transform: rotateY(180deg); }\n.uik-flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 20px; padding: 28px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.1); }\n.uik-flip-face--back { background: #11141C; color: #FFFFFF; transform: rotateY(180deg); }',
 js: '// Pure 3D CSS Card Flip (zero JS dependencies for core flip)'
 },
+// --- 3. MARQUEE ---
 'marquee': {
 title: 'Gapless Infinite Marquee Loop',
 badge: 'KIT—03 / MARQUEES',
@@ -3744,6 +3911,7 @@ html: '<div class="uik-marquee">\n  <div class="uik-marquee__track" data-marquee
 css: '.uik-marquee { overflow: hidden; white-space: nowrap; width: 100%; background: #11141C; color: #FFFFFF; padding: 18px 0; }\n.uik-marquee__track { display: inline-flex; gap: 40px; will-change: transform; }\n.uik-marquee__item { font-family: "Fraunces", serif; font-size: 28px; font-weight: 600; }',
 js: 'const track = document.querySelector("[data-marquee]");\nconst orig = track.innerHTML;\ntrack.insertAdjacentHTML("beforeend", orig);\ntrack.insertAdjacentHTML("beforeend", orig);\n\nconst totalWidth = track.scrollWidth / 3;\ngsap.to(track, {\n  x: -totalWidth,\n  duration: 20,\n  repeat: -1,\n  ease: "none"\n});'
 },
+// --- 4. SCROLL SEQUENCES ---
 'pinned-deck': {
 title: 'Pinned Kinetic Card Deck',
 badge: 'KIT—04 / SCROLL SEQUENCES',
@@ -3751,6 +3919,7 @@ html: '<div class="uik-pinned-stage" data-scroll-deck>\n  <div class="uik-deck-c
 css: '.uik-pinned-stage { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; }\n.uik-deck-card { position: absolute; width: 440px; height: 300px; border-radius: 24px; padding: 32px; background: #FFFFFF; box-shadow: 0 30px 60px rgba(0,0,0,0.12); }',
 js: 'const cards = gsap.utils.toArray(".uik-deck-card");\nScrollTrigger.create({\n  trigger: ".uik-pinned-stage",\n  start: "top top",\n  end: "+=200%",\n  pin: true,\n  scrub: 1,\n  animation: gsap.timeline()\n    .from(cards[1], { yPercent: 120, rotate: 6, scale: 0.9 })\n    .from(cards[2], { yPercent: 120, rotate: -6, scale: 0.9 })\n});'
 },
+// --- 5. AWWWARDS SUITE ---
 'magnetic-cursor': {
 title: 'Fluid Magnetic Cursor Follower',
 badge: 'KIT—07 / AWWWARDS SUITE',
@@ -3758,6 +3927,7 @@ html: '<div class="uik-custom-cursor" data-aww-cursor>\n  <span class="uik-curso
 css: '.uik-custom-cursor {\n  position: fixed;\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  border: 2px solid #C8862B;\n  pointer-events: none;\n  z-index: 9999;\n  transform: translate(-50%, -50%);\n  transition: width 0.3s, height 0.3s, background-color 0.3s;\n}',
 js: 'const cursor = document.querySelector("[data-aww-cursor]");\nwindow.addEventListener("mousemove", (e) => {\n  gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.15, ease: "power2.out" });\n});\n\nconst magBtn = document.querySelector("[data-mag-btn]");\nmagBtn.addEventListener("mousemove", (e) => {\n  const rect = magBtn.getBoundingClientRect();\n  const x = e.clientX - (rect.left + rect.width / 2);\n  const y = e.clientY - (rect.top + rect.height / 2);\n  gsap.to(magBtn, { x: x * 0.4, y: y * 0.4, duration: 0.3 });\n});\nmagBtn.addEventListener("mouseleave", () => {\n  gsap.to(magBtn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.4)" });\n});'
 },
+// --- 6. SITE OPENING PRELOADER ---
 'site-intro': {
 title: 'Awwwards Fullscreen Site Opening Preloader',
 badge: 'INTRO PRELOADER SEQUENCE',
@@ -3766,7 +3936,9 @@ css: '.uik-site-intro-overlay { position: fixed; inset: 0; z-index: 99999; displ
 js: 'const overlay = document.querySelector(".uik-site-intro-overlay");\nconst cols = overlay.querySelectorAll(".uik-intro-column");\nconst num = overlay.querySelector(".uik-intro-counter-big");\nconst bar = overlay.querySelector(".uik-intro-progress-bar");\n\nconst tl = gsap.timeline();\nconst obj = { val: 0 };\ntl.to(obj, {\n  val: 100,\n  duration: 2.0,\n  ease: "power2.inOut",\n  onUpdate: () => {\n    num.textContent = Math.floor(obj.val).toString().padStart(2, "0") + "%";\n    bar.style.width = obj.val + "%";\n  }\n})\n.to(".uik-intro-stage", { opacity: 0, scale: 1.1, duration: 0.4 })\n.to(cols, { scaleY: 0, duration: 1.0, ease: "expo.inOut", stagger: { each: 0.08, from: "center" } })\n.set(overlay, { autoAlpha: 0, pointerEvents: "none" });'
 }
 };
+// Standalone Code Extractor & Generator
 function getComponentCode(element) {
+// 1. Check if Loader Card (All 24 Loaders)
 var loaderCard = element.closest('.uik-loader-card');
 if (loaderCard) {
 var ldrType = loaderCard.getAttribute('data-ldr-card') || 'loader';
@@ -3781,6 +3953,7 @@ css: '\n.loader-container {\n  width: 320px;\n  height: 240px;\n  background: #0
 js: '// GSAP Animation for ' + ldrTitle + '\n// Ensure GSAP 3 is loaded\ngsap.timeline({ repeat: -1 });'
 };
 }
+// 2. Check if Animated Heading
 var headingEl = element.closest('.uik-heading');
 if (headingEl) {
 var animType = headingEl.getAttribute('data-anim') || 'split';
@@ -3794,6 +3967,7 @@ css: '.uik-heading--' + animType + ' {\n  font-family: "Fraunces", serif;\n  fon
 js: 'gsap.from(".uik-heading--' + animType + '", {\n  scrollTrigger: {\n    trigger: ".uik-heading--' + animType + '",\n    start: "top 80%"\n  },\n  y: 40,\n  opacity: 0,\n  duration: 1.0,\n  ease: "power3.out"\n});'
 };
 }
+// 3. Check if Card Component
 var cardEl = element.closest('.uik-card');
 if (cardEl) {
 var cardTitle = cardEl.querySelector('.uik-card__title') ? cardEl.querySelector('.uik-card__title').textContent : 'Interactive Card';
@@ -3808,6 +3982,7 @@ css: '.uik-card {\n  background: #FFFFFF;\n  border: 1px solid rgba(0,0,0,0.1);\
 js: '// GSAP Animation for Card Component\ngsap.from(".uik-card", {\n  scrollTrigger: {\n    trigger: ".uik-card",\n    start: "top 80%"\n  },\n  y: 40,\n  opacity: 0,\n  duration: 0.8,\n  ease: "power3.out"\n});'
 };
 }
+// 4. Check if Slider or Specimen
 var sliderEl = element.closest('[data-mod-slider], .uik-mod-card, [data-uik-inspect], .uik-pinned-card, .uik-aww-hero-box, .uik-marquee');
 if (sliderEl) {
 if (sliderEl.classList.contains('uik-marquee') || sliderEl.hasAttribute('data-marquee')) return CODE_REGISTRY['marquee'];
@@ -3821,9 +3996,12 @@ css: '\n' + (sliderEl.className ? '.' + sliderEl.className.split(' ').join('.') 
 js: '// GSAP Animation Initialization\ngsap.from("' + (sliderEl.className ? '.' + sliderEl.className.split(' ')[0] : 'div') + '", {\n  scrollTrigger: {\n    trigger: "' + (sliderEl.className ? '.' + sliderEl.className.split(' ')[0] : 'div') + '",\n    start: "top 75%"\n  },\n  y: 40,\n  opacity: 0,\n  duration: 1.0,\n  ease: "power3.out"\n});'
 };
 }
+// Default fallback: Site Intro Preloader
 return CODE_REGISTRY['site-intro'];
 }
+// Attach Click Inspector to all interactive specimen elements
 document.addEventListener('click', function (e) {
+// If clicking inside the code modal or on interactive controls (replay, slider prev/next, links), skip
 if (e.target.closest('#uikCodeModal') ||
 e.target.closest('button[data-ldr-replay]') ||
 e.target.closest('button[data-mod-prev]') ||
@@ -3832,6 +4010,7 @@ e.target.closest('.uik-navbar') ||
 e.target.closest('.uik-megamenu-panel')) {
 return;
 }
+// Check if user clicked a code trigger button OR an inspectable component
 var triggerBtn = e.target.closest('.uik-code-trigger-btn, [data-code-trigger]');
 var targetElement = triggerBtn ? triggerBtn.closest('.uik-loader-card, .uik-card, .uik-heading, [data-uik-inspect], .uik-mod-card, .uik-marquee') : (e.target.closest('.uik-loader-header, .uik-heading, .uik-card, [data-uik-inspect], .uik-mod-card'));
 if (targetElement) {
@@ -3842,6 +4021,7 @@ openModalWithData(codeData);
 }
 }
 });
+// Add a small [ < > Code ] trigger button in all loader headers & cards for instant discovery
 root.querySelectorAll('.uik-loader-header').forEach(function (header) {
 if (!header.querySelector('.uik-code-trigger-btn')) {
 var btn = document.createElement('button');
@@ -3852,12 +4032,15 @@ btn.title = 'View & Copy Standalone Code';
 header.insertBefore(btn, header.children[1] || null);
 }
 });
+// Mark headings, cards, sliders with inspectable pointer
 root.querySelectorAll('.uik-heading, .uik-card, .uik-mod-card, .uik-marquee').forEach(function (el) {
 el.setAttribute('data-uik-inspect', 'true');
 el.title = 'Click to View & Copy Standalone Code';
 });
 }
+// Refresh triggers once all DOM is settled
 ScrollTrigger.refresh();
+// Auto-refresh when web fonts & external assets finish layout
 if (document.fonts && document.fonts.ready) {
 document.fonts.ready.then(function () {
 ScrollTrigger.refresh();
@@ -3881,13 +4064,21 @@ gsap.registerPlugin(ScrollTrigger);
 }
 var root = document;
 function getTrigger(el) {
-return el.closest('.main-heading') || el;
+return el.closest('.main-heading') || el.closest('.uik-heading') || el;
+}
+function getTargetHeading(el) {
+if (/^H[1-6]$/i.test(el.tagName)) return el;
+var headingChild = el.querySelector('h1, h2, h3, h4, h5, h6, .mh-title, .uik-heading');
+return headingChild || el;
 }
 function splitTextIntoWordsAndChars(el, charClass, wordClass) {
 charClass = charClass || 'mh-char';
 wordClass = wordClass || 'mh-word-wrap';
-var rawText = el.textContent.trim();
-el.textContent = '';
+var target = getTargetHeading(el);
+if (target.querySelector('.' + charClass)) return; // Prevent double splitting
+var rawText = target.textContent.trim();
+if (!rawText) return;
+target.textContent = '';
 var words = rawText.split(/\s+/);
 words.forEach(function (word, wIndex) {
 var wordSpan = document.createElement('span');
@@ -3895,6 +4086,8 @@ wordSpan.className = wordClass;
 wordSpan.style.display = 'inline-block';
 wordSpan.style.whiteSpace = 'nowrap';
 wordSpan.style.position = 'relative';
+wordSpan.style.maxWidth = '100%';
+wordSpan.style.verticalAlign = 'baseline';
 word.split('').forEach(function (ch) {
 var charSpan = document.createElement('span');
 charSpan.className = charClass;
@@ -3903,33 +4096,40 @@ charSpan.style.willChange = 'transform, opacity';
 charSpan.textContent = ch;
 wordSpan.appendChild(charSpan);
 });
-el.appendChild(wordSpan);
+target.appendChild(wordSpan);
 if (wIndex < words.length - 1) {
-el.appendChild(document.createTextNode(' '));
+target.appendChild(document.createTextNode(' '));
 }
 });
 }
 function splitTextIntoWords(el, wordClass) {
 wordClass = wordClass || 'mh-word';
-var rawText = el.textContent.trim();
-el.textContent = '';
+var target = getTargetHeading(el);
+if (target.querySelector('.' + wordClass)) return; // Prevent double splitting
+var rawText = target.textContent.trim();
+if (!rawText) return;
+target.textContent = '';
 var words = rawText.split(/\s+/);
 words.forEach(function (word, wIndex) {
 var wordSpan = document.createElement('span');
 wordSpan.className = wordClass;
 wordSpan.style.display = 'inline-block';
+wordSpan.style.position = 'relative';
+wordSpan.style.maxWidth = '100%';
+wordSpan.style.verticalAlign = 'baseline';
 wordSpan.textContent = word;
-el.appendChild(wordSpan);
+target.appendChild(wordSpan);
 if (wIndex < words.length - 1) {
-el.appendChild(document.createTextNode(' '));
+target.appendChild(document.createTextNode(' '));
 }
 });
 }
 root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-var chars = h.querySelectorAll('.mh-char, .uik-char');
+var target = getTargetHeading(h);
+splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+var chars = target.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
 { y: '110%', opacity: 0 },
 {
@@ -3949,7 +4149,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--clip, .uik-heading--clip, [data-anim="clip"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { clipPath: 'inset(0 100% 0 0)' },
 {
 clipPath: 'inset(0 0% 0 0)',
@@ -3966,11 +4167,12 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--underline, .uik-heading--underline, [data-anim="underline"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var rule = h.querySelector('.mh-underline-rule, .uik-underline-rule');
+var target = getTargetHeading(h);
+var rule = target.querySelector('.mh-underline-rule, .uik-underline-rule');
 if (!rule) {
 rule = document.createElement('span');
 rule.className = 'mh-underline-rule';
-h.appendChild(rule);
+target.appendChild(rule);
 }
 gsap.fromTo(rule,
 { scaleX: 0 },
@@ -3989,21 +4191,23 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--shine, .uik-heading--shine, [data-anim="shine"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
+var target = getTargetHeading(h);
 ScrollTrigger.create({
 trigger: getTrigger(h),
 start: 'top 92%',
 end: 'bottom 8%',
-onEnter: function () { h.classList.add('mh-is-active'); },
-onLeave: function () { h.classList.remove('mh-is-active'); },
-onEnterBack: function () { h.classList.add('mh-is-active'); },
-onLeaveBack: function () { h.classList.remove('mh-is-active'); }
+onEnter: function () { target.classList.add('mh-is-active'); },
+onLeave: function () { target.classList.remove('mh-is-active'); },
+onEnterBack: function () { target.classList.add('mh-is-active'); },
+onLeaveBack: function () { target.classList.remove('mh-is-active'); }
 });
 });
 root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-splitTextIntoWords(h, 'mh-word');
-var wordsEls = h.querySelectorAll('.mh-word, .uik-word');
+var target = getTargetHeading(h);
+splitTextIntoWords(target, 'mh-word');
+var wordsEls = target.querySelectorAll('.mh-word, .uik-word');
 gsap.fromTo(wordsEls,
 { y: '100%', opacity: 0 },
 {
@@ -4023,13 +4227,14 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--linemask, .uik-heading--linemask, [data-anim="linemask"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var inner = h.querySelector('.mh-linemask-inner, .uik-linemask-inner');
+var target = getTargetHeading(h);
+var inner = target.querySelector('.mh-linemask-inner, .uik-linemask-inner');
 if (!inner) {
 inner = document.createElement('span');
 inner.className = 'mh-linemask-inner';
-inner.innerHTML = h.innerHTML;
-h.innerHTML = '';
-h.appendChild(inner);
+inner.innerHTML = target.innerHTML;
+target.innerHTML = '';
+target.appendChild(inner);
 }
 gsap.fromTo(inner,
 { y: '115%' },
@@ -4048,7 +4253,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--blur, .uik-heading--blur, [data-anim="blur"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { filter: 'blur(14px)', opacity: 0 },
 {
 filter: 'blur(0px)',
@@ -4066,7 +4272,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--rotate3d, .uik-heading--rotate3d, [data-anim="rotate3d"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { rotateX: 70, opacity: 0 },
 {
 rotateX: 0,
@@ -4084,7 +4291,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--pop, .uik-heading--pop, [data-anim="pop"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { scale: 0.4, opacity: 0 },
 {
 scale: 1,
@@ -4102,21 +4310,22 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--typewriter, .uik-heading--typewriter, [data-anim="typewriter"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var full = h.dataset.text || h.textContent.trim() || 'Types itself out on scroll';
-h.dataset.text = full;
-h.textContent = '';
+var target = getTargetHeading(h);
+var full = target.dataset.text || target.textContent.trim() || 'Types itself out on scroll';
+target.dataset.text = full;
+target.textContent = '';
 var iv = null;
 function reset() {
 if (iv) { clearInterval(iv); iv = null; }
-h.textContent = '';
+target.textContent = '';
 }
 function play() {
 if (iv) { clearInterval(iv); iv = null; }
-h.textContent = '';
+target.textContent = '';
 var idx = 0;
 iv = setInterval(function () {
 idx++;
-h.textContent = full.slice(0, idx);
+target.textContent = full.slice(0, idx);
 if (idx >= full.length) {
 clearInterval(iv);
 iv = null;
@@ -4136,11 +4345,12 @@ onLeaveBack: reset
 root.querySelectorAll('.main-heading--highlight, .uik-heading--highlight, [data-anim="highlight"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var bg = h.querySelector('.mh-highlight-bg, .uik-highlight-bg');
+var target = getTargetHeading(h);
+var bg = target.querySelector('.mh-highlight-bg, .uik-highlight-bg');
 if (!bg) {
 bg = document.createElement('span');
 bg.className = 'mh-highlight-bg';
-h.appendChild(bg);
+target.appendChild(bg);
 }
 gsap.fromTo(bg,
 { scaleX: 0 },
@@ -4159,8 +4369,9 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--scramble, .uik-heading--scramble, [data-anim="scramble"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var finalText = h.dataset.finalText || h.textContent.trim();
-h.dataset.finalText = finalText;
+var target = getTargetHeading(h);
+var finalText = target.dataset.finalText || target.textContent.trim();
+target.dataset.finalText = finalText;
 var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 var iv = null;
 function play() {
@@ -4168,13 +4379,13 @@ if (iv) clearInterval(iv);
 var frame = 0;
 var totalFrames = 20;
 iv = setInterval(function () {
-h.textContent = finalText.split('').map(function (ch, i) {
+target.textContent = finalText.split('').map(function (ch, i) {
 if (ch === ' ') return ' ';
 if (i < (frame / totalFrames) * finalText.length) return ch;
 return chars[Math.floor(Math.random() * chars.length)];
 }).join('');
 frame++;
-if (frame > totalFrames) { h.textContent = finalText; clearInterval(iv); iv = null; }
+if (frame > totalFrames) { target.textContent = finalText; clearInterval(iv); iv = null; }
 }, 35);
 }
 ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play });
@@ -4182,8 +4393,9 @@ ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom to
 root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-var chars = h.querySelectorAll('.mh-char, .uik-char');
+var target = getTargetHeading(h);
+splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+var chars = target.querySelectorAll('.mh-char, .uik-char');
 var tl = gsap.timeline({ repeat: -1, paused: true });
 tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
 ScrollTrigger.create({
@@ -4199,7 +4411,8 @@ onLeaveBack: function () { tl.pause(); gsap.to(chars, { y: 0, duration: 0.3 }); 
 root.querySelectorAll('.main-heading--duo, .uik-heading--duo, [data-anim="duo"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-h.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
+var target = getTargetHeading(h);
+target.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
 var fromX = i % 2 === 0 ? -110 : 110;
 gsap.fromTo(span,
 { xPercent: fromX },
@@ -4219,8 +4432,9 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--glitch, .uik-heading--glitch, [data-anim="glitch"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.dataset.text || h.textContent.trim();
-var copies = h.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
+var target = getTargetHeading(h);
+var text = target.dataset.text || target.textContent.trim();
+var copies = target.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
 if (!copies.length) {
 var copyR = document.createElement('span');
 copyR.className = 'mh-glitch-copy mh-glitch-copy--r';
@@ -4228,9 +4442,9 @@ copyR.textContent = text;
 var copyB = document.createElement('span');
 copyB.className = 'mh-glitch-copy mh-glitch-copy--b';
 copyB.textContent = text;
-h.appendChild(copyR);
-h.appendChild(copyB);
-copies = h.querySelectorAll('.mh-glitch-copy');
+target.appendChild(copyR);
+target.appendChild(copyB);
+copies = target.querySelectorAll('.mh-glitch-copy');
 }
 var tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, paused: true });
 tl.set(copies, { opacity: 0, x: 0 })
@@ -4248,7 +4462,8 @@ onLeaveBack: function () { tl.pause(0); }
 root.querySelectorAll('.main-heading--withphoto, .uik-heading--withphoto, [data-anim="withphoto"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var img = h.querySelector('img');
+var target = getTargetHeading(h);
+var img = target.querySelector('img');
 if (img) {
 gsap.fromTo(img,
 { scale: 0.6, rotate: -8, opacity: 0 },
@@ -4270,11 +4485,12 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--marker, .uik-heading--marker, [data-anim="marker"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var rule = h.querySelector('.mh-marker-rule, .uik-marker-rule');
+var target = getTargetHeading(h);
+var rule = target.querySelector('.mh-marker-rule, .uik-marker-rule');
 if (!rule) {
 rule = document.createElement('span');
 rule.className = 'mh-marker-rule';
-h.appendChild(rule);
+target.appendChild(rule);
 }
 gsap.fromTo(rule,
 { scaleX: 0 },
@@ -4293,7 +4509,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--skew, .uik-heading--skew, [data-anim="skew"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { skewX: -12, x: -40, opacity: 0 },
 {
 skewX: 0,
@@ -4312,8 +4529,9 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-splitTextIntoWords(h, 'mh-stair-word');
-var wordsEls = h.querySelectorAll('.mh-stair-word, .uik-stair-word');
+var target = getTargetHeading(h);
+splitTextIntoWords(target, 'mh-stair-word');
+var wordsEls = target.querySelectorAll('.mh-stair-word, .uik-stair-word');
 gsap.fromTo(wordsEls,
 { y: -24, opacity: 0 },
 {
@@ -4333,7 +4551,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--outlinetext, .uik-heading--outlinetext, [data-anim="outlinetext"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var fill = h.querySelector('.mh-outline-fill, .uik-outline-fill');
+var target = getTargetHeading(h);
+var fill = target.querySelector('.mh-outline-fill, .uik-outline-fill');
 if (fill) {
 gsap.fromTo(fill,
 { clipPath: 'inset(0 100% 0 0)' },
@@ -4353,20 +4572,22 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--morph, .uik-heading--morph, [data-anim="morph"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
+var target = getTargetHeading(h);
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-tl.to(h, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
+tl.to(target, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
 ScrollTrigger.create({
 trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
 onEnter: function () { tl.play(); },
 onEnterBack: function () { tl.play(); },
-onLeave: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); },
-onLeaveBack: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); }
+onLeave: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); },
+onLeaveBack: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); }
 });
 });
 root.querySelectorAll('.main-heading--stamp, .uik-heading--stamp, [data-anim="stamp"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-gsap.fromTo(h,
+var target = getTargetHeading(h);
+gsap.fromTo(target,
 { scale: 2.2, rotate: -6, opacity: 0 },
 {
 scale: 1,
@@ -4385,8 +4606,9 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-var chars = h.querySelectorAll('.mh-char, .uik-char');
+var target = getTargetHeading(h);
+splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+var chars = target.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
 { yPercent: -160, opacity: 0 },
 {
@@ -4406,20 +4628,22 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--neon, .uik-heading--neon, [data-anim="neon"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
+var target = getTargetHeading(h);
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-tl.to(h, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
+tl.to(target, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
 ScrollTrigger.create({
 trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
 onEnter: function () { tl.play(); },
 onEnterBack: function () { tl.play(); },
-onLeave: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
-onLeaveBack: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
+onLeave: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
+onLeaveBack: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
 });
 });
 root.querySelectorAll('.main-heading--slice, .uik-heading--slice, [data-anim="slice"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var slices = h.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
+var target = getTargetHeading(h);
+var slices = target.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
 gsap.fromTo(slices,
 { yPercent: 100 },
 {
@@ -4438,13 +4662,14 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--word-rotate, .uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var prefix = h.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
-var suffix = h.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
+var target = getTargetHeading(h);
+var prefix = target.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
+var suffix = target.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
 [prefix, suffix].forEach(function (part) {
 if (!part) return;
 splitTextIntoWordsAndChars(part, 'mh-char', 'mh-word-wrap');
 });
-var chars = h.querySelectorAll('.mh-char, .uik-char');
+var chars = target.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
 { y: 35, rotateX: -80, opacity: 0 },
 {
@@ -4461,7 +4686,7 @@ toggleActions: 'play reverse play reverse'
 }
 }
 );
-var wordsWrap = h.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
+var wordsWrap = target.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
 if (!wordsWrap) return;
 var words = wordsWrap.querySelectorAll('.mh-rotate-word, .uik-rotate-word');
 if (words.length <= 1) return;

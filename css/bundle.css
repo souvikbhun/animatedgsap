@@ -7459,8 +7459,18 @@
 
 /* ==========================================================================
    MAIN-HEADING STANDALONE TYPOGRAPHY & ANIMATION STYLESHEET
-   Independent, portable, zero-dependency on .uik-kit class.
-   Drop into any website and use: <div class="main-heading"><h1>...</h1></div>
+   Universal, portable, zero-dependency typography & animation library.
+   Fully compatible with Bootstrap grid (.row > .col-*), Flexbox, and CSS Grid.
+   Usage: 
+     <div class="row">
+       <div class="col-6">
+         <div class="main-heading">
+           <h2 class="main-heading--split">Your Heading</h2>
+         </div>
+       </div>
+     </div>
+   Or directly:
+     <h2 class="main-heading--split">Your Heading</h2>
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
@@ -7479,26 +7489,56 @@
 }
 
 /* ==========================================================================
-   .main-heading PARENT WRAPPER & HEADING TAG SIZES (H1 - H6)
+   UNIVERSAL ROOT & COLUMN-CONTAINMENT (CRITICAL FOR GRID / .col-* LAYOUTS)
    ========================================================================== */
-.main-heading {
+.main-heading,
+.uik-heading,
+.uik-kit .main-heading,
+.uik-kit .uik-heading,
+[class*="main-heading"],
+[class*="uik-heading"],
+[data-anim] {
     position: relative;
-    margin-bottom: 1.5rem;
-    color: var(--mh-ink);
-    line-height: 1.2;
-    width: 100%;
-    max-width: 100%;
     box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0; /* Prevents flexbox items (.col-6, etc.) from overflowing parent bounds */
     overflow-wrap: break-word;
     word-wrap: break-word;
+    word-break: normal;
 }
 
-/* Natural Word & Character Wrapper for Zero-Overlap Wrapping */
+/* Block container wrapper */
+.main-heading,
+.uik-kit .main-heading {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.25rem;
+    color: inherit;
+}
+
+/* Column containment safety rules */
+.col .main-heading,
+[class*="col-"] .main-heading,
+.col .uik-heading,
+[class*="col-"] .uik-heading,
+.col [class*="main-heading"],
+[class*="col-"] [class*="main-heading"],
+.col [class*="uik-heading"],
+[class*="col-"] [class*="uik-heading"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* Natural Word & Character Wrapper for Zero-Overlap Multi-Line Wrapping */
 .mh-word-wrap,
 .uik-word-wrap {
     display: inline-block;
     white-space: nowrap;
     position: relative;
+    max-width: 100%;
+    vertical-align: baseline;
 }
 
 .mh-char,
@@ -7513,109 +7553,213 @@
 .uik-stair-word {
     display: inline-block;
     position: relative;
+    max-width: 100%;
+    vertical-align: baseline;
 }
 
-/* H1: Display / Hero Title Scale (Biggest) */
+/* ==========================================================================
+   HEADING TAG SIZES (H1 - H6) — FLUID & COLUMN-ADAPTIVE
+   ========================================================================== */
+
+/* H1: Display / Hero Title Scale */
 .main-heading h1,
+.uik-heading h1,
+.uik-kit .main-heading h1,
+.uik-kit .uik-heading h1,
 .main-heading.is-h1,
-h1.main-heading {
-    font-size: clamp(34px, 5.5vw, 68px);
+h1.main-heading,
+h1.uik-heading,
+h1[class*="main-heading--"],
+h1[class*="uik-heading--"],
+h1[data-anim] {
+    font-family: var(--mh-font-display, 'Fraunces', Georgia, serif);
+    font-size: clamp(28px, 4.2vw, 54px);
     font-weight: 700;
-    line-height: 1.08;
+    line-height: 1.1;
     letter-spacing: -0.025em;
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     color: inherit;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* H2: Primary Section Title Scale */
 .main-heading h2,
+.uik-heading h2,
+.uik-kit .main-heading h2,
+.uik-kit .uik-heading h2,
 .main-heading.is-h2,
-h2.main-heading {
-    font-size: clamp(26px, 4vw, 48px);
+h2.main-heading,
+h2.uik-heading,
+h2[class*="main-heading--"],
+h2[class*="uik-heading--"],
+h2[data-anim] {
+    font-family: var(--mh-font-display, 'Fraunces', Georgia, serif);
+    font-size: clamp(22px, 3.2vw, 38px);
     font-weight: 600;
-    line-height: 1.15;
+    line-height: 1.18;
     letter-spacing: -0.018em;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     color: inherit;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* H3: Feature / Subsection Title Scale */
 .main-heading h3,
+.uik-heading h3,
+.uik-kit .main-heading h3,
+.uik-kit .uik-heading h3,
 .main-heading.is-h3,
-h3.main-heading {
-    font-size: clamp(22px, 3vw, 36px);
+h3.main-heading,
+h3.uik-heading,
+h3[class*="main-heading--"],
+h3[class*="uik-heading--"],
+h3[data-anim] {
+    font-family: var(--mh-font-display, 'Fraunces', Georgia, serif);
+    font-size: clamp(18px, 2.4vw, 28px);
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.22;
     letter-spacing: -0.012em;
-    margin: 0 0 12px;
+    margin: 0 0 10px;
     color: inherit;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* H4: Card / Component Title Scale */
 .main-heading h4,
+.uik-heading h4,
+.uik-kit .main-heading h4,
+.uik-kit .uik-heading h4,
 .main-heading.is-h4,
-h4.main-heading {
-    font-size: clamp(18px, 2.4vw, 28px);
+h4.main-heading,
+h4.uik-heading,
+h4[class*="main-heading--"],
+h4[class*="uik-heading--"],
+h4[data-anim] {
+    font-family: var(--mh-font-sans, 'Outfit', 'Inter', sans-serif);
+    font-size: clamp(16px, 1.8vw, 22px);
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 1.28;
     letter-spacing: -0.005em;
-    margin: 0 0 10px;
+    margin: 0 0 8px;
     color: inherit;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* H5: Small Label / Widget Title Scale */
 .main-heading h5,
+.uik-heading h5,
+.uik-kit .main-heading h5,
+.uik-kit .uik-heading h5,
 .main-heading.is-h5,
-h5.main-heading {
-    font-size: clamp(16px, 1.8vw, 22px);
+h5.main-heading,
+h5.uik-heading,
+h5[class*="main-heading--"],
+h5[class*="uik-heading--"],
+h5[data-anim] {
+    font-family: var(--mh-font-sans, 'Outfit', 'Inter', sans-serif);
+    font-size: clamp(14px, 1.4vw, 18px);
     font-weight: 500;
-    line-height: 1.3;
-    margin: 0 0 8px;
+    line-height: 1.32;
+    margin: 0 0 6px;
     color: inherit;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* H6: Micro Eyebrow / Category Title Scale */
 .main-heading h6,
+.uik-heading h6,
+.uik-kit .main-heading h6,
+.uik-kit .uik-heading h6,
 .main-heading.is-h6,
-h6.main-heading {
-    font-size: clamp(13px, 1.4vw, 16px);
+h6.main-heading,
+h6.uik-heading,
+h6[class*="main-heading--"],
+h6[class*="uik-heading--"],
+h6[data-anim] {
+    font-family: var(--mh-font-mono, 'JetBrains Mono', monospace);
+    font-size: clamp(12px, 1.1vw, 14px);
     font-weight: 600;
     line-height: 1.35;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--mh-muted);
-    margin: 0 0 8px;
+    color: var(--mh-muted, #6B7280);
+    margin: 0 0 6px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
-/* Optional Subtitle / Eyebrow inside .main-heading */
-.main-heading .mh-eyebrow {
-    font-family: var(--mh-font-mono);
-    font-size: 12px;
+/* Optional Eyebrow and Subtitle inside .main-heading */
+.main-heading .mh-eyebrow,
+.uik-heading .mh-eyebrow {
+    font-family: var(--mh-font-mono, monospace);
+    font-size: 11.5px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--mh-gold);
+    color: var(--mh-gold, #C8862B);
     margin-bottom: 8px;
     display: block;
+    max-width: 100%;
 }
 
-.main-heading .mh-sub {
-    font-family: var(--mh-font-sans);
-    font-size: 16px;
+.main-heading .mh-sub,
+.uik-heading .mh-sub {
+    font-family: var(--mh-font-sans, sans-serif);
+    font-size: 15px;
     line-height: 1.6;
-    color: var(--mh-muted);
-    margin-top: 10px;
+    color: var(--mh-muted, #6B7280);
+    margin-top: 8px;
     width: 100%;
     max-width: 100%;
 }
 
 /* ==========================================================================
-   ANIMATION VARIANTS (Applied to .main-heading or any child tag)
+   26 ANIMATION VARIANTS (WORKS DIRECTLY ON HEADINGS OR WITH .main-heading)
    ========================================================================== */
 
 /* 1. Split-Char Rise */
-.main-heading .mh-char,
+.main-heading--split,
+.uik-heading--split,
+[data-anim="split"] {
+    width: 100%;
+    max-width: 100%;
+}
+
 .main-heading--split .mh-char,
 .main-heading--split .uik-char,
+.uik-heading--split .mh-char,
+.uik-heading--split .uik-char,
+.main-heading .mh-char,
+.main-heading .uik-char,
+.mh-char,
 .uik-char {
     display: inline-block;
     will-change: transform, opacity;
@@ -7623,26 +7767,36 @@ h6.main-heading {
 
 /* 2. Clip Wipe */
 .main-heading--clip,
-.main-heading [data-anim="clip"] {
+.uik-heading--clip,
+.main-heading [data-anim="clip"],
+[data-anim="clip"] {
     clip-path: inset(0 100% 0 0);
+    width: 100%;
+    max-width: 100%;
 }
 
 /* 3. Underline Draw */
 .main-heading--underline,
-.main-heading [data-anim="underline"] {
+.uik-heading--underline,
+.main-heading [data-anim="underline"],
+[data-anim="underline"] {
     position: relative;
     display: inline-block;
+    max-width: 100%;
     padding-bottom: 8px;
 }
 
+.mh-underline-rule,
+.uik-underline-rule,
 .main-heading .mh-underline-rule,
 .main-heading--underline .mh-underline-rule,
-.main-heading .uik-underline-rule {
+.uik-heading--underline .uik-underline-rule {
     position: absolute;
     left: 0;
     bottom: 0;
     height: 4px;
     width: 100%;
+    max-width: 100%;
     background: linear-gradient(90deg, #C8862B, #2F8F72);
     transform: scaleX(0);
     transform-origin: left center;
@@ -7651,18 +7805,23 @@ h6.main-heading {
 
 /* 4. Animated Shine */
 .main-heading--shine,
-.main-heading [data-anim="shine"] {
+.uik-heading--shine,
+.main-heading [data-anim="shine"],
+[data-anim="shine"] {
     background: linear-gradient(100deg, currentColor 0%, currentColor 40%, #C8862B 50%, currentColor 60%, currentColor 100%);
     background-size: 200% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-position: 100% 0;
+    width: 100%;
+    max-width: 100%;
 }
 
 .main-heading--shine.mh-is-active,
+.uik-heading--shine.uik-is-active,
 .main-heading [data-anim="shine"].uik-is-active,
-.main-heading--shine.uik-is-active {
+[data-anim="shine"].mh-is-active {
     animation: mhShineSweep 1.8s ease-in-out forwards;
 }
 
@@ -7672,53 +7831,97 @@ h6.main-heading {
 }
 
 /* 5. Word-by-Word Rise */
+.main-heading--words,
+.uik-heading--words,
+[data-anim="words"] {
+    width: 100%;
+    max-width: 100%;
+}
+
 .main-heading .mh-word,
-.main-heading .uik-word {
+.main-heading .uik-word,
+.uik-heading .mh-word,
+.uik-heading .uik-word,
+.mh-word,
+.uik-word {
     display: inline-block;
     will-change: transform, opacity;
+    max-width: 100%;
 }
 
 /* 6. Line Mask Reveal */
 .main-heading--linemask,
-.main-heading [data-anim="linemask"] {
+.uik-heading--linemask,
+.main-heading [data-anim="linemask"],
+[data-anim="linemask"] {
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 4px;
 }
 
 .main-heading .mh-linemask-inner,
-.main-heading .uik-linemask-inner {
+.main-heading .uik-linemask-inner,
+.uik-heading .mh-linemask-inner,
+.uik-heading .uik-linemask-inner,
+.mh-linemask-inner,
+.uik-linemask-inner {
     display: block;
+    width: 100%;
+    max-width: 100%;
     transform: translateY(115%);
     will-change: transform;
 }
 
 /* 7. Blur Focus */
 .main-heading--blur,
-.main-heading [data-anim="blur"] {
+.uik-heading--blur,
+.main-heading [data-anim="blur"],
+[data-anim="blur"] {
     filter: blur(14px);
     opacity: 0;
+    width: 100%;
+    max-width: 100%;
+    will-change: filter, opacity;
 }
 
 /* 8. 3D Rotate */
 .main-heading--rotate3d,
-.main-heading [data-anim="rotate3d"] {
+.uik-heading--rotate3d,
+.main-heading [data-anim="rotate3d"],
+[data-anim="rotate3d"] {
     transform-origin: 50% 100%;
     transform: perspective(600px) rotateX(70deg);
     opacity: 0;
+    width: 100%;
+    max-width: 100%;
+    will-change: transform, opacity;
 }
 
 /* 9. Elastic Pop */
 .main-heading--pop,
-.main-heading [data-anim="pop"] {
+.uik-heading--pop,
+.main-heading [data-anim="pop"],
+[data-anim="pop"] {
+    display: inline-block;
+    max-width: 100%;
     transform: scale(0.4);
     opacity: 0;
+    will-change: transform, opacity;
 }
 
 /* 10. Typewriter */
 .main-heading--typewriter,
-.main-heading [data-anim="typewriter"] {
+.uik-heading--typewriter,
+.main-heading [data-anim="typewriter"],
+[data-anim="typewriter"] {
     display: inline-block;
-    border-right: 2px solid #C8862B;
+    max-width: 100%;
+    border-right: 2.5px solid #C8862B;
     padding-right: 4px;
+    white-space: normal; /* Permits natural wrapping in narrow columns */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
     animation: mhCaretBlink 0.7s infinite;
 }
 
@@ -7729,32 +7932,50 @@ h6.main-heading {
 
 /* 11. Highlight Background Sweep */
 .main-heading--highlight,
-.main-heading [data-anim="highlight"] {
+.uik-heading--highlight,
+.main-heading [data-anim="highlight"],
+[data-anim="highlight"] {
     position: relative;
     display: inline-block;
+    max-width: 100%;
     z-index: 1;
 }
 
+.mh-highlight-bg,
+.uik-highlight-bg,
 .main-heading .mh-highlight-bg,
-.main-heading .uik-highlight-bg {
+.uik-heading .uik-highlight-bg {
     position: absolute;
-    inset: -2px -8px;
+    inset: -2px -6px;
     background: #E8D8BF;
     z-index: -1;
     transform: scaleX(0);
     transform-origin: left center;
     border-radius: 4px;
+    pointer-events: none;
 }
 
 /* 12. Scramble / Decode Text */
 .main-heading--scramble,
-.main-heading [data-anim="scramble"] {
-    font-family: var(--mh-font-mono);
-    letter-spacing: 0.05em;
+.uik-heading--scramble,
+.main-heading [data-anim="scramble"],
+[data-anim="scramble"] {
+    font-family: var(--mh-font-mono, 'JetBrains Mono', monospace);
+    letter-spacing: 0.04em;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* 13. Wave Bounce */
+.main-heading--wave,
+.uik-heading--wave,
+[data-anim="wave"] {
+    width: 100%;
+    max-width: 100%;
+}
+
 .main-heading--wave .mh-char,
+.uik-heading--wave .uik-char,
 .main-heading [data-anim="wave"] .mh-char,
 .main-heading [data-anim="wave"] .uik-char {
     display: inline-block;
@@ -7762,78 +7983,113 @@ h6.main-heading {
 }
 
 /* 14. Duo Opposing Lines */
-.main-heading .mh-duo-line,
-.main-heading .uik-duo-line {
+.main-heading--duo,
+.uik-heading--duo,
+[data-anim="duo"] {
     display: block;
+    width: 100%;
+    max-width: 100%;
     overflow: hidden;
 }
 
-.main-heading .mh-duo-line span,
-.main-heading .uik-duo-line span {
+.main-heading .mh-duo-line,
+.uik-heading .uik-duo-line,
+.mh-duo-line,
+.uik-duo-line {
     display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.main-heading .mh-duo-line span,
+.uik-heading .uik-duo-line span,
+.mh-duo-line span,
+.uik-duo-line span {
+    display: inline-block;
     will-change: transform;
+    max-width: 100%;
 }
 
 /* 15. Glitch Flicker */
 .main-heading--glitch,
-.main-heading [data-anim="glitch"] {
+.uik-heading--glitch,
+.main-heading [data-anim="glitch"],
+[data-anim="glitch"] {
     position: relative;
     display: inline-block;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 
+.mh-glitch-copy,
+.uik-glitch-copy,
 .main-heading .mh-glitch-copy,
-.main-heading .uik-glitch-copy {
+.uik-heading .uik-glitch-copy {
     position: absolute;
     inset: 0;
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 
-.main-heading .mh-glitch-copy--r,
-.main-heading .uik-glitch-copy--r {
+.mh-glitch-copy--r,
+.uik-glitch-copy--r {
     color: #E25555;
     clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%);
 }
 
-.main-heading .mh-glitch-copy--b,
-.main-heading .uik-glitch-copy--b {
+.mh-glitch-copy--b,
+.uik-glitch-copy--b {
     color: #38BDF8;
     clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%);
 }
 
 /* 16. Heading with Photo Chip */
 .main-heading--withphoto,
-.main-heading [data-anim="withphoto"] {
+.uik-heading--withphoto,
+.main-heading [data-anim="withphoto"],
+[data-anim="withphoto"] {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
+    max-width: 100%;
 }
 
 .main-heading--withphoto img,
-.main-heading [data-anim="withphoto"] img {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+.uik-heading--withphoto img,
+.main-heading [data-anim="withphoto"] img,
+[data-anim="withphoto"] img {
+    width: clamp(32px, 4vw, 48px);
+    height: clamp(32px, 4vw, 48px);
+    border-radius: 10px;
     object-fit: cover;
     display: inline-block;
     vertical-align: middle;
+    flex-shrink: 0;
 }
 
 /* 17. Marker Underline */
 .main-heading--marker,
-.main-heading [data-anim="marker"] {
+.uik-heading--marker,
+.main-heading [data-anim="marker"],
+[data-anim="marker"] {
     position: relative;
     display: inline-block;
+    max-width: 100%;
 }
 
+.mh-marker-rule,
+.uik-marker-rule,
 .main-heading .mh-marker-rule,
-.main-heading .uik-marker-rule {
+.uik-heading .uik-marker-rule {
     position: absolute;
     left: -4px;
     bottom: 2px;
     height: 38%;
     width: calc(100% + 8px);
+    max-width: 100%;
     background: rgba(200, 134, 43, 0.28);
     transform: scaleX(0);
     transform-origin: left center;
@@ -7843,51 +8099,87 @@ h6.main-heading {
 
 /* 18. Skew In */
 .main-heading--skew,
-.main-heading [data-anim="skew"] {
+.uik-heading--skew,
+.main-heading [data-anim="skew"],
+[data-anim="skew"] {
     will-change: transform, opacity;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* 19. Staircase Word Stagger */
+.main-heading--staircase,
+.uik-heading--staircase,
+[data-anim="staircase"] {
+    width: 100%;
+    max-width: 100%;
+}
+
 .main-heading .mh-stair-word,
-.main-heading .uik-stair-word {
+.uik-heading .uik-stair-word,
+.mh-stair-word,
+.uik-stair-word {
     display: inline-block;
     will-change: transform, opacity;
+    max-width: 100%;
 }
 
 /* 20. Outline to Fill */
 .main-heading--outlinetext,
-.main-heading [data-anim="outlinetext"] {
+.uik-heading--outlinetext,
+.main-heading [data-anim="outlinetext"],
+[data-anim="outlinetext"] {
     position: relative;
     display: inline-block;
+    max-width: 100%;
     color: transparent;
     -webkit-text-stroke: 1.5px currentColor;
+    overflow-wrap: break-word;
 }
 
+.mh-outline-fill,
+.uik-outline-fill,
 .main-heading .mh-outline-fill,
-.main-heading .uik-outline-fill {
+.uik-heading .uik-outline-fill {
     position: absolute;
     inset: 0;
     color: #C8862B;
     -webkit-text-stroke: 0px transparent;
     clip-path: inset(0 100% 0 0);
+    pointer-events: none;
 }
 
 /* 21. Morph / Breath */
 .main-heading--morph,
-.main-heading [data-anim="morph"] {
+.uik-heading--morph,
+.main-heading [data-anim="morph"],
+[data-anim="morph"] {
     display: inline-block;
+    max-width: 100%;
     transform-origin: left center;
 }
 
 /* 22. Stamp Drop */
 .main-heading--stamp,
-.main-heading [data-anim="stamp"] {
+.uik-heading--stamp,
+.main-heading [data-anim="stamp"],
+[data-anim="stamp"] {
     display: inline-block;
+    max-width: 100%;
     transform-origin: center center;
 }
 
 /* 23. Cascade Bounce */
+.main-heading--cascade,
+.uik-heading--cascade,
+[data-anim="cascade"] {
+    width: 100%;
+    max-width: 100%;
+}
+
 .main-heading--cascade .mh-char,
+.uik-heading--cascade .uik-char,
+.main-heading [data-anim="cascade"] .mh-char,
 .main-heading [data-anim="cascade"] .uik-char {
     display: inline-block;
     will-change: transform, opacity;
@@ -7895,26 +8187,119 @@ h6.main-heading {
 
 /* 24. Neon Glow */
 .main-heading--neon,
-.main-heading [data-anim="neon"] {
+.uik-heading--neon,
+.main-heading [data-anim="neon"],
+[data-anim="neon"] {
     opacity: 0.4;
     transition: text-shadow 0.4s ease, opacity 0.4s ease;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* 25. Slice Open */
-.main-heading .mh-slice-row,
-.main-heading .uik-slice-row {
+.main-heading--slice,
+.uik-heading--slice,
+[data-anim="slice"] {
     display: block;
+    width: 100%;
+    max-width: 100%;
     overflow: hidden;
 }
 
-.main-heading .mh-slice-row span,
-.main-heading .uik-slice-row span {
+.main-heading .mh-slice-row,
+.uik-heading .uik-slice-row,
+.mh-slice-row,
+.uik-slice-row {
     display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.main-heading .mh-slice-row span,
+.uik-heading .uik-slice-row span,
+.mh-slice-row span,
+.uik-slice-row span {
+    display: inline-block;
     will-change: transform;
+    max-width: 100%;
+}
+
+/* 26. Text Split with 3D Word Rotation */
+.main-heading--word-rotate,
+.uik-heading--word-rotate,
+[data-anim="word-rotate"] {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.28em;
+    perspective: 1000px;
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+.main-heading--word-rotate .mh-char,
+.uik-heading--word-rotate .uik-char {
+    display: inline-block;
+    will-change: transform, opacity;
+    transform-origin: 50% 100% -20px;
+}
+
+.main-heading--word-rotate .mh-rotate-words-wrap,
+.uik-heading--word-rotate .uik-rotate-words-wrap,
+.mh-rotate-words-wrap,
+.uik-rotate-words-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.25em;
+    min-width: 4.2em;
+    max-width: 100%;
+    padding: 0.1em 0.38em;
+    border-radius: 12px;
+    background: rgba(200, 134, 43, 0.12);
+    border: 1px solid rgba(200, 134, 43, 0.35);
+    box-shadow: 0 4px 20px -5px rgba(200, 134, 43, 0.3), inset 0 0 12px rgba(200, 134, 43, 0.1);
+    perspective: 800px;
+    transform-style: preserve-3d;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.main-heading--word-rotate .mh-rotate-word,
+.uik-heading--word-rotate .uik-rotate-word,
+.mh-rotate-word,
+.uik-rotate-word {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #C8862B;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    transform: rotateX(-90deg) translateY(100%);
+    transform-origin: center center -30px;
+    will-change: transform, opacity, filter;
+    backface-visibility: hidden;
+}
+
+.main-heading--word-rotate .mh-rotate-word.is-active,
+.uik-heading--word-rotate .uik-rotate-word.is-active,
+.mh-rotate-word.is-active,
+.uik-rotate-word.is-active {
+    opacity: 1;
+    transform: rotateX(0deg) translateY(0%);
 }
 
 /* ==========================================================================
-   LIGHT THEME MODIFIER (.main-heading--light / .is-light / data-theme="light")
+   LIGHT THEME MODIFIERS
    ========================================================================== */
 .main-heading--light,
 .main-heading.is-light,
@@ -7984,68 +8369,6 @@ h6.main-heading {
 .is-light .main-heading--neon,
 [data-theme="light"] .main-heading--neon {
     color: #1A1715;
-}
-
-/* 26. text split with word rotation — standalone */
-.main-heading--word-rotate {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.28em;
-    perspective: 1000px;
-    vertical-align: middle;
-}
-
-.main-heading--word-rotate .mh-char {
-    display: inline-block;
-    will-change: transform, opacity;
-    transform-origin: 50% 100% -20px;
-}
-
-.main-heading--word-rotate .mh-rotate-words-wrap,
-.main-heading--word-rotate .uik-rotate-words-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 1.25em;
-    min-width: 4.8em;
-    padding: 0.1em 0.38em;
-    border-radius: 12px;
-    background: rgba(200, 134, 43, 0.12);
-    border: 1px solid rgba(200, 134, 43, 0.35);
-    box-shadow: 0 4px 20px -5px rgba(200, 134, 43, 0.3), inset 0 0 12px rgba(200, 134, 43, 0.1);
-    perspective: 800px;
-    transform-style: preserve-3d;
-    vertical-align: middle;
-    overflow: hidden;
-}
-
-.main-heading--word-rotate .mh-rotate-word,
-.main-heading--word-rotate .uik-rotate-word {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #C8862B;
-    font-weight: 700;
-    white-space: nowrap;
-    opacity: 0;
-    transform: rotateX(-90deg) translateY(100%);
-    transform-origin: center center -30px;
-    will-change: transform, opacity, filter;
-    backface-visibility: hidden;
-}
-
-.main-heading--word-rotate .mh-rotate-word.is-active,
-.main-heading--word-rotate .uik-rotate-word.is-active {
-    opacity: 1;
-    transform: rotateX(0deg) translateY(0%);
 }
 
 

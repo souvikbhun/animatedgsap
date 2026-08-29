@@ -4213,7 +4213,7 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         if (copyText) copyText.textContent = '✓ Copied to Clipboard!';
         setTimeout(function () {
           copyBtn.classList.remove('is-copied');
-          if (copyText) copyText.textContent = 'Copy Code';
+      if (copyText) copyText.textContent = 'Copy Code';
         }, 2000);
       }
 
@@ -4223,44 +4223,44 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         'split': {
           title: 'Split-Character Stagger Heading',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading uik-heading--split" data-anim="split">Design in motion</h2>',
-          css: '.uik-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(32px, 5vw, 64px);\n  font-weight: 600;\n  color: #241C15;\n  line-height: 1.15;\n  width: 100%;\n  overflow-wrap: break-word;\n}\n.uik-word-wrap {\n  display: inline-block;\n  white-space: nowrap;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
-          js: '// Split into words & chars with natural wrapping\nconst heading = document.querySelector(".uik-heading--split");\nconst words = heading.textContent.trim().split(/\\s+/);\nheading.innerHTML = words.map(w => `<span class="uik-word-wrap">${w.split("").map(c => `<span class="uik-char">${c}</span>`).join("")}</span>`).join(" ");\n\ngsap.from(heading.querySelectorAll(".uik-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 80%"\n  },\n  y: 80,\n  opacity: 0,\n  duration: 0.85,\n  stagger: 0.02,\n  ease: "back.out(1.7)"\n});'
+          html: '<h2 class="main-heading--split" data-anim="split">Design in motion</h2>',
+          css: '.main-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  font-weight: 600;\n  color: #111318;\n  line-height: 1.18;\n  width: 100%;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n}\n.mh-word-wrap {\n  display: inline-block;\n  white-space: nowrap;\n  max-width: 100%;\n  vertical-align: baseline;\n}\n.mh-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
+          js: '// Word & Char Splitting with Natural Column Wrapping\nconst heading = document.querySelector(".main-heading--split");\nconst words = heading.textContent.trim().split(/\\s+/);\nheading.innerHTML = words.map(w => `<span class="mh-word-wrap">${w.split("").map(c => `<span class="mh-char">${c}</span>`).join("")}</span>`).join(" ");\n\ngsap.from(heading.querySelectorAll(".mh-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 85%"\n  },\n  y: "110%",\n  opacity: 0,\n  duration: 0.7,\n  stagger: 0.02,\n  ease: "back.out(1.7)"\n});'
         },
         'clip': {
           title: 'Clip-Path Wipe Reveal Heading',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading uik-heading--clip" data-anim="clip">Every pixel intentional</h2>',
-          css: '.uik-heading--clip {\n  font-family: "Fraunces", serif;\n  font-size: clamp(36px, 6vw, 72px);\n  color: #241C15;\n  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);\n}',
-          js: 'gsap.to(".uik-heading--clip", {\n  scrollTrigger: {\n    trigger: ".uik-heading--clip",\n    start: "top 80%"\n  },\n  clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",\n  duration: 1.2,\n  ease: "power3.inOut"\n});'
+          html: '<h2 class="main-heading--clip" data-anim="clip">Every pixel intentional</h2>',
+          css: '.main-heading--clip {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  font-weight: 600;\n  color: #111318;\n  line-height: 1.18;\n  width: 100%;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  clip-path: inset(0 100% 0 0);\n}',
+          js: 'gsap.to(".main-heading--clip", {\n  scrollTrigger: {\n    trigger: ".main-heading--clip",\n    start: "top 85%"\n  },\n  clipPath: "inset(0 0% 0 0)",\n  duration: 0.9,\n  ease: "power4.out"\n});'
         },
         'typewriter': {
           title: 'Mechanical Typewriter Heading',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading" data-anim="typewriter" data-text="Types itself out on scroll"><span class="uik-heading--typewriter">Types itself out on scroll</span></h2>',
-          css: '.uik-heading--typewriter {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(28px, 4vw, 54px);\n  border-right: 3px solid #C8862B;\n  white-space: nowrap;\n  overflow: hidden;\n}',
-          js: 'const tw = document.querySelector("[data-anim=\'typewriter\']");\nconst finalStr = tw.getAttribute("data-text") || "Types itself out on scroll";\nconst span = tw.querySelector("span");\nspan.textContent = "";\n\nScrollTrigger.create({\n  trigger: tw,\n  start: "top 80%",\n  onEnter: () => {\n    let i = 0;\n    const interval = setInterval(() => {\n      span.textContent = finalStr.slice(0, i);\n      i++;\n      if (i > finalStr.length) clearInterval(interval);\n    }, 45);\n  }\n});'
+          html: '<h2 class="main-heading--typewriter" data-anim="typewriter" data-text="Types itself out on scroll">Types itself out on scroll</h2>',
+          css: '.main-heading--typewriter {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(18px, 2.4vw, 28px);\n  border-right: 2.5px solid #C8862B;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  word-wrap: break-word;\n  white-space: normal;\n  animation: caretBlink 0.7s infinite;\n}\n@keyframes caretBlink { 50% { border-color: transparent; } }',
+          js: 'const tw = document.querySelector("[data-anim=\'typewriter\']");\nconst finalStr = tw.getAttribute("data-text") || tw.textContent.trim();\ntw.textContent = "";\n\nScrollTrigger.create({\n  trigger: tw,\n  start: "top 85%",\n  onEnter: () => {\n    let i = 0;\n    const interval = setInterval(() => {\n      tw.textContent = finalStr.slice(0, i);\n      i++;\n      if (i > finalStr.length) clearInterval(interval);\n    }, 40);\n  }\n});'
         },
         'glitch': {
           title: 'Cyberpunk RGB Glitch Heading',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading uik-heading--glitch" data-anim="glitch" data-text="Signal breaks up">\n  Signal breaks up\n  <span class="uik-glitch-copy uik-glitch-copy--r">Signal breaks up</span>\n  <span class="uik-glitch-copy uik-glitch-copy--b">Signal breaks up</span>\n</h2>',
-          css: '.uik-heading--glitch {\n  font-family: "Fraunces", serif;\n  font-size: clamp(36px, 6vw, 72px);\n  position: relative;\n  color: #241C15;\n}\n.uik-glitch-copy {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  opacity: 0;\n}\n.uik-glitch-copy--r { color: #FF0055; transform: translate(-3px, 2px); }\n.uik-glitch-copy--b { color: #00E5FF; transform: translate(3px, -2px); }',
-          js: 'const el = document.querySelector(".uik-heading--glitch");\nconst r = el.querySelector(".uik-glitch-copy--r");\nconst b = el.querySelector(".uik-glitch-copy--b");\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 80%",\n  onEnter: () => {\n    const tl = gsap.timeline();\n    tl.to([r, b], { opacity: 0.8, duration: 0.08, repeat: 5, yoyo: true })\n      .to([r, b], { opacity: 0, duration: 0.1 });\n  }\n});'
+          html: '<h2 class="main-heading--glitch" data-anim="glitch" data-text="Signal breaks up">\n  Signal breaks up\n  <span class="mh-glitch-copy mh-glitch-copy--r">Signal breaks up</span>\n  <span class="mh-glitch-copy mh-glitch-copy--b">Signal breaks up</span>\n</h2>',
+          css: '.main-heading--glitch {\n  font-family: "Fraunces", serif;\n  font-size: clamp(22px, 3.2vw, 38px);\n  position: relative;\n  display: inline-block;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n  color: #111318;\n}\n.mh-glitch-copy {\n  position: absolute;\n  inset: 0;\n  opacity: 0;\n  pointer-events: none;\n  overflow: hidden;\n}\n.mh-glitch-copy--r { color: #E25555; clip-path: polygon(0 20%, 100% 20%, 100% 50%, 0 50%); }\n.mh-glitch-copy--b { color: #38BDF8; clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%); }',
+          js: 'const el = document.querySelector(".main-heading--glitch");\nconst copies = el.querySelectorAll(".mh-glitch-copy");\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 85%",\n  onEnter: () => {\n    const tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2 });\n    tl.set(copies, { opacity: 0, x: 0 })\n      .to(copies[0], { x: -4, opacity: 0.7, duration: 0.05 })\n      .to(copies[1] || copies[0], { x: 4, opacity: 0.7, duration: 0.05 }, "<")\n      .to(copies, { x: 0, opacity: 0, duration: 0.12 });\n  }\n});'
         },
         'scramble': {
           title: 'Matrix Character Decoder Heading',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading uik-heading--scramble" data-anim="scramble" data-final-text="DECODED ON SCROLL">XJ4K—SCRMBL_TXT</h2>',
-          css: '.uik-heading--scramble {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(28px, 4vw, 56px);\n  color: #2F8F72;\n}',
-          js: 'const el = document.querySelector(".uik-heading--scramble");\nconst target = el.getAttribute("data-final-text") || "DECODED ON SCROLL";\nconst chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 80%",\n  onEnter: () => {\n    let count = 0;\n    const timer = setInterval(() => {\n      el.textContent = target.split("").map((c, i) => {\n        if (count > i * 2) return c;\n        return chars[Math.floor(Math.random() * chars.length)];\n      }).join("");\n      count++;\n      if (count > target.length * 2 + 5) {\n        clearInterval(timer);\n        el.textContent = target;\n      }\n    }, 40);\n  }\n});'
+          html: '<h2 class="main-heading--scramble" data-anim="scramble" data-final-text="DECODED ON SCROLL">XJ4K—SCRMBL_TXT</h2>',
+          css: '.main-heading--scramble {\n  font-family: "JetBrains Mono", monospace;\n  font-size: clamp(18px, 2.4vw, 28px);\n  color: #2F8F72;\n  max-width: 100%;\n  min-width: 0;\n  overflow-wrap: break-word;\n}',
+          js: 'const el = document.querySelector(".main-heading--scramble");\nconst target = el.getAttribute("data-final-text") || "DECODED ON SCROLL";\nconst chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";\n\nScrollTrigger.create({\n  trigger: el,\n  start: "top 85%",\n  onEnter: () => {\n    let frame = 0;\n    const totalFrames = 20;\n    const timer = setInterval(() => {\n      el.textContent = target.split("").map((c, i) => {\n        if (c === " ") return " ";\n        if (i < (frame / totalFrames) * target.length) return c;\n        return chars[Math.floor(Math.random() * chars.length)];\n      }).join("");\n      frame++;\n      if (frame > totalFrames) {\n        clearInterval(timer);\n        el.textContent = target;\n      }\n    }, 35);\n  }\n});'
         },
         'word-rotate': {
           title: 'Text Split with 3D Word Rotation',
           badge: 'KIT—01 / TYPOGRAPHY',
-          html: '<h2 class="uik-heading uik-heading--word-rotate" data-anim="word-rotate">\n  <span class="uik-rotate-prefix">Design in</span>\n  <span class="uik-rotate-words-wrap">\n    <span class="uik-rotate-word is-active">Motion</span>\n    <span class="uik-rotate-word">Perspective</span>\n    <span class="uik-rotate-word">Dimensions</span>\n    <span class="uik-rotate-word">Creativity</span>\n  </span>\n  <span class="uik-rotate-suffix">every frame</span>\n</h2>',
-          css: '.uik-heading--word-rotate {\n  display: inline-flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 0.28em;\n  perspective: 1000px;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}\n.uik-rotate-words-wrap {\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 1.25em;\n  min-width: 4.8em;\n  padding: 0.1em 0.38em;\n  border-radius: 12px;\n  background: rgba(200, 134, 43, 0.12);\n  border: 1px solid rgba(200, 134, 43, 0.35);\n  perspective: 800px;\n  transform-style: preserve-3d;\n  overflow: hidden;\n}\n.uik-rotate-word {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  display: flex; align-items: center; justify-content: center;\n  color: #C8862B; font-weight: 700;\n  opacity: 0;\n  transform: rotateX(-90deg) translateY(100%);\n  transform-origin: center center -30px;\n}\n.uik-rotate-word.is-active {\n  opacity: 1;\n  transform: rotateX(0deg) translateY(0%);\n}',
-          js: '// Character Split + 3D Cylinder Rotation\nconst heading = document.querySelector(".uik-heading--word-rotate");\nconst chars = heading.querySelectorAll(".uik-char");\ngsap.from(chars, {\n  scrollTrigger: { trigger: heading, start: "top 85%" },\n  y: 35, rotateX: -80, opacity: 0, duration: 0.75, stagger: 0.025, ease: "back.out(1.8)"\n});\n\nconst words = heading.querySelectorAll(".uik-rotate-word");\nlet cur = 0;\nsetInterval(() => {\n  const prev = cur;\n  cur = (cur + 1) % words.length;\n  gsap.to(words[prev], { rotateX: 90, yPercent: -100, opacity: 0, filter: "blur(3px)", duration: 0.6, ease: "power3.inOut" });\n  gsap.fromTo(words[cur], { rotateX: -90, yPercent: 100, opacity: 0, filter: "blur(3px)" }, { rotateX: 0, yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.inOut" });\n}, 2200);'
+          html: '<h2 class="main-heading--word-rotate" data-anim="word-rotate">\n  <span class="mh-rotate-prefix">Design in</span>\n  <span class="mh-rotate-words-wrap">\n    <span class="mh-rotate-word is-active">Motion</span>\n    <span class="mh-rotate-word">Perspective</span>\n    <span class="mh-rotate-word">Dimensions</span>\n    <span class="mh-rotate-word">Creativity</span>\n  </span>\n  <span class="mh-rotate-suffix">every frame</span>\n</h2>',
+          css: '.main-heading--word-rotate {\n  display: inline-flex;\n  align-items: center;\n  flex-wrap: wrap;\n  gap: 0.28em;\n  perspective: 1000px;\n  max-width: 100%;\n  min-width: 0;\n}\n.mh-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}\n.mh-rotate-words-wrap {\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 1.25em;\n  min-width: 4.2em;\n  max-width: 100%;\n  padding: 0.1em 0.38em;\n  border-radius: 12px;\n  background: rgba(200, 134, 43, 0.12);\n  border: 1px solid rgba(200, 134, 43, 0.35);\n  perspective: 800px;\n  transform-style: preserve-3d;\n  overflow: hidden;\n}\n.mh-rotate-word {\n  position: absolute;\n  left: 0; right: 0; top: 0; bottom: 0;\n  display: flex; align-items: center; justify-content: center;\n  color: #C8862B; font-weight: 700;\n  white-space: nowrap;\n  opacity: 0;\n  transform: rotateX(-90deg) translateY(100%);\n  transform-origin: center center -30px;\n}\n.mh-rotate-word.is-active {\n  opacity: 1;\n  transform: rotateX(0deg) translateY(0%);\n}',
+          js: '// Split characters and rotate 3D words\nconst heading = document.querySelector(".main-heading--word-rotate");\nconst words = heading.querySelectorAll(".mh-rotate-word");\nlet cur = 0;\nsetInterval(() => {\n  const prev = cur;\n  cur = (cur + 1) % words.length;\n  gsap.to(words[prev], { rotateX: 90, yPercent: -100, opacity: 0, filter: "blur(3px)", duration: 0.6, ease: "power3.inOut" });\n  gsap.fromTo(words[cur], { rotateX: -90, yPercent: 100, opacity: 0, filter: "blur(3px)" }, { rotateX: 0, yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.inOut" });\n}, 2200);'
         },
 
         // --- 2. CARDS ---
@@ -4459,8 +4459,18 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
 
 /**
  * Main-Heading Standalone GSAP 3 Animation Library
- * Works on any website without dependencies on UI-Kit classes.
- * Usage: <div class="main-heading"><h1 class="main-heading--split">Text</h1></div>
+ * Works seamlessly on any website and inside any grid / column (.col-6, .col-4, flexbox, etc.)
+ * Zero external CSS class dependency.
+ * Usage: 
+ *   <div class="row">
+ *     <div class="col-6">
+ *       <div class="main-heading">
+ *         <h2 class="main-heading--split">Design in motion</h2>
+ *       </div>
+ *     </div>
+ *   </div>
+ * Or directly:
+ *   <h2 class="main-heading--split">Design in motion</h2>
  */
 (function () {
   function initMainHeadings() {
@@ -4472,15 +4482,25 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
 
     // Helper to get trigger element
     function getTrigger(el) {
-      return el.closest('.main-heading') || el;
+      return el.closest('.main-heading') || el.closest('.uik-heading') || el;
+    }
+
+    // Helper to resolve target heading tag if parent wrapper was selected
+    function getTargetHeading(el) {
+      if (/^H[1-6]$/i.test(el.tagName)) return el;
+      var headingChild = el.querySelector('h1, h2, h3, h4, h5, h6, .mh-title, .uik-heading');
+      return headingChild || el;
     }
 
     // Helper: Split element text into words and individual characters with natural word wrapping
     function splitTextIntoWordsAndChars(el, charClass, wordClass) {
       charClass = charClass || 'mh-char';
       wordClass = wordClass || 'mh-word-wrap';
-      var rawText = el.textContent.trim();
-      el.textContent = '';
+      var target = getTargetHeading(el);
+      if (target.querySelector('.' + charClass)) return; // Prevent double splitting
+      var rawText = target.textContent.trim();
+      if (!rawText) return;
+      target.textContent = '';
       var words = rawText.split(/\s+/);
       words.forEach(function (word, wIndex) {
         var wordSpan = document.createElement('span');
@@ -4488,6 +4508,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         wordSpan.style.display = 'inline-block';
         wordSpan.style.whiteSpace = 'nowrap';
         wordSpan.style.position = 'relative';
+        wordSpan.style.maxWidth = '100%';
+        wordSpan.style.verticalAlign = 'baseline';
 
         word.split('').forEach(function (ch) {
           var charSpan = document.createElement('span');
@@ -4498,9 +4520,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
           wordSpan.appendChild(charSpan);
         });
 
-        el.appendChild(wordSpan);
+        target.appendChild(wordSpan);
         if (wIndex < words.length - 1) {
-          el.appendChild(document.createTextNode(' '));
+          target.appendChild(document.createTextNode(' '));
         }
       });
     }
@@ -4508,17 +4530,23 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // Helper: Split element text into separate words with natural spaces
     function splitTextIntoWords(el, wordClass) {
       wordClass = wordClass || 'mh-word';
-      var rawText = el.textContent.trim();
-      el.textContent = '';
+      var target = getTargetHeading(el);
+      if (target.querySelector('.' + wordClass)) return; // Prevent double splitting
+      var rawText = target.textContent.trim();
+      if (!rawText) return;
+      target.textContent = '';
       var words = rawText.split(/\s+/);
       words.forEach(function (word, wIndex) {
         var wordSpan = document.createElement('span');
         wordSpan.className = wordClass;
         wordSpan.style.display = 'inline-block';
+        wordSpan.style.position = 'relative';
+        wordSpan.style.maxWidth = '100%';
+        wordSpan.style.verticalAlign = 'baseline';
         wordSpan.textContent = word;
-        el.appendChild(wordSpan);
+        target.appendChild(wordSpan);
         if (wIndex < words.length - 1) {
-          el.appendChild(document.createTextNode(' '));
+          target.appendChild(document.createTextNode(' '));
         }
       });
     }
@@ -4527,8 +4555,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { y: '110%', opacity: 0 },
         {
@@ -4550,7 +4579,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--clip, .uik-heading--clip, [data-anim="clip"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { clipPath: 'inset(0 100% 0 0)' },
         {
           clipPath: 'inset(0 0% 0 0)',
@@ -4569,11 +4599,12 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--underline, .uik-heading--underline, [data-anim="underline"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var rule = h.querySelector('.mh-underline-rule, .uik-underline-rule');
+      var target = getTargetHeading(h);
+      var rule = target.querySelector('.mh-underline-rule, .uik-underline-rule');
       if (!rule) {
         rule = document.createElement('span');
         rule.className = 'mh-underline-rule';
-        h.appendChild(rule);
+        target.appendChild(rule);
       }
       gsap.fromTo(rule,
         { scaleX: 0 },
@@ -4594,14 +4625,15 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--shine, .uik-heading--shine, [data-anim="shine"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       ScrollTrigger.create({
         trigger: getTrigger(h),
         start: 'top 92%',
         end: 'bottom 8%',
-        onEnter: function () { h.classList.add('mh-is-active'); },
-        onLeave: function () { h.classList.remove('mh-is-active'); },
-        onEnterBack: function () { h.classList.add('mh-is-active'); },
-        onLeaveBack: function () { h.classList.remove('mh-is-active'); }
+        onEnter: function () { target.classList.add('mh-is-active'); },
+        onLeave: function () { target.classList.remove('mh-is-active'); },
+        onEnterBack: function () { target.classList.add('mh-is-active'); },
+        onLeaveBack: function () { target.classList.remove('mh-is-active'); }
       });
     });
 
@@ -4609,8 +4641,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWords(h, 'mh-word');
-      var wordsEls = h.querySelectorAll('.mh-word, .uik-word');
+      var target = getTargetHeading(h);
+      splitTextIntoWords(target, 'mh-word');
+      var wordsEls = target.querySelectorAll('.mh-word, .uik-word');
       gsap.fromTo(wordsEls,
         { y: '100%', opacity: 0 },
         {
@@ -4632,13 +4665,14 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--linemask, .uik-heading--linemask, [data-anim="linemask"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var inner = h.querySelector('.mh-linemask-inner, .uik-linemask-inner');
+      var target = getTargetHeading(h);
+      var inner = target.querySelector('.mh-linemask-inner, .uik-linemask-inner');
       if (!inner) {
         inner = document.createElement('span');
         inner.className = 'mh-linemask-inner';
-        inner.innerHTML = h.innerHTML;
-        h.innerHTML = '';
-        h.appendChild(inner);
+        inner.innerHTML = target.innerHTML;
+        target.innerHTML = '';
+        target.appendChild(inner);
       }
       gsap.fromTo(inner,
         { y: '115%' },
@@ -4659,7 +4693,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--blur, .uik-heading--blur, [data-anim="blur"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { filter: 'blur(14px)', opacity: 0 },
         {
           filter: 'blur(0px)',
@@ -4679,7 +4714,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--rotate3d, .uik-heading--rotate3d, [data-anim="rotate3d"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { rotateX: 70, opacity: 0 },
         {
           rotateX: 0,
@@ -4699,7 +4735,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--pop, .uik-heading--pop, [data-anim="pop"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { scale: 0.4, opacity: 0 },
         {
           scale: 1,
@@ -4719,21 +4756,22 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--typewriter, .uik-heading--typewriter, [data-anim="typewriter"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var full = h.dataset.text || h.textContent.trim() || 'Types itself out on scroll';
-      h.dataset.text = full;
-      h.textContent = '';
+      var target = getTargetHeading(h);
+      var full = target.dataset.text || target.textContent.trim() || 'Types itself out on scroll';
+      target.dataset.text = full;
+      target.textContent = '';
       var iv = null;
       function reset() {
         if (iv) { clearInterval(iv); iv = null; }
-        h.textContent = '';
+        target.textContent = '';
       }
       function play() {
         if (iv) { clearInterval(iv); iv = null; }
-        h.textContent = '';
+        target.textContent = '';
         var idx = 0;
         iv = setInterval(function () {
           idx++;
-          h.textContent = full.slice(0, idx);
+          target.textContent = full.slice(0, idx);
           if (idx >= full.length) {
             clearInterval(iv);
             iv = null;
@@ -4755,11 +4793,12 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--highlight, .uik-heading--highlight, [data-anim="highlight"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var bg = h.querySelector('.mh-highlight-bg, .uik-highlight-bg');
+      var target = getTargetHeading(h);
+      var bg = target.querySelector('.mh-highlight-bg, .uik-highlight-bg');
       if (!bg) {
         bg = document.createElement('span');
         bg.className = 'mh-highlight-bg';
-        h.appendChild(bg);
+        target.appendChild(bg);
       }
       gsap.fromTo(bg,
         { scaleX: 0 },
@@ -4780,8 +4819,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--scramble, .uik-heading--scramble, [data-anim="scramble"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var finalText = h.dataset.finalText || h.textContent.trim();
-      h.dataset.finalText = finalText;
+      var target = getTargetHeading(h);
+      var finalText = target.dataset.finalText || target.textContent.trim();
+      target.dataset.finalText = finalText;
       var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       var iv = null;
       function play() {
@@ -4789,13 +4829,13 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         var frame = 0;
         var totalFrames = 20;
         iv = setInterval(function () {
-          h.textContent = finalText.split('').map(function (ch, i) {
+          target.textContent = finalText.split('').map(function (ch, i) {
             if (ch === ' ') return ' ';
             if (i < (frame / totalFrames) * finalText.length) return ch;
             return chars[Math.floor(Math.random() * chars.length)];
           }).join('');
           frame++;
-          if (frame > totalFrames) { h.textContent = finalText; clearInterval(iv); iv = null; }
+          if (frame > totalFrames) { target.textContent = finalText; clearInterval(iv); iv = null; }
         }, 35);
       }
       ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play });
@@ -4805,8 +4845,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       var tl = gsap.timeline({ repeat: -1, paused: true });
       tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
       ScrollTrigger.create({
@@ -4824,7 +4865,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--duo, .uik-heading--duo, [data-anim="duo"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      h.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
+      var target = getTargetHeading(h);
+      target.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
         var fromX = i % 2 === 0 ? -110 : 110;
         gsap.fromTo(span,
           { xPercent: fromX },
@@ -4846,8 +4888,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--glitch, .uik-heading--glitch, [data-anim="glitch"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.dataset.text || h.textContent.trim();
-      var copies = h.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
+      var target = getTargetHeading(h);
+      var text = target.dataset.text || target.textContent.trim();
+      var copies = target.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
       if (!copies.length) {
         var copyR = document.createElement('span');
         copyR.className = 'mh-glitch-copy mh-glitch-copy--r';
@@ -4855,9 +4898,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         var copyB = document.createElement('span');
         copyB.className = 'mh-glitch-copy mh-glitch-copy--b';
         copyB.textContent = text;
-        h.appendChild(copyR);
-        h.appendChild(copyB);
-        copies = h.querySelectorAll('.mh-glitch-copy');
+        target.appendChild(copyR);
+        target.appendChild(copyB);
+        copies = target.querySelectorAll('.mh-glitch-copy');
       }
       var tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, paused: true });
       tl.set(copies, { opacity: 0, x: 0 })
@@ -4877,7 +4920,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--withphoto, .uik-heading--withphoto, [data-anim="withphoto"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var img = h.querySelector('img');
+      var target = getTargetHeading(h);
+      var img = target.querySelector('img');
       if (img) {
         gsap.fromTo(img,
           { scale: 0.6, rotate: -8, opacity: 0 },
@@ -4901,11 +4945,12 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--marker, .uik-heading--marker, [data-anim="marker"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var rule = h.querySelector('.mh-marker-rule, .uik-marker-rule');
+      var target = getTargetHeading(h);
+      var rule = target.querySelector('.mh-marker-rule, .uik-marker-rule');
       if (!rule) {
         rule = document.createElement('span');
         rule.className = 'mh-marker-rule';
-        h.appendChild(rule);
+        target.appendChild(rule);
       }
       gsap.fromTo(rule,
         { scaleX: 0 },
@@ -4926,7 +4971,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--skew, .uik-heading--skew, [data-anim="skew"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { skewX: -12, x: -40, opacity: 0 },
         {
           skewX: 0,
@@ -4947,8 +4993,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWords(h, 'mh-stair-word');
-      var wordsEls = h.querySelectorAll('.mh-stair-word, .uik-stair-word');
+      var target = getTargetHeading(h);
+      splitTextIntoWords(target, 'mh-stair-word');
+      var wordsEls = target.querySelectorAll('.mh-stair-word, .uik-stair-word');
       gsap.fromTo(wordsEls,
         { y: -24, opacity: 0 },
         {
@@ -4970,7 +5017,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--outlinetext, .uik-heading--outlinetext, [data-anim="outlinetext"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var fill = h.querySelector('.mh-outline-fill, .uik-outline-fill');
+      var target = getTargetHeading(h);
+      var fill = target.querySelector('.mh-outline-fill, .uik-outline-fill');
       if (fill) {
         gsap.fromTo(fill,
           { clipPath: 'inset(0 100% 0 0)' },
@@ -4992,14 +5040,15 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--morph, .uik-heading--morph, [data-anim="morph"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-      tl.to(h, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
+      tl.to(target, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
       ScrollTrigger.create({
         trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
         onEnter: function () { tl.play(); },
         onEnterBack: function () { tl.play(); },
-        onLeave: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); },
-        onLeaveBack: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); }
+        onLeave: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); },
+        onLeaveBack: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); }
       });
     });
 
@@ -5007,7 +5056,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--stamp, .uik-heading--stamp, [data-anim="stamp"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { scale: 2.2, rotate: -6, opacity: 0 },
         {
           scale: 1,
@@ -5028,8 +5078,9 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { yPercent: -160, opacity: 0 },
         {
@@ -5051,14 +5102,15 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--neon, .uik-heading--neon, [data-anim="neon"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-      tl.to(h, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
+      tl.to(target, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
       ScrollTrigger.create({
         trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
         onEnter: function () { tl.play(); },
         onEnterBack: function () { tl.play(); },
-        onLeave: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
-        onLeaveBack: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
+        onLeave: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
+        onLeaveBack: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
       });
     });
 
@@ -5066,7 +5118,8 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--slice, .uik-heading--slice, [data-anim="slice"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var slices = h.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
+      var target = getTargetHeading(h);
+      var slices = target.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
       gsap.fromTo(slices,
         { yPercent: 100 },
         {
@@ -5087,16 +5140,17 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     root.querySelectorAll('.main-heading--word-rotate, .uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
 
-      var prefix = h.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
-      var suffix = h.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
+      var prefix = target.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
+      var suffix = target.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
 
       [prefix, suffix].forEach(function (part) {
         if (!part) return;
         splitTextIntoWordsAndChars(part, 'mh-char', 'mh-word-wrap');
       });
 
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { y: 35, rotateX: -80, opacity: 0 },
         {
@@ -5114,7 +5168,7 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
         }
       );
 
-      var wordsWrap = h.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
+      var wordsWrap = target.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
       if (!wordsWrap) return;
       var words = wordsWrap.querySelectorAll('.mh-rotate-word, .uik-rotate-word');
       if (words.length <= 1) return;

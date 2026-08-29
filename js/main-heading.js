@@ -1,7 +1,17 @@
 /**
  * Main-Heading Standalone GSAP 3 Animation Library
- * Works on any website without dependencies on UI-Kit classes.
- * Usage: <div class="main-heading"><h1 class="main-heading--split">Text</h1></div>
+ * Works seamlessly on any website and inside any grid / column (.col-6, .col-4, flexbox, etc.)
+ * Zero external CSS class dependency.
+ * Usage: 
+ *   <div class="row">
+ *     <div class="col-6">
+ *       <div class="main-heading">
+ *         <h2 class="main-heading--split">Design in motion</h2>
+ *       </div>
+ *     </div>
+ *   </div>
+ * Or directly:
+ *   <h2 class="main-heading--split">Design in motion</h2>
  */
 (function () {
   function initMainHeadings() {
@@ -13,15 +23,25 @@
 
     // Helper to get trigger element
     function getTrigger(el) {
-      return el.closest('.main-heading') || el;
+      return el.closest('.main-heading') || el.closest('.uik-heading') || el;
+    }
+
+    // Helper to resolve target heading tag if parent wrapper was selected
+    function getTargetHeading(el) {
+      if (/^H[1-6]$/i.test(el.tagName)) return el;
+      var headingChild = el.querySelector('h1, h2, h3, h4, h5, h6, .mh-title, .uik-heading');
+      return headingChild || el;
     }
 
     // Helper: Split element text into words and individual characters with natural word wrapping
     function splitTextIntoWordsAndChars(el, charClass, wordClass) {
       charClass = charClass || 'mh-char';
       wordClass = wordClass || 'mh-word-wrap';
-      var rawText = el.textContent.trim();
-      el.textContent = '';
+      var target = getTargetHeading(el);
+      if (target.querySelector('.' + charClass)) return; // Prevent double splitting
+      var rawText = target.textContent.trim();
+      if (!rawText) return;
+      target.textContent = '';
       var words = rawText.split(/\s+/);
       words.forEach(function (word, wIndex) {
         var wordSpan = document.createElement('span');
@@ -29,6 +49,8 @@
         wordSpan.style.display = 'inline-block';
         wordSpan.style.whiteSpace = 'nowrap';
         wordSpan.style.position = 'relative';
+        wordSpan.style.maxWidth = '100%';
+        wordSpan.style.verticalAlign = 'baseline';
 
         word.split('').forEach(function (ch) {
           var charSpan = document.createElement('span');
@@ -39,9 +61,9 @@
           wordSpan.appendChild(charSpan);
         });
 
-        el.appendChild(wordSpan);
+        target.appendChild(wordSpan);
         if (wIndex < words.length - 1) {
-          el.appendChild(document.createTextNode(' '));
+          target.appendChild(document.createTextNode(' '));
         }
       });
     }
@@ -49,17 +71,23 @@
     // Helper: Split element text into separate words with natural spaces
     function splitTextIntoWords(el, wordClass) {
       wordClass = wordClass || 'mh-word';
-      var rawText = el.textContent.trim();
-      el.textContent = '';
+      var target = getTargetHeading(el);
+      if (target.querySelector('.' + wordClass)) return; // Prevent double splitting
+      var rawText = target.textContent.trim();
+      if (!rawText) return;
+      target.textContent = '';
       var words = rawText.split(/\s+/);
       words.forEach(function (word, wIndex) {
         var wordSpan = document.createElement('span');
         wordSpan.className = wordClass;
         wordSpan.style.display = 'inline-block';
+        wordSpan.style.position = 'relative';
+        wordSpan.style.maxWidth = '100%';
+        wordSpan.style.verticalAlign = 'baseline';
         wordSpan.textContent = word;
-        el.appendChild(wordSpan);
+        target.appendChild(wordSpan);
         if (wIndex < words.length - 1) {
-          el.appendChild(document.createTextNode(' '));
+          target.appendChild(document.createTextNode(' '));
         }
       });
     }
@@ -68,8 +96,9 @@
     root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { y: '110%', opacity: 0 },
         {
@@ -91,7 +120,8 @@
     root.querySelectorAll('.main-heading--clip, .uik-heading--clip, [data-anim="clip"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { clipPath: 'inset(0 100% 0 0)' },
         {
           clipPath: 'inset(0 0% 0 0)',
@@ -110,11 +140,12 @@
     root.querySelectorAll('.main-heading--underline, .uik-heading--underline, [data-anim="underline"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var rule = h.querySelector('.mh-underline-rule, .uik-underline-rule');
+      var target = getTargetHeading(h);
+      var rule = target.querySelector('.mh-underline-rule, .uik-underline-rule');
       if (!rule) {
         rule = document.createElement('span');
         rule.className = 'mh-underline-rule';
-        h.appendChild(rule);
+        target.appendChild(rule);
       }
       gsap.fromTo(rule,
         { scaleX: 0 },
@@ -135,14 +166,15 @@
     root.querySelectorAll('.main-heading--shine, .uik-heading--shine, [data-anim="shine"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       ScrollTrigger.create({
         trigger: getTrigger(h),
         start: 'top 92%',
         end: 'bottom 8%',
-        onEnter: function () { h.classList.add('mh-is-active'); },
-        onLeave: function () { h.classList.remove('mh-is-active'); },
-        onEnterBack: function () { h.classList.add('mh-is-active'); },
-        onLeaveBack: function () { h.classList.remove('mh-is-active'); }
+        onEnter: function () { target.classList.add('mh-is-active'); },
+        onLeave: function () { target.classList.remove('mh-is-active'); },
+        onEnterBack: function () { target.classList.add('mh-is-active'); },
+        onLeaveBack: function () { target.classList.remove('mh-is-active'); }
       });
     });
 
@@ -150,8 +182,9 @@
     root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWords(h, 'mh-word');
-      var wordsEls = h.querySelectorAll('.mh-word, .uik-word');
+      var target = getTargetHeading(h);
+      splitTextIntoWords(target, 'mh-word');
+      var wordsEls = target.querySelectorAll('.mh-word, .uik-word');
       gsap.fromTo(wordsEls,
         { y: '100%', opacity: 0 },
         {
@@ -173,13 +206,14 @@
     root.querySelectorAll('.main-heading--linemask, .uik-heading--linemask, [data-anim="linemask"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var inner = h.querySelector('.mh-linemask-inner, .uik-linemask-inner');
+      var target = getTargetHeading(h);
+      var inner = target.querySelector('.mh-linemask-inner, .uik-linemask-inner');
       if (!inner) {
         inner = document.createElement('span');
         inner.className = 'mh-linemask-inner';
-        inner.innerHTML = h.innerHTML;
-        h.innerHTML = '';
-        h.appendChild(inner);
+        inner.innerHTML = target.innerHTML;
+        target.innerHTML = '';
+        target.appendChild(inner);
       }
       gsap.fromTo(inner,
         { y: '115%' },
@@ -200,7 +234,8 @@
     root.querySelectorAll('.main-heading--blur, .uik-heading--blur, [data-anim="blur"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { filter: 'blur(14px)', opacity: 0 },
         {
           filter: 'blur(0px)',
@@ -220,7 +255,8 @@
     root.querySelectorAll('.main-heading--rotate3d, .uik-heading--rotate3d, [data-anim="rotate3d"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { rotateX: 70, opacity: 0 },
         {
           rotateX: 0,
@@ -240,7 +276,8 @@
     root.querySelectorAll('.main-heading--pop, .uik-heading--pop, [data-anim="pop"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { scale: 0.4, opacity: 0 },
         {
           scale: 1,
@@ -260,21 +297,22 @@
     root.querySelectorAll('.main-heading--typewriter, .uik-heading--typewriter, [data-anim="typewriter"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var full = h.dataset.text || h.textContent.trim() || 'Types itself out on scroll';
-      h.dataset.text = full;
-      h.textContent = '';
+      var target = getTargetHeading(h);
+      var full = target.dataset.text || target.textContent.trim() || 'Types itself out on scroll';
+      target.dataset.text = full;
+      target.textContent = '';
       var iv = null;
       function reset() {
         if (iv) { clearInterval(iv); iv = null; }
-        h.textContent = '';
+        target.textContent = '';
       }
       function play() {
         if (iv) { clearInterval(iv); iv = null; }
-        h.textContent = '';
+        target.textContent = '';
         var idx = 0;
         iv = setInterval(function () {
           idx++;
-          h.textContent = full.slice(0, idx);
+          target.textContent = full.slice(0, idx);
           if (idx >= full.length) {
             clearInterval(iv);
             iv = null;
@@ -296,11 +334,12 @@
     root.querySelectorAll('.main-heading--highlight, .uik-heading--highlight, [data-anim="highlight"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var bg = h.querySelector('.mh-highlight-bg, .uik-highlight-bg');
+      var target = getTargetHeading(h);
+      var bg = target.querySelector('.mh-highlight-bg, .uik-highlight-bg');
       if (!bg) {
         bg = document.createElement('span');
         bg.className = 'mh-highlight-bg';
-        h.appendChild(bg);
+        target.appendChild(bg);
       }
       gsap.fromTo(bg,
         { scaleX: 0 },
@@ -321,8 +360,9 @@
     root.querySelectorAll('.main-heading--scramble, .uik-heading--scramble, [data-anim="scramble"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var finalText = h.dataset.finalText || h.textContent.trim();
-      h.dataset.finalText = finalText;
+      var target = getTargetHeading(h);
+      var finalText = target.dataset.finalText || target.textContent.trim();
+      target.dataset.finalText = finalText;
       var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       var iv = null;
       function play() {
@@ -330,13 +370,13 @@
         var frame = 0;
         var totalFrames = 20;
         iv = setInterval(function () {
-          h.textContent = finalText.split('').map(function (ch, i) {
+          target.textContent = finalText.split('').map(function (ch, i) {
             if (ch === ' ') return ' ';
             if (i < (frame / totalFrames) * finalText.length) return ch;
             return chars[Math.floor(Math.random() * chars.length)];
           }).join('');
           frame++;
-          if (frame > totalFrames) { h.textContent = finalText; clearInterval(iv); iv = null; }
+          if (frame > totalFrames) { target.textContent = finalText; clearInterval(iv); iv = null; }
         }, 35);
       }
       ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play });
@@ -346,8 +386,9 @@
     root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       var tl = gsap.timeline({ repeat: -1, paused: true });
       tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
       ScrollTrigger.create({
@@ -365,7 +406,8 @@
     root.querySelectorAll('.main-heading--duo, .uik-heading--duo, [data-anim="duo"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      h.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
+      var target = getTargetHeading(h);
+      target.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
         var fromX = i % 2 === 0 ? -110 : 110;
         gsap.fromTo(span,
           { xPercent: fromX },
@@ -387,8 +429,9 @@
     root.querySelectorAll('.main-heading--glitch, .uik-heading--glitch, [data-anim="glitch"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.dataset.text || h.textContent.trim();
-      var copies = h.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
+      var target = getTargetHeading(h);
+      var text = target.dataset.text || target.textContent.trim();
+      var copies = target.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
       if (!copies.length) {
         var copyR = document.createElement('span');
         copyR.className = 'mh-glitch-copy mh-glitch-copy--r';
@@ -396,9 +439,9 @@
         var copyB = document.createElement('span');
         copyB.className = 'mh-glitch-copy mh-glitch-copy--b';
         copyB.textContent = text;
-        h.appendChild(copyR);
-        h.appendChild(copyB);
-        copies = h.querySelectorAll('.mh-glitch-copy');
+        target.appendChild(copyR);
+        target.appendChild(copyB);
+        copies = target.querySelectorAll('.mh-glitch-copy');
       }
       var tl = gsap.timeline({ repeat: -1, repeatDelay: 2.2, paused: true });
       tl.set(copies, { opacity: 0, x: 0 })
@@ -418,7 +461,8 @@
     root.querySelectorAll('.main-heading--withphoto, .uik-heading--withphoto, [data-anim="withphoto"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var img = h.querySelector('img');
+      var target = getTargetHeading(h);
+      var img = target.querySelector('img');
       if (img) {
         gsap.fromTo(img,
           { scale: 0.6, rotate: -8, opacity: 0 },
@@ -442,11 +486,12 @@
     root.querySelectorAll('.main-heading--marker, .uik-heading--marker, [data-anim="marker"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var rule = h.querySelector('.mh-marker-rule, .uik-marker-rule');
+      var target = getTargetHeading(h);
+      var rule = target.querySelector('.mh-marker-rule, .uik-marker-rule');
       if (!rule) {
         rule = document.createElement('span');
         rule.className = 'mh-marker-rule';
-        h.appendChild(rule);
+        target.appendChild(rule);
       }
       gsap.fromTo(rule,
         { scaleX: 0 },
@@ -467,7 +512,8 @@
     root.querySelectorAll('.main-heading--skew, .uik-heading--skew, [data-anim="skew"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { skewX: -12, x: -40, opacity: 0 },
         {
           skewX: 0,
@@ -488,8 +534,9 @@
     root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWords(h, 'mh-stair-word');
-      var wordsEls = h.querySelectorAll('.mh-stair-word, .uik-stair-word');
+      var target = getTargetHeading(h);
+      splitTextIntoWords(target, 'mh-stair-word');
+      var wordsEls = target.querySelectorAll('.mh-stair-word, .uik-stair-word');
       gsap.fromTo(wordsEls,
         { y: -24, opacity: 0 },
         {
@@ -511,7 +558,8 @@
     root.querySelectorAll('.main-heading--outlinetext, .uik-heading--outlinetext, [data-anim="outlinetext"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var fill = h.querySelector('.mh-outline-fill, .uik-outline-fill');
+      var target = getTargetHeading(h);
+      var fill = target.querySelector('.mh-outline-fill, .uik-outline-fill');
       if (fill) {
         gsap.fromTo(fill,
           { clipPath: 'inset(0 100% 0 0)' },
@@ -533,14 +581,15 @@
     root.querySelectorAll('.main-heading--morph, .uik-heading--morph, [data-anim="morph"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-      tl.to(h, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
+      tl.to(target, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
       ScrollTrigger.create({
         trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
         onEnter: function () { tl.play(); },
         onEnterBack: function () { tl.play(); },
-        onLeave: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); },
-        onLeaveBack: function () { tl.pause(); gsap.to(h, { scale: 1, color: '#111318', duration: 0.3 }); }
+        onLeave: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); },
+        onLeaveBack: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#111318', duration: 0.3 }); }
       });
     });
 
@@ -548,7 +597,8 @@
     root.querySelectorAll('.main-heading--stamp, .uik-heading--stamp, [data-anim="stamp"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      gsap.fromTo(h,
+      var target = getTargetHeading(h);
+      gsap.fromTo(target,
         { scale: 2.2, rotate: -6, opacity: 0 },
         {
           scale: 1,
@@ -569,8 +619,9 @@
     root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var target = getTargetHeading(h);
+      splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { yPercent: -160, opacity: 0 },
         {
@@ -592,14 +643,15 @@
     root.querySelectorAll('.main-heading--neon, .uik-heading--neon, [data-anim="neon"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
-      tl.to(h, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
+      tl.to(target, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
       ScrollTrigger.create({
         trigger: getTrigger(h), start: 'top 92%', end: 'bottom 8%',
         onEnter: function () { tl.play(); },
         onEnterBack: function () { tl.play(); },
-        onLeave: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
-        onLeaveBack: function () { tl.pause(); gsap.to(h, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
+        onLeave: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); },
+        onLeaveBack: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShadow: 'none', duration: 0.3 }); }
       });
     });
 
@@ -607,7 +659,8 @@
     root.querySelectorAll('.main-heading--slice, .uik-heading--slice, [data-anim="slice"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var slices = h.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
+      var target = getTargetHeading(h);
+      var slices = target.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
       gsap.fromTo(slices,
         { yPercent: 100 },
         {
@@ -628,16 +681,17 @@
     root.querySelectorAll('.main-heading--word-rotate, .uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
+      var target = getTargetHeading(h);
 
-      var prefix = h.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
-      var suffix = h.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
+      var prefix = target.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
+      var suffix = target.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
 
       [prefix, suffix].forEach(function (part) {
         if (!part) return;
         splitTextIntoWordsAndChars(part, 'mh-char', 'mh-word-wrap');
       });
 
-      var chars = h.querySelectorAll('.mh-char, .uik-char');
+      var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { y: 35, rotateX: -80, opacity: 0 },
         {
@@ -655,7 +709,7 @@
         }
       );
 
-      var wordsWrap = h.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
+      var wordsWrap = target.querySelector('.mh-rotate-words-wrap, .uik-rotate-words-wrap');
       if (!wordsWrap) return;
       var words = wordsWrap.querySelectorAll('.mh-rotate-word, .uik-rotate-word');
       if (words.length <= 1) return;
