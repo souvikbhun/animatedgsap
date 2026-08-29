@@ -794,10 +794,6 @@
     }
 
     .uik-kit .uik-marquee--diagonal .uik-marquee__item {
-        font-family: var(--uik-font-display);
-        font-weight: 700;
-        font-size: 30px;
-        padding: 0 28px;
         color: var(--uik-bg);
         background: var(--uik-ink);
     }
@@ -805,14 +801,59 @@
     /* ======================================================================
    HEADINGS — .main-heading parent class & child heading font sizes (H1 - H6)
    ====================================================================== */
+    div.main-heading,
+    div.uik-heading,
+    div[class*="main-heading"],
+    div[class*="uik-heading"],
+    div[data-anim],
     .main-heading,
     .uik-kit .main-heading,
     .uik-kit .uik-heading,
     .uik-heading {
+        display: block !important;
         position: relative;
         width: 100%;
         max-width: 100%;
-        margin-bottom: 1.5rem;
+        min-width: 0;
+        margin-bottom: 1.25rem;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        color: inherit;
+    }
+
+    /* Headings and paragraphs inside containers always stack vertically (niche niche) */
+    div.main-heading > h1, div.main-heading > h2, div.main-heading > h3, div.main-heading > h4, div.main-heading > h5, div.main-heading > h6,
+    div[class*="main-heading"] > h1, div[class*="main-heading"] > h2, div[class*="main-heading"] > h3, div[class*="main-heading"] > h4, div[class*="main-heading"] > h5, div[class*="main-heading"] > h6,
+    div[data-anim] > h1, div[data-anim] > h2, div[data-anim] > h3, div[data-anim] > h4, div[data-anim] > h5, div[data-anim] > h6,
+    div.main-heading h1, div.main-heading h2, div.main-heading h3, div.main-heading h4, div.main-heading h5, div.main-heading h6,
+    div[class*="main-heading"] h1, div[class*="main-heading"] h2, div[class*="main-heading"] h3, div[class*="main-heading"] h4, div[class*="main-heading"] h5, div[class*="main-heading"] h6,
+    div[data-anim] h1, div[data-anim] h2, div[data-anim] h3, div[data-anim] h4, div[data-anim] h5, div[data-anim] h6 {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-top: 0;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    div.main-heading > p,
+    div[class*="main-heading"] > p,
+    div[data-anim] > p,
+    div.main-heading p,
+    div[class*="main-heading"] p,
+    div[data-anim] p,
+    .mh-sub,
+    .uik-heading .mh-sub {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+        clear: both;
         box-sizing: border-box;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -824,6 +865,8 @@
         display: inline-block;
         white-space: nowrap;
         position: relative;
+        max-width: 100%;
+        vertical-align: baseline;
     }
 
     .uik-char,
@@ -838,121 +881,219 @@
     .mh-stair-word {
         display: inline-block;
         position: relative;
+        max-width: 100%;
+        vertical-align: baseline;
     }
 
     /* Child heading tags with responsive fluid font sizes */
     .main-heading h1,
     .uik-kit .main-heading h1,
+    [class*="main-heading"] h1,
+    [data-anim] h1,
     .main-heading.uik-h1,
     h1.main-heading,
-    h1.uik-heading {
-        font-size: clamp(34px, 5.5vw, 68px);
-        line-height: 1.08;
+    h1.uik-heading,
+    h1[class*="main-heading--"],
+    h1[class*="uik-heading--"],
+    h1[data-anim] {
+        font-size: clamp(28px, 4.2vw, 54px);
+        line-height: 1.1;
         letter-spacing: -0.02em;
         font-weight: 700;
-        margin: 0 0 16px;
+        margin: 0 0 14px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     .main-heading h2,
     .uik-kit .main-heading h2,
+    [class*="main-heading"] h2,
+    [data-anim] h2,
     .main-heading.uik-h2,
     h2.main-heading,
-    h2.uik-heading {
-        font-size: clamp(26px, 4vw, 48px);
-        line-height: 1.15;
+    h2.uik-heading,
+    h2[class*="main-heading--"],
+    h2[class*="uik-heading--"],
+    h2[data-anim] {
+        font-size: clamp(22px, 3.2vw, 38px);
+        line-height: 1.18;
         letter-spacing: -0.015em;
         font-weight: 600;
-        margin: 0 0 14px;
+        margin: 0 0 12px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     .main-heading h3,
     .uik-kit .main-heading h3,
+    [class*="main-heading"] h3,
+    [data-anim] h3,
     .main-heading.uik-h3,
     h3.main-heading,
-    h3.uik-heading {
-        font-size: clamp(22px, 3vw, 36px);
-        line-height: 1.2;
+    h3.uik-heading,
+    h3[class*="main-heading--"],
+    h3[class*="uik-heading--"],
+    h3[data-anim] {
+        font-size: clamp(18px, 2.4vw, 28px);
+        line-height: 1.22;
         letter-spacing: -0.01em;
         font-weight: 600;
-        margin: 0 0 12px;
+        margin: 0 0 10px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     .main-heading h4,
     .uik-kit .main-heading h4,
+    [class*="main-heading"] h4,
+    [data-anim] h4,
     .main-heading.uik-h4,
     h4.main-heading,
-    h4.uik-heading {
-        font-size: clamp(18px, 2.4vw, 28px);
-        line-height: 1.25;
+    h4.uik-heading,
+    h4[class*="main-heading--"],
+    h4[class*="uik-heading--"],
+    h4[data-anim] {
+        font-size: clamp(16px, 1.8vw, 22px);
+        line-height: 1.28;
         letter-spacing: -0.005em;
         font-weight: 600;
-        margin: 0 0 10px;
+        margin: 0 0 8px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     .main-heading h5,
     .uik-kit .main-heading h5,
+    [class*="main-heading"] h5,
+    [data-anim] h5,
     .main-heading.uik-h5,
     h5.main-heading,
-    h5.uik-heading {
-        font-size: clamp(16px, 1.8vw, 22px);
-        line-height: 1.3;
+    h5.uik-heading,
+    h5[class*="main-heading--"],
+    h5[class*="uik-heading--"],
+    h5[data-anim] {
+        font-size: clamp(14px, 1.4vw, 18px);
+        line-height: 1.32;
         font-weight: 500;
-        margin: 0 0 8px;
+        margin: 0 0 6px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     .main-heading h6,
     .uik-kit .main-heading h6,
+    [class*="main-heading"] h6,
+    [data-anim] h6,
     .main-heading.uik-h6,
     h6.main-heading,
-    h6.uik-heading {
-        font-size: clamp(13px, 1.4vw, 16px);
+    h6.uik-heading,
+    h6[class*="main-heading--"],
+    h6[class*="uik-heading--"],
+    h6[data-anim] {
+        font-size: clamp(12px, 1.1vw, 14px);
         line-height: 1.35;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         color: var(--uik-muted, #7A6E5E);
-        margin: 0 0 8px;
+        margin: 0 0 6px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
     }
 
     /* split-char rise */
     .uik-kit .uik-heading--split .uik-char,
     .uik-kit .main-heading--split .uik-char,
     .main-heading .uik-char,
-    .uik-heading--split .uik-char {
+    .main-heading .mh-char,
+    [data-anim="split"] .mh-char,
+    [data-anim="split"] .uik-char {
         display: inline-block;
         will-change: transform, opacity;
     }
 
     /* clip-path wipe reveal */
-    .uik-kit .uik-heading--clip,
-    .uik-kit .main-heading--clip,
-    .main-heading.uik-heading--clip,
-    .uik-heading--clip {
+    h1.uik-heading--clip, h2.uik-heading--clip, h3.uik-heading--clip, h4.uik-heading--clip, h5.uik-heading--clip, h6.uik-heading--clip,
+    h1.main-heading--clip, h2.main-heading--clip, h3.main-heading--clip, h4.main-heading--clip, h5.main-heading--clip, h6.main-heading--clip,
+    h1[data-anim="clip"], h2[data-anim="clip"], h3[data-anim="clip"], h4[data-anim="clip"], h5[data-anim="clip"], h6[data-anim="clip"],
+    .main-heading--clip > h1, .main-heading--clip > h2, .main-heading--clip > h3, .main-heading--clip > h4, .main-heading--clip > h5, .main-heading--clip > h6,
+    .uik-heading--clip > h1, .uik-heading--clip > h2, .uik-heading--clip > h3, .uik-heading--clip > h4, .uik-heading--clip > h5, .uik-heading--clip > h6,
+    [data-anim="clip"] > h1, [data-anim="clip"] > h2, [data-anim="clip"] > h3, [data-anim="clip"] > h4, [data-anim="clip"] > h5, [data-anim="clip"] > h6,
+    .uik-heading--clip:not(div),
+    .main-heading--clip:not(div),
+    [data-anim="clip"]:not(div) {
         clip-path: inset(0 100% 0 0);
+        width: 100%;
+        max-width: 100%;
     }
 
     /* underline draw */
-    .uik-kit .uik-heading--underline,
-    .uik-heading--underline {
+    h1.uik-heading--underline, h2.uik-heading--underline, h3.uik-heading--underline, h4.uik-heading--underline, h5.uik-heading--underline, h6.uik-heading--underline,
+    h1.main-heading--underline, h2.main-heading--underline, h3.main-heading--underline, h4.main-heading--underline, h5.main-heading--underline, h6.main-heading--underline,
+    h1[data-anim="underline"], h2[data-anim="underline"], h3[data-anim="underline"], h4[data-anim="underline"], h5[data-anim="underline"], h6[data-anim="underline"],
+    .main-heading--underline > h1, .main-heading--underline > h2, .main-heading--underline > h3, .main-heading--underline > h4, .main-heading--underline > h5, .main-heading--underline > h6,
+    .uik-heading--underline > h1, .uik-heading--underline > h2, .uik-heading--underline > h3, .uik-heading--underline > h4, .uik-heading--underline > h5, .uik-heading--underline > h6,
+    [data-anim="underline"] > h1, [data-anim="underline"] > h2, [data-anim="underline"] > h3, [data-anim="underline"] > h4, [data-anim="underline"] > h5, [data-anim="underline"] > h6,
+    .uik-heading--underline:not(div),
+    .main-heading--underline:not(div),
+    [data-anim="underline"]:not(div) {
         position: relative;
         display: inline-block;
-        padding-bottom: 10px;
+        max-width: 100%;
+        padding-bottom: 8px;
     }
 
-    .uik-kit .uik-heading--underline .uik-underline-rule {
+    .uik-kit .uik-heading--underline .uik-underline-rule,
+    .mh-underline-rule,
+    .uik-underline-rule,
+    [data-anim="underline"] .mh-underline-rule,
+    [data-anim="underline"] .uik-underline-rule {
         position: absolute;
         left: 0;
         bottom: 0;
         height: 4px;
         width: 100%;
-        background: linear-gradient(90deg, var(--uik-gold), var(--uik-mint));
+        max-width: 100%;
+        background: linear-gradient(90deg, var(--uik-gold, #C8862B), var(--uik-mint, #2F8F72));
         transform: scaleX(0);
         transform-origin: left center;
         border-radius: 4px;
     }
 
     /* animated gradient shine */
-    .uik-kit .uik-heading--shine {
+    h1.uik-heading--shine, h2.uik-heading--shine, h3.uik-heading--shine, h4.uik-heading--shine, h5.uik-heading--shine, h6.uik-heading--shine,
+    h1.main-heading--shine, h2.main-heading--shine, h3.main-heading--shine, h4.main-heading--shine, h5.main-heading--shine, h6.main-heading--shine,
+    h1[data-anim="shine"], h2[data-anim="shine"], h3[data-anim="shine"], h4[data-anim="shine"], h5[data-anim="shine"], h6[data-anim="shine"],
+    .main-heading--shine > h1, .main-heading--shine > h2, .main-heading--shine > h3, .main-heading--shine > h4, .main-heading--shine > h5, .main-heading--shine > h6,
+    .uik-heading--shine > h1, .uik-heading--shine > h2, .uik-heading--shine > h3, .uik-heading--shine > h4, .uik-heading--shine > h5, .uik-heading--shine > h6,
+    [data-anim="shine"] > h1, [data-anim="shine"] > h2, [data-anim="shine"] > h3, [data-anim="shine"] > h4, [data-anim="shine"] > h5, [data-anim="shine"] > h6,
+    .uik-heading--shine:not(div),
+    .main-heading--shine:not(div),
+    [data-anim="shine"]:not(div) {
         background: linear-gradient(100deg, var(--uik-muted) 30%, var(--uik-ink) 42%, var(--uik-gold) 50%, var(--uik-ink) 58%, var(--uik-muted) 70%);
         background-size: 250% 100%;
         -webkit-background-clip: text;
@@ -960,86 +1101,137 @@
         color: transparent;
         animation: uikShine 5s linear infinite;
         animation-play-state: paused;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--shine.uik-is-active {
+    .uik-kit .uik-heading--shine.uik-is-active,
+    .main-heading--shine.mh-is-active,
+    [data-anim="shine"].mh-is-active {
         animation-play-state: running;
     }
 
     @keyframes uikShine {
-        0% {
-            background-position: 200% 0;
-        }
-
-        100% {
-            background-position: -200% 0;
-        }
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
     }
 
     /* word-by-word rise */
-    .uik-kit .uik-heading--words .uik-word {
+    .uik-kit .uik-heading--words .uik-word,
+    .main-heading--words .mh-word,
+    [data-anim="words"] .mh-word,
+    [data-anim="words"] .uik-word {
         display: inline-block;
         will-change: transform, opacity;
-        margin-right: 0.28em;
+        max-width: 100%;
     }
 
     /* line mask reveal (whole line slides up out of a clipped box) */
-    .uik-kit .uik-heading--linemask {
+    .uik-kit .uik-heading--linemask,
+    .main-heading--linemask,
+    [data-anim="linemask"] {
         overflow: hidden;
         padding-bottom: 4px;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--linemask .uik-linemask-inner {
-        display: inline-block;
+    .uik-kit .uik-heading--linemask .uik-linemask-inner,
+    .main-heading .mh-linemask-inner,
+    [data-anim="linemask"] .mh-linemask-inner,
+    [data-anim="linemask"] .uik-linemask-inner {
+        display: block;
         transform: translateY(115%);
         will-change: transform;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* blur-in focus reveal */
-    .uik-kit .uik-heading--blur {
+    h1.uik-heading--blur, h2.uik-heading--blur, h3.uik-heading--blur, h4.uik-heading--blur, h5.uik-heading--blur, h6.uik-heading--blur,
+    h1.main-heading--blur, h2.main-heading--blur, h3.main-heading--blur, h4.main-heading--blur, h5.main-heading--blur, h6.main-heading--blur,
+    h1[data-anim="blur"], h2[data-anim="blur"], h3[data-anim="blur"], h4[data-anim="blur"], h5[data-anim="blur"], h6[data-anim="blur"],
+    .main-heading--blur > h1, .main-heading--blur > h2, .main-heading--blur > h3, .main-heading--blur > h4, .main-heading--blur > h5, .main-heading--blur > h6,
+    .uik-heading--blur > h1, .uik-heading--blur > h2, .uik-heading--blur > h3, .uik-heading--blur > h4, .uik-heading--blur > h5, .uik-heading--blur > h6,
+    [data-anim="blur"] > h1, [data-anim="blur"] > h2, [data-anim="blur"] > h3, [data-anim="blur"] > h4, [data-anim="blur"] > h5, [data-anim="blur"] > h6,
+    .uik-heading--blur:not(div),
+    .main-heading--blur:not(div),
+    [data-anim="blur"]:not(div) {
         filter: blur(14px);
         opacity: 0;
         will-change: filter, opacity, transform;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* 3D rotate-in on X axis */
-    .uik-kit .uik-heading--rotate3d {
-        display: inline-block;
+    h1.uik-heading--rotate3d, h2.uik-heading--rotate3d, h3.uik-heading--rotate3d, h4.uik-heading--rotate3d, h5.uik-heading--rotate3d, h6.uik-heading--rotate3d,
+    h1.main-heading--rotate3d, h2.main-heading--rotate3d, h3.main-heading--rotate3d, h4.main-heading--rotate3d, h5.main-heading--rotate3d, h6.main-heading--rotate3d,
+    h1[data-anim="rotate3d"], h2[data-anim="rotate3d"], h3[data-anim="rotate3d"], h4[data-anim="rotate3d"], h5[data-anim="rotate3d"], h6[data-anim="rotate3d"],
+    .main-heading--rotate3d > h1, .main-heading--rotate3d > h2, .main-heading--rotate3d > h3, .main-heading--rotate3d > h4, .main-heading--rotate3d > h5, .main-heading--rotate3d > h6,
+    .uik-heading--rotate3d > h1, .uik-heading--rotate3d > h2, .uik-heading--rotate3d > h3, .uik-heading--rotate3d > h4, .uik-heading--rotate3d > h5, .uik-heading--rotate3d > h6,
+    [data-anim="rotate3d"] > h1, [data-anim="rotate3d"] > h2, [data-anim="rotate3d"] > h3, [data-anim="rotate3d"] > h4, [data-anim="rotate3d"] > h5, [data-anim="rotate3d"] > h6,
+    .uik-heading--rotate3d:not(div),
+    .main-heading--rotate3d:not(div),
+    [data-anim="rotate3d"]:not(div) {
         transform-origin: 50% 100%;
         transform: perspective(700px) rotateX(70deg);
         opacity: 0;
         will-change: transform, opacity;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* typewriter caret */
-    .uik-kit .uik-heading--typewriter {
+    h1.uik-heading--typewriter, h2.uik-heading--typewriter, h3.uik-heading--typewriter, h4.uik-heading--typewriter, h5.uik-heading--typewriter, h6.uik-heading--typewriter,
+    h1.main-heading--typewriter, h2.main-heading--typewriter, h3.main-heading--typewriter, h4.main-heading--typewriter, h5.main-heading--typewriter, h6.main-heading--typewriter,
+    h1[data-anim="typewriter"], h2[data-anim="typewriter"], h3[data-anim="typewriter"], h4[data-anim="typewriter"], h5[data-anim="typewriter"], h6[data-anim="typewriter"],
+    .main-heading--typewriter > h1, .main-heading--typewriter > h2, .main-heading--typewriter > h3, .main-heading--typewriter > h4, .main-heading--typewriter > h5, .main-heading--typewriter > h6,
+    .uik-heading--typewriter > h1, .uik-heading--typewriter > h2, .uik-heading--typewriter > h3, .uik-heading--typewriter > h4, .uik-heading--typewriter > h5, .uik-heading--typewriter > h6,
+    [data-anim="typewriter"] > h1, [data-anim="typewriter"] > h2, [data-anim="typewriter"] > h3, [data-anim="typewriter"] > h4, [data-anim="typewriter"] > h5, [data-anim="typewriter"] > h6,
+    .uik-heading--typewriter:not(div),
+    .main-heading--typewriter:not(div),
+    [data-anim="typewriter"]:not(div) {
         display: inline-block;
-        border-right: 3px solid var(--uik-gold);
-        white-space: nowrap;
+        border-right: 3px solid var(--uik-gold, #C8862B);
+        white-space: normal;
         min-height: 1.15em;
         padding-right: 4px;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
         animation: uikCaret 0.8s steps(1) infinite;
     }
 
     @keyframes uikCaret {
-        50% {
-            border-color: transparent;
-        }
+        50% { border-color: transparent; }
     }
 
     /* highlight sweep — a color block wipes across behind the text */
-    .uik-kit .uik-heading--highlight {
+    h1.uik-heading--highlight, h2.uik-heading--highlight, h3.uik-heading--highlight, h4.uik-heading--highlight, h5.uik-heading--highlight, h6.uik-heading--highlight,
+    h1.main-heading--highlight, h2.main-heading--highlight, h3.main-heading--highlight, h4.main-heading--highlight, h5.main-heading--highlight, h6.main-heading--highlight,
+    h1[data-anim="highlight"], h2[data-anim="highlight"], h3[data-anim="highlight"], h4[data-anim="highlight"], h5[data-anim="highlight"], h6[data-anim="highlight"],
+    .main-heading--highlight > h1, .main-heading--highlight > h2, .main-heading--highlight > h3, .main-heading--highlight > h4, .main-heading--highlight > h5, .main-heading--highlight > h6,
+    .uik-heading--highlight > h1, .uik-heading--highlight > h2, .uik-heading--highlight > h3, .uik-heading--highlight > h4, .uik-heading--highlight > h5, .uik-heading--highlight > h6,
+    [data-anim="highlight"] > h1, [data-anim="highlight"] > h2, [data-anim="highlight"] > h3, [data-anim="highlight"] > h4, [data-anim="highlight"] > h5, [data-anim="highlight"] > h6,
+    .uik-heading--highlight:not(div),
+    .main-heading--highlight:not(div),
+    [data-anim="highlight"]:not(div) {
         position: relative;
         display: inline-block;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--highlight .uik-highlight-bg {
+    .uik-kit .uik-heading--highlight .uik-highlight-bg,
+    .mh-highlight-bg,
+    .uik-highlight-bg,
+    [data-anim="highlight"] .mh-highlight-bg {
         position: absolute;
         left: -6px;
         right: -6px;
         top: 8%;
         bottom: 8%;
-        background: var(--uik-mint);
+        background: var(--uik-mint, #2F8F72);
         transform: scaleX(0);
         transform-origin: left center;
         z-index: -1;
@@ -1047,41 +1239,67 @@
     }
 
     /* elastic pop-in scale */
-    .uik-kit .uik-heading--pop {
+    h1.uik-heading--pop, h2.uik-heading--pop, h3.uik-heading--pop, h4.uik-heading--pop, h5.uik-heading--pop, h6.uik-heading--pop,
+    h1.main-heading--pop, h2.main-heading--pop, h3.main-heading--pop, h4.main-heading--pop, h5.main-heading--pop, h6.main-heading--pop,
+    h1[data-anim="pop"], h2[data-anim="pop"], h3[data-anim="pop"], h4[data-anim="pop"], h5[data-anim="pop"], h6[data-anim="pop"],
+    .main-heading--pop > h1, .main-heading--pop > h2, .main-heading--pop > h3, .main-heading--pop > h4, .main-heading--pop > h5, .main-heading--pop > h6,
+    .uik-heading--pop > h1, .uik-heading--pop > h2, .uik-heading--pop > h3, .uik-heading--pop > h4, .uik-heading--pop > h5, .uik-heading--pop > h6,
+    [data-anim="pop"] > h1, [data-anim="pop"] > h2, [data-anim="pop"] > h3, [data-anim="pop"] > h4, [data-anim="pop"] > h5, [data-anim="pop"] > h6,
+    .uik-heading--pop:not(div),
+    .main-heading--pop:not(div),
+    [data-anim="pop"]:not(div) {
         display: inline-block;
         transform: scale(0.4);
         opacity: 0;
         will-change: transform, opacity;
+        max-width: 100%;
     }
 
     /* letter scramble / decode */
-    .uik-kit .uik-heading--scramble {
-        font-family: var(--uik-font-mono);
-        font-size: clamp(22px, 2.6vw, 32px);
+    .uik-kit .uik-heading--scramble,
+    .main-heading--scramble,
+    [data-anim="scramble"] {
+        font-family: var(--uik-font-mono, monospace);
         letter-spacing: 0.02em;
-        color: var(--uik-mint);
+        color: var(--uik-mint, #2F8F72);
+        width: 100%;
+        max-width: 100%;
     }
 
     /* wave bounce — letters ripple continuously while in view */
-    .uik-kit .uik-heading--wave .uik-char {
+    .uik-kit .uik-heading--wave .uik-char,
+    .main-heading--wave .mh-char,
+    [data-anim="wave"] .mh-char,
+    [data-anim="wave"] .uik-char {
         display: inline-block;
         will-change: transform;
     }
 
     /* alternating slide-mask duo lines */
-    .uik-kit .uik-heading--duo {
+    .uik-kit .uik-heading--duo,
+    .main-heading--duo,
+    [data-anim="duo"] {
         overflow: hidden;
         padding-bottom: 2px;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--duo .uik-duo-line {
+    .uik-kit .uik-heading--duo .uik-duo-line,
+    .main-heading .mh-duo-line,
+    [data-anim="duo"] .mh-duo-line {
         display: block;
         overflow: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--duo .uik-duo-line span {
+    .uik-kit .uik-heading--duo .uik-duo-line span,
+    .main-heading .mh-duo-line span,
+    [data-anim="duo"] .mh-duo-line span {
         display: inline-block;
         will-change: transform;
+        max-width: 100%;
     }
 
     .uik-kit .uik-heading--duo .uik-duo-line:nth-child(1) span {
@@ -1093,36 +1311,65 @@
     }
 
     /* RGB glitch flicker */
-    .uik-kit .uik-heading--glitch {
+    h1.uik-heading--glitch, h2.uik-heading--glitch, h3.uik-heading--glitch, h4.uik-heading--glitch, h5.uik-heading--glitch, h6.uik-heading--glitch,
+    h1.main-heading--glitch, h2.main-heading--glitch, h3.main-heading--glitch, h4.main-heading--glitch, h5.main-heading--glitch, h6.main-heading--glitch,
+    h1[data-anim="glitch"], h2[data-anim="glitch"], h3[data-anim="glitch"], h4[data-anim="glitch"], h5[data-anim="glitch"], h6[data-anim="glitch"],
+    .main-heading--glitch > h1, .main-heading--glitch > h2, .main-heading--glitch > h3, .main-heading--glitch > h4, .main-heading--glitch > h5, .main-heading--glitch > h6,
+    .uik-heading--glitch > h1, .uik-heading--glitch > h2, .uik-heading--glitch > h3, .uik-heading--glitch > h4, .uik-heading--glitch > h5, .uik-heading--glitch > h6,
+    [data-anim="glitch"] > h1, [data-anim="glitch"] > h2, [data-anim="glitch"] > h3, [data-anim="glitch"] > h4, [data-anim="glitch"] > h5, [data-anim="glitch"] > h6,
+    .uik-heading--glitch:not(div),
+    .main-heading--glitch:not(div),
+    [data-anim="glitch"]:not(div) {
         position: relative;
         display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 
-    .uik-kit .uik-heading--glitch .uik-glitch-copy {
+    .uik-kit .uik-heading--glitch .uik-glitch-copy,
+    .mh-glitch-copy,
+    .uik-glitch-copy,
+    [data-anim="glitch"] .mh-glitch-copy {
         position: absolute;
         top: 0;
         left: 0;
         opacity: 0;
+        pointer-events: none;
+        overflow: hidden;
     }
 
-    .uik-kit .uik-heading--glitch .uik-glitch-copy--r {
-        color: var(--uik-gold);
+    .uik-kit .uik-heading--glitch .uik-glitch-copy--r,
+    .mh-glitch-copy--r {
+        color: var(--uik-gold, #C8862B);
         mix-blend-mode: multiply;
     }
 
-    .uik-kit .uik-heading--glitch .uik-glitch-copy--b {
-        color: var(--uik-mint);
+    .uik-kit .uik-heading--glitch .uik-glitch-copy--b,
+    .mh-glitch-copy--b {
+        color: var(--uik-mint, #2F8F72);
         mix-blend-mode: multiply;
     }
 
     /* heading with a small photo backdrop chip beside it */
-    .uik-kit .uik-heading--withphoto {
-        display: flex;
+    h1.uik-heading--withphoto, h2.uik-heading--withphoto, h3.uik-heading--withphoto, h4.uik-heading--withphoto, h5.uik-heading--withphoto, h6.uik-heading--withphoto,
+    h1.main-heading--withphoto, h2.main-heading--withphoto, h3.main-heading--withphoto, h4.main-heading--withphoto, h5.main-heading--withphoto, h6.main-heading--withphoto,
+    h1[data-anim="withphoto"], h2[data-anim="withphoto"], h3[data-anim="withphoto"], h4[data-anim="withphoto"], h5[data-anim="withphoto"], h6[data-anim="withphoto"],
+    .main-heading--withphoto > h1, .main-heading--withphoto > h2, .main-heading--withphoto > h3, .main-heading--withphoto > h4, .main-heading--withphoto > h5, .main-heading--withphoto > h6,
+    .uik-heading--withphoto > h1, .uik-heading--withphoto > h2, .uik-heading--withphoto > h3, .uik-heading--withphoto > h4, .uik-heading--withphoto > h5, .uik-heading--withphoto > h6,
+    [data-anim="withphoto"] > h1, [data-anim="withphoto"] > h2, [data-anim="withphoto"] > h3, [data-anim="withphoto"] > h4, [data-anim="withphoto"] > h5, [data-anim="withphoto"] > h6,
+    .uik-heading--withphoto:not(div),
+    .main-heading--withphoto:not(div),
+    [data-anim="withphoto"]:not(div) {
+        display: inline-flex;
         align-items: center;
         gap: 20px;
+        flex-wrap: wrap;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--withphoto img {
+    .uik-kit .uik-heading--withphoto img,
+    .main-heading--withphoto img,
+    [data-anim="withphoto"] img {
         width: 64px;
         height: 64px;
         border-radius: 16px;
@@ -1134,18 +1381,30 @@
     }
 
     /* marker-style underline that looks hand-drawn, drags across */
-    .uik-kit .uik-heading--marker {
+    h1.uik-heading--marker, h2.uik-heading--marker, h3.uik-heading--marker, h4.uik-heading--marker, h5.uik-heading--marker, h6.uik-heading--marker,
+    h1.main-heading--marker, h2.main-heading--marker, h3.main-heading--marker, h4.main-heading--marker, h5.main-heading--marker, h6.main-heading--marker,
+    h1[data-anim="marker"], h2[data-anim="marker"], h3[data-anim="marker"], h4[data-anim="marker"], h5[data-anim="marker"], h6[data-anim="marker"],
+    .main-heading--marker > h1, .main-heading--marker > h2, .main-heading--marker > h3, .main-heading--marker > h4, .main-heading--marker > h5, .main-heading--marker > h6,
+    .uik-heading--marker > h1, .uik-heading--marker > h2, .uik-heading--marker > h3, .uik-heading--marker > h4, .uik-heading--marker > h5, .uik-heading--marker > h6,
+    [data-anim="marker"] > h1, [data-anim="marker"] > h2, [data-anim="marker"] > h3, [data-anim="marker"] > h4, [data-anim="marker"] > h5, [data-anim="marker"] > h6,
+    .uik-heading--marker:not(div),
+    .main-heading--marker:not(div),
+    [data-anim="marker"]:not(div) {
         position: relative;
         display: inline-block;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--marker .uik-marker-rule {
+    .uik-kit .uik-heading--marker .uik-marker-rule,
+    .mh-marker-rule,
+    .uik-marker-rule,
+    [data-anim="marker"] .mh-marker-rule {
         position: absolute;
         left: -4px;
         right: -4px;
         bottom: 4px;
         height: 14px;
-        background: var(--uik-mint);
+        background: var(--uik-mint, #2F8F72);
         opacity: 0.35;
         transform: scaleX(0) skewX(-8deg);
         transform-origin: left center;
@@ -1154,105 +1413,180 @@
     }
 
     /* skew-in from the side */
-    .uik-kit .uik-heading--skew {
-        display: inline-block;
+    .uik-kit .uik-heading--skew,
+    .main-heading--skew,
+    [data-anim="skew"] {
+        display: block;
         transform: skewX(-12deg) translateX(-40px);
         opacity: 0;
         will-change: transform, opacity;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* staircase stagger — each word steps down and in */
-    .uik-kit .uik-heading--staircase .uik-stair-word {
+    .uik-kit .uik-heading--staircase .uik-stair-word,
+    .main-heading .mh-stair-word,
+    [data-anim="staircase"] .mh-stair-word,
+    [data-anim="staircase"] .uik-stair-word {
         display: inline-block;
         will-change: transform, opacity;
-        margin-right: 0.26em;
+        max-width: 100%;
     }
 
     /* outline-to-fill text, fills solid on scroll */
-    .uik-kit .uik-heading--outlinetext {
+    h1.uik-heading--outlinetext, h2.uik-heading--outlinetext, h3.uik-heading--outlinetext, h4.uik-heading--outlinetext, h5.uik-heading--outlinetext, h6.uik-heading--outlinetext,
+    h1.main-heading--outlinetext, h2.main-heading--outlinetext, h3.main-heading--outlinetext, h4.main-heading--outlinetext, h5.main-heading--outlinetext, h6.main-heading--outlinetext,
+    h1[data-anim="outlinetext"], h2[data-anim="outlinetext"], h3[data-anim="outlinetext"], h4[data-anim="outlinetext"], h5[data-anim="outlinetext"], h6[data-anim="outlinetext"],
+    .main-heading--outlinetext > h1, .main-heading--outlinetext > h2, .main-heading--outlinetext > h3, .main-heading--outlinetext > h4, .main-heading--outlinetext > h5, .main-heading--outlinetext > h6,
+    .uik-heading--outlinetext > h1, .uik-heading--outlinetext > h2, .uik-heading--outlinetext > h3, .uik-heading--outlinetext > h4, .uik-heading--outlinetext > h5, .uik-heading--outlinetext > h6,
+    [data-anim="outlinetext"] > h1, [data-anim="outlinetext"] > h2, [data-anim="outlinetext"] > h3, [data-anim="outlinetext"] > h4, [data-anim="outlinetext"] > h5, [data-anim="outlinetext"] > h6,
+    .uik-heading--outlinetext:not(div),
+    .main-heading--outlinetext:not(div),
+    [data-anim="outlinetext"]:not(div) {
         color: transparent;
-        -webkit-text-stroke: 1px var(--uik-ink);
+        -webkit-text-stroke: 1px var(--uik-ink, #241C15);
         position: relative;
         display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 
-    .uik-kit .uik-heading--outlinetext .uik-outline-fill {
+    .uik-kit .uik-heading--outlinetext .uik-outline-fill,
+    .mh-outline-fill,
+    .uik-outline-fill,
+    [data-anim="outlinetext"] .mh-outline-fill {
         position: absolute;
         inset: 0;
-        color: var(--uik-ink);
+        color: var(--uik-ink, #241C15);
         -webkit-text-stroke: 0;
         clip-path: inset(0 100% 0 0);
+        pointer-events: none;
     }
 
     /* morph — continuous subtle scale/color breathing while in view */
-    .uik-kit .uik-heading--morph {
+    h1.uik-heading--morph, h2.uik-heading--morph, h3.uik-heading--morph, h4.uik-heading--morph, h5.uik-heading--morph, h6.uik-heading--morph,
+    h1.main-heading--morph, h2.main-heading--morph, h3.main-heading--morph, h4.main-heading--morph, h5.main-heading--morph, h6.main-heading--morph,
+    h1[data-anim="morph"], h2[data-anim="morph"], h3[data-anim="morph"], h4[data-anim="morph"], h5[data-anim="morph"], h6[data-anim="morph"],
+    .main-heading--morph > h1, .main-heading--morph > h2, .main-heading--morph > h3, .main-heading--morph > h4, .main-heading--morph > h5, .main-heading--morph > h6,
+    .uik-heading--morph > h1, .uik-heading--morph > h2, .uik-heading--morph > h3, .uik-heading--morph > h4, .uik-heading--morph > h5, .uik-heading--morph > h6,
+    [data-anim="morph"] > h1, [data-anim="morph"] > h2, [data-anim="morph"] > h3, [data-anim="morph"] > h4, [data-anim="morph"] > h5, [data-anim="morph"] > h6,
+    .uik-heading--morph:not(div),
+    .main-heading--morph:not(div),
+    [data-anim="morph"]:not(div) {
         display: inline-block;
         will-change: transform, color;
+        max-width: 100%;
     }
 
     /* stamp — overshoots then settles like a rubber stamp hit */
-    .uik-kit .uik-heading--stamp {
+    h1.uik-heading--stamp, h2.uik-heading--stamp, h3.uik-heading--stamp, h4.uik-heading--stamp, h5.uik-heading--stamp, h6.uik-heading--stamp,
+    h1.main-heading--stamp, h2.main-heading--stamp, h3.main-heading--stamp, h4.main-heading--stamp, h5.main-heading--stamp, h6.main-heading--stamp,
+    h1[data-anim="stamp"], h2[data-anim="stamp"], h3[data-anim="stamp"], h4[data-anim="stamp"], h5[data-anim="stamp"], h6[data-anim="stamp"],
+    .main-heading--stamp > h1, .main-heading--stamp > h2, .main-heading--stamp > h3, .main-heading--stamp > h4, .main-heading--stamp > h5, .main-heading--stamp > h6,
+    .uik-heading--stamp > h1, .uik-heading--stamp > h2, .uik-heading--stamp > h3, .uik-heading--stamp > h4, .uik-heading--stamp > h5, .uik-heading--stamp > h6,
+    [data-anim="stamp"] > h1, [data-anim="stamp"] > h2, [data-anim="stamp"] > h3, [data-anim="stamp"] > h4, [data-anim="stamp"] > h5, [data-anim="stamp"] > h6,
+    .uik-heading--stamp:not(div),
+    .main-heading--stamp:not(div),
+    [data-anim="stamp"]:not(div) {
         display: inline-block;
         transform: scale(2.2) rotate(-6deg);
         opacity: 0;
         will-change: transform, opacity;
+        max-width: 100%;
     }
 
     /* cascade — letters fall from above with a bounce */
-    .uik-kit .uik-heading--cascade .uik-char {
+    .uik-kit .uik-heading--cascade .uik-char,
+    .main-heading--cascade .mh-char,
+    [data-anim="cascade"] .mh-char,
+    [data-anim="cascade"] .uik-char {
         display: inline-block;
         will-change: transform, opacity;
     }
 
     /* neon — pulsing glow text-shadow while in view */
-    .uik-kit .uik-heading--neon {
-        color: var(--uik-mint);
+    .uik-kit .uik-heading--neon,
+    .main-heading--neon,
+    [data-anim="neon"] {
+        color: var(--uik-mint, #2F8F72);
         opacity: 0.4;
         will-change: opacity, text-shadow;
+        width: 100%;
+        max-width: 100%;
     }
 
     /* slice reveal — horizontal blind-like slices open in sequence */
-    .uik-kit .uik-heading--slice {
+    .uik-kit .uik-heading--slice,
+    .main-heading--slice,
+    [data-anim="slice"] {
         position: relative;
-        display: inline-block;
+        display: block;
         overflow: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--slice .uik-slice-row {
+    .uik-kit .uik-heading--slice .uik-slice-row,
+    .main-heading .mh-slice-row,
+    [data-anim="slice"] .mh-slice-row {
         display: block;
         overflow: hidden;
         height: 0.34em;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--slice .uik-slice-row span {
+    .uik-kit .uik-heading--slice .uik-slice-row span,
+    .main-heading .mh-slice-row span,
+    [data-anim="slice"] .mh-slice-row span {
         display: block;
         transform: translateY(100%);
         will-change: transform;
+        max-width: 100%;
     }
 
     /* text split with word rotation — 3D rotating keyword cylinder + character split */
-    .uik-kit .uik-heading--word-rotate {
-        display: inline-flex;
+    h1.uik-heading--word-rotate, h2.uik-heading--word-rotate, h3.uik-heading--word-rotate, h4.uik-heading--word-rotate, h5.uik-heading--word-rotate, h6.uik-heading--word-rotate,
+    h1.main-heading--word-rotate, h2.main-heading--word-rotate, h3.main-heading--word-rotate, h4.main-heading--word-rotate, h5.main-heading--word-rotate, h6.main-heading--word-rotate,
+    h1[data-anim="word-rotate"], h2[data-anim="word-rotate"], h3[data-anim="word-rotate"], h4[data-anim="word-rotate"], h5[data-anim="word-rotate"], h6[data-anim="word-rotate"],
+    .main-heading--word-rotate > h1, .main-heading--word-rotate > h2, .main-heading--word-rotate > h3, .main-heading--word-rotate > h4, .main-heading--word-rotate > h5, .main-heading--word-rotate > h6,
+    .uik-heading--word-rotate > h1, .uik-heading--word-rotate > h2, .uik-heading--word-rotate > h3, .uik-heading--word-rotate > h4, .uik-heading--word-rotate > h5, .uik-heading--word-rotate > h6,
+    [data-anim="word-rotate"] > h1, [data-anim="word-rotate"] > h2, [data-anim="word-rotate"] > h3, [data-anim="word-rotate"] > h4, [data-anim="word-rotate"] > h5, [data-anim="word-rotate"] > h6,
+    .uik-heading--word-rotate:not(div),
+    .main-heading--word-rotate:not(div),
+    [data-anim="word-rotate"]:not(div) {
+        display: inline-flex !important;
         align-items: center;
         flex-wrap: wrap;
         gap: 0.28em;
         perspective: 1000px;
         vertical-align: middle;
+        max-width: 100%;
     }
 
-    .uik-kit .uik-heading--word-rotate .uik-char {
+    .uik-kit .uik-heading--word-rotate .uik-char,
+    .main-heading--word-rotate .mh-char,
+    [data-anim="word-rotate"] .mh-char,
+    [data-anim="word-rotate"] .uik-char {
         display: inline-block;
         will-change: transform, opacity;
         transform-origin: 50% 100% -20px;
     }
 
-    .uik-kit .uik-heading--word-rotate .uik-rotate-words-wrap {
+    .uik-kit .uik-heading--word-rotate .uik-rotate-words-wrap,
+    .main-heading--word-rotate .mh-rotate-words-wrap,
+    [data-anim="word-rotate"] .mh-rotate-words-wrap,
+    [data-anim="word-rotate"] .uik-rotate-words-wrap,
+    .mh-rotate-words-wrap,
+    .uik-rotate-words-wrap {
         position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         height: 1.25em;
         min-width: 4.8em;
+        max-width: 100%;
         padding: 0.1em 0.38em;
         border-radius: 12px;
         background: rgba(200, 134, 43, 0.12);
@@ -1264,7 +1598,12 @@
         overflow: hidden;
     }
 
-    .uik-kit .uik-heading--word-rotate .uik-rotate-word {
+    .uik-kit .uik-heading--word-rotate .uik-rotate-word,
+    .main-heading--word-rotate .mh-rotate-word,
+    [data-anim="word-rotate"] .mh-rotate-word,
+    [data-anim="word-rotate"] .uik-rotate-word,
+    .mh-rotate-word,
+    .uik-rotate-word {
         position: absolute;
         left: 0;
         right: 0;
@@ -1284,7 +1623,12 @@
         backface-visibility: hidden;
     }
 
-    .uik-kit .uik-heading--word-rotate .uik-rotate-word.is-active {
+    .uik-kit .uik-heading--word-rotate .uik-rotate-word.is-active,
+    .main-heading--word-rotate .mh-rotate-word.is-active,
+    [data-anim="word-rotate"] .mh-rotate-word.is-active,
+    [data-anim="word-rotate"] .uik-rotate-word.is-active,
+    .mh-rotate-word.is-active,
+    .uik-rotate-word.is-active {
         opacity: 1;
         transform: rotateX(0deg) translateY(0%);
     }

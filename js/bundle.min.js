@@ -4126,8 +4126,10 @@ target.appendChild(document.createTextNode(' '));
 }
 root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
 var chars = target.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
@@ -4148,8 +4150,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--clip, .uik-heading--clip, [data-anim="clip"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { clipPath: 'inset(0 100% 0 0)' },
 {
@@ -4166,8 +4170,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--underline, .uik-heading--underline, [data-anim="underline"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var rule = target.querySelector('.mh-underline-rule, .uik-underline-rule');
 if (!rule) {
 rule = document.createElement('span');
@@ -4190,8 +4196,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--shine, .uik-heading--shine, [data-anim="shine"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 ScrollTrigger.create({
 trigger: getTrigger(h),
 start: 'top 92%',
@@ -4204,8 +4212,10 @@ onLeaveBack: function () { target.classList.remove('mh-is-active'); }
 });
 root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 splitTextIntoWords(target, 'mh-word');
 var wordsEls = target.querySelectorAll('.mh-word, .uik-word');
 gsap.fromTo(wordsEls,
@@ -4226,8 +4236,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--linemask, .uik-heading--linemask, [data-anim="linemask"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var inner = target.querySelector('.mh-linemask-inner, .uik-linemask-inner');
 if (!inner) {
 inner = document.createElement('span');
@@ -4252,8 +4264,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--blur, .uik-heading--blur, [data-anim="blur"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { filter: 'blur(14px)', opacity: 0 },
 {
@@ -4271,8 +4285,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--rotate3d, .uik-heading--rotate3d, [data-anim="rotate3d"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { rotateX: 70, opacity: 0 },
 {
@@ -4290,8 +4306,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--pop, .uik-heading--pop, [data-anim="pop"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { scale: 0.4, opacity: 0 },
 {
@@ -4309,8 +4327,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--typewriter, .uik-heading--typewriter, [data-anim="typewriter"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var full = target.dataset.text || target.textContent.trim() || 'Types itself out on scroll';
 target.dataset.text = full;
 target.textContent = '';
@@ -4344,8 +4364,10 @@ onLeaveBack: reset
 });
 root.querySelectorAll('.main-heading--highlight, .uik-heading--highlight, [data-anim="highlight"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var bg = target.querySelector('.mh-highlight-bg, .uik-highlight-bg');
 if (!bg) {
 bg = document.createElement('span');
@@ -4368,8 +4390,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--scramble, .uik-heading--scramble, [data-anim="scramble"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var finalText = target.dataset.finalText || target.textContent.trim();
 target.dataset.finalText = finalText;
 var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -4392,8 +4416,10 @@ ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom to
 });
 root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
 var chars = target.querySelectorAll('.mh-char, .uik-char');
 var tl = gsap.timeline({ repeat: -1, paused: true });
@@ -4410,8 +4436,10 @@ onLeaveBack: function () { tl.pause(); gsap.to(chars, { y: 0, duration: 0.3 }); 
 });
 root.querySelectorAll('.main-heading--duo, .uik-heading--duo, [data-anim="duo"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 target.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
 var fromX = i % 2 === 0 ? -110 : 110;
 gsap.fromTo(span,
@@ -4431,8 +4459,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--glitch, .uik-heading--glitch, [data-anim="glitch"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var text = target.dataset.text || target.textContent.trim();
 var copies = target.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
 if (!copies.length) {
@@ -4461,9 +4491,11 @@ onLeaveBack: function () { tl.pause(0); }
 });
 root.querySelectorAll('.main-heading--withphoto, .uik-heading--withphoto, [data-anim="withphoto"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
-var img = target.querySelector('img');
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
+var img = target.querySelector('img') || h.querySelector('img');
 if (img) {
 gsap.fromTo(img,
 { scale: 0.6, rotate: -8, opacity: 0 },
@@ -4484,8 +4516,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--marker, .uik-heading--marker, [data-anim="marker"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var rule = target.querySelector('.mh-marker-rule, .uik-marker-rule');
 if (!rule) {
 rule = document.createElement('span');
@@ -4508,8 +4542,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--skew, .uik-heading--skew, [data-anim="skew"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { skewX: -12, x: -40, opacity: 0 },
 {
@@ -4528,8 +4564,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 splitTextIntoWords(target, 'mh-stair-word');
 var wordsEls = target.querySelectorAll('.mh-stair-word, .uik-stair-word');
 gsap.fromTo(wordsEls,
@@ -4550,8 +4588,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--outlinetext, .uik-heading--outlinetext, [data-anim="outlinetext"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var fill = target.querySelector('.mh-outline-fill, .uik-outline-fill');
 if (fill) {
 gsap.fromTo(fill,
@@ -4571,8 +4611,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--morph, .uik-heading--morph, [data-anim="morph"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
 tl.to(target, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
 ScrollTrigger.create({
@@ -4585,8 +4627,10 @@ onLeaveBack: function () { tl.pause(); gsap.to(target, { scale: 1, color: '#1113
 });
 root.querySelectorAll('.main-heading--stamp, .uik-heading--stamp, [data-anim="stamp"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 gsap.fromTo(target,
 { scale: 2.2, rotate: -6, opacity: 0 },
 {
@@ -4605,8 +4649,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
 var chars = target.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
@@ -4627,8 +4673,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--neon, .uik-heading--neon, [data-anim="neon"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
 tl.to(target, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
 ScrollTrigger.create({
@@ -4641,8 +4689,10 @@ onLeaveBack: function () { tl.pause(); gsap.to(target, { opacity: 0.4, textShado
 });
 root.querySelectorAll('.main-heading--slice, .uik-heading--slice, [data-anim="slice"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var slices = target.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
 gsap.fromTo(slices,
 { yPercent: 100 },
@@ -4661,8 +4711,10 @@ toggleActions: 'play reverse play reverse'
 });
 root.querySelectorAll('.main-heading--word-rotate, .uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
 if (h._mhInit) return;
-h._mhInit = true;
 var target = getTargetHeading(h);
+if (target._mhInit && target !== h) return;
+h._mhInit = true;
+target._mhInit = true;
 var prefix = target.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
 var suffix = target.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
 [prefix, suffix].forEach(function (part) {

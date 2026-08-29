@@ -4459,18 +4459,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
 
 /**
  * Main-Heading Standalone GSAP 3 Animation Library
- * Works seamlessly on any website and inside any grid / column (.col-6, .col-4, flexbox, etc.)
- * Zero external CSS class dependency.
- * Usage: 
- *   <div class="row">
- *     <div class="col-6">
- *       <div class="main-heading">
- *         <h2 class="main-heading--split">Design in motion</h2>
- *       </div>
- *     </div>
- *   </div>
- * Or directly:
- *   <h2 class="main-heading--split">Design in motion</h2>
+ * Universal animation controller supporting animations attached to:
+ *  1. Container <div>: <div class="col-lg-6 main-heading--split" data-anim="split"><h2>Title</h2><p>Sub</p></div>
+ *  2. Heading <h1-h6>: <h2 class="main-heading--split" data-anim="split">Title</h2>
+ *  3. Wrapper <div>: <div class="main-heading"><h2 class="main-heading--split">Title</h2></div>
  */
 (function () {
   function initMainHeadings() {
@@ -4485,7 +4477,7 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
       return el.closest('.main-heading') || el.closest('.uik-heading') || el;
     }
 
-    // Helper to resolve target heading tag if parent wrapper was selected
+    // Helper to resolve target heading tag if parent wrapper / div was selected
     function getTargetHeading(el) {
       if (/^H[1-6]$/i.test(el.tagName)) return el;
       var headingChild = el.querySelector('h1, h2, h3, h4, h5, h6, .mh-title, .uik-heading');
@@ -4554,8 +4546,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 1. split-char rise
     root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
       var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
@@ -4578,8 +4572,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 2. clip-path wipe
     root.querySelectorAll('.main-heading--clip, .uik-heading--clip, [data-anim="clip"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { clipPath: 'inset(0 100% 0 0)' },
         {
@@ -4598,8 +4594,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 3. underline draw
     root.querySelectorAll('.main-heading--underline, .uik-heading--underline, [data-anim="underline"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var rule = target.querySelector('.mh-underline-rule, .uik-underline-rule');
       if (!rule) {
         rule = document.createElement('span');
@@ -4624,8 +4622,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 4. shine
     root.querySelectorAll('.main-heading--shine, .uik-heading--shine, [data-anim="shine"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       ScrollTrigger.create({
         trigger: getTrigger(h),
         start: 'top 92%',
@@ -4640,8 +4640,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 5. word-by-word rise
     root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       splitTextIntoWords(target, 'mh-word');
       var wordsEls = target.querySelectorAll('.mh-word, .uik-word');
       gsap.fromTo(wordsEls,
@@ -4664,8 +4666,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 6. line mask reveal
     root.querySelectorAll('.main-heading--linemask, .uik-heading--linemask, [data-anim="linemask"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var inner = target.querySelector('.mh-linemask-inner, .uik-linemask-inner');
       if (!inner) {
         inner = document.createElement('span');
@@ -4692,8 +4696,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 7. blur-in focus reveal
     root.querySelectorAll('.main-heading--blur, .uik-heading--blur, [data-anim="blur"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { filter: 'blur(14px)', opacity: 0 },
         {
@@ -4713,8 +4719,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 8. 3D rotate-in
     root.querySelectorAll('.main-heading--rotate3d, .uik-heading--rotate3d, [data-anim="rotate3d"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { rotateX: 70, opacity: 0 },
         {
@@ -4734,8 +4742,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 9. elastic pop-in
     root.querySelectorAll('.main-heading--pop, .uik-heading--pop, [data-anim="pop"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { scale: 0.4, opacity: 0 },
         {
@@ -4755,8 +4765,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 10. typewriter caret
     root.querySelectorAll('.main-heading--typewriter, .uik-heading--typewriter, [data-anim="typewriter"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var full = target.dataset.text || target.textContent.trim() || 'Types itself out on scroll';
       target.dataset.text = full;
       target.textContent = '';
@@ -4792,8 +4804,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 11. highlight sweep
     root.querySelectorAll('.main-heading--highlight, .uik-heading--highlight, [data-anim="highlight"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var bg = target.querySelector('.mh-highlight-bg, .uik-highlight-bg');
       if (!bg) {
         bg = document.createElement('span');
@@ -4818,8 +4832,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 12. letter scramble / decode
     root.querySelectorAll('.main-heading--scramble, .uik-heading--scramble, [data-anim="scramble"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var finalText = target.dataset.finalText || target.textContent.trim();
       target.dataset.finalText = finalText;
       var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -4844,8 +4860,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 13. wave bounce
     root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
       var chars = target.querySelectorAll('.mh-char, .uik-char');
       var tl = gsap.timeline({ repeat: -1, paused: true });
@@ -4864,8 +4882,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 14. duo lines
     root.querySelectorAll('.main-heading--duo, .uik-heading--duo, [data-anim="duo"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       target.querySelectorAll('.mh-duo-line span, .uik-duo-line span').forEach(function (span, i) {
         var fromX = i % 2 === 0 ? -110 : 110;
         gsap.fromTo(span,
@@ -4887,8 +4907,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 15. glitch flicker
     root.querySelectorAll('.main-heading--glitch, .uik-heading--glitch, [data-anim="glitch"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var text = target.dataset.text || target.textContent.trim();
       var copies = target.querySelectorAll('.mh-glitch-copy, .uik-glitch-copy');
       if (!copies.length) {
@@ -4919,9 +4941,11 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 16. heading with photo chip
     root.querySelectorAll('.main-heading--withphoto, .uik-heading--withphoto, [data-anim="withphoto"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
-      var img = target.querySelector('img');
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
+      var img = target.querySelector('img') || h.querySelector('img');
       if (img) {
         gsap.fromTo(img,
           { scale: 0.6, rotate: -8, opacity: 0 },
@@ -4944,8 +4968,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 17. marker underline drag
     root.querySelectorAll('.main-heading--marker, .uik-heading--marker, [data-anim="marker"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var rule = target.querySelector('.mh-marker-rule, .uik-marker-rule');
       if (!rule) {
         rule = document.createElement('span');
@@ -4970,8 +4996,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 18. skew-in from side
     root.querySelectorAll('.main-heading--skew, .uik-heading--skew, [data-anim="skew"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { skewX: -12, x: -40, opacity: 0 },
         {
@@ -4992,8 +5020,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 19. staircase word stagger
     root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       splitTextIntoWords(target, 'mh-stair-word');
       var wordsEls = target.querySelectorAll('.mh-stair-word, .uik-stair-word');
       gsap.fromTo(wordsEls,
@@ -5016,8 +5046,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 20. outline-to-fill text
     root.querySelectorAll('.main-heading--outlinetext, .uik-heading--outlinetext, [data-anim="outlinetext"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var fill = target.querySelector('.mh-outline-fill, .uik-outline-fill');
       if (fill) {
         gsap.fromTo(fill,
@@ -5039,8 +5071,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 21. morph
     root.querySelectorAll('.main-heading--morph, .uik-heading--morph, [data-anim="morph"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
       tl.to(target, { scale: 1.04, color: '#C8862B', duration: 1.5, ease: 'sine.inOut' });
       ScrollTrigger.create({
@@ -5055,8 +5089,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 22. stamp
     root.querySelectorAll('.main-heading--stamp, .uik-heading--stamp, [data-anim="stamp"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       gsap.fromTo(target,
         { scale: 2.2, rotate: -6, opacity: 0 },
         {
@@ -5077,8 +5113,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 23. cascade
     root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       splitTextIntoWordsAndChars(target, 'mh-char', 'mh-word-wrap');
       var chars = target.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
@@ -5101,8 +5139,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 24. neon
     root.querySelectorAll('.main-heading--neon, .uik-heading--neon, [data-anim="neon"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var tl = gsap.timeline({ repeat: -1, yoyo: true, paused: true });
       tl.to(target, { opacity: 1, textShadow: '0 0 18px rgba(47,143,114,0.65)', duration: 1.2, ease: 'sine.inOut' });
       ScrollTrigger.create({
@@ -5117,8 +5157,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 25. slice reveal
     root.querySelectorAll('.main-heading--slice, .uik-heading--slice, [data-anim="slice"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
       var slices = target.querySelectorAll('.mh-slice-row span, .uik-slice-row span');
       gsap.fromTo(slices,
         { yPercent: 100 },
@@ -5139,8 +5181,10 @@ if (typeof Lenis !== 'undefined' && typeof gsap !== 'undefined') {
     // 26. text split with word rotation
     root.querySelectorAll('.main-heading--word-rotate, .uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
       if (h._mhInit) return;
-      h._mhInit = true;
       var target = getTargetHeading(h);
+      if (target._mhInit && target !== h) return;
+      h._mhInit = true;
+      target._mhInit = true;
 
       var prefix = target.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
       var suffix = target.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
