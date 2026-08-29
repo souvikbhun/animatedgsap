@@ -817,26 +817,50 @@
    ====================================================================== */
     .main-heading,
     .uik-kit .main-heading,
-    .uik-kit .uik-heading {
-        font-family: var(--uik-font-display, 'Fraunces', serif);
-        font-weight: 600;
-        color: var(--uik-ink, #241C15);
-        margin: 0 0 54px;
-        max-width: 820px;
+    .uik-kit .uik-heading,
+    .uik-heading {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Natural Word & Character Wrapper for Zero-Overlap Wrapping */
+    .uik-word-wrap,
+    .mh-word-wrap {
+        display: inline-block;
+        white-space: nowrap;
         position: relative;
     }
 
-    /* Child heading tags with distinct font sizes */
+    .uik-char,
+    .mh-char {
+        display: inline-block;
+        will-change: transform, opacity;
+    }
+
+    .uik-word,
+    .mh-word,
+    .uik-stair-word,
+    .mh-stair-word {
+        display: inline-block;
+        position: relative;
+    }
+
+    /* Child heading tags with responsive fluid font sizes */
     .main-heading h1,
     .uik-kit .main-heading h1,
     .main-heading.uik-h1,
     h1.main-heading,
     h1.uik-heading {
-        font-size: clamp(38px, 6vw, 76px);
-        line-height: 1.04;
+        font-size: clamp(34px, 5.5vw, 68px);
+        line-height: 1.08;
         letter-spacing: -0.02em;
         font-weight: 700;
-        margin: 0 0 24px;
+        margin: 0 0 16px;
     }
 
     .main-heading h2,
@@ -844,11 +868,11 @@
     .main-heading.uik-h2,
     h2.main-heading,
     h2.uik-heading {
-        font-size: clamp(30px, 4.5vw, 54px);
-        line-height: 1.12;
+        font-size: clamp(26px, 4vw, 48px);
+        line-height: 1.15;
         letter-spacing: -0.015em;
         font-weight: 600;
-        margin: 0 0 20px;
+        margin: 0 0 14px;
     }
 
     .main-heading h3,
@@ -856,11 +880,11 @@
     .main-heading.uik-h3,
     h3.main-heading,
     h3.uik-heading {
-        font-size: clamp(24px, 3.4vw, 40px);
-        line-height: 1.18;
+        font-size: clamp(22px, 3vw, 36px);
+        line-height: 1.2;
         letter-spacing: -0.01em;
         font-weight: 600;
-        margin: 0 0 16px;
+        margin: 0 0 12px;
     }
 
     .main-heading h4,
@@ -868,11 +892,11 @@
     .main-heading.uik-h4,
     h4.main-heading,
     h4.uik-heading {
-        font-size: clamp(20px, 2.6vw, 30px);
+        font-size: clamp(18px, 2.4vw, 28px);
         line-height: 1.25;
         letter-spacing: -0.005em;
         font-weight: 600;
-        margin: 0 0 14px;
+        margin: 0 0 10px;
     }
 
     .main-heading h5,
@@ -880,10 +904,10 @@
     .main-heading.uik-h5,
     h5.main-heading,
     h5.uik-heading {
-        font-size: clamp(17px, 2vw, 24px);
-        line-height: 1.32;
+        font-size: clamp(16px, 1.8vw, 22px);
+        line-height: 1.3;
         font-weight: 500;
-        margin: 0 0 12px;
+        margin: 0 0 8px;
     }
 
     .main-heading h6,
@@ -891,19 +915,20 @@
     .main-heading.uik-h6,
     h6.main-heading,
     h6.uik-heading {
-        font-size: clamp(14px, 1.6vw, 18px);
-        line-height: 1.38;
-        font-weight: 500;
+        font-size: clamp(13px, 1.4vw, 16px);
+        line-height: 1.35;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: var(--uik-muted, #7A6E5E);
-        margin: 0 0 10px;
+        margin: 0 0 8px;
     }
 
     /* split-char rise */
     .uik-kit .uik-heading--split .uik-char,
     .uik-kit .main-heading--split .uik-char,
-    .main-heading .uik-char {
+    .main-heading .uik-char,
+    .uik-heading--split .uik-char {
         display: inline-block;
         will-change: transform, opacity;
     }
@@ -911,12 +936,14 @@
     /* clip-path wipe reveal */
     .uik-kit .uik-heading--clip,
     .uik-kit .main-heading--clip,
-    .main-heading.uik-heading--clip {
+    .main-heading.uik-heading--clip,
+    .uik-heading--clip {
         clip-path: inset(0 100% 0 0);
     }
 
     /* underline draw */
-    .uik-kit .uik-heading--underline {
+    .uik-kit .uik-heading--underline,
+    .uik-heading--underline {
         position: relative;
         display: inline-block;
         padding-bottom: 10px;
@@ -7456,20 +7483,45 @@
    ========================================================================== */
 .main-heading {
     position: relative;
-    margin-bottom: 2.2rem;
-    font-family: var(--mh-font-display);
+    margin-bottom: 1.5rem;
     color: var(--mh-ink);
-    line-height: 1.15;
+    line-height: 1.2;
+    width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Natural Word & Character Wrapper for Zero-Overlap Wrapping */
+.mh-word-wrap,
+.uik-word-wrap {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+}
+
+.mh-char,
+.uik-char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.mh-word,
+.uik-word,
+.mh-stair-word,
+.uik-stair-word {
+    display: inline-block;
+    position: relative;
 }
 
 /* H1: Display / Hero Title Scale (Biggest) */
 .main-heading h1,
 .main-heading.is-h1,
 h1.main-heading {
-    font-size: clamp(38px, 6vw, 76px);
+    font-size: clamp(34px, 5.5vw, 68px);
     font-weight: 700;
-    line-height: 1.04;
+    line-height: 1.08;
     letter-spacing: -0.025em;
     margin: 0 0 16px;
     color: inherit;
@@ -7479,9 +7531,9 @@ h1.main-heading {
 .main-heading h2,
 .main-heading.is-h2,
 h2.main-heading {
-    font-size: clamp(30px, 4.5vw, 54px);
+    font-size: clamp(26px, 4vw, 48px);
     font-weight: 600;
-    line-height: 1.12;
+    line-height: 1.15;
     letter-spacing: -0.018em;
     margin: 0 0 14px;
     color: inherit;
@@ -7491,9 +7543,9 @@ h2.main-heading {
 .main-heading h3,
 .main-heading.is-h3,
 h3.main-heading {
-    font-size: clamp(24px, 3.4vw, 40px);
+    font-size: clamp(22px, 3vw, 36px);
     font-weight: 600;
-    line-height: 1.18;
+    line-height: 1.2;
     letter-spacing: -0.012em;
     margin: 0 0 12px;
     color: inherit;
@@ -7503,7 +7555,7 @@ h3.main-heading {
 .main-heading h4,
 .main-heading.is-h4,
 h4.main-heading {
-    font-size: clamp(20px, 2.6vw, 30px);
+    font-size: clamp(18px, 2.4vw, 28px);
     font-weight: 600;
     line-height: 1.25;
     letter-spacing: -0.005em;
@@ -7515,9 +7567,9 @@ h4.main-heading {
 .main-heading h5,
 .main-heading.is-h5,
 h5.main-heading {
-    font-size: clamp(17px, 2vw, 24px);
+    font-size: clamp(16px, 1.8vw, 22px);
     font-weight: 500;
-    line-height: 1.32;
+    line-height: 1.3;
     margin: 0 0 8px;
     color: inherit;
 }
@@ -7526,9 +7578,9 @@ h5.main-heading {
 .main-heading h6,
 .main-heading.is-h6,
 h6.main-heading {
-    font-size: clamp(13.5px, 1.6vw, 17px);
+    font-size: clamp(13px, 1.4vw, 16px);
     font-weight: 600;
-    line-height: 1.38;
+    line-height: 1.35;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--mh-muted);
@@ -7552,7 +7604,8 @@ h6.main-heading {
     line-height: 1.6;
     color: var(--mh-muted);
     margin-top: 10px;
-    max-width: 650px;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* ==========================================================================
@@ -7562,6 +7615,7 @@ h6.main-heading {
 /* 1. Split-Char Rise */
 .main-heading .mh-char,
 .main-heading--split .mh-char,
+.main-heading--split .uik-char,
 .uik-char {
     display: inline-block;
     will-change: transform, opacity;

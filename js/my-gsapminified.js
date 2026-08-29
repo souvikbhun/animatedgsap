@@ -162,16 +162,53 @@ repeat: -1
 );
 });
 if (typeof ScrollTrigger === 'undefined') return;
-root.querySelectorAll('.uik-heading--split').forEach(function (h) {
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'uik-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
+function splitTextIntoWordsAndChars(el, charClass, wordClass) {
+charClass = charClass || 'uik-char';
+wordClass = wordClass || 'uik-word-wrap';
+var rawText = el.textContent.trim();
+el.textContent = '';
+var words = rawText.split(/\s+/);
+words.forEach(function (word, wIndex) {
+var wordSpan = document.createElement('span');
+wordSpan.className = wordClass;
+wordSpan.style.display = 'inline-block';
+wordSpan.style.whiteSpace = 'nowrap';
+wordSpan.style.position = 'relative';
+word.split('').forEach(function (ch) {
+var charSpan = document.createElement('span');
+charSpan.className = charClass;
+charSpan.style.display = 'inline-block';
+charSpan.style.willChange = 'transform, opacity';
+charSpan.textContent = ch;
+wordSpan.appendChild(charSpan);
 });
-var chars = h.querySelectorAll('.uik-char');
+el.appendChild(wordSpan);
+if (wIndex < words.length - 1) {
+el.appendChild(document.createTextNode(' '));
+}
+});
+}
+function splitTextIntoWords(el, wordClass) {
+wordClass = wordClass || 'uik-word';
+var rawText = el.textContent.trim();
+el.textContent = '';
+var words = rawText.split(/\s+/);
+words.forEach(function (word, wIndex) {
+var wordSpan = document.createElement('span');
+wordSpan.className = wordClass;
+wordSpan.style.display = 'inline-block';
+wordSpan.textContent = word;
+el.appendChild(wordSpan);
+if (wIndex < words.length - 1) {
+el.appendChild(document.createTextNode(' '));
+}
+});
+}
+root.querySelectorAll('.uik-heading--split, .main-heading--split, [data-anim="split"]').forEach(function (h) {
+if (h._uikSplitInit) return;
+h._uikSplitInit = true;
+splitTextIntoWordsAndChars(h, 'uik-char', 'uik-word-wrap');
+var chars = h.querySelectorAll('.uik-char, .mh-char');
 gsap.fromTo(chars,
 { y: '110%', opacity: 0 },
 {
@@ -230,17 +267,11 @@ onEnterBack: function () { h.classList.add('uik-is-active'); },
 onLeaveBack: function () { h.classList.remove('uik-is-active'); }
 });
 });
-root.querySelectorAll('.uik-heading--words').forEach(function (h) {
-var text = h.textContent.trim();
-h.textContent = '';
-var words = text.split(/\s+/);
-words.forEach(function (w, i) {
-var span = document.createElement('span');
-span.className = 'uik-word';
-span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-h.appendChild(span);
-});
-var wordsEls = h.querySelectorAll('.uik-word');
+root.querySelectorAll('.uik-heading--words, .main-heading--words, [data-anim="words"]').forEach(function (h) {
+if (h._uikWordsInit) return;
+h._uikWordsInit = true;
+splitTextIntoWords(h, 'uik-word');
+var wordsEls = h.querySelectorAll('.uik-word, .mh-word');
 gsap.fromTo(wordsEls,
 { y: '100%', opacity: 0 },
 {
@@ -393,16 +424,11 @@ if (frame > totalFrames) { h.textContent = finalText; clearInterval(iv); iv = nu
 }
 ScrollTrigger.create({ trigger: h, start: 'top 85%', end: 'bottom top', onEnter: play, onEnterBack: play });
 });
-root.querySelectorAll('.uik-heading--wave').forEach(function (h) {
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'uik-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
-});
-var chars = h.querySelectorAll('.uik-char');
+root.querySelectorAll('.uik-heading--wave, .main-heading--wave, [data-anim="wave"]').forEach(function (h) {
+if (h._uikWaveInit) return;
+h._uikWaveInit = true;
+splitTextIntoWordsAndChars(h, 'uik-char', 'uik-word-wrap');
+var chars = h.querySelectorAll('.uik-char, .mh-char');
 var tl = gsap.timeline({ repeat: -1, paused: true });
 tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
 ScrollTrigger.create({
@@ -502,17 +528,11 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
-root.querySelectorAll('.uik-heading--staircase').forEach(function (h) {
-var text = h.textContent.trim();
-h.textContent = '';
-var words = text.split(/\s+/);
-words.forEach(function (w, i) {
-var span = document.createElement('span');
-span.className = 'uik-stair-word';
-span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-h.appendChild(span);
-});
-var wordsEls = h.querySelectorAll('.uik-stair-word');
+root.querySelectorAll('.uik-heading--staircase, .main-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
+if (h._uikStairInit) return;
+h._uikStairInit = true;
+splitTextIntoWords(h, 'uik-stair-word');
+var wordsEls = h.querySelectorAll('.uik-stair-word, .mh-stair-word');
 gsap.fromTo(wordsEls,
 { y: -24, opacity: 0 },
 {
@@ -575,16 +595,11 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
-root.querySelectorAll('.uik-heading--cascade').forEach(function (h) {
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'uik-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
-});
-var chars = h.querySelectorAll('.uik-char');
+root.querySelectorAll('.uik-heading--cascade, .main-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
+if (h._uikCascadeInit) return;
+h._uikCascadeInit = true;
+splitTextIntoWordsAndChars(h, 'uik-char', 'uik-word-wrap');
+var chars = h.querySelectorAll('.uik-char, .mh-char');
 gsap.fromTo(chars,
 { yPercent: -160, opacity: 0 },
 {
@@ -629,21 +644,14 @@ toggleActions: 'play reverse play reverse'
 }
 );
 });
-root.querySelectorAll('.uik-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
-if (h._uikInit) return;
-h._uikInit = true;
-var prefix = h.querySelector('.uik-rotate-prefix');
-var suffix = h.querySelector('.uik-rotate-suffix');
+root.querySelectorAll('.uik-heading--word-rotate, .main-heading--word-rotate, [data-anim="word-rotate"]').forEach(function (h) {
+if (h._uikRotateInit) return;
+h._uikRotateInit = true;
+var prefix = h.querySelector('.uik-rotate-prefix, .mh-rotate-prefix');
+var suffix = h.querySelector('.uik-rotate-suffix, .mh-rotate-suffix');
 [prefix, suffix].forEach(function (part) {
 if (!part) return;
-var raw = part.textContent.trim();
-part.textContent = '';
-raw.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'uik-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-part.appendChild(span);
-});
+splitTextIntoWordsAndChars(part, 'uik-char', 'uik-word-wrap');
 });
 var chars = h.querySelectorAll('.uik-char');
 gsap.fromTo(chars,
@@ -3677,8 +3685,8 @@ var CODE_REGISTRY = {
 title: 'Split-Character Stagger Heading',
 badge: 'KIT—01 / TYPOGRAPHY',
 html: '<h2 class="uik-heading uik-heading--split" data-anim="split">Design in motion</h2>',
-css: '.uik-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(36px, 6vw, 72px);\n  font-weight: 600;\n  color: #241C15;\n  overflow: hidden;\n  line-height: 1.1;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
-js: '// Split characters and animate on ScrollTrigger\nconst heading = document.querySelector(".uik-heading--split");\nconst text = heading.textContent.trim();\nheading.innerHTML = text.split("").map(c => c === " " ? "&nbsp;" : `<span class="uik-char">${c}</span>`).join("");\n\ngsap.from(heading.querySelectorAll(".uik-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 80%"\n  },\n  y: 80,\n  opacity: 0,\n  duration: 0.9,\n  stagger: 0.03,\n  ease: "power4.out"\n});'
+css: '.uik-heading--split {\n  font-family: "Fraunces", serif;\n  font-size: clamp(32px, 5vw, 64px);\n  font-weight: 600;\n  color: #241C15;\n  line-height: 1.15;\n  width: 100%;\n  overflow-wrap: break-word;\n}\n.uik-word-wrap {\n  display: inline-block;\n  white-space: nowrap;\n}\n.uik-char {\n  display: inline-block;\n  will-change: transform, opacity;\n}',
+js: '// Split into words & chars with natural wrapping\nconst heading = document.querySelector(".uik-heading--split");\nconst words = heading.textContent.trim().split(/\\s+/);\nheading.innerHTML = words.map(w => `<span class="uik-word-wrap">${w.split("").map(c => `<span class="uik-char">${c}</span>`).join("")}</span>`).join(" ");\n\ngsap.from(heading.querySelectorAll(".uik-char"), {\n  scrollTrigger: {\n    trigger: heading,\n    start: "top 80%"\n  },\n  y: 80,\n  opacity: 0,\n  duration: 0.85,\n  stagger: 0.02,\n  ease: "back.out(1.7)"\n});'
 },
 'clip': {
 title: 'Clip-Path Wipe Reveal Heading',
@@ -3875,18 +3883,53 @@ var root = document;
 function getTrigger(el) {
 return el.closest('.main-heading') || el;
 }
+function splitTextIntoWordsAndChars(el, charClass, wordClass) {
+charClass = charClass || 'mh-char';
+wordClass = wordClass || 'mh-word-wrap';
+var rawText = el.textContent.trim();
+el.textContent = '';
+var words = rawText.split(/\s+/);
+words.forEach(function (word, wIndex) {
+var wordSpan = document.createElement('span');
+wordSpan.className = wordClass;
+wordSpan.style.display = 'inline-block';
+wordSpan.style.whiteSpace = 'nowrap';
+wordSpan.style.position = 'relative';
+word.split('').forEach(function (ch) {
+var charSpan = document.createElement('span');
+charSpan.className = charClass;
+charSpan.style.display = 'inline-block';
+charSpan.style.willChange = 'transform, opacity';
+charSpan.textContent = ch;
+wordSpan.appendChild(charSpan);
+});
+el.appendChild(wordSpan);
+if (wIndex < words.length - 1) {
+el.appendChild(document.createTextNode(' '));
+}
+});
+}
+function splitTextIntoWords(el, wordClass) {
+wordClass = wordClass || 'mh-word';
+var rawText = el.textContent.trim();
+el.textContent = '';
+var words = rawText.split(/\s+/);
+words.forEach(function (word, wIndex) {
+var wordSpan = document.createElement('span');
+wordSpan.className = wordClass;
+wordSpan.style.display = 'inline-block';
+wordSpan.textContent = word;
+el.appendChild(wordSpan);
+if (wIndex < words.length - 1) {
+el.appendChild(document.createTextNode(' '));
+}
+});
+}
 root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'mh-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
-});
-var chars = h.querySelectorAll('.mh-char');
+splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+var chars = h.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
 { y: '110%', opacity: 0 },
 {
@@ -3959,16 +4002,8 @@ onLeaveBack: function () { h.classList.remove('mh-is-active'); }
 root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.textContent.trim();
-h.textContent = '';
-var words = text.split(/\s+/);
-words.forEach(function (w, i) {
-var span = document.createElement('span');
-span.className = 'mh-word';
-span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-h.appendChild(span);
-});
-var wordsEls = h.querySelectorAll('.mh-word');
+splitTextIntoWords(h, 'mh-word');
+var wordsEls = h.querySelectorAll('.mh-word, .uik-word');
 gsap.fromTo(wordsEls,
 { y: '100%', opacity: 0 },
 {
@@ -4147,15 +4182,8 @@ ScrollTrigger.create({ trigger: getTrigger(h), start: 'top 85%', end: 'bottom to
 root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'mh-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
-});
-var chars = h.querySelectorAll('.mh-char');
+splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+var chars = h.querySelectorAll('.mh-char, .uik-char');
 var tl = gsap.timeline({ repeat: -1, paused: true });
 tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
 ScrollTrigger.create({
@@ -4284,16 +4312,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.textContent.trim();
-h.textContent = '';
-var words = text.split(/\s+/);
-words.forEach(function (w, i) {
-var span = document.createElement('span');
-span.className = 'mh-stair-word';
-span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-h.appendChild(span);
-});
-var wordsEls = h.querySelectorAll('.mh-stair-word');
+splitTextIntoWords(h, 'mh-stair-word');
+var wordsEls = h.querySelectorAll('.mh-stair-word, .uik-stair-word');
 gsap.fromTo(wordsEls,
 { y: -24, opacity: 0 },
 {
@@ -4365,15 +4385,8 @@ toggleActions: 'play reverse play reverse'
 root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
 if (h._mhInit) return;
 h._mhInit = true;
-var text = h.textContent.trim();
-h.textContent = '';
-text.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'mh-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-h.appendChild(span);
-});
-var chars = h.querySelectorAll('.mh-char');
+splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+var chars = h.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,
 { yPercent: -160, opacity: 0 },
 {
@@ -4429,14 +4442,7 @@ var prefix = h.querySelector('.mh-rotate-prefix, .uik-rotate-prefix');
 var suffix = h.querySelector('.mh-rotate-suffix, .uik-rotate-suffix');
 [prefix, suffix].forEach(function (part) {
 if (!part) return;
-var raw = part.textContent.trim();
-part.textContent = '';
-raw.split('').forEach(function (ch) {
-var span = document.createElement('span');
-span.className = 'mh-char';
-span.textContent = ch === ' ' ? '\u00A0' : ch;
-part.appendChild(span);
-});
+splitTextIntoWordsAndChars(part, 'mh-char', 'mh-word-wrap');
 });
 var chars = h.querySelectorAll('.mh-char, .uik-char');
 gsap.fromTo(chars,

@@ -16,19 +16,60 @@
       return el.closest('.main-heading') || el;
     }
 
+    // Helper: Split element text into words and individual characters with natural word wrapping
+    function splitTextIntoWordsAndChars(el, charClass, wordClass) {
+      charClass = charClass || 'mh-char';
+      wordClass = wordClass || 'mh-word-wrap';
+      var rawText = el.textContent.trim();
+      el.textContent = '';
+      var words = rawText.split(/\s+/);
+      words.forEach(function (word, wIndex) {
+        var wordSpan = document.createElement('span');
+        wordSpan.className = wordClass;
+        wordSpan.style.display = 'inline-block';
+        wordSpan.style.whiteSpace = 'nowrap';
+        wordSpan.style.position = 'relative';
+
+        word.split('').forEach(function (ch) {
+          var charSpan = document.createElement('span');
+          charSpan.className = charClass;
+          charSpan.style.display = 'inline-block';
+          charSpan.style.willChange = 'transform, opacity';
+          charSpan.textContent = ch;
+          wordSpan.appendChild(charSpan);
+        });
+
+        el.appendChild(wordSpan);
+        if (wIndex < words.length - 1) {
+          el.appendChild(document.createTextNode(' '));
+        }
+      });
+    }
+
+    // Helper: Split element text into separate words with natural spaces
+    function splitTextIntoWords(el, wordClass) {
+      wordClass = wordClass || 'mh-word';
+      var rawText = el.textContent.trim();
+      el.textContent = '';
+      var words = rawText.split(/\s+/);
+      words.forEach(function (word, wIndex) {
+        var wordSpan = document.createElement('span');
+        wordSpan.className = wordClass;
+        wordSpan.style.display = 'inline-block';
+        wordSpan.textContent = word;
+        el.appendChild(wordSpan);
+        if (wIndex < words.length - 1) {
+          el.appendChild(document.createTextNode(' '));
+        }
+      });
+    }
+
     // 1. split-char rise
     root.querySelectorAll('.main-heading--split, .uik-heading--split, [data-anim="split"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.textContent.trim();
-      h.textContent = '';
-      text.split('').forEach(function (ch) {
-        var span = document.createElement('span');
-        span.className = 'mh-char';
-        span.textContent = ch === ' ' ? '\u00A0' : ch;
-        h.appendChild(span);
-      });
-      var chars = h.querySelectorAll('.mh-char');
+      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+      var chars = h.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { y: '110%', opacity: 0 },
         {
@@ -109,16 +150,8 @@
     root.querySelectorAll('.main-heading--words, .uik-heading--words, [data-anim="words"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.textContent.trim();
-      h.textContent = '';
-      var words = text.split(/\s+/);
-      words.forEach(function (w, i) {
-        var span = document.createElement('span');
-        span.className = 'mh-word';
-        span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-        h.appendChild(span);
-      });
-      var wordsEls = h.querySelectorAll('.mh-word');
+      splitTextIntoWords(h, 'mh-word');
+      var wordsEls = h.querySelectorAll('.mh-word, .uik-word');
       gsap.fromTo(wordsEls,
         { y: '100%', opacity: 0 },
         {
@@ -313,15 +346,8 @@
     root.querySelectorAll('.main-heading--wave, .uik-heading--wave, [data-anim="wave"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.textContent.trim();
-      h.textContent = '';
-      text.split('').forEach(function (ch) {
-        var span = document.createElement('span');
-        span.className = 'mh-char';
-        span.textContent = ch === ' ' ? '\u00A0' : ch;
-        h.appendChild(span);
-      });
-      var chars = h.querySelectorAll('.mh-char');
+      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+      var chars = h.querySelectorAll('.mh-char, .uik-char');
       var tl = gsap.timeline({ repeat: -1, paused: true });
       tl.to(chars, { y: -14, duration: 0.4, ease: 'sine.inOut', stagger: { each: 0.05, yoyo: true, repeat: 1 } });
       ScrollTrigger.create({
@@ -462,16 +488,8 @@
     root.querySelectorAll('.main-heading--staircase, .uik-heading--staircase, [data-anim="staircase"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.textContent.trim();
-      h.textContent = '';
-      var words = text.split(/\s+/);
-      words.forEach(function (w, i) {
-        var span = document.createElement('span');
-        span.className = 'mh-stair-word';
-        span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-        h.appendChild(span);
-      });
-      var wordsEls = h.querySelectorAll('.mh-stair-word');
+      splitTextIntoWords(h, 'mh-stair-word');
+      var wordsEls = h.querySelectorAll('.mh-stair-word, .uik-stair-word');
       gsap.fromTo(wordsEls,
         { y: -24, opacity: 0 },
         {
@@ -551,15 +569,8 @@
     root.querySelectorAll('.main-heading--cascade, .uik-heading--cascade, [data-anim="cascade"]').forEach(function (h) {
       if (h._mhInit) return;
       h._mhInit = true;
-      var text = h.textContent.trim();
-      h.textContent = '';
-      text.split('').forEach(function (ch) {
-        var span = document.createElement('span');
-        span.className = 'mh-char';
-        span.textContent = ch === ' ' ? '\u00A0' : ch;
-        h.appendChild(span);
-      });
-      var chars = h.querySelectorAll('.mh-char');
+      splitTextIntoWordsAndChars(h, 'mh-char', 'mh-word-wrap');
+      var chars = h.querySelectorAll('.mh-char, .uik-char');
       gsap.fromTo(chars,
         { yPercent: -160, opacity: 0 },
         {
@@ -623,14 +634,7 @@
 
       [prefix, suffix].forEach(function (part) {
         if (!part) return;
-        var raw = part.textContent.trim();
-        part.textContent = '';
-        raw.split('').forEach(function (ch) {
-          var span = document.createElement('span');
-          span.className = 'mh-char';
-          span.textContent = ch === ' ' ? '\u00A0' : ch;
-          part.appendChild(span);
-        });
+        splitTextIntoWordsAndChars(part, 'mh-char', 'mh-word-wrap');
       });
 
       var chars = h.querySelectorAll('.mh-char, .uik-char');
